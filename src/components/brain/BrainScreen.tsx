@@ -2,6 +2,7 @@
  * BrainScreen — My English Brain.
  * XP/스킬/배지 + 약점 강화 + 복습 빈도 + 오늘 만난 문장.
  */
+import { useMemo } from 'react';
 import { Card } from '../ui/Card';
 import { useStore } from '../../state/store';
 import { levelFromXp } from '../../domain/reward-engine';
@@ -9,6 +10,10 @@ import type { SkillAxis } from '../../domain/difficulty-mixer';
 import {
   REVIEW_INTENSITY_LABEL,
   CUE_MODE_LABEL,
+  countDue,
+  countOwned,
+  countWeakTraining,
+  summarizeWeakLinks,
   type ReviewIntensity,
 } from '../../domain/srs-engine';
 import { VaultSyncCard } from './VaultSyncCard';
@@ -38,15 +43,17 @@ export function BrainScreen() {
   const memories = useStore((s) => s.memories);
   const reviewIntensity = useStore((s) => s.reviewIntensity);
   const setReviewIntensity = useStore((s) => s.setReviewIntensity);
-  const dueCount = useStore((s) => s.dueReviewCount());
-  const owned = useStore((s) => s.ownedCount());
-  const weakCount = useStore((s) => s.weakTrainingCount());
-  const weakSummary = useStore((s) => s.getWeakLinkSummary());
   const requestStartPack = useStore((s) => s.requestStartPack);
+
+  const memoryList = useMemo(() => Object.values(memories), [memories]);
+  const dueCount = useMemo(() => countDue(memoryList), [memoryList]);
+  const owned = useMemo(() => countOwned(memoryList), [memoryList]);
+  const weakCount = useMemo(() => countWeakTraining(memoryList), [memoryList]);
+  const weakSummary = useMemo(() => summarizeWeakLinks(memoryList), [memoryList]);
 
   const accuracy = attemptCount > 0 ? Math.round((correctCount / attemptCount) * 100) : 0;
   const lvl = levelFromXp(xp);
-  const memoryCount = Object.keys(memories).length;
+  const memoryCount = memoryList.length;
 
   return (
     <div>
