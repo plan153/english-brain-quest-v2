@@ -1,0 +1,18 @@
+{
+  "version": 3,
+  "targetCount": 50,
+  "actualCount": 50,
+  "stageCount": 10,
+  "byStage": [
+    { "stage": "stage_get_place", "title": "1. get + 장소", "count": 5 },
+    { "stage": "stage_come_go", "title": "2. come / go 입자", "count": 7 },
+    { "stage": "stage_put", "title": "3. put on·off·up with", "count": 3 },
+    { "stage": "stage_keep_find_make", "title": "4. keep / find / make sure", "count": 7 },
+    { "stage": "stage_take", "title": "5. take off·over·up", "count": 3 },
+    { "stage": "stage_give", "title": "6. give up·in·back", "count": 3 },
+    { "stage": "stage_turn", "title": "7. turn on·off·out", "count": 3 },
+    { "stage": "stage_look", "title": "8. look at·for·after", "count": 3 },
+    { "stage": "stage_break", "title": "9. break down·up·out", "count": 3 },
+    { "stage": "stage_call", "title": "10. call back·off·on", "count": 3 }
+  ]
+}

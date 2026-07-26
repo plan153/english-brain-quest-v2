@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "packs": [
+    {
+      "id": "pack-starter",
+      "name": "Starter Pack",
+      "stage": 1,
+      "series": "starter",
+      "itemCount": 154,
+      "isStarter": true,
+      "prerequisites": [],
+      "file": "pack-starter.json"
+    },
+    {
+      "id": "pack-question",
+      "name": "Question Pack",
+      "stage": 2,
+      "series": "question",
+      "itemCount": 0,
+      "isStarter": false,
+      "prerequisites": ["pack-starter"],
+      "file": "qa-matrices.json",
+      "note": "verb-matrix-gate.js와 qa-matrices.json이 Stage 2-3을 담당"
+    },
+    {
+      "id": "pack-situation",
+      "name": "Situation Pack",
+      "stage": 5,
+      "series": "situation",
+      "itemCount": 0,
+      "isStarter": false,
+      "prerequisites": ["pack-starter"],
+      "note": "topic-link.js가 상황별 확장을 담당 (Phase 6에서 본격 구현)"
+    }
+  ]
+}

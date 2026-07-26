@@ -1,0 +1,39 @@
+{
+  "id": "unit-02-present-continuous",
+  "series": "grammar-in-use",
+  "unit": 2,
+  "title": "Present Continuous",
+  "concept": "지금 일어나고 있는 일",
+  "stage": 7,
+  "skillAxes": ["tense", "form"],
+  "prerequisites": ["unit-01-present-simple"],
+  "items": [
+    {
+      "id": "pc-01",
+      "type": "sentence",
+      "en": "I am studying English now.",
+      "translations": { "ko": "지금 영어를 공부하고 있어요." },
+      "form": "statement",
+      "tags": ["tense:present-continuous", "function:ongoing", "stage:7"]
+    },
+    {
+      "id": "pc-02",
+      "type": "sentence",
+      "en": "What are you doing?",
+      "translations": { "ko": "뭐 하고 있어요?" },
+      "form": "question",
+      "tags": ["tense:present-continuous", "form:question", "stage:7"]
+    },
+    {
+      "id": "pc-03",
+      "type": "pattern",
+      "pattern": "Subject + be + V-ing + ...",
+      "example": "She is reading a book.",
+      "tags": ["tense:present-continuous", "stage:7"]
+    }
+  ],
+  "exercises": [
+    { "type": "form-change", "from": "statement", "to": "question" },
+    { "type": "fill-blank", "target": "be-verb" }
+  ]
+}

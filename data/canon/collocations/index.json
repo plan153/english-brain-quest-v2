@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "totalCollocations": 50,
+  "byVerb": {
+    "have": 8,
+    "get": 7,
+    "take": 7,
+    "make": 7,
+    "give": 6,
+    "go": 3,
+    "come": 2,
+    "put": 2,
+    "keep": 2,
+    "find": 2,
+    "feel": 1,
+    "do": 2,
+    "need": 1
+  },
+  "byPattern": [
+    "have + noun",
+    "get + noun",
+    "take + noun",
+    "make + noun",
+    "give + noun",
+    "go + particle/noun",
+    "come + noun",
+    "put + noun",
+    "keep + noun",
+    "find + noun",
+    "feel + adj",
+    "do + noun",
+    "need + noun"
+  ]
+}

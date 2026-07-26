@@ -1,0 +1,7239 @@
+[
+  {
+    "id": "e001",
+    "english": "I have a question.",
+    "naturalKorean": "질문이 있어요.",
+    "literalMeaning": "나는 질문 하나를 가지고 있어요.",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_thing",
+    "nounIds": [
+      "n_question"
+    ],
+    "situationTags": [
+      "class",
+      "work",
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "have",
+      "a question"
+    ],
+    "hints": [
+      "질문을 내 쪽에 가지고 있다고 생각해요.",
+      "have + a question",
+      "I ___ a ________."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I have a question.",
+    "relatedExpressionIds": [
+      "e021",
+      "e015"
+    ],
+    "contrast": {
+      "koVerb": "질문하다 / 질문이 있다",
+      "enEngine": "have",
+      "enNoun": "a question",
+      "assembly": "have + a question",
+      "tip": "한국어는 「질문하다」, 영어는 have + question으로 자주 말합니다.",
+      "wrongDirectTranslation": "ask a question만 고집하기보다, 상황에서는 have a question도 자연스럽습니다.",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e002",
+    "english": "I need some time.",
+    "naturalKorean": "시간이 좀 필요해요.",
+    "literalMeaning": "나는 약간의 시간이 필요해요.",
+    "coreVerbId": "v_need",
+    "patternId": "p_need_thing",
+    "nounIds": [
+      "n_time"
+    ],
+    "situationTags": [
+      "request",
+      "work",
+      "schedule"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "need",
+      "some time"
+    ],
+    "hints": [
+      "필요한 것을 need 뒤에 놓아요.",
+      "need + some time",
+      "I ____ some ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I need some time.",
+    "relatedExpressionIds": [
+      "e006",
+      "e022"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "need some time",
+    "mapOrder": 1,
+    "contrast": {
+      "koVerb": "시간이 필요하다",
+      "enEngine": "need",
+      "enNoun": "some time",
+      "assembly": "need + some time",
+      "tip": "「필요하다」를 need + 명사로 붙입니다.",
+      "wrongDirectTranslation": "",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e003",
+    "english": "I get it.",
+    "naturalKorean": "이해했어요.",
+    "literalMeaning": "나는 그것을 내 안으로 받았어요.",
+    "coreVerbId": "v_get",
+    "patternId": "p_get_it",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "conversation",
+      "class",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "get",
+      "it"
+    ],
+    "hints": [
+      "get은 말의 뜻이 내 안으로 들어오는 느낌이에요.",
+      "get + it",
+      "I ___ it."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I get it.",
+    "acceptedAnswers": [
+      "I got it.",
+      "I understand.",
+      "I understand it."
+    ],
+    "alternativeExpressions": [
+      {
+        "text": "I know.",
+        "message": "뜻은 가까워요. 오늘은 get it으로 말뜻이 들어왔다는 느낌을 익히는 중이에요.",
+        "nuance": "I know는 이미 알고 있다는 느낌이고, I get it은 지금 이해했다는 느낌이에요."
+      }
+    ],
+    "commonMistakes": [
+      {
+        "pattern": "I get",
+        "type": "missingObject",
+        "message": "get it에서 it은 방금 들은 말이나 상황을 받아 가리켜요. 짧게 I get it으로 붙여 말해요."
+      }
+    ],
+    "nuanceNotes": "get it은 말이나 상황을 이해했다는 일상 표현이에요.",
+    "usageNotes": "수업, 회의, 친구 대화에서 모두 자주 써요.",
+    "relatedExpressionIds": [
+      "e026",
+      "e063"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "get it",
+    "mapOrder": 1,
+    "contrast": {
+      "koVerb": "이해하다",
+      "enEngine": "get",
+      "enNoun": "it",
+      "assembly": "get + it",
+      "tip": "한국어 「이해하다」를 영어 get it로 자주 조립합니다.",
+      "wrongDirectTranslation": "understand만 떠올리기",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e004",
+    "english": "I’m getting tired.",
+    "naturalKorean": "점점 피곤해지고 있어요.",
+    "literalMeaning": "나는 피곤한 상태가 되어 가고 있어요.",
+    "coreVerbId": "v_get",
+    "patternId": "p_get_state",
+    "nounIds": [
+      "n_feeling"
+    ],
+    "situationTags": [
+      "health",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "getting",
+      "tired"
+    ],
+    "hints": [
+      "상태가 바뀌는 중이면 get을 써요.",
+      "getting + tired",
+      "I’m _______ tired."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm getting tired.",
+    "relatedExpressionIds": [
+      "e013",
+      "e064"
+    ],
+    "contrast": {
+      "koVerb": "점점 피곤해지고 있어요",
+      "enEngine": "get",
+      "enNoun": "feeling",
+      "assembly": "get + adjective",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e005",
+    "english": "Make yourself at home.",
+    "naturalKorean": "편하게 있어요.",
+    "literalMeaning": "스스로를 집에 있는 상태로 만들어요.",
+    "coreVerbId": "v_make",
+    "patternId": "p_make_person_state",
+    "nounIds": [
+      "n_yourself",
+      "n_home"
+    ],
+    "situationTags": [
+      "home",
+      "hospitality"
+    ],
+    "level": 1,
+    "chunks": [
+      "Make",
+      "yourself",
+      "at home"
+    ],
+    "hints": [
+      "상대를 편한 상태로 만들라는 말이에요.",
+      "make + yourself + at home",
+      "Make ________ at ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Make yourself at home.",
+    "relatedExpressionIds": [
+      "e008",
+      "e060"
+    ],
+    "contrast": {
+      "koVerb": "편하게 있어요",
+      "enEngine": "make",
+      "enNoun": "yourself · home",
+      "assembly": "make + person + state",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e006",
+    "english": "Take your time.",
+    "naturalKorean": "천천히 하세요.",
+    "literalMeaning": "당신의 시간을 가져요.",
+    "coreVerbId": "v_take",
+    "patternId": "p_take_time",
+    "nounIds": [
+      "n_time"
+    ],
+    "situationTags": [
+      "request",
+      "comfort"
+    ],
+    "level": 1,
+    "chunks": [
+      "Take",
+      "your time"
+    ],
+    "hints": [
+      "시간을 가져도 된다고 말해요.",
+      "take + your time",
+      "Take your ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Take your time.",
+    "relatedExpressionIds": [
+      "e002",
+      "e036"
+    ],
+    "contrast": {
+      "koVerb": "천천히 하다 / 서두르지 않다",
+      "enEngine": "take",
+      "enNoun": "your time",
+      "assembly": "take + your time",
+      "tip": "「서두르지 마세요」를 take your time으로 말합니다.",
+      "wrongDirectTranslation": "",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e007",
+    "english": "Give me a second.",
+    "naturalKorean": "잠깐만요.",
+    "literalMeaning": "나에게 1초를 주세요.",
+    "coreVerbId": "v_give",
+    "patternId": "p_give_person_thing",
+    "nounIds": [
+      "n_me",
+      "n_second"
+    ],
+    "situationTags": [
+      "request",
+      "work",
+      "phone"
+    ],
+    "level": 1,
+    "chunks": [
+      "Give",
+      "me",
+      "a second"
+    ],
+    "hints": [
+      "상대에게 아주 짧은 시간을 달라고 해요.",
+      "give + me + a second",
+      "Give me a ______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Give me a second.",
+    "relatedExpressionIds": [
+      "e040",
+      "e002"
+    ],
+    "contrast": {
+      "koVerb": "잠깐만요",
+      "enEngine": "give",
+      "enNoun": "second",
+      "assembly": "give + person + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e008",
+    "english": "I’m on my way.",
+    "naturalKorean": "가는 중이에요.",
+    "literalMeaning": "나는 내 길 위에 있어요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_on_way",
+    "nounIds": [
+      "n_way"
+    ],
+    "situationTags": [
+      "travel",
+      "message"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "on",
+      "my way"
+    ],
+    "hints": [
+      "길 위에 있다는 이미지예요.",
+      "be + on my way",
+      "I’m on my ___."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm on my way.",
+    "relatedExpressionIds": [
+      "e030",
+      "e044"
+    ],
+    "usageNotes": "가는 중이라고 알릴 때 써요.",
+    "nuanceNotes": "곧 도착한다는 메시지에 아주 흔해요.",
+    "contrast": {
+      "koVerb": "가는 중이에요",
+      "enEngine": "be",
+      "enNoun": "way",
+      "assembly": "be on one's way",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e009",
+    "english": "Come with me.",
+    "naturalKorean": "나랑 같이 와요.",
+    "literalMeaning": "나와 함께 오세요.",
+    "coreVerbId": "v_come",
+    "patternId": "p_come_with",
+    "nounIds": [
+      "n_me"
+    ],
+    "situationTags": [
+      "travel",
+      "daily",
+      "request"
+    ],
+    "level": 1,
+    "chunks": [
+      "Come",
+      "with",
+      "me"
+    ],
+    "hints": [
+      "함께 오라고 할 때 come with를 써요.",
+      "come with + me",
+      "Come ____ me."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Come with me.",
+    "relatedExpressionIds": [
+      "e048",
+      "e044"
+    ]
+  },
+  {
+    "id": "e010",
+    "english": "Put it here.",
+    "naturalKorean": "여기에 놓으세요.",
+    "literalMeaning": "그것을 여기에 놓아요.",
+    "coreVerbId": "v_put",
+    "patternId": "p_put_place",
+    "nounIds": [
+      "n_it",
+      "n_here"
+    ],
+    "situationTags": [
+      "home",
+      "work",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "Put",
+      "it",
+      "here"
+    ],
+    "hints": [
+      "물건을 위치에 놓는 put이에요.",
+      "put + it + here",
+      "Put it ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Put it here.",
+    "relatedExpressionIds": [
+      "e051",
+      "e052"
+    ],
+    "contrast": {
+      "koVerb": "여기에 놓으세요",
+      "enEngine": "put",
+      "enNoun": "here",
+      "assembly": "put + thing + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e011",
+    "english": "Keep going.",
+    "naturalKorean": "계속 가세요. 계속 해요.",
+    "literalMeaning": "가는 행동을 계속 유지해요.",
+    "coreVerbId": "v_keep",
+    "patternId": "p_keep_ing",
+    "nounIds": [
+      "n_way"
+    ],
+    "situationTags": [
+      "encouragement",
+      "learning"
+    ],
+    "level": 1,
+    "chunks": [
+      "Keep",
+      "going"
+    ],
+    "hints": [
+      "행동을 계속 유지하는 keep이에요.",
+      "keep + going",
+      "Keep _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Keep going.",
+    "relatedExpressionIds": [
+      "e054",
+      "e047"
+    ],
+    "contrast": {
+      "koVerb": "계속 가세요. 계속 해요",
+      "enEngine": "keep",
+      "enNoun": "way",
+      "assembly": "keep + -ing",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e012",
+    "english": "I found it.",
+    "naturalKorean": "찾았어요.",
+    "literalMeaning": "나는 그것을 찾아냈어요.",
+    "coreVerbId": "v_find",
+    "patternId": "p_find_thing",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "daily",
+      "problem"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "found",
+      "it"
+    ],
+    "hints": [
+      "찾아서 눈앞에 둔 느낌이에요.",
+      "find + it, 과거형 found",
+      "I _____ it."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I found it.",
+    "relatedExpressionIds": [
+      "e057",
+      "e058"
+    ]
+  },
+  {
+    "id": "e013",
+    "english": "I feel better.",
+    "naturalKorean": "좀 나아졌어요.",
+    "literalMeaning": "나는 더 나은 상태를 느껴요.",
+    "coreVerbId": "v_feel",
+    "patternId": "p_feel_state",
+    "nounIds": [
+      "n_feeling"
+    ],
+    "situationTags": [
+      "health",
+      "emotion"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "feel",
+      "better"
+    ],
+    "hints": [
+      "몸과 마음의 상태는 feel로 말해요.",
+      "feel + better",
+      "I feel ______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I feel better.",
+    "relatedExpressionIds": [
+      "e004",
+      "e064"
+    ],
+    "contrast": {
+      "koVerb": "좀 나아졌어요",
+      "enEngine": "feel",
+      "enNoun": "feeling",
+      "assembly": "feel + adjective",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e014",
+    "english": "I want to try.",
+    "naturalKorean": "해보고 싶어요.",
+    "literalMeaning": "나는 시도하는 쪽으로 마음이 가요.",
+    "coreVerbId": "v_want",
+    "patternId": "p_want_to",
+    "nounIds": [
+      "n_try"
+    ],
+    "situationTags": [
+      "learning",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "want to",
+      "try"
+    ],
+    "hints": [
+      "하고 싶은 행동은 want to 뒤에 둬요.",
+      "want to + try",
+      "I want to ___."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I want to try.",
+    "relatedExpressionIds": [
+      "e042",
+      "e068"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "want to try",
+    "mapOrder": 1,
+    "contrast": {
+      "koVerb": "해보고 싶어요",
+      "enEngine": "want",
+      "enNoun": "try",
+      "assembly": "want to + verb",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e015",
+    "english": "Do you need help?",
+    "naturalKorean": "도움이 필요하세요?",
+    "literalMeaning": "당신은 도움이 필요하나요?",
+    "coreVerbId": "v_need",
+    "patternId": "p_need_help",
+    "nounIds": [
+      "n_you",
+      "n_help"
+    ],
+    "situationTags": [
+      "request",
+      "support",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "Do you",
+      "need",
+      "help"
+    ],
+    "hints": [
+      "상대에게 필요를 물을 때 Do you need로 시작해요.",
+      "Do you need + help",
+      "Do you ____ help?"
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Do you need help?",
+    "acceptedAnswers": [
+      "Do you need any help?",
+      "Do you need some help?"
+    ],
+    "alternativeExpressions": [
+      {
+        "text": "Can I help you?",
+        "message": "뜻은 잘 전달됐어요. 오늘은 need help라는 필요 연결을 익히는 중이에요.",
+        "nuance": "Can I help you?는 내가 도와줄 수 있는지 묻는 말이고, Do you need help?는 상대에게 도움이 필요한지 확인해요."
+      }
+    ],
+    "commonMistakes": [
+      {
+        "pattern": "You need help?",
+        "type": "questionOrder",
+        "message": "일상 대화에서 들릴 수는 있지만, 연습에서는 Do you로 질문 모양을 먼저 만들어요."
+      }
+    ],
+    "nuanceNotes": "부담스럽지 않게 도움 필요 여부를 확인하는 질문이에요.",
+    "usageNotes": "일, 길 안내, 수업, 고객 응대에서 자주 써요.",
+    "relatedExpressionIds": [
+      "e075",
+      "e001"
+    ],
+    "contrast": {
+      "koVerb": "도움이 필요하다",
+      "enEngine": "need",
+      "enNoun": "help",
+      "assembly": "need + help",
+      "tip": "「도움이 필요하다」= need + help.",
+      "wrongDirectTranslation": "",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e016",
+    "english": "I’m ready.",
+    "naturalKorean": "준비됐어요.",
+    "literalMeaning": "나는 준비된 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_me"
+    ],
+    "situationTags": [
+      "work",
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "ready"
+    ],
+    "hints": [
+      "상태를 말할 때 be를 써요.",
+      "be + ready",
+      "I’m _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm ready.",
+    "relatedExpressionIds": [
+      "e008",
+      "e059"
+    ],
+    "usageNotes": "출발·시작 준비가 됐을 때 써요.",
+    "nuanceNotes": "I’m not ready와 짝으로 익히면 좋아요."
+  },
+  {
+    "id": "e017",
+    "english": "Do it now.",
+    "naturalKorean": "지금 하세요.",
+    "literalMeaning": "그 일을 지금 하세요.",
+    "coreVerbId": "v_do",
+    "patternId": "p_do_action",
+    "nounIds": [
+      "n_it",
+      "n_today"
+    ],
+    "situationTags": [
+      "work",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "Do",
+      "it",
+      "now"
+    ],
+    "hints": [
+      "행동을 실제로 하는 do예요.",
+      "do + it + now",
+      "Do it ___."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Do it now.",
+    "relatedExpressionIds": [
+      "e049",
+      "e050"
+    ],
+    "contrast": {
+      "koVerb": "지금 하세요",
+      "enEngine": "do",
+      "enNoun": "today",
+      "assembly": "do + action",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e018",
+    "english": "Have a good day.",
+    "naturalKorean": "좋은 하루 보내세요.",
+    "literalMeaning": "좋은 하루를 가지세요.",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_thing",
+    "nounIds": [
+      "n_day"
+    ],
+    "situationTags": [
+      "farewell",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "Have",
+      "a good day"
+    ],
+    "hints": [
+      "좋은 하루를 가지라는 인사예요.",
+      "have + a good day",
+      "Have a good ___."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Have a good day.",
+    "relatedExpressionIds": [
+      "e039",
+      "e024"
+    ],
+    "contrast": {
+      "koVerb": "좋은 하루 보내세요",
+      "enEngine": "have",
+      "enNoun": "day",
+      "assembly": "have + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e019",
+    "english": "Get some rest.",
+    "naturalKorean": "좀 쉬세요.",
+    "literalMeaning": "약간의 휴식을 얻으세요.",
+    "coreVerbId": "v_get",
+    "patternId": "p_get_thing",
+    "nounIds": [
+      "n_rest"
+    ],
+    "situationTags": [
+      "health",
+      "comfort"
+    ],
+    "level": 1,
+    "chunks": [
+      "Get",
+      "some rest"
+    ],
+    "hints": [
+      "휴식을 내 쪽으로 가져오는 get이에요.",
+      "get + some rest",
+      "Get some ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Get some rest.",
+    "relatedExpressionIds": [
+      "e037",
+      "e013"
+    ],
+    "mapCombination": "get some rest",
+    "mapOrder": 4,
+    "contrast": {
+      "koVerb": "쉬다",
+      "enEngine": "get",
+      "enNoun": "some rest",
+      "assembly": "get + some rest",
+      "tip": "한국어 「쉬다」를 get + rest로 자주 말합니다.",
+      "wrongDirectTranslation": "rest만 동사로 쓰기",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e020",
+    "english": "Make a plan.",
+    "naturalKorean": "계획을 세우세요.",
+    "literalMeaning": "계획을 만드세요.",
+    "coreVerbId": "v_make",
+    "patternId": "p_make_thing",
+    "nounIds": [
+      "n_plan"
+    ],
+    "situationTags": [
+      "work",
+      "schedule"
+    ],
+    "level": 1,
+    "chunks": [
+      "Make",
+      "a plan"
+    ],
+    "hints": [
+      "계획은 영어에서 make로 만들어요.",
+      "make + a plan",
+      "Make a ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Make a plan.",
+    "relatedExpressionIds": [
+      "e031",
+      "e032"
+    ],
+    "contrast": {
+      "koVerb": "계획을 세우세요",
+      "enEngine": "make",
+      "enNoun": "plan",
+      "assembly": "make + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e021",
+    "english": "I have an idea.",
+    "naturalKorean": "생각이 있어요.",
+    "literalMeaning": "나는 아이디어 하나를 가지고 있어요.",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_thing",
+    "nounIds": [
+      "n_idea"
+    ],
+    "situationTags": [
+      "work",
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "have",
+      "an idea"
+    ],
+    "hints": [
+      "생각을 가지고 있다고 말해요.",
+      "have + an idea",
+      "I have an ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I have an idea.",
+    "relatedExpressionIds": [
+      "e001",
+      "e031"
+    ],
+    "contrast": {
+      "koVerb": "생각이 나다 / 아이디어가 있다",
+      "enEngine": "have",
+      "enNoun": "an idea",
+      "assembly": "have + an idea",
+      "tip": "「생각이 있다」= have + idea.",
+      "wrongDirectTranslation": "",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e022",
+    "english": "Do you have time?",
+    "naturalKorean": "시간 있어요?",
+    "literalMeaning": "당신은 시간이 있나요?",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_time",
+    "nounIds": [
+      "n_you",
+      "n_time"
+    ],
+    "situationTags": [
+      "schedule",
+      "request"
+    ],
+    "level": 1,
+    "chunks": [
+      "Do you",
+      "have",
+      "time"
+    ],
+    "hints": [
+      "시간을 가지고 있는지 물어요.",
+      "Do you have + time",
+      "Do you have ____?"
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Do you have time?",
+    "relatedExpressionIds": [
+      "e002",
+      "e006"
+    ],
+    "contrast": {
+      "koVerb": "시간 있어요",
+      "enEngine": "have",
+      "enNoun": "time",
+      "assembly": "have + time",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e023",
+    "english": "We have a problem.",
+    "naturalKorean": "문제가 있어요.",
+    "literalMeaning": "우리는 문제 하나를 가지고 있어요.",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_problem",
+    "nounIds": [
+      "n_problem"
+    ],
+    "situationTags": [
+      "work",
+      "problem"
+    ],
+    "level": 1,
+    "chunks": [
+      "We",
+      "have",
+      "a problem"
+    ],
+    "hints": [
+      "문제를 가지고 있는 상태를 have로 말해요.",
+      "have + a problem",
+      "We have a _______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "We have a problem.",
+    "relatedExpressionIds": [
+      "e058",
+      "e071"
+    ],
+    "contrast": {
+      "koVerb": "문제가 있다",
+      "enEngine": "have",
+      "enNoun": "a problem",
+      "assembly": "have + a problem",
+      "tip": "「문제가 있다」= have + problem.",
+      "wrongDirectTranslation": "",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e024",
+    "english": "Let’s have lunch.",
+    "naturalKorean": "점심 먹어요.",
+    "literalMeaning": "점심을 가지자.",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_meal",
+    "nounIds": [
+      "n_lunch"
+    ],
+    "situationTags": [
+      "food",
+      "social",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "Let’s",
+      "have",
+      "lunch"
+    ],
+    "hints": [
+      "식사도 have로 자연스럽게 말해요.",
+      "have + lunch",
+      "Let’s have _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Let's have lunch.",
+    "acceptedAnswers": [
+      "Let us have lunch.",
+      "Let's eat lunch."
+    ],
+    "alternativeExpressions": [
+      {
+        "text": "I have lunch at noon.",
+        "message": "자연스러운 문장이에요. 오늘은 같이 먹자고 제안하는 Let’s have lunch를 익히는 중이에요.",
+        "nuance": "I have lunch at noon은 습관을 말하고, Let’s have lunch는 같이 먹자는 제안이에요."
+      }
+    ],
+    "commonMistakes": [
+      {
+        "pattern": "Let's lunch",
+        "type": "missingVerb",
+        "message": "점심을 먹자는 말은 have lunch로 덩어리처럼 붙이면 자연스러워요."
+      }
+    ],
+    "nuanceNotes": "상대와 같이 점심 먹자는 가벼운 제안이에요.",
+    "usageNotes": "친구나 동료에게 부담 없이 쓸 수 있어요.",
+    "relatedExpressionIds": [
+      "e025",
+      "e018"
+    ],
+    "contrast": {
+      "koVerb": "점심 먹다",
+      "enEngine": "have",
+      "enNoun": "lunch",
+      "assembly": "have + lunch",
+      "tip": "식사 동사 대신 have + meal이 흔합니다.",
+      "wrongDirectTranslation": "eat lunch만 쓰기",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e025",
+    "english": "Have some water.",
+    "naturalKorean": "물 좀 마셔요.",
+    "literalMeaning": "물을 좀 가지세요.",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_meal",
+    "nounIds": [
+      "n_water"
+    ],
+    "situationTags": [
+      "food",
+      "health"
+    ],
+    "level": 1,
+    "chunks": [
+      "Have",
+      "some water"
+    ],
+    "hints": [
+      "마실 것을 권할 때 have를 써요.",
+      "have + some water",
+      "Have some _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Have some water.",
+    "relatedExpressionIds": [
+      "e019",
+      "e024"
+    ],
+    "contrast": {
+      "koVerb": "물 마시다",
+      "enEngine": "have",
+      "enNoun": "some water",
+      "assembly": "have + some water",
+      "tip": "「마시다」를 have + water로도 말합니다.",
+      "wrongDirectTranslation": "",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e026",
+    "english": "I don’t get it.",
+    "naturalKorean": "이해가 안 돼요.",
+    "literalMeaning": "나는 그것을 받아들이지 못해요.",
+    "coreVerbId": "v_get",
+    "patternId": "p_get_it",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "class",
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "don’t get",
+      "it"
+    ],
+    "hints": [
+      "이해하지 못할 때 get it을 부정해요.",
+      "don’t get + it",
+      "I don’t ___ it."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I don't get it.",
+    "acceptedAnswers": [
+      "I don't get it.",
+      "I do not get it."
+    ],
+    "alternativeExpressions": [
+      {
+        "text": "I don't understand.",
+        "message": "뜻은 잘 전달됐어요. 오늘은 don’t get it이라는 일상 연결을 익히는 중이에요.",
+        "nuance": "I don't understand도 맞지만, I don't get it은 더 짧고 대화에서 가볍게 들려요."
+      }
+    ],
+    "commonMistakes": [
+      {
+        "pattern": "I don't get",
+        "type": "missingObject",
+        "message": "get it에서 it은 방금 들은 말이나 상황을 가리켜요. 끝에 it까지 붙여 말해요."
+      }
+    ],
+    "nuanceNotes": "모르겠다고 부드럽게 말할 때 자주 쓰는 표현이에요.",
+    "usageNotes": "수업, 설명, 회의에서 편하게 쓸 수 있어요.",
+    "relatedExpressionIds": [
+      "e003",
+      "e001"
+    ]
+  },
+  {
+    "id": "e027",
+    "english": "I got your message.",
+    "naturalKorean": "메시지 받았어요.",
+    "literalMeaning": "나는 당신의 메시지를 받았어요.",
+    "coreVerbId": "v_get",
+    "patternId": "p_get_thing",
+    "nounIds": [
+      "n_message"
+    ],
+    "situationTags": [
+      "phone",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "got",
+      "your message"
+    ],
+    "hints": [
+      "메시지가 내 쪽으로 온 느낌이에요.",
+      "get + your message, 과거형 got",
+      "I got your _______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I got your message.",
+    "relatedExpressionIds": [
+      "e028",
+      "e043"
+    ],
+    "contrast": {
+      "koVerb": "받다 / 문자를 받다",
+      "enEngine": "get",
+      "enNoun": "a message",
+      "assembly": "get + message",
+      "tip": "「받다」를 get + message로 조립합니다.",
+      "wrongDirectTranslation": "",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e028",
+    "english": "Did you get my text?",
+    "naturalKorean": "내 문자 받았어요?",
+    "literalMeaning": "당신은 내 문자를 받았나요?",
+    "coreVerbId": "v_get",
+    "patternId": "p_get_thing",
+    "nounIds": [
+      "n_text"
+    ],
+    "situationTags": [
+      "phone"
+    ],
+    "level": 1,
+    "chunks": [
+      "Did you",
+      "get",
+      "my text"
+    ],
+    "hints": [
+      "받았는지 물을 때 Did you get으로 시작해요.",
+      "Did you get + my text",
+      "Did you get my ____?"
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Did you get my text?",
+    "relatedExpressionIds": [
+      "e027",
+      "e043"
+    ],
+    "contrast": {
+      "koVerb": "문자 받다",
+      "enEngine": "get",
+      "enNoun": "my text",
+      "assembly": "get + text",
+      "tip": "「받다」= get + text/message.",
+      "wrongDirectTranslation": "",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e029",
+    "english": "It’s getting better.",
+    "naturalKorean": "점점 나아지고 있어요.",
+    "literalMeaning": "그것이 더 나은 상태가 되어 가요.",
+    "coreVerbId": "v_get",
+    "patternId": "p_get_state",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "progress",
+      "health",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "It’s",
+      "getting",
+      "better"
+    ],
+    "hints": [
+      "상태 변화는 getting + 상태로 말해요.",
+      "getting + better",
+      "It’s getting ______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "It's getting better.",
+    "relatedExpressionIds": [
+      "e013",
+      "e004"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "get better",
+    "mapOrder": 2
+  },
+  {
+    "id": "e030",
+    "english": "I got home late.",
+    "naturalKorean": "집에 늦게 도착했어요.",
+    "literalMeaning": "나는 집에 늦게 이르렀어요.",
+    "coreVerbId": "v_get",
+    "patternId": "p_get_place",
+    "nounIds": [
+      "n_home"
+    ],
+    "situationTags": [
+      "home",
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "got home",
+      "late"
+    ],
+    "hints": [
+      "도착도 get으로 말할 수 있어요.",
+      "get home, 과거형 got",
+      "I got ____ late."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I got home late.",
+    "acceptedAnswers": [
+      "I got back home late."
+    ],
+    "alternativeExpressions": [
+      {
+        "text": "I arrived home late.",
+        "message": "뜻은 잘 전달됐어요. 오늘은 get home이라는 연결을 익히는 중이에요.",
+        "nuance": "arrive home도 가능하지만 일상 대화에서는 got home이 더 가볍고 자주 들려요."
+      },
+      {
+        "text": "I came home late.",
+        "message": "뜻은 잘 전달됐어요. 오늘은 get home이라는 도착 연결을 익히는 중이에요.",
+        "nuance": "came home은 집으로 왔다는 움직임이 강하고, got home은 도착했다는 결과가 또렷해요."
+      }
+    ],
+    "commonMistakes": [
+      {
+        "pattern": "I got to home late",
+        "type": "unnaturalCombination",
+        "message": "home은 여기서 to 없이 바로 붙어요. get home을 한 덩어리로 기억해요."
+      },
+      {
+        "pattern": "I home got late",
+        "type": "wordOrder",
+        "message": "영어는 I got home late 순서로 자연스럽게 흘러가요."
+      }
+    ],
+    "nuanceNotes": "get home은 집에 도착했다는 가장 일상적인 연결이에요.",
+    "usageNotes": "늦게 들어갔다는 이야기를 할 때 바로 쓸 수 있어요.",
+    "relatedExpressionIds": [
+      "e008",
+      "e044"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "get home",
+    "mapOrder": 3,
+    "contrast": {
+      "koVerb": "도착하다",
+      "enEngine": "get",
+      "enNoun": "home",
+      "assembly": "get + home / get to + place",
+      "tip": "「도착하다」를 get + place로 자주 말합니다.",
+      "wrongDirectTranslation": "arrive만 쓰기",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e081",
+    "english": "I get to work.",
+    "naturalKorean": "나는 직장에 도착해요.",
+    "literalMeaning": "나는 일하는 장소까지 도착해요.",
+    "coreVerbId": "v_get",
+    "patternId": "p_get_place",
+    "nounIds": [
+      "n_work"
+    ],
+    "situationTags": [
+      "work",
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "get",
+      "to",
+      "work"
+    ],
+    "hints": [
+      "도착할 때 get to + place를 써요.",
+      "get to work",
+      "I get to ____ ."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I get to work.",
+    "relatedExpressionIds": [
+      "e030",
+      "e044"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "get to work",
+    "mapOrder": 5,
+    "contrast": {
+      "koVerb": "나는 직장에 도착해요",
+      "enEngine": "get",
+      "enNoun": "work",
+      "assembly": "get to + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e082",
+    "english": "I want help.",
+    "naturalKorean": "도움이 필요해요.",
+    "literalMeaning": "나는 도움이 필요해요.",
+    "coreVerbId": "v_want",
+    "patternId": "p_want_thing",
+    "nounIds": [
+      "n_help"
+    ],
+    "situationTags": [
+      "support",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "want",
+      "help"
+    ],
+    "hints": [
+      "원하는 것을 말할 때 want + help를 써요.",
+      "want help",
+      "I want ____ ."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I want help.",
+    "relatedExpressionIds": [
+      "e070",
+      "e075"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "want help",
+    "mapOrder": 5,
+    "contrast": {
+      "koVerb": "도움이 필요해요",
+      "enEngine": "want",
+      "enNoun": "help",
+      "assembly": "want + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e083",
+    "english": "I want some time.",
+    "naturalKorean": "시간이 좀 필요해요.",
+    "literalMeaning": "나는 약간의 시간이 필요해요.",
+    "coreVerbId": "v_want",
+    "patternId": "p_want_thing",
+    "nounIds": [
+      "n_time"
+    ],
+    "situationTags": [
+      "request",
+      "work",
+      "schedule"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "want",
+      "some time"
+    ],
+    "hints": [
+      "원하는 시간을 말할 때 want + some time를 써요.",
+      "want some time",
+      "I want some ____ ."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I want some time.",
+    "relatedExpressionIds": [
+      "e070",
+      "e002"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "want some time",
+    "mapOrder": 6,
+    "contrast": {
+      "koVerb": "시간이 좀 필요해요",
+      "enEngine": "want",
+      "enNoun": "time",
+      "assembly": "want + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e084",
+    "english": "I need to leave.",
+    "naturalKorean": "떠나야 해요.",
+    "literalMeaning": "나는 떠나는 행동이 필요해요.",
+    "coreVerbId": "v_need",
+    "patternId": "p_need_to",
+    "nounIds": [],
+    "situationTags": [
+      "travel",
+      "schedule"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "need",
+      "to",
+      "leave"
+    ],
+    "hints": [
+      "해야 할 행동은 need to 뒤에 둬요.",
+      "need to leave",
+      "I need to ____ ."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I need to leave.",
+    "relatedExpressionIds": [
+      "e073",
+      "e075"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "need to leave",
+    "mapOrder": 5
+  },
+  {
+    "id": "e031",
+    "english": "Let’s make a decision.",
+    "naturalKorean": "결정합시다.",
+    "literalMeaning": "결정을 하나 만들어요.",
+    "coreVerbId": "v_make",
+    "patternId": "p_make_thing",
+    "nounIds": [
+      "n_decision"
+    ],
+    "situationTags": [
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "Let’s",
+      "make",
+      "a decision"
+    ],
+    "hints": [
+      "결정은 make로 만든다고 생각해요.",
+      "make + a decision",
+      "Let’s make a ________."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Let's make a decision.",
+    "relatedExpressionIds": [
+      "e020",
+      "e032"
+    ],
+    "contrast": {
+      "koVerb": "결정합시다",
+      "enEngine": "make",
+      "enNoun": "decision",
+      "assembly": "make + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e032",
+    "english": "I made a mistake.",
+    "naturalKorean": "실수했어요.",
+    "literalMeaning": "나는 실수를 하나 만들었어요.",
+    "coreVerbId": "v_make",
+    "patternId": "p_make_thing",
+    "nounIds": [
+      "n_mistake"
+    ],
+    "situationTags": [
+      "work",
+      "class"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "made",
+      "a mistake"
+    ],
+    "hints": [
+      "실수도 make와 붙어요.",
+      "make a mistake, 과거형 made",
+      "I made a _______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I made a mistake.",
+    "acceptedAnswers": [
+      "I made one mistake."
+    ],
+    "alternativeExpressions": [
+      {
+        "text": "I was wrong.",
+        "message": "뜻은 전달돼요. 오늘은 make a mistake라는 실수 연결을 익히는 중이에요.",
+        "nuance": "I was wrong은 판단이 틀렸다는 느낌이고, I made a mistake는 행동이나 선택에서 실수했다는 느낌이에요."
+      }
+    ],
+    "commonMistakes": [
+      {
+        "pattern": "I did a mistake",
+        "type": "wrongVerb",
+        "message": "영어에서는 실수를 do보다 make와 자주 붙여요. make a mistake로 덩어리처럼 기억해요."
+      }
+    ],
+    "nuanceNotes": "내가 실수했다는 말을 부드럽게 인정하는 표현이에요.",
+    "usageNotes": "일, 수업, 대화에서 사과 전후로 자주 써요.",
+    "relatedExpressionIds": [
+      "e031",
+      "e033"
+    ],
+    "contrast": {
+      "koVerb": "실수하다",
+      "enEngine": "make",
+      "enNoun": "a mistake",
+      "assembly": "make + a mistake",
+      "tip": "한국어는 「실수하다」 한 동사, 영어는 make + mistake.",
+      "wrongDirectTranslation": "do a mistake",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e033",
+    "english": "You’re making progress.",
+    "naturalKorean": "발전하고 있어요.",
+    "literalMeaning": "당신은 진전을 만들고 있어요.",
+    "coreVerbId": "v_make",
+    "patternId": "p_make_thing",
+    "nounIds": [
+      "n_progress"
+    ],
+    "situationTags": [
+      "learning",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "You’re",
+      "making",
+      "progress"
+    ],
+    "hints": [
+      "발전은 progress를 만들어 가는 그림이에요.",
+      "making + progress",
+      "You’re making ________."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "You're making progress.",
+    "relatedExpressionIds": [
+      "e011",
+      "e029"
+    ],
+    "contrast": {
+      "koVerb": "발전하다 / 진전하다",
+      "enEngine": "make",
+      "enNoun": "progress",
+      "assembly": "make + progress",
+      "tip": "「발전하다」를 make + progress로 말합니다.",
+      "wrongDirectTranslation": "progress를 동사로만 쓰기",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e034",
+    "english": "Make sure it works.",
+    "naturalKorean": "작동하는지 확인하세요.",
+    "literalMeaning": "그것이 작동하는 상태를 확실하게 만들어요.",
+    "coreVerbId": "v_make",
+    "patternId": "p_make_sure",
+    "nounIds": [
+      "n_it",
+      "n_work"
+    ],
+    "situationTags": [
+      "work",
+      "tech"
+    ],
+    "level": 1,
+    "chunks": [
+      "Make sure",
+      "it",
+      "works"
+    ],
+    "hints": [
+      "확실하게 만들다는 make sure예요.",
+      "make sure + clause",
+      "Make sure it _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Make sure it works.",
+    "relatedExpressionIds": [
+      "e017",
+      "e050"
+    ]
+  },
+  {
+    "id": "e035",
+    "english": "That makes me happy.",
+    "naturalKorean": "그게 저를 기쁘게 해요.",
+    "literalMeaning": "그것이 나를 행복한 상태로 만들어요.",
+    "coreVerbId": "v_make",
+    "patternId": "p_make_person_state",
+    "nounIds": [
+      "n_me",
+      "n_feeling"
+    ],
+    "situationTags": [
+      "emotion",
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "That",
+      "makes me",
+      "happy"
+    ],
+    "hints": [
+      "무언가가 사람을 어떤 상태로 만들어요.",
+      "make + me + happy",
+      "That makes me _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "That makes me happy.",
+    "relatedExpressionIds": [
+      "e013",
+      "e059"
+    ],
+    "contrast": {
+      "koVerb": "그게 저를 기쁘게 해요",
+      "enEngine": "make",
+      "enNoun": "feeling",
+      "assembly": "make + person + state",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e036",
+    "english": "It takes time.",
+    "naturalKorean": "시간이 걸려요.",
+    "literalMeaning": "그것은 시간을 가져가요.",
+    "coreVerbId": "v_take",
+    "patternId": "p_take_time",
+    "nounIds": [
+      "n_time"
+    ],
+    "situationTags": [
+      "work",
+      "learning"
+    ],
+    "level": 1,
+    "chunks": [
+      "It",
+      "takes",
+      "time"
+    ],
+    "hints": [
+      "시간을 가져간다는 그림이에요.",
+      "take + time",
+      "It takes ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "It takes time.",
+    "acceptedAnswers": [
+      "It will take time.",
+      "It takes some time."
+    ],
+    "alternativeExpressions": [
+      {
+        "text": "It needs time.",
+        "message": "뜻은 이해돼요. 오늘은 take time이라는 더 자연스러운 시간 연결을 익히는 중이에요.",
+        "nuance": "need time도 가능하지만, 시간이 걸린다는 말은 It takes time이 훨씬 자주 쓰여요."
+      }
+    ],
+    "commonMistakes": [
+      {
+        "pattern": "It spend time",
+        "type": "wrongVerb",
+        "message": "시간이 걸린다는 말은 it이 시간을 가져간다고 생각해서 take를 써요."
+      }
+    ],
+    "nuanceNotes": "일이나 변화가 바로 되지 않고 시간이 필요하다는 말이에요.",
+    "usageNotes": "격려하거나 현실적으로 설명할 때 자주 써요.",
+    "relatedExpressionIds": [
+      "e006",
+      "e002"
+    ],
+    "contrast": {
+      "koVerb": "시간이 걸리다",
+      "enEngine": "take",
+      "enNoun": "time",
+      "assembly": "take + time",
+      "tip": "「걸리다」를 take + time으로 조립합니다.",
+      "wrongDirectTranslation": "spend time과 혼동",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e037",
+    "english": "Take a break.",
+    "naturalKorean": "잠깐 쉬세요.",
+    "literalMeaning": "휴식 하나를 가져요.",
+    "coreVerbId": "v_take",
+    "patternId": "p_take_break",
+    "nounIds": [
+      "n_break"
+    ],
+    "situationTags": [
+      "health",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "Take",
+      "a break"
+    ],
+    "hints": [
+      "휴식을 하나 가진다고 생각해요.",
+      "take + a break",
+      "Take a _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Take a break.",
+    "relatedExpressionIds": [
+      "e019",
+      "e006"
+    ],
+    "contrast": {
+      "koVerb": "잠깐 쉬세요",
+      "enEngine": "take",
+      "enNoun": "break",
+      "assembly": "take + a break",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e038",
+    "english": "Take a look.",
+    "naturalKorean": "한번 보세요.",
+    "literalMeaning": "시선을 한번 가져요.",
+    "coreVerbId": "v_take",
+    "patternId": "p_take_look",
+    "nounIds": [
+      "n_look"
+    ],
+    "situationTags": [
+      "work",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "Take",
+      "a look"
+    ],
+    "hints": [
+      "살펴보는 행동을 take a look으로 말해요.",
+      "take + a look",
+      "Take a ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Take a look.",
+    "relatedExpressionIds": [
+      "e057",
+      "e034"
+    ],
+    "contrast": {
+      "koVerb": "한번 보세요",
+      "enEngine": "take",
+      "enNoun": "look",
+      "assembly": "take + a look",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e039",
+    "english": "Take care.",
+    "naturalKorean": "잘 지내요. 조심해요.",
+    "literalMeaning": "돌봄을 가져요.",
+    "coreVerbId": "v_take",
+    "patternId": "p_take_care",
+    "nounIds": [
+      "n_care"
+    ],
+    "situationTags": [
+      "farewell",
+      "health"
+    ],
+    "level": 1,
+    "chunks": [
+      "Take",
+      "care"
+    ],
+    "hints": [
+      "헤어질 때 몸과 상황을 챙기라는 말이에요.",
+      "take + care",
+      "Take ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Take care.",
+    "relatedExpressionIds": [
+      "e018",
+      "e025"
+    ],
+    "contrast": {
+      "koVerb": "잘 지내요. 조심해요",
+      "enEngine": "take",
+      "enNoun": "care",
+      "assembly": "take care",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e040",
+    "english": "Give me a minute.",
+    "naturalKorean": "잠깐만요.",
+    "literalMeaning": "나에게 1분을 주세요.",
+    "coreVerbId": "v_give",
+    "patternId": "p_give_person_thing",
+    "nounIds": [
+      "n_me",
+      "n_minute"
+    ],
+    "situationTags": [
+      "request",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "Give",
+      "me",
+      "a minute"
+    ],
+    "hints": [
+      "짧은 시간을 달라고 해요.",
+      "give + me + a minute",
+      "Give me a ______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Give me a minute.",
+    "relatedExpressionIds": [
+      "e007",
+      "e041"
+    ],
+    "contrast": {
+      "koVerb": "잠깐만요",
+      "enEngine": "give",
+      "enNoun": "minute",
+      "assembly": "give + person + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e041",
+    "english": "Give me your phone.",
+    "naturalKorean": "휴대폰 좀 주세요.",
+    "literalMeaning": "나에게 당신의 전화기를 주세요.",
+    "coreVerbId": "v_give",
+    "patternId": "p_give_person_thing",
+    "nounIds": [
+      "n_me",
+      "n_phone"
+    ],
+    "situationTags": [
+      "phone",
+      "request"
+    ],
+    "level": 1,
+    "chunks": [
+      "Give",
+      "me",
+      "your phone"
+    ],
+    "hints": [
+      "사람에게 물건을 건넬 때 give를 써요.",
+      "give + me + your phone",
+      "Give me your _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Give me your phone.",
+    "relatedExpressionIds": [
+      "e040",
+      "e043"
+    ],
+    "contrast": {
+      "koVerb": "휴대폰 좀 주세요",
+      "enEngine": "give",
+      "enNoun": "phone",
+      "assembly": "give + person + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e042",
+    "english": "Give it a try.",
+    "naturalKorean": "한번 해보세요.",
+    "literalMeaning": "그것에게 시도 하나를 주세요.",
+    "coreVerbId": "v_give",
+    "patternId": "p_give_it_try",
+    "nounIds": [
+      "n_it",
+      "n_try"
+    ],
+    "situationTags": [
+      "learning",
+      "encouragement"
+    ],
+    "level": 1,
+    "chunks": [
+      "Give",
+      "it",
+      "a try"
+    ],
+    "hints": [
+      "시도할 기회를 준다는 말이에요.",
+      "give it + a try",
+      "Give it a ___."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Give it a try.",
+    "relatedExpressionIds": [
+      "e014",
+      "e011"
+    ],
+    "contrast": {
+      "koVerb": "한번 해보세요",
+      "enEngine": "give",
+      "enNoun": "try",
+      "assembly": "give it a try",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e043",
+    "english": "Give me a call.",
+    "naturalKorean": "전화 주세요.",
+    "literalMeaning": "나에게 전화 하나를 주세요.",
+    "coreVerbId": "v_give",
+    "patternId": "p_give_call",
+    "nounIds": [
+      "n_me",
+      "n_call"
+    ],
+    "situationTags": [
+      "phone",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "Give",
+      "me",
+      "a call"
+    ],
+    "hints": [
+      "전화를 달라고 할 때 give me a call이에요.",
+      "give + me + a call",
+      "Give me a ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Give me a call.",
+    "relatedExpressionIds": [
+      "e027",
+      "e028"
+    ],
+    "contrast": {
+      "koVerb": "전화 주세요",
+      "enEngine": "give",
+      "enNoun": "call",
+      "assembly": "give + person + a call",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e044",
+    "english": "Go home.",
+    "naturalKorean": "집에 가세요.",
+    "literalMeaning": "집으로 가세요.",
+    "coreVerbId": "v_go",
+    "patternId": "p_go_place",
+    "nounIds": [
+      "n_home"
+    ],
+    "situationTags": [
+      "home",
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "Go",
+      "home"
+    ],
+    "hints": [
+      "집 방향으로 움직이는 go예요.",
+      "go + home",
+      "Go ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Go home.",
+    "relatedExpressionIds": [
+      "e030",
+      "e008"
+    ],
+    "contrast": {
+      "koVerb": "집에 가세요",
+      "enEngine": "go",
+      "enNoun": "home",
+      "assembly": "go + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e045",
+    "english": "Let’s go there.",
+    "naturalKorean": "거기로 가요.",
+    "literalMeaning": "우리 거기로 가요.",
+    "coreVerbId": "v_go",
+    "patternId": "p_go_place",
+    "nounIds": [
+      "n_there"
+    ],
+    "situationTags": [
+      "travel",
+      "social"
+    ],
+    "level": 1,
+    "chunks": [
+      "Let’s",
+      "go",
+      "there"
+    ],
+    "hints": [
+      "같이 움직이자고 할 때 Let’s go예요.",
+      "go + there",
+      "Let’s go _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Let's go there.",
+    "acceptedAnswers": [
+      "Let us go there."
+    ],
+    "alternativeExpressions": [
+      {
+        "text": "I’m going there.",
+        "message": "자연스러운 문장이에요. 오늘은 같이 가자고 제안하는 Let’s go there를 익히는 중이에요.",
+        "nuance": "I’m going there는 내가 간다는 말이고, Let’s go there는 같이 가자는 제안이에요."
+      }
+    ],
+    "commonMistakes": [
+      {
+        "pattern": "Let's there go",
+        "type": "wordOrder",
+        "message": "go there는 움직임 뒤에 장소가 오는 덩어리예요. Let’s go there로 붙여 말해요."
+      }
+    ],
+    "nuanceNotes": "상대와 함께 움직이자고 할 때 쓰는 짧은 제안이에요.",
+    "usageNotes": "친구나 동료와 장소를 정할 때 자주 써요.",
+    "relatedExpressionIds": [
+      "e009",
+      "e044"
+    ],
+    "contrast": {
+      "koVerb": "거기로 가요",
+      "enEngine": "go",
+      "enNoun": "there",
+      "assembly": "go + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e046",
+    "english": "It went well.",
+    "naturalKorean": "잘 됐어요.",
+    "literalMeaning": "그 일이 잘 흘러갔어요.",
+    "coreVerbId": "v_go",
+    "patternId": "p_go_well",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "work",
+      "event"
+    ],
+    "level": 1,
+    "chunks": [
+      "It",
+      "went",
+      "well"
+    ],
+    "hints": [
+      "일의 진행은 go로 말해요.",
+      "go well, 과거형 went well",
+      "It went ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "It went well.",
+    "relatedExpressionIds": [
+      "e047",
+      "e033"
+    ]
+  },
+  {
+    "id": "e047",
+    "english": "What’s going on?",
+    "naturalKorean": "무슨 일이에요?",
+    "literalMeaning": "무엇이 진행되고 있나요?",
+    "coreVerbId": "v_go",
+    "patternId": "p_go_on",
+    "nounIds": [
+      "n_thing"
+    ],
+    "situationTags": [
+      "conversation",
+      "problem"
+    ],
+    "level": 1,
+    "chunks": [
+      "What’s",
+      "going on"
+    ],
+    "hints": [
+      "상황이 진행되는 것을 묻는 말이에요.",
+      "going on",
+      "What’s _____ on?"
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "What's going on?",
+    "acceptedAnswers": [
+      "What is going on?",
+      "What's happening?",
+      "What is happening?"
+    ],
+    "alternativeExpressions": [
+      {
+        "text": "What happened?",
+        "message": "뜻은 가까워요. 오늘은 지금 진행 중인 상황을 묻는 going on 연결을 익히는 중이에요.",
+        "nuance": "What happened?는 이미 일어난 일을 묻고, What’s going on?은 지금 상황을 묻는 느낌이에요."
+      }
+    ],
+    "commonMistakes": [
+      {
+        "pattern": "What going on",
+        "type": "missingBe",
+        "message": "질문에서도 What’s처럼 be가 앞에서 받쳐 줘요. What’s going on?으로 붙여 말해요."
+      }
+    ],
+    "nuanceNotes": "상황이 이상하거나 궁금할 때 바로 묻는 표현이에요.",
+    "usageNotes": "친구 대화부터 일 상황까지 넓게 쓰여요.",
+    "relatedExpressionIds": [
+      "e046",
+      "e061"
+    ]
+  },
+  {
+    "id": "e048",
+    "english": "Come back soon.",
+    "naturalKorean": "곧 다시 오세요.",
+    "literalMeaning": "곧 돌아오세요.",
+    "coreVerbId": "v_come",
+    "patternId": "p_come_back",
+    "nounIds": [
+      "n_here"
+    ],
+    "situationTags": [
+      "home",
+      "social"
+    ],
+    "level": 1,
+    "chunks": [
+      "Come back",
+      "soon"
+    ],
+    "hints": [
+      "다시 돌아오는 come back이에요.",
+      "come back + soon",
+      "Come back ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Come back soon.",
+    "relatedExpressionIds": [
+      "e009",
+      "e060"
+    ]
+  },
+  {
+    "id": "e049",
+    "english": "Do your best.",
+    "naturalKorean": "최선을 다하세요.",
+    "literalMeaning": "당신의 최고를 하세요.",
+    "coreVerbId": "v_do",
+    "patternId": "p_do_action",
+    "nounIds": [
+      "n_you",
+      "n_work"
+    ],
+    "situationTags": [
+      "encouragement",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "Do",
+      "your best"
+    ],
+    "hints": [
+      "행동을 실제로 해내는 do예요.",
+      "do + your best",
+      "Do your ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Do your best.",
+    "relatedExpressionIds": [
+      "e011",
+      "e042"
+    ],
+    "contrast": {
+      "koVerb": "최선을 다하세요",
+      "enEngine": "do",
+      "enNoun": "work",
+      "assembly": "do + action",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e050",
+    "english": "I’ll do it.",
+    "naturalKorean": "제가 할게요.",
+    "literalMeaning": "내가 그것을 할 거예요.",
+    "coreVerbId": "v_do",
+    "patternId": "p_do_action",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "work",
+      "request"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’ll",
+      "do",
+      "it"
+    ],
+    "hints": [
+      "맡아서 하겠다고 말해요.",
+      "I’ll + do it",
+      "I’ll do ___."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'll do it.",
+    "relatedExpressionIds": [
+      "e017",
+      "e034"
+    ]
+  },
+  {
+    "id": "e051",
+    "english": "Put your bag there.",
+    "naturalKorean": "가방을 거기에 놓으세요.",
+    "literalMeaning": "당신의 가방을 거기에 놓아요.",
+    "coreVerbId": "v_put",
+    "patternId": "p_put_place",
+    "nounIds": [
+      "n_bag",
+      "n_there"
+    ],
+    "situationTags": [
+      "travel",
+      "home"
+    ],
+    "level": 1,
+    "chunks": [
+      "Put",
+      "your bag",
+      "there"
+    ],
+    "hints": [
+      "물건을 장소에 놓는 put이에요.",
+      "put + your bag + there",
+      "Put your bag _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Put your bag there.",
+    "relatedExpressionIds": [
+      "e010",
+      "e052"
+    ],
+    "contrast": {
+      "koVerb": "가방을 거기에 놓으세요",
+      "enEngine": "put",
+      "enNoun": "bag · there",
+      "assembly": "put + thing + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e052",
+    "english": "Put on your coat.",
+    "naturalKorean": "코트를 입으세요.",
+    "literalMeaning": "코트를 몸 위에 올려놓으세요.",
+    "coreVerbId": "v_put",
+    "patternId": "p_put_on",
+    "nounIds": [
+      "n_thing"
+    ],
+    "situationTags": [
+      "daily",
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "Put on",
+      "your coat"
+    ],
+    "hints": [
+      "입는 것도 몸에 올려놓는 put on이에요.",
+      "put on + your coat",
+      "Put on your ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Put on your coat.",
+    "relatedExpressionIds": [
+      "e051",
+      "e010"
+    ],
+    "contrast": {
+      "koVerb": "코트를 입으세요",
+      "enEngine": "put",
+      "enNoun": "thing",
+      "assembly": "put on + thing",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e053",
+    "english": "I shouldn’t put it off.",
+    "naturalKorean": "미루면 안 되겠어요.",
+    "literalMeaning": "나는 그 일을 뒤로 놓으면 안 돼요.",
+    "coreVerbId": "v_put",
+    "patternId": "p_put_off",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "work",
+      "schedule"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "shouldn’t",
+      "put it off"
+    ],
+    "hints": [
+      "일을 뒤로 놓는 그림이 미루다예요.",
+      "put + it + off",
+      "I shouldn’t put it ___."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I shouldn't put it off.",
+    "acceptedAnswers": [
+      "I should not put it off.",
+      "I shouldn't put this off."
+    ],
+    "alternativeExpressions": [
+      {
+        "text": "I should do it now.",
+        "message": "뜻은 잘 전달됐어요. 오늘은 put it off라는 미루기 연결을 익히는 중이에요.",
+        "nuance": "do it now는 지금 한다는 쪽이고, put it off는 뒤로 미룬다는 움직임을 말해요."
+      }
+    ],
+    "commonMistakes": [
+      {
+        "pattern": "I shouldn't put off it",
+        "type": "wordOrder",
+        "message": "it은 이미 나온 것을 가리키는 짧은 말이라 put과 off 사이에 자연스럽게 들어가요. put it off를 한 덩어리로 기억해요."
+      },
+      {
+        "pattern": "Put it off",
+        "type": "meaningShift",
+        "message": "Put it off는 미루라는 명령처럼 들릴 수 있어요. 오늘 문장은 I shouldn’t로 미루면 안 된다는 뜻이에요."
+      }
+    ],
+    "nuanceNotes": "해야 할 일을 뒤로 미루지 않겠다고 스스로 말하는 표현이에요.",
+    "usageNotes": "일정, 숙제, 할 일을 말할 때 자주 써요.",
+    "relatedExpressionIds": [
+      "e017",
+      "e050"
+    ]
+  },
+  {
+    "id": "e054",
+    "english": "Keep trying.",
+    "naturalKorean": "계속 해보세요.",
+    "literalMeaning": "시도하는 행동을 계속 유지하세요.",
+    "coreVerbId": "v_keep",
+    "patternId": "p_keep_ing",
+    "nounIds": [
+      "n_try"
+    ],
+    "situationTags": [
+      "learning",
+      "encouragement"
+    ],
+    "level": 1,
+    "chunks": [
+      "Keep",
+      "trying"
+    ],
+    "hints": [
+      "계속 + ing는 keep으로 만들어요.",
+      "keep + trying",
+      "Keep ______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Keep trying.",
+    "relatedExpressionIds": [
+      "e011",
+      "e042"
+    ],
+    "contrast": {
+      "koVerb": "계속 해보세요",
+      "enEngine": "keep",
+      "enNoun": "try",
+      "assembly": "keep + -ing",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e055",
+    "english": "Keep it simple.",
+    "naturalKorean": "간단하게 유지하세요.",
+    "literalMeaning": "그것을 단순한 상태로 유지하세요.",
+    "coreVerbId": "v_keep",
+    "patternId": "p_keep_state",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "work",
+      "advice"
+    ],
+    "level": 1,
+    "chunks": [
+      "Keep",
+      "it",
+      "simple"
+    ],
+    "hints": [
+      "상태를 유지하는 keep이에요.",
+      "keep + it + simple",
+      "Keep it ______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Keep it simple.",
+    "relatedExpressionIds": [
+      "e034",
+      "e056"
+    ]
+  },
+  {
+    "id": "e056",
+    "english": "Keep in touch.",
+    "naturalKorean": "연락하고 지내요.",
+    "literalMeaning": "닿아 있는 상태를 유지해요.",
+    "coreVerbId": "v_keep",
+    "patternId": "p_keep_in_touch",
+    "nounIds": [
+      "n_call",
+      "n_message"
+    ],
+    "situationTags": [
+      "phone",
+      "social"
+    ],
+    "level": 1,
+    "chunks": [
+      "Keep",
+      "in touch"
+    ],
+    "hints": [
+      "연락이 닿는 상태를 유지하는 말이에요.",
+      "keep in touch",
+      "Keep in _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Keep in touch.",
+    "relatedExpressionIds": [
+      "e043",
+      "e027"
+    ],
+    "contrast": {
+      "koVerb": "연락하고 지내요",
+      "enEngine": "keep",
+      "enNoun": "call · message",
+      "assembly": "keep in touch",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e057",
+    "english": "Find your seat.",
+    "naturalKorean": "자리를 찾으세요.",
+    "literalMeaning": "당신의 자리를 찾아요.",
+    "coreVerbId": "v_find",
+    "patternId": "p_find_thing",
+    "nounIds": [
+      "n_seat"
+    ],
+    "situationTags": [
+      "travel",
+      "event"
+    ],
+    "level": 1,
+    "chunks": [
+      "Find",
+      "your seat"
+    ],
+    "hints": [
+      "찾아서 눈앞에 두는 find예요.",
+      "find + your seat",
+      "Find your ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Find your seat.",
+    "relatedExpressionIds": [
+      "e012",
+      "e038"
+    ],
+    "contrast": {
+      "koVerb": "자리를 찾으세요",
+      "enEngine": "find",
+      "enNoun": "seat",
+      "assembly": "find + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e058",
+    "english": "We’ll find a way.",
+    "naturalKorean": "방법을 찾을 거예요.",
+    "literalMeaning": "우리는 길 하나를 찾을 거예요.",
+    "coreVerbId": "v_find",
+    "patternId": "p_find_way",
+    "nounIds": [
+      "n_way"
+    ],
+    "situationTags": [
+      "problem",
+      "encouragement"
+    ],
+    "level": 1,
+    "chunks": [
+      "We’ll",
+      "find",
+      "a way"
+    ],
+    "hints": [
+      "해결 방법은 a way로 말해요.",
+      "find + a way",
+      "We’ll find a ___."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "We'll find a way.",
+    "relatedExpressionIds": [
+      "e023",
+      "e071"
+    ],
+    "contrast": {
+      "koVerb": "방법을 찾을 거예요",
+      "enEngine": "find",
+      "enNoun": "way",
+      "assembly": "find + a way",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e059",
+    "english": "I’m happy.",
+    "naturalKorean": "기뻐요.",
+    "literalMeaning": "나는 행복한 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_feeling"
+    ],
+    "situationTags": [
+      "emotion"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "happy"
+    ],
+    "hints": [
+      "상태는 be로 말해요.",
+      "be + happy",
+      "I’m _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm happy.",
+    "relatedExpressionIds": [
+      "e035",
+      "e013"
+    ],
+    "usageNotes": "기쁜 감정을 짧게 말할 때 써요.",
+    "nuanceNotes": "상태 형용사의 기본 예로 자주 나와요.",
+    "contrast": {
+      "koVerb": "기뻐요",
+      "enEngine": "be",
+      "enNoun": "feeling",
+      "assembly": "be + state",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e060",
+    "english": "You’re almost there.",
+    "naturalKorean": "거의 다 왔어요.",
+    "literalMeaning": "당신은 거의 거기에 있어요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_on_way",
+    "nounIds": [
+      "n_there"
+    ],
+    "situationTags": [
+      "encouragement",
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "You’re",
+      "almost",
+      "there"
+    ],
+    "hints": [
+      "도착 지점 가까이에 있는 상태예요.",
+      "be + almost there",
+      "You’re almost _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "You're almost there.",
+    "relatedExpressionIds": [
+      "e011",
+      "e008"
+    ],
+    "usageNotes": "거의 도착·거의 성공했을 때 격려할 때 써요.",
+    "nuanceNotes": "물리 도착과 목표 달성 둘 다에 써요.",
+    "contrast": {
+      "koVerb": "거의 다 왔어요",
+      "enEngine": "be",
+      "enNoun": "there",
+      "assembly": "be on one's way",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e061",
+    "english": "Something came up.",
+    "naturalKorean": "일이 좀 생겼어요.",
+    "literalMeaning": "무언가가 위로 올라왔어요.",
+    "coreVerbId": "v_come",
+    "patternId": "p_come_up",
+    "nounIds": [
+      "n_thing"
+    ],
+    "situationTags": [
+      "schedule",
+      "problem"
+    ],
+    "level": 1,
+    "chunks": [
+      "Something",
+      "came up"
+    ],
+    "hints": [
+      "예상 밖의 일이 생길 때 come up이에요.",
+      "come up, 과거형 came up",
+      "Something ____ up."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Something came up.",
+    "relatedExpressionIds": [
+      "e047",
+      "e053"
+    ]
+  },
+  {
+    "id": "e062",
+    "english": "I have no time.",
+    "naturalKorean": "시간이 없어요.",
+    "literalMeaning": "나는 시간이 하나도 없어요.",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_time",
+    "nounIds": [
+      "n_time"
+    ],
+    "situationTags": [
+      "schedule",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "have",
+      "no time"
+    ],
+    "hints": [
+      "없는 것도 have no로 말해요.",
+      "have no + time",
+      "I have no ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I have no time.",
+    "relatedExpressionIds": [
+      "e002",
+      "e022"
+    ],
+    "contrast": {
+      "koVerb": "시간이 없어요",
+      "enEngine": "have",
+      "enNoun": "time",
+      "assembly": "have + time",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e063",
+    "english": "Let’s find out.",
+    "naturalKorean": "알아봅시다.",
+    "literalMeaning": "밖으로 찾아내 봅시다.",
+    "coreVerbId": "v_find",
+    "patternId": "p_find_out",
+    "nounIds": [
+      "n_question"
+    ],
+    "situationTags": [
+      "work",
+      "class"
+    ],
+    "level": 1,
+    "chunks": [
+      "Let’s",
+      "find out"
+    ],
+    "hints": [
+      "몰랐던 것을 알아낼 때 find out이에요.",
+      "find out",
+      "Let’s find ___."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Let's find out.",
+    "relatedExpressionIds": [
+      "e003",
+      "e001"
+    ],
+    "contrast": {
+      "koVerb": "알아봅시다",
+      "enEngine": "find",
+      "enNoun": "question",
+      "assembly": "find out",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e064",
+    "english": "I feel sick.",
+    "naturalKorean": "몸이 안 좋아요.",
+    "literalMeaning": "나는 아픈 상태를 느껴요.",
+    "coreVerbId": "v_feel",
+    "patternId": "p_feel_state",
+    "nounIds": [
+      "n_feeling"
+    ],
+    "situationTags": [
+      "health"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "feel",
+      "sick"
+    ],
+    "hints": [
+      "몸 상태는 feel로 말해요.",
+      "feel + sick",
+      "I feel ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I feel sick.",
+    "relatedExpressionIds": [
+      "e013",
+      "e019"
+    ],
+    "contrast": {
+      "koVerb": "몸이 안 좋아요",
+      "enEngine": "feel",
+      "enNoun": "feeling",
+      "assembly": "feel + adjective",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e065",
+    "english": "I have a cold.",
+    "naturalKorean": "감기에 걸렸어요.",
+    "literalMeaning": "나는 감기 하나를 가지고 있어요.",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_thing",
+    "nounIds": [
+      "n_feeling"
+    ],
+    "situationTags": [
+      "health"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "have",
+      "a cold"
+    ],
+    "hints": [
+      "아픈 상태를 have로 말할 수 있어요.",
+      "have + a cold",
+      "I have a ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I have a cold.",
+    "relatedExpressionIds": [
+      "e064",
+      "e013"
+    ],
+    "contrast": {
+      "koVerb": "감기에 걸리다",
+      "enEngine": "have",
+      "enNoun": "a cold",
+      "assembly": "have + a cold",
+      "tip": "「감기에 걸리다」= have + a cold.",
+      "wrongDirectTranslation": "catch a cold만 고집",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e066",
+    "english": "I feel like coffee.",
+    "naturalKorean": "커피가 당겨요.",
+    "literalMeaning": "내 느낌이 커피 쪽으로 가요.",
+    "coreVerbId": "v_feel",
+    "patternId": "p_feel_like",
+    "nounIds": [
+      "n_coffee"
+    ],
+    "situationTags": [
+      "food",
+      "cafe"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "feel like",
+      "coffee"
+    ],
+    "hints": [
+      "무언가가 당길 때 feel like를 써요.",
+      "feel like + coffee",
+      "I feel like ______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I feel like coffee.",
+    "relatedExpressionIds": [
+      "e025",
+      "e024"
+    ],
+    "contrast": {
+      "koVerb": "커피가 당겨요",
+      "enEngine": "feel",
+      "enNoun": "coffee",
+      "assembly": "feel like + noun/-ing",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e067",
+    "english": "Feel free to ask.",
+    "naturalKorean": "편하게 물어보세요.",
+    "literalMeaning": "물어봐도 자유롭다고 느끼세요.",
+    "coreVerbId": "v_feel",
+    "patternId": "p_feel_free",
+    "nounIds": [
+      "n_question"
+    ],
+    "situationTags": [
+      "class",
+      "work",
+      "support"
+    ],
+    "level": 1,
+    "chunks": [
+      "Feel free",
+      "to ask"
+    ],
+    "hints": [
+      "자유롭게 해도 된다는 허락 표현이에요.",
+      "feel free to + ask",
+      "Feel free to ___."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Feel free to ask.",
+    "relatedExpressionIds": [
+      "e001",
+      "e015"
+    ],
+    "contrast": {
+      "koVerb": "편하게 물어보세요",
+      "enEngine": "feel",
+      "enNoun": "question",
+      "assembly": "feel free to + verb",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e068",
+    "english": "I want to know.",
+    "naturalKorean": "알고 싶어요.",
+    "literalMeaning": "나는 아는 쪽으로 마음이 가요.",
+    "coreVerbId": "v_want",
+    "patternId": "p_want_to",
+    "nounIds": [
+      "n_question"
+    ],
+    "situationTags": [
+      "class",
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "want to",
+      "know"
+    ],
+    "hints": [
+      "하고 싶은 행동은 want to 뒤에 둬요.",
+      "want to + know",
+      "I want to ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I want to know.",
+    "relatedExpressionIds": [
+      "e014",
+      "e063"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "want to know",
+    "mapOrder": 2,
+    "contrast": {
+      "koVerb": "알고 싶어요",
+      "enEngine": "want",
+      "enNoun": "question",
+      "assembly": "want to + verb",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e069",
+    "english": "I want to go home.",
+    "naturalKorean": "집에 가고 싶어요.",
+    "literalMeaning": "나는 집에 가는 쪽으로 마음이 가요.",
+    "coreVerbId": "v_want",
+    "patternId": "p_want_to",
+    "nounIds": [
+      "n_home"
+    ],
+    "situationTags": [
+      "home",
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "want to",
+      "go home"
+    ],
+    "hints": [
+      "가고 싶은 행동은 want to go로 말해요.",
+      "want to + go home",
+      "I want to go ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I want to go home.",
+    "relatedExpressionIds": [
+      "e044",
+      "e030"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "want to go home",
+    "mapOrder": 3,
+    "contrast": {
+      "koVerb": "집에 가고 싶어요",
+      "enEngine": "want",
+      "enNoun": "home",
+      "assembly": "want to + verb",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e070",
+    "english": "I want more coffee.",
+    "naturalKorean": "커피를 더 원해요.",
+    "literalMeaning": "나는 더 많은 커피를 원해요.",
+    "coreVerbId": "v_want",
+    "patternId": "p_want_thing",
+    "nounIds": [
+      "n_coffee"
+    ],
+    "situationTags": [
+      "food",
+      "cafe"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "want",
+      "more coffee"
+    ],
+    "hints": [
+      "원하는 물건은 want 뒤에 둬요.",
+      "want + more coffee",
+      "I want more ______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I want more coffee.",
+    "relatedExpressionIds": [
+      "e066",
+      "e025"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "want more coffee",
+    "mapOrder": 4,
+    "contrast": {
+      "koVerb": "커피를 더 원해요",
+      "enEngine": "want",
+      "enNoun": "coffee",
+      "assembly": "want + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e071",
+    "english": "I need a plan.",
+    "naturalKorean": "계획이 필요해요.",
+    "literalMeaning": "나는 계획 하나가 필요해요.",
+    "coreVerbId": "v_need",
+    "patternId": "p_need_thing",
+    "nounIds": [
+      "n_plan"
+    ],
+    "situationTags": [
+      "work",
+      "schedule"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "need",
+      "a plan"
+    ],
+    "hints": [
+      "필요한 것을 need 뒤에 둬요.",
+      "need + a plan",
+      "I need a ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I need a plan.",
+    "relatedExpressionIds": [
+      "e020",
+      "e058"
+    ],
+    "contrast": {
+      "koVerb": "계획이 필요해요",
+      "enEngine": "need",
+      "enNoun": "plan",
+      "assembly": "need + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e072",
+    "english": "I need a break.",
+    "naturalKorean": "휴식이 필요해요.",
+    "literalMeaning": "나는 휴식 하나가 필요해요.",
+    "coreVerbId": "v_need",
+    "patternId": "p_need_thing",
+    "nounIds": [
+      "n_break"
+    ],
+    "situationTags": [
+      "health",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "need",
+      "a break"
+    ],
+    "hints": [
+      "필요한 휴식은 need a break예요.",
+      "need + a break",
+      "I need a _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I need a break.",
+    "relatedExpressionIds": [
+      "e037",
+      "e019"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "need a break",
+    "mapOrder": 3,
+    "contrast": {
+      "koVerb": "휴식이 필요해요",
+      "enEngine": "need",
+      "enNoun": "break",
+      "assembly": "need + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e073",
+    "english": "I need to go.",
+    "naturalKorean": "가야 해요.",
+    "literalMeaning": "나는 가는 행동이 필요해요.",
+    "coreVerbId": "v_need",
+    "patternId": "p_need_to",
+    "nounIds": [
+      "n_way"
+    ],
+    "situationTags": [
+      "travel",
+      "schedule"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "need to",
+      "go"
+    ],
+    "hints": [
+      "해야 할 행동은 need to 뒤에 둬요.",
+      "need to + go",
+      "I need to ___."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I need to go.",
+    "relatedExpressionIds": [
+      "e008",
+      "e069"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "need to go",
+    "mapOrder": 4,
+    "contrast": {
+      "koVerb": "가야 해요",
+      "enEngine": "need",
+      "enNoun": "way",
+      "assembly": "need to + verb",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e074",
+    "english": "You need to sleep.",
+    "naturalKorean": "자야 해요.",
+    "literalMeaning": "당신은 자는 행동이 필요해요.",
+    "coreVerbId": "v_need",
+    "patternId": "p_need_to",
+    "nounIds": [
+      "n_sleep"
+    ],
+    "situationTags": [
+      "health",
+      "home"
+    ],
+    "level": 1,
+    "chunks": [
+      "You",
+      "need to",
+      "sleep"
+    ],
+    "hints": [
+      "해야 하거나 필요한 행동은 need to예요.",
+      "need to + sleep",
+      "You need to _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "You need to sleep.",
+    "relatedExpressionIds": [
+      "e019",
+      "e064"
+    ],
+    "contrast": {
+      "koVerb": "자야 해요",
+      "enEngine": "need",
+      "enNoun": "sleep",
+      "assembly": "need to + verb",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e075",
+    "english": "I need help.",
+    "naturalKorean": "도움이 필요해요.",
+    "literalMeaning": "나는 도움이 필요해요.",
+    "coreVerbId": "v_need",
+    "patternId": "p_need_help",
+    "nounIds": [
+      "n_help"
+    ],
+    "situationTags": [
+      "support",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "need",
+      "help"
+    ],
+    "hints": [
+      "도움이 필요하면 need help라고 해요.",
+      "need + help",
+      "I need ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I need help.",
+    "relatedExpressionIds": [
+      "e015",
+      "e067"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "need help",
+    "mapOrder": 2,
+    "contrast": {
+      "koVerb": "도움이 필요해요",
+      "enEngine": "need",
+      "enNoun": "help",
+      "assembly": "need help",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e076",
+    "english": "I put the key here.",
+    "naturalKorean": "열쇠를 여기에 뒀어요.",
+    "literalMeaning": "나는 열쇠를 여기에 놓았어요.",
+    "coreVerbId": "v_put",
+    "patternId": "p_put_place",
+    "nounIds": [
+      "n_key",
+      "n_here"
+    ],
+    "situationTags": [
+      "home",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "put",
+      "the key here"
+    ],
+    "hints": [
+      "물건을 위치에 놓은 put이에요.",
+      "put + the key + here",
+      "I put the key ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I put the key here.",
+    "relatedExpressionIds": [
+      "e010",
+      "e012"
+    ],
+    "contrast": {
+      "koVerb": "열쇠를 여기에 뒀어요",
+      "enEngine": "put",
+      "enNoun": "key · here",
+      "assembly": "put + thing + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e077",
+    "english": "Keep the door open.",
+    "naturalKorean": "문을 열어 두세요.",
+    "literalMeaning": "문을 열린 상태로 유지하세요.",
+    "coreVerbId": "v_keep",
+    "patternId": "p_keep_state",
+    "nounIds": [
+      "n_door"
+    ],
+    "situationTags": [
+      "home",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "Keep",
+      "the door",
+      "open"
+    ],
+    "hints": [
+      "어떤 상태를 유지하는 keep이에요.",
+      "keep + object + open",
+      "Keep the door ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Keep the door open.",
+    "relatedExpressionIds": [
+      "e055",
+      "e010"
+    ],
+    "contrast": {
+      "koVerb": "문을 열어 두세요",
+      "enEngine": "keep",
+      "enNoun": "door",
+      "assembly": "keep + object + state",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e078",
+    "english": "Put off the meeting.",
+    "naturalKorean": "회의를 미루세요.",
+    "literalMeaning": "회의를 뒤로 놓으세요.",
+    "coreVerbId": "v_put",
+    "patternId": "p_put_off",
+    "nounIds": [
+      "n_meeting"
+    ],
+    "situationTags": [
+      "work",
+      "schedule"
+    ],
+    "level": 1,
+    "chunks": [
+      "Put off",
+      "the meeting"
+    ],
+    "hints": [
+      "일정을 뒤로 놓는 그림이에요.",
+      "put off + the meeting",
+      "Put off the _______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Put off the meeting.",
+    "relatedExpressionIds": [
+      "e053",
+      "e062"
+    ]
+  },
+  {
+    "id": "e079",
+    "english": "Let’s go by bus.",
+    "naturalKorean": "버스로 가요.",
+    "literalMeaning": "버스를 이용해서 가요.",
+    "coreVerbId": "v_go",
+    "patternId": "p_go_place",
+    "nounIds": [
+      "n_bus"
+    ],
+    "situationTags": [
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "Let’s",
+      "go",
+      "by bus"
+    ],
+    "hints": [
+      "이동 수단은 go by로 붙여요.",
+      "go + by bus",
+      "Let’s go by ___."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Let's go by bus.",
+    "relatedExpressionIds": [
+      "e045",
+      "e080"
+    ]
+  },
+  {
+    "id": "e080",
+    "english": "Take the train.",
+    "naturalKorean": "기차를 타세요.",
+    "literalMeaning": "기차를 선택해 가져가세요.",
+    "coreVerbId": "v_take",
+    "patternId": "p_take_transport",
+    "nounIds": [
+      "n_train"
+    ],
+    "situationTags": [
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "Take",
+      "the train"
+    ],
+    "hints": [
+      "교통수단을 탈 때 take를 쓸 수 있어요.",
+      "take + the train",
+      "Take the _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Take the train.",
+    "relatedExpressionIds": [
+      "e079",
+      "e008"
+    ],
+    "contrast": {
+      "koVerb": "기차를 타세요",
+      "enEngine": "take",
+      "enNoun": "train",
+      "assembly": "take + transport",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e085",
+    "english": "I get to school.",
+    "naturalKorean": "나는 학교에 도착해요.",
+    "literalMeaning": "나는 학교라는 장소까지 도착해요.",
+    "coreVerbId": "v_get",
+    "patternId": "p_get_place",
+    "nounIds": [
+      "n_school"
+    ],
+    "situationTags": [
+      "travel",
+      "study"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "get",
+      "to",
+      "school"
+    ],
+    "hints": [
+      "도착할 때 get to + place를 써요.",
+      "get to school",
+      "I get to ____ ."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I get to school.",
+    "relatedExpressionIds": [
+      "e081",
+      "e030"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "get to school",
+    "mapOrder": 6,
+    "contrast": {
+      "koVerb": "나는 학교에 도착해요",
+      "enEngine": "get",
+      "enNoun": "school",
+      "assembly": "get to + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e086",
+    "english": "I get to the station.",
+    "naturalKorean": "나는 역에 도착해요.",
+    "literalMeaning": "나는 그 역이라는 장소까지 도착해요.",
+    "coreVerbId": "v_get",
+    "patternId": "p_get_place",
+    "nounIds": [
+      "n_station"
+    ],
+    "situationTags": [
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "get",
+      "to",
+      "the station"
+    ],
+    "hints": [
+      "도착할 때 get to + place를 써요.",
+      "get to the station",
+      "I get to the _____ ."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I get to the station.",
+    "relatedExpressionIds": [
+      "e081",
+      "e030"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "get to the station",
+    "mapOrder": 7,
+    "contrast": {
+      "koVerb": "나는 역에 도착해요",
+      "enEngine": "get",
+      "enNoun": "station",
+      "assembly": "get to + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e087",
+    "english": "I get to work at nine.",
+    "naturalKorean": "나는 아홉 시에 직장에 도착해요.",
+    "literalMeaning": "나는 아홉 시라는 때에 일하는 장소까지 도착해요.",
+    "coreVerbId": "v_get",
+    "patternId": "p_get_place",
+    "nounIds": [
+      "n_work",
+      "n_time"
+    ],
+    "situationTags": [
+      "work",
+      "travel",
+      "schedule"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "get",
+      "to work",
+      "at nine"
+    ],
+    "hints": [
+      "도착 시간은 at + 시간으로 말해요.",
+      "get to work at nine",
+      "I get to work at ____ ."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I get to work at nine.",
+    "relatedExpressionIds": [
+      "e081",
+      "e030"
+    ],
+    "isCoreExample": true,
+    "mapCombination": "get to work",
+    "mapOrder": 8,
+    "contrast": {
+      "koVerb": "나는 아홉 시에 직장에 도착해요",
+      "enEngine": "get",
+      "enNoun": "work · time",
+      "assembly": "get to + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e088",
+    "english": "I want a break.",
+    "naturalKorean": "휴식이 필요해요.",
+    "literalMeaning": "나는 휴식 하나를 원해요.",
+    "coreVerbId": "v_want",
+    "patternId": "p_want_thing",
+    "nounIds": [
+      "n_break"
+    ],
+    "situationTags": [
+      "health",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "want",
+      "a break"
+    ],
+    "hints": [
+      "원하는 것은 want 뒤에 붙여요.",
+      "want + a break",
+      "I want a _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I want a break.",
+    "relatedExpressionIds": [
+      "e072",
+      "e002"
+    ],
+    "mapCombination": "want a break",
+    "mapOrder": 5,
+    "contrast": {
+      "koVerb": "휴식이 필요해요",
+      "enEngine": "want",
+      "enNoun": "break",
+      "assembly": "want + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e089",
+    "english": "I want more time.",
+    "naturalKorean": "시간을 더 원해요.",
+    "literalMeaning": "나는 더 많은 시간을 원해요.",
+    "coreVerbId": "v_want",
+    "patternId": "p_want_thing",
+    "nounIds": [
+      "n_time"
+    ],
+    "situationTags": [
+      "schedule",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "want",
+      "more time"
+    ],
+    "hints": [
+      "원하는 것은 want 뒤에 붙여요.",
+      "want + more time",
+      "I want more _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I want more time.",
+    "relatedExpressionIds": [
+      "e002",
+      "e070"
+    ],
+    "mapCombination": "want more time",
+    "mapOrder": 6,
+    "contrast": {
+      "koVerb": "시간을 더 원해요",
+      "enEngine": "want",
+      "enNoun": "time",
+      "assembly": "want + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e090",
+    "english": "I need to sleep.",
+    "naturalKorean": "자야 해요.",
+    "literalMeaning": "나는 자는 행동이 필요해요.",
+    "coreVerbId": "v_need",
+    "patternId": "p_need_to",
+    "nounIds": [
+      "n_sleep"
+    ],
+    "situationTags": [
+      "health",
+      "home"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "need to",
+      "sleep"
+    ],
+    "hints": [
+      "해야 하는 행동은 need to 뒤에 둬요.",
+      "need to sleep",
+      "I need to _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I need to sleep.",
+    "relatedExpressionIds": [
+      "e074",
+      "e019"
+    ],
+    "mapCombination": "need to sleep",
+    "mapOrder": 6,
+    "contrast": {
+      "koVerb": "자야 해요",
+      "enEngine": "need",
+      "enNoun": "sleep",
+      "assembly": "need to + verb",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e091",
+    "english": "Do you have a minute?",
+    "naturalKorean": "잠깐 시간 있어요?",
+    "literalMeaning": "당신은 1분이 있어요?",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_time",
+    "nounIds": [
+      "n_minute"
+    ],
+    "situationTags": [
+      "request",
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "Do you",
+      "have",
+      "a minute"
+    ],
+    "hints": [
+      "시간을 가지고 있는지 물어요.",
+      "Do you have + a minute",
+      "___ you ____ a ______?"
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Do you have a minute?",
+    "relatedExpressionIds": [
+      "e022",
+      "e062"
+    ],
+    "contrast": {
+      "koVerb": "잠깐 시간 있다",
+      "enEngine": "have",
+      "enNoun": "a minute",
+      "assembly": "have + a minute",
+      "tip": "「시간 있어요?」= have + a minute/time.",
+      "wrongDirectTranslation": "",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e092",
+    "english": "I don't have time.",
+    "naturalKorean": "시간이 없어요.",
+    "literalMeaning": "나는 시간을 가지고 있지 않아요.",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_time",
+    "nounIds": [
+      "n_time"
+    ],
+    "situationTags": [
+      "schedule",
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "don't have",
+      "time"
+    ],
+    "hints": [
+      "없다 = have의 부정.",
+      "don't have + time",
+      "I _____ ____ time."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I don't have time.",
+    "relatedExpressionIds": [
+      "e022",
+      "e062"
+    ],
+    "contrast": {
+      "koVerb": "시간이 없다",
+      "enEngine": "have",
+      "enNoun": "time",
+      "assembly": "don't have + time",
+      "tip": "「시간이 없다」= not have + time.",
+      "wrongDirectTranslation": "",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e093",
+    "english": "We have a meeting.",
+    "naturalKorean": "회의가 있어요.",
+    "literalMeaning": "우리는 회의 하나를 가지고 있어요.",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_thing",
+    "nounIds": [
+      "n_meeting"
+    ],
+    "situationTags": [
+      "work",
+      "schedule"
+    ],
+    "level": 1,
+    "chunks": [
+      "We",
+      "have",
+      "a meeting"
+    ],
+    "hints": [
+      "일정·이벤트를 have로 말해요.",
+      "have + a meeting",
+      "We ____ a _______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "We have a meeting.",
+    "relatedExpressionIds": [
+      "e023",
+      "e021"
+    ],
+    "contrast": {
+      "koVerb": "회의가 있다",
+      "enEngine": "have",
+      "enNoun": "a meeting",
+      "assembly": "have + a meeting",
+      "tip": "「회의가 있다」= have + meeting.",
+      "wrongDirectTranslation": "",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e094",
+    "english": "I have a plan.",
+    "naturalKorean": "계획이 있어요.",
+    "literalMeaning": "나는 계획 하나를 가지고 있어요.",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_thing",
+    "nounIds": [
+      "n_plan"
+    ],
+    "situationTags": [
+      "work",
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "have",
+      "a plan"
+    ],
+    "hints": [
+      "생각·계획을 내 쪽에 두고 말해요.",
+      "have + a plan",
+      "I ____ a ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I have a plan.",
+    "relatedExpressionIds": [
+      "e021",
+      "e020"
+    ],
+    "contrast": {
+      "koVerb": "계획을 세우다 / 계획이 있다",
+      "enEngine": "have",
+      "enNoun": "a plan",
+      "assembly": "have + a plan",
+      "tip": "「계획을 세우다」도 have/make + plan으로 말합니다.",
+      "wrongDirectTranslation": "set a plan",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e095",
+    "english": "Have fun.",
+    "naturalKorean": "재미있게 보내요.",
+    "literalMeaning": "재미를 가지세요.",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_thing",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "farewell",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "Have",
+      "fun"
+    ],
+    "hints": [
+      "인사·응원에서 쓰는 have예요.",
+      "Have + fun",
+      "____ fun."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Have fun.",
+    "relatedExpressionIds": [
+      "e018",
+      "e039"
+    ],
+    "contrast": {
+      "koVerb": "재미있게 보내다",
+      "enEngine": "have",
+      "enNoun": "fun",
+      "assembly": "have + fun",
+      "tip": "「재미있게 보내다」= have + fun.",
+      "wrongDirectTranslation": "",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e096",
+    "english": "I have to go.",
+    "naturalKorean": "가야 해요.",
+    "literalMeaning": "나는 가야 해요.",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_thing",
+    "nounIds": [
+      "n_way"
+    ],
+    "situationTags": [
+      "daily",
+      "schedule"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "have to",
+      "go"
+    ],
+    "hints": [
+      "have to = 해야 한다.",
+      "have to + go",
+      "I ____ __ go."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I have to go.",
+    "relatedExpressionIds": [
+      "e044",
+      "e073"
+    ],
+    "contrast": {
+      "koVerb": "가야 해요",
+      "enEngine": "have",
+      "enNoun": "way",
+      "assembly": "have + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e097",
+    "english": "Do you have any ideas?",
+    "naturalKorean": "아이디어 있어요?",
+    "literalMeaning": "당신은 아이디어가 있어요?",
+    "coreVerbId": "v_have",
+    "patternId": "p_have_thing",
+    "nounIds": [
+      "n_idea"
+    ],
+    "situationTags": [
+      "conversation",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "Do you",
+      "have",
+      "any ideas"
+    ],
+    "hints": [
+      "아이디어를 가지고 있는지 물어요.",
+      "Do you have + any ideas",
+      "___ you ____ any _____?"
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Do you have any ideas?",
+    "relatedExpressionIds": [
+      "e021",
+      "e001"
+    ],
+    "contrast": {
+      "koVerb": "아이디어 있어요",
+      "enEngine": "have",
+      "enNoun": "idea",
+      "assembly": "have + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e098",
+    "english": "Can I get coffee?",
+    "naturalKorean": "커피 받을 수 있어요?",
+    "literalMeaning": "나는 커피를 얻을 수 있어요?",
+    "coreVerbId": "v_get",
+    "patternId": "p_get_thing",
+    "nounIds": [
+      "n_coffee"
+    ],
+    "situationTags": [
+      "cafe",
+      "request"
+    ],
+    "level": 1,
+    "chunks": [
+      "Can I",
+      "get",
+      "coffee"
+    ],
+    "hints": [
+      "주문·요청에서 get을 써요.",
+      "get + coffee",
+      "Can I ___ ______?"
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Can I get coffee?",
+    "relatedExpressionIds": [
+      "e019",
+      "e027"
+    ],
+    "contrast": {
+      "koVerb": "커피 받다 / 시키다",
+      "enEngine": "get",
+      "enNoun": "coffee",
+      "assembly": "get + coffee",
+      "tip": "「받다/시키다」를 get + coffee로 자주 말합니다.",
+      "wrongDirectTranslation": "",
+      "source": "curated"
+    }
+  },
+  {
+    "id": "e099",
+    "english": "I got a call.",
+    "naturalKorean": "전화 받았어요.",
+    "literalMeaning": "나는 전화를 받았어요.",
+    "coreVerbId": "v_get",
+    "patternId": "p_get_thing",
+    "nounIds": [
+      "n_call"
+    ],
+    "situationTags": [
+      "phone",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "I",
+      "got",
+      "a call"
+    ],
+    "hints": [
+      "받다 = get의 과거 got.",
+      "got + a call",
+      "I ___ a ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I got a call.",
+    "relatedExpressionIds": [
+      "e027",
+      "e028"
+    ],
+    "contrast": {
+      "koVerb": "전화 받았어요",
+      "enEngine": "get",
+      "enNoun": "call",
+      "assembly": "get + noun",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e100",
+    "english": "I’m leaving tomorrow.",
+    "naturalKorean": "내일 떠나요.",
+    "literalMeaning": "나는 내일 떠나는 중이에요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_ing_future",
+    "nounIds": [
+      "n_tomorrow"
+    ],
+    "situationTags": [
+      "schedule",
+      "travel",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "leaving",
+      "tomorrow"
+    ],
+    "hints": [
+      "이미 정한 가까운 미래는 be + -ing로 말해요.",
+      "be + leaving + tomorrow",
+      "I’m _____ tomorrow."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm leaving tomorrow.",
+    "relatedExpressionIds": [
+      "e101",
+      "e102"
+    ],
+    "usageNotes": "이미 정한 출발·일정을 말할 때 써요.",
+    "nuanceNotes": "의지(will)보다, 이미 잡혀 있는 계획에 가깝게 들려요.",
+    "contrast": {
+      "koVerb": "내일 떠나요",
+      "enEngine": "be",
+      "enNoun": "tomorrow",
+      "assembly": "be + -ing (near future)",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e101",
+    "english": "I’m coming.",
+    "naturalKorean": "지금 가요.",
+    "literalMeaning": "나는 오는 중이에요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_ing_future",
+    "nounIds": [
+      "n_me"
+    ],
+    "situationTags": [
+      "message",
+      "daily",
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "coming"
+    ],
+    "hints": [
+      "곧 도착·합류할 때도 be + -ing를 써요.",
+      "be + coming",
+      "I’m _______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm coming.",
+    "relatedExpressionIds": [
+      "e008",
+      "e100"
+    ],
+    "usageNotes": "곧 도착하거나 합류할 때 바로 답할 때 써요.",
+    "nuanceNotes": "지금 움직이거나 곧 갈 거라는 가까운 미래 느낌이에요."
+  },
+  {
+    "id": "e102",
+    "english": "I’m going home.",
+    "naturalKorean": "집에 갈게요.",
+    "literalMeaning": "나는 집으로 가는 중이에요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_ing_future",
+    "nounIds": [
+      "n_home"
+    ],
+    "situationTags": [
+      "home",
+      "daily",
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "going",
+      "home"
+    ],
+    "hints": [
+      "곧 집으로 가는 확정 계획이에요.",
+      "be + going + home",
+      "I’m going _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm going home.",
+    "relatedExpressionIds": [
+      "e069",
+      "e100"
+    ],
+    "usageNotes": "이제 집에 간다고 알릴 때 자주 써요.",
+    "nuanceNotes": "곧 또는 지금 집으로 향한다는 확정된 움직임이에요.",
+    "contrast": {
+      "koVerb": "집에 갈게요",
+      "enEngine": "be",
+      "enNoun": "home",
+      "assembly": "be + -ing (near future)",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e103",
+    "english": "I’m meeting a friend tomorrow.",
+    "naturalKorean": "내일 친구 만나요.",
+    "literalMeaning": "나는 내일 친구를 만나는 중이에요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_ing_future",
+    "nounIds": [
+      "n_friend",
+      "n_tomorrow"
+    ],
+    "situationTags": [
+      "schedule",
+      "social",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "meeting",
+      "a friend",
+      "tomorrow"
+    ],
+    "hints": [
+      "약속으로 정해진 만남은 be + meeting이에요.",
+      "be + meeting + a friend + tomorrow",
+      "I’m ______ a friend tomorrow."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm meeting a friend tomorrow.",
+    "relatedExpressionIds": [
+      "e100",
+      "e104"
+    ],
+    "usageNotes": "이미 잡은 만남 약속을 말할 때 써요.",
+    "nuanceNotes": "내일 친구와 만나기로 되어 있다는 뜻이에요.",
+    "contrast": {
+      "koVerb": "내일 친구 만나요",
+      "enEngine": "be",
+      "enNoun": "friend · tomorrow",
+      "assembly": "be + -ing (near future)",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e104",
+    "english": "We’re having lunch tomorrow.",
+    "naturalKorean": "내일 점심 먹어요.",
+    "literalMeaning": "우리는 내일 점심을 먹는 중이에요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_ing_future",
+    "nounIds": [
+      "n_lunch",
+      "n_tomorrow"
+    ],
+    "situationTags": [
+      "schedule",
+      "meal",
+      "social"
+    ],
+    "level": 1,
+    "chunks": [
+      "We’re",
+      "having",
+      "lunch",
+      "tomorrow"
+    ],
+    "hints": [
+      "이미 잡은 식사 약속도 be + having이에요.",
+      "be + having + lunch + tomorrow",
+      "We’re ______ lunch tomorrow."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "We're having lunch tomorrow.",
+    "relatedExpressionIds": [
+      "e103",
+      "e024"
+    ],
+    "usageNotes": "이미 잡은 식사 약속을 말할 때 써요.",
+    "nuanceNotes": "내일 점심이 일정으로 잡혀 있다는 뜻이에요.",
+    "contrast": {
+      "koVerb": "내일 점심 먹어요",
+      "enEngine": "be",
+      "enNoun": "lunch · tomorrow",
+      "assembly": "be + -ing (near future)",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e105",
+    "english": "I’m fine.",
+    "naturalKorean": "괜찮아요.",
+    "literalMeaning": "나는 괜찮은 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_me"
+    ],
+    "situationTags": [
+      "daily",
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "fine"
+    ],
+    "hints": [
+      "상태를 be로 말해요.",
+      "be + fine",
+      "I’m ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm fine.",
+    "relatedExpressionIds": [
+      "e106",
+      "e107"
+    ],
+    "usageNotes": "안부나 ‘괜찮냐’는 말에 답할 때 써요.",
+    "nuanceNotes": "큰 문제 없이 괜찮다는 담담한 대답이에요."
+  },
+  {
+    "id": "e106",
+    "english": "I’m okay.",
+    "naturalKorean": "괜찮아요.",
+    "literalMeaning": "나는 괜찮은 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_me"
+    ],
+    "situationTags": [
+      "daily",
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "okay"
+    ],
+    "hints": [
+      "괜찮다는 상태예요.",
+      "be + okay",
+      "I’m ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm okay.",
+    "relatedExpressionIds": [
+      "e105",
+      "e140"
+    ],
+    "usageNotes": "걱정하거나 사과하는 상대를 안심시킬 때 써요.",
+    "nuanceNotes": "I’m fine보다 조금 더 부드러운 느낌이 나요."
+  },
+  {
+    "id": "e107",
+    "english": "I’m good.",
+    "naturalKorean": "좋아요. / 괜찮아요.",
+    "literalMeaning": "나는 좋은 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_me"
+    ],
+    "situationTags": [
+      "daily",
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "good"
+    ],
+    "hints": [
+      "안부 대답에 자주 써요.",
+      "be + good",
+      "I’m ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm good.",
+    "relatedExpressionIds": [
+      "e105",
+      "e154"
+    ],
+    "usageNotes": "How are you? / What’s up?에 짧게 답할 때 써요.",
+    "nuanceNotes": "미국 영어에서 아주 흔한 안부 대답이에요."
+  },
+  {
+    "id": "e108",
+    "english": "I’m tired.",
+    "naturalKorean": "피곤해요.",
+    "literalMeaning": "나는 피곤한 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_feeling"
+    ],
+    "situationTags": [
+      "daily",
+      "health"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "tired"
+    ],
+    "hints": [
+      "피곤한 상태는 be + tired.",
+      "be + tired",
+      "I’m _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm tired.",
+    "relatedExpressionIds": [
+      "e109",
+      "e059"
+    ],
+    "usageNotes": "하루 끝이나 힘들 때 상태를 말할 때 써요.",
+    "nuanceNotes": "몸·마음이 지쳤다는 가장 일상적인 표현이에요.",
+    "contrast": {
+      "koVerb": "피곤해요",
+      "enEngine": "be",
+      "enNoun": "feeling",
+      "assembly": "be + state",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e109",
+    "english": "I’m busy.",
+    "naturalKorean": "바빠요.",
+    "literalMeaning": "나는 바쁜 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_me"
+    ],
+    "situationTags": [
+      "work",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "busy"
+    ],
+    "hints": [
+      "바쁜 상태는 be + busy.",
+      "be + busy",
+      "I’m ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm busy.",
+    "relatedExpressionIds": [
+      "e108",
+      "e113"
+    ],
+    "usageNotes": "지금은 시간이 없다고 짧게 알릴 때 써요.",
+    "nuanceNotes": "거절이나 양해를 구할 때도 자주 붙어요."
+  },
+  {
+    "id": "e110",
+    "english": "I’m late.",
+    "naturalKorean": "늦었어요.",
+    "literalMeaning": "나는 늦은 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_me"
+    ],
+    "situationTags": [
+      "schedule",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "late"
+    ],
+    "hints": [
+      "늦은 상태는 be + late.",
+      "be + late",
+      "I’m ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm late.",
+    "relatedExpressionIds": [
+      "e122",
+      "e100"
+    ],
+    "usageNotes": "약속·출근에 늦었을 때 바로 말할 때 써요.",
+    "nuanceNotes": "사과와 함께 I’m sorry, I’m late.처럼도 써요."
+  },
+  {
+    "id": "e111",
+    "english": "I’m sorry.",
+    "naturalKorean": "미안해요.",
+    "literalMeaning": "나는 미안한 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_feeling"
+    ],
+    "situationTags": [
+      "conversation",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "sorry"
+    ],
+    "hints": [
+      "사과할 때 be + sorry.",
+      "be + sorry",
+      "I’m _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm sorry.",
+    "relatedExpressionIds": [
+      "e112",
+      "e140"
+    ],
+    "usageNotes": "실수·방해·거절 뒤에 바로 사과할 때 써요.",
+    "nuanceNotes": "가장 기본적인 생활 사과 표현이에요.",
+    "contrast": {
+      "koVerb": "미안해요",
+      "enEngine": "be",
+      "enNoun": "feeling",
+      "assembly": "be + state",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e112",
+    "english": "I’m sure.",
+    "naturalKorean": "확실해요.",
+    "literalMeaning": "나는 확실한 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_me"
+    ],
+    "situationTags": [
+      "conversation",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "sure"
+    ],
+    "hints": [
+      "확신은 be + sure.",
+      "be + sure",
+      "I’m ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm sure.",
+    "relatedExpressionIds": [
+      "e117",
+      "e143"
+    ],
+    "usageNotes": "확신이 있을 때, 또는 상대를 안심시킬 때 써요.",
+    "nuanceNotes": "I’m not sure의 반대 극에 있어요."
+  },
+  {
+    "id": "e113",
+    "english": "I’m free.",
+    "naturalKorean": "한가해요. / 시간 있어요.",
+    "literalMeaning": "나는 한가한 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_time"
+    ],
+    "situationTags": [
+      "schedule",
+      "social"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "free"
+    ],
+    "hints": [
+      "시간 있을 때 be + free.",
+      "be + free",
+      "I’m ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm free.",
+    "relatedExpressionIds": [
+      "e109",
+      "e103"
+    ],
+    "usageNotes": "시간·약속 잡을 수 있다고 말할 때 써요.",
+    "nuanceNotes": "busy의 반대로, 스케줄이 비어 있다는 뜻이에요.",
+    "contrast": {
+      "koVerb": "한가해요. / 시간 있어요",
+      "enEngine": "be",
+      "enNoun": "time",
+      "assembly": "be + state",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e114",
+    "english": "I’m hungry.",
+    "naturalKorean": "배고파요.",
+    "literalMeaning": "나는 배고픈 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_feeling"
+    ],
+    "situationTags": [
+      "meal",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "hungry"
+    ],
+    "hints": [
+      "배고픔은 be + hungry.",
+      "be + hungry",
+      "I’m ______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm hungry.",
+    "relatedExpressionIds": [
+      "e104",
+      "e108"
+    ],
+    "usageNotes": "밥·간식 제안 전후로 상태를 말할 때 써요.",
+    "nuanceNotes": "식사하자고 이끄는 아주 흔한 한마디예요.",
+    "contrast": {
+      "koVerb": "배고파요",
+      "enEngine": "be",
+      "enNoun": "feeling",
+      "assembly": "be + state",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e115",
+    "english": "I’m done.",
+    "naturalKorean": "다 했어요.",
+    "literalMeaning": "나는 끝난 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_me"
+    ],
+    "situationTags": [
+      "work",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "done"
+    ],
+    "hints": [
+      "끝났다는 상태는 be + done.",
+      "be + done",
+      "I’m ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm done.",
+    "relatedExpressionIds": [
+      "e016",
+      "e140"
+    ],
+    "usageNotes": "할 일을 마쳤거나 더 이상 안 한다고 할 때 써요.",
+    "nuanceNotes": "일·게임·대화가 ‘끝’이라는 느낌이에요."
+  },
+  {
+    "id": "e116",
+    "english": "I’m back.",
+    "naturalKorean": "돌아왔어요.",
+    "literalMeaning": "나는 돌아온 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_me"
+    ],
+    "situationTags": [
+      "daily",
+      "message"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "back"
+    ],
+    "hints": [
+      "돌아왔다는 상태는 be + back.",
+      "be + back",
+      "I’m ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm back.",
+    "relatedExpressionIds": [
+      "e127",
+      "e128"
+    ],
+    "usageNotes": "나갔다 다시 왔음을 알릴 때 써요.",
+    "nuanceNotes": "집·채팅·자리로 돌아왔다는 짧은 신호예요."
+  },
+  {
+    "id": "e117",
+    "english": "I’m not sure.",
+    "naturalKorean": "잘 모르겠어요.",
+    "literalMeaning": "나는 확실한 상태가 아니에요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_me"
+    ],
+    "situationTags": [
+      "conversation",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "not sure"
+    ],
+    "hints": [
+      "불확실할 때 be + not sure.",
+      "be + not sure",
+      "I’m ___ ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm not sure.",
+    "relatedExpressionIds": [
+      "e112",
+      "e148"
+    ],
+    "usageNotes": "단정하기 어려울 때 부드럽게 말할 때 써요.",
+    "nuanceNotes": "모름을 인정하면서도 대화를 열어 두는 표현이에요."
+  },
+  {
+    "id": "e118",
+    "english": "I’m not ready.",
+    "naturalKorean": "아직 준비 안 됐어요.",
+    "literalMeaning": "나는 준비된 상태가 아니에요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_me"
+    ],
+    "situationTags": [
+      "work",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "not ready"
+    ],
+    "hints": [
+      "준비 안 됨은 be + not ready.",
+      "be + not ready",
+      "I’m ___ _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm not ready.",
+    "relatedExpressionIds": [
+      "e016",
+      "e115"
+    ],
+    "usageNotes": "아직 출발·시작이 안 될 때 양해 구할 때 써요.",
+    "nuanceNotes": "I’m ready의 부정형으로 자주 짝을 이뤄요."
+  },
+  {
+    "id": "e119",
+    "english": "It’s hard.",
+    "naturalKorean": "어려워요.",
+    "literalMeaning": "그것은 어려운 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "work",
+      "learning"
+    ],
+    "level": 1,
+    "chunks": [
+      "It’s",
+      "hard"
+    ],
+    "hints": [
+      "어려움은 be + hard.",
+      "be + hard",
+      "It’s ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "It's hard.",
+    "relatedExpressionIds": [
+      "e120",
+      "e139"
+    ],
+    "usageNotes": "일·공부·상황이 힘들 때 짧게 말할 때 써요.",
+    "nuanceNotes": "감정을 크게 드러내지 않고 난이도를 말하는 표현이에요."
+  },
+  {
+    "id": "e120",
+    "english": "It’s easy.",
+    "naturalKorean": "쉬워요.",
+    "literalMeaning": "그것은 쉬운 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "learning",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "It’s",
+      "easy"
+    ],
+    "hints": [
+      "쉬움은 be + easy.",
+      "be + easy",
+      "It’s ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "It's easy.",
+    "relatedExpressionIds": [
+      "e119",
+      "e107"
+    ],
+    "usageNotes": "어렵지 않다고 안심시키거나 평가할 때 써요.",
+    "nuanceNotes": "It’s hard와 대비해서 자주 써요."
+  },
+  {
+    "id": "e121",
+    "english": "It’s true.",
+    "naturalKorean": "진짜예요. / 맞아요.",
+    "literalMeaning": "그것은 참인 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "It’s",
+      "true"
+    ],
+    "hints": [
+      "사실임은 be + true.",
+      "be + true",
+      "It’s ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "It's true.",
+    "relatedExpressionIds": [
+      "e143",
+      "e145"
+    ],
+    "usageNotes": "사실임을 인정·확인할 때 써요.",
+    "nuanceNotes": "That’s right / You’re right와도 자주 이어져요."
+  },
+  {
+    "id": "e122",
+    "english": "It’s late.",
+    "naturalKorean": "늦었어요. / 시간이 늦어요.",
+    "literalMeaning": "그것은 늦은 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_state",
+    "nounIds": [
+      "n_time"
+    ],
+    "situationTags": [
+      "schedule",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "It’s",
+      "late"
+    ],
+    "hints": [
+      "시간 늦음은 It’s late.",
+      "be + late",
+      "It’s ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "It's late.",
+    "relatedExpressionIds": [
+      "e110",
+      "e102"
+    ],
+    "usageNotes": "시간이 늦었다고 말할 때 써요.",
+    "nuanceNotes": "I’m late(내가 늦음)와 달리, 시계·상황이 늦다는 뜻이에요.",
+    "contrast": {
+      "koVerb": "늦었어요. / 시간이 늦어요",
+      "enEngine": "be",
+      "enNoun": "time",
+      "assembly": "be + state",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e123",
+    "english": "I’m here.",
+    "naturalKorean": "여기 있어요.",
+    "literalMeaning": "나는 여기에 있어요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_place",
+    "nounIds": [
+      "n_here"
+    ],
+    "situationTags": [
+      "daily",
+      "message",
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "here"
+    ],
+    "hints": [
+      "위치를 be로 말해요.",
+      "be + here",
+      "I’m ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm here.",
+    "relatedExpressionIds": [
+      "e124",
+      "e133"
+    ],
+    "usageNotes": "도착했거나 자리에 있음을 알릴 때 써요.",
+    "nuanceNotes": "메시지·전화에서 ‘나 왔어/여기 있어’로 자주 써요.",
+    "contrast": {
+      "koVerb": "여기 있어요",
+      "enEngine": "be",
+      "enNoun": "here",
+      "assembly": "be + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e124",
+    "english": "I’m home.",
+    "naturalKorean": "집이에요. / 집에 왔어요.",
+    "literalMeaning": "나는 집에 있어요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_place",
+    "nounIds": [
+      "n_home"
+    ],
+    "situationTags": [
+      "home",
+      "message"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "home"
+    ],
+    "hints": [
+      "집에 있음을 be + home.",
+      "be + home",
+      "I’m ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm home.",
+    "relatedExpressionIds": [
+      "e123",
+      "e102"
+    ],
+    "usageNotes": "집에 도착했거나 집에 있다고 알릴 때 써요.",
+    "nuanceNotes": "I’m at home보다 더 짧고 구어체예요.",
+    "contrast": {
+      "koVerb": "집이에요. / 집에 왔어요",
+      "enEngine": "be",
+      "enNoun": "home",
+      "assembly": "be + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e125",
+    "english": "I’m at work.",
+    "naturalKorean": "회사예요. / 일하는 중이에요.",
+    "literalMeaning": "나는 직장에 있어요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_place",
+    "nounIds": [
+      "n_work"
+    ],
+    "situationTags": [
+      "work",
+      "message"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "at work"
+    ],
+    "hints": [
+      "직장에 있음은 be + at work.",
+      "be + at work",
+      "I’m at ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm at work.",
+    "relatedExpressionIds": [
+      "e126",
+      "e127"
+    ],
+    "usageNotes": "지금 일하는 중·회사에 있다고 알릴 때 써요.",
+    "nuanceNotes": "근무 중이라 바빠 보일 때도 자연스러워요.",
+    "contrast": {
+      "koVerb": "회사예요. / 일하는 중이에요",
+      "enEngine": "be",
+      "enNoun": "work",
+      "assembly": "be + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e126",
+    "english": "I’m at school.",
+    "naturalKorean": "학교예요.",
+    "literalMeaning": "나는 학교에 있어요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_place",
+    "nounIds": [
+      "n_school"
+    ],
+    "situationTags": [
+      "study",
+      "message"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "at school"
+    ],
+    "hints": [
+      "학교에 있음은 be + at school.",
+      "be + at school",
+      "I’m at ______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm at school.",
+    "relatedExpressionIds": [
+      "e125",
+      "e123"
+    ],
+    "usageNotes": "지금 학교에 있다고 알릴 때 써요.",
+    "nuanceNotes": "학생·학부모 메시지에서 흔해요.",
+    "contrast": {
+      "koVerb": "학교예요",
+      "enEngine": "be",
+      "enNoun": "school",
+      "assembly": "be + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e127",
+    "english": "I’m in a meeting.",
+    "naturalKorean": "회의 중이에요.",
+    "literalMeaning": "나는 회의 안에 있어요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_place",
+    "nounIds": [
+      "n_meeting"
+    ],
+    "situationTags": [
+      "work",
+      "phone"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "in",
+      "a meeting"
+    ],
+    "hints": [
+      "회의 중은 be + in a meeting.",
+      "be + in a meeting",
+      "I’m in a _______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm in a meeting.",
+    "relatedExpressionIds": [
+      "e128",
+      "e125"
+    ],
+    "usageNotes": "지금은 통화·대화가 어렵다고 알릴 때 써요.",
+    "nuanceNotes": "잠시 후에 연락하겠다는 신호로도 많이 써요.",
+    "contrast": {
+      "koVerb": "회의 중이에요",
+      "enEngine": "be",
+      "enNoun": "meeting",
+      "assembly": "be + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e128",
+    "english": "I’m on the phone.",
+    "naturalKorean": "통화 중이에요.",
+    "literalMeaning": "나는 전화 위에 있어요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_place",
+    "nounIds": [
+      "n_phone"
+    ],
+    "situationTags": [
+      "phone",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "on",
+      "the phone"
+    ],
+    "hints": [
+      "통화 중은 be + on the phone.",
+      "be + on the phone",
+      "I’m on the _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm on the phone.",
+    "relatedExpressionIds": [
+      "e127",
+      "e099"
+    ],
+    "usageNotes": "다른 통화 중이라 못 받을 때 써요.",
+    "nuanceNotes": "직역은 어색하지만, 실제로는 ‘통화 중’이에요.",
+    "contrast": {
+      "koVerb": "통화 중이에요",
+      "enEngine": "be",
+      "enNoun": "phone",
+      "assembly": "be + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e129",
+    "english": "It’s here.",
+    "naturalKorean": "여기 있어요.",
+    "literalMeaning": "그것은 여기에 있어요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_place",
+    "nounIds": [
+      "n_it",
+      "n_here"
+    ],
+    "situationTags": [
+      "daily",
+      "home"
+    ],
+    "level": 1,
+    "chunks": [
+      "It’s",
+      "here"
+    ],
+    "hints": [
+      "물건 위치는 It’s here.",
+      "be + here",
+      "It’s ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "It's here.",
+    "relatedExpressionIds": [
+      "e130",
+      "e131"
+    ],
+    "usageNotes": "물건 위치를 가리킬 때 써요.",
+    "nuanceNotes": "상대가 찾는 것을 바로 옆에 두고 말할 때 좋아요.",
+    "contrast": {
+      "koVerb": "여기 있어요",
+      "enEngine": "be",
+      "enNoun": "here",
+      "assembly": "be + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e130",
+    "english": "It’s there.",
+    "naturalKorean": "거기 있어요.",
+    "literalMeaning": "그것은 거기에 있어요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_place",
+    "nounIds": [
+      "n_it",
+      "n_there"
+    ],
+    "situationTags": [
+      "daily",
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "It’s",
+      "there"
+    ],
+    "hints": [
+      "물건 위치는 It’s there.",
+      "be + there",
+      "It’s _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "It's there.",
+    "relatedExpressionIds": [
+      "e129",
+      "e132"
+    ],
+    "usageNotes": "떨어진 위치를 가리킬 때 써요.",
+    "nuanceNotes": "here/there로 거리감을 나눠 말해요.",
+    "contrast": {
+      "koVerb": "거기 있어요",
+      "enEngine": "be",
+      "enNoun": "there",
+      "assembly": "be + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e131",
+    "english": "Here it is.",
+    "naturalKorean": "여기 있어요.",
+    "literalMeaning": "여기에 그것이 있어요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_place",
+    "nounIds": [
+      "n_it",
+      "n_here"
+    ],
+    "situationTags": [
+      "daily",
+      "home"
+    ],
+    "level": 1,
+    "chunks": [
+      "Here",
+      "it is"
+    ],
+    "hints": [
+      "찾았을 때 Here it is.",
+      "Here + it is",
+      "Here __ __."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Here it is.",
+    "relatedExpressionIds": [
+      "e132",
+      "e129"
+    ],
+    "usageNotes": "찾던 것을 발견·건네줄 때 써요.",
+    "nuanceNotes": "‘자, 여기 있어’에 가장 가까운 말이에요.",
+    "contrast": {
+      "koVerb": "여기 있어요",
+      "enEngine": "be",
+      "enNoun": "here",
+      "assembly": "be + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e132",
+    "english": "There it is.",
+    "naturalKorean": "저기 있네요.",
+    "literalMeaning": "거기에 그것이 있어요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_place",
+    "nounIds": [
+      "n_it",
+      "n_there"
+    ],
+    "situationTags": [
+      "daily",
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "There",
+      "it is"
+    ],
+    "hints": [
+      "발견했을 때 There it is.",
+      "There + it is",
+      "There __ __."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "There it is.",
+    "relatedExpressionIds": [
+      "e131",
+      "e130"
+    ],
+    "usageNotes": "멀리서 찾던 것을 발견했을 때 써요.",
+    "nuanceNotes": "Here it is와 짝으로 배워 두면 좋아요.",
+    "contrast": {
+      "koVerb": "저기 있네요",
+      "enEngine": "be",
+      "enNoun": "there",
+      "assembly": "be + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e133",
+    "english": "I’m with you.",
+    "naturalKorean": "같이 있어요. / 당신 편이에요.",
+    "literalMeaning": "나는 당신과 함께 있어요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_place",
+    "nounIds": [
+      "n_you"
+    ],
+    "situationTags": [
+      "social",
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "with",
+      "you"
+    ],
+    "hints": [
+      "함께/동의는 be + with you.",
+      "be + with you",
+      "I’m ____ you."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm with you.",
+    "relatedExpressionIds": [
+      "e123",
+      "e143"
+    ],
+    "usageNotes": "옆에 있거나, 네 편이라고 지지할 때 써요.",
+    "nuanceNotes": "물리적 동행과 정서적 응원 둘 다 가능해요."
+  },
+  {
+    "id": "e134",
+    "english": "Where are you?",
+    "naturalKorean": "어디예요?",
+    "literalMeaning": "당신은 어디에 있어요?",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_place",
+    "nounIds": [
+      "n_you",
+      "n_place"
+    ],
+    "situationTags": [
+      "message",
+      "daily",
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "Where",
+      "are",
+      "you"
+    ],
+    "hints": [
+      "위치 물을 때 Where + be.",
+      "Where + are + you",
+      "Where ___ you?"
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Where are you?",
+    "relatedExpressionIds": [
+      "e135",
+      "e123"
+    ],
+    "usageNotes": "위치를 물을 때 가장 기본으로 써요.",
+    "nuanceNotes": "문자·전화에서 제일 많이 쓰는 위치 질문이에요.",
+    "contrast": {
+      "koVerb": "어디예요",
+      "enEngine": "be",
+      "enNoun": "place",
+      "assembly": "be + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e135",
+    "english": "Are you there?",
+    "naturalKorean": "거기 있어요?",
+    "literalMeaning": "당신은 거기에 있어요?",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_place",
+    "nounIds": [
+      "n_you",
+      "n_there"
+    ],
+    "situationTags": [
+      "phone",
+      "message"
+    ],
+    "level": 1,
+    "chunks": [
+      "Are",
+      "you",
+      "there"
+    ],
+    "hints": [
+      "응답 확인은 Are you there?",
+      "be + there",
+      "Are you _____?"
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Are you there?",
+    "relatedExpressionIds": [
+      "e134",
+      "e123"
+    ],
+    "usageNotes": "상대가 듣는지·자리에 있는지 확인할 때 써요.",
+    "nuanceNotes": "통화·온라인에서 ‘있어?’로 자주 써요.",
+    "contrast": {
+      "koVerb": "거기 있어요",
+      "enEngine": "be",
+      "enNoun": "there",
+      "assembly": "be + place",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e136",
+    "english": "I’m next.",
+    "naturalKorean": "제 차례예요.",
+    "literalMeaning": "나는 다음이에요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_place",
+    "nounIds": [
+      "n_me"
+    ],
+    "situationTags": [
+      "daily",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "I’m",
+      "next"
+    ],
+    "hints": [
+      "순서는 be + next.",
+      "be + next",
+      "I’m ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "I'm next.",
+    "relatedExpressionIds": [
+      "e115",
+      "e140"
+    ],
+    "usageNotes": "줄·순서에서 내 차례라고 말할 때 써요.",
+    "nuanceNotes": "줄이나 카운터에서 차례를 기다릴 때 쓰는 짧은 신호예요."
+  },
+  {
+    "id": "e137",
+    "english": "It is what it is.",
+    "naturalKorean": "어쩔 수 없지. / 이미 이렇게 된걸 어떡해.",
+    "literalMeaning": "그건 그거다.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "conversation",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "It is",
+      "what",
+      "it is"
+    ],
+    "hints": [
+      "직역은 ‘그건 그거다’지만, 실제로는 현실을 담담히 받아들이는 말이에요.",
+      "이미 벌어진 일을 어쩔 수 없다고 할 때 It is what it is.",
+      "It is ____ it is."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "It is what it is.",
+    "relatedExpressionIds": [
+      "e141",
+      "e142"
+    ],
+    "usageNotes": "담담하게 현실을 받아들여야 할 때 써요. 이미 벌어진 일을 바꾸기 어렵고, 더 따져 봤자 소용없을 때요.",
+    "nuanceNotes": "직역하면 ‘그건 그거다’이지만, 실제로는 체념·수용의 한마디예요. 화를 키우기보다 ‘어쩔 수 없지’로 상황을 내려놓을 때 씁니다."
+  },
+  {
+    "id": "e138",
+    "english": "That’s it.",
+    "naturalKorean": "그게 다예요. / 됐어.",
+    "literalMeaning": "그것이 그것이에요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "daily",
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "That’s",
+      "it"
+    ],
+    "hints": [
+      "끝·핵심을 말할 때 That’s it.",
+      "That’s + it",
+      "That’s __."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "That's it.",
+    "relatedExpressionIds": [
+      "e146",
+      "e140"
+    ],
+    "usageNotes": "설명·할 일이 끝났을 때, 또는 ‘그게 다야’라고 할 때 써요.",
+    "nuanceNotes": "끝맺음·핵심 요약 둘 다에 쓰는 짧은 말이에요."
+  },
+  {
+    "id": "e139",
+    "english": "That’s fine.",
+    "naturalKorean": "괜찮아요.",
+    "literalMeaning": "그것은 괜찮은 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "conversation",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "That’s",
+      "fine"
+    ],
+    "hints": [
+      "허락·안심은 That’s fine.",
+      "That’s + fine",
+      "That’s ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "That's fine.",
+    "relatedExpressionIds": [
+      "e142",
+      "e105"
+    ],
+    "usageNotes": "제안·상황을 받아들일 때 써요.",
+    "nuanceNotes": "거절하지 않고 ‘괜찮아, 그걸로 해’라는 느낌이에요."
+  },
+  {
+    "id": "e140",
+    "english": "It’s okay.",
+    "naturalKorean": "괜찮아요.",
+    "literalMeaning": "그것은 괜찮은 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "conversation",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "It’s",
+      "okay"
+    ],
+    "hints": [
+      "위로·허락에 It’s okay.",
+      "be + okay",
+      "It’s ____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "It's okay.",
+    "relatedExpressionIds": [
+      "e139",
+      "e106"
+    ],
+    "usageNotes": "실수·사과·걱정에 대해 안심시킬 때 써요.",
+    "nuanceNotes": "상대를 다독이는 가장 흔한 be 표현이에요."
+  },
+  {
+    "id": "e141",
+    "english": "You’re right.",
+    "naturalKorean": "맞아요.",
+    "literalMeaning": "당신은 옳은 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_you"
+    ],
+    "situationTags": [
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "You’re",
+      "right"
+    ],
+    "hints": [
+      "동의할 때 You’re right.",
+      "be + right",
+      "You’re _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "You're right.",
+    "relatedExpressionIds": [
+      "e145",
+      "e121"
+    ],
+    "usageNotes": "상대 말에 동의할 때 바로 써요.",
+    "nuanceNotes": "That’s right보다 사람을 향해 동의하는 말이에요."
+  },
+  {
+    "id": "e142",
+    "english": "You’re welcome.",
+    "naturalKorean": "천만에요.",
+    "literalMeaning": "당신은 환영받는 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_you"
+    ],
+    "situationTags": [
+      "conversation",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "You’re",
+      "welcome"
+    ],
+    "hints": [
+      "고마움 대답은 You’re welcome.",
+      "be + welcome",
+      "You’re _______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "You're welcome.",
+    "relatedExpressionIds": [
+      "e141",
+      "e149"
+    ],
+    "usageNotes": "Thank you에 답할 때 써요.",
+    "nuanceNotes": "‘천만에요’에 해당하는 기본 예의 표현이에요."
+  },
+  {
+    "id": "e143",
+    "english": "That’s right.",
+    "naturalKorean": "맞아요.",
+    "literalMeaning": "그것은 옳은 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "conversation",
+      "class"
+    ],
+    "level": 1,
+    "chunks": [
+      "That’s",
+      "right"
+    ],
+    "hints": [
+      "확인·동의는 That’s right.",
+      "That’s + right",
+      "That’s _____."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "That's right.",
+    "relatedExpressionIds": [
+      "e141",
+      "e121"
+    ],
+    "usageNotes": "사실·답을 확인할 때 써요.",
+    "nuanceNotes": "맞다고 짧게 찍어 주는 확인 표현이에요."
+  },
+  {
+    "id": "e144",
+    "english": "That’s all.",
+    "naturalKorean": "그게 다예요.",
+    "literalMeaning": "그것이 전부예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "daily",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "That’s",
+      "all"
+    ],
+    "hints": [
+      "전부임을 That’s all.",
+      "That’s + all",
+      "That’s ___."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "That's all.",
+    "relatedExpressionIds": [
+      "e138",
+      "e147"
+    ],
+    "usageNotes": "더 이상 없다는 걸 말할 때 써요.",
+    "nuanceNotes": "발표·설명·심부름을 끝낼 때 자주 붙어요."
+  },
+  {
+    "id": "e145",
+    "english": "That’s enough.",
+    "naturalKorean": "그거면 충분해요.",
+    "literalMeaning": "그것은 충분한 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "daily",
+      "conversation"
+    ],
+    "level": 1,
+    "chunks": [
+      "That’s",
+      "enough"
+    ],
+    "hints": [
+      "충분함은 That’s enough.",
+      "That’s + enough",
+      "That’s ______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "That's enough.",
+    "relatedExpressionIds": [
+      "e144",
+      "e138"
+    ],
+    "usageNotes": "양·시간·말이 충분하다고 할 때 써요.",
+    "nuanceNotes": "더 하지 말자는 부드러운 제지에도 써요."
+  },
+  {
+    "id": "e146",
+    "english": "It’s up to you.",
+    "naturalKorean": "너한테 달렸어.",
+    "literalMeaning": "그것은 너에게 달려 있어요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_you"
+    ],
+    "situationTags": [
+      "conversation",
+      "decision"
+    ],
+    "level": 1,
+    "chunks": [
+      "It’s",
+      "up to",
+      "you"
+    ],
+    "hints": [
+      "선택은 It’s up to you.",
+      "be + up to you",
+      "It’s __ to you."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "It's up to you.",
+    "relatedExpressionIds": [
+      "e117",
+      "e148"
+    ],
+    "usageNotes": "선택을 상대에게 맡길 때 써요.",
+    "nuanceNotes": "내가 정하지 않고 네 결정에 맡긴다는 뜻이에요."
+  },
+  {
+    "id": "e147",
+    "english": "It’s nothing.",
+    "naturalKorean": "별거 아니에요.",
+    "literalMeaning": "그것은 아무것도 아니에요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "conversation",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "It’s",
+      "nothing"
+    ],
+    "hints": [
+      "겸손·위로에 It’s nothing.",
+      "be + nothing",
+      "It’s _______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "It's nothing.",
+    "relatedExpressionIds": [
+      "e142",
+      "e140"
+    ],
+    "usageNotes": "고마움·사과에 ‘별거 아니야’로 답할 때 써요.",
+    "nuanceNotes": "부담을 덜어 주는 가벼운 반응이에요."
+  },
+  {
+    "id": "e148",
+    "english": "That’s better.",
+    "naturalKorean": "그게 낫네요.",
+    "literalMeaning": "그것은 더 나은 상태예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "conversation",
+      "work"
+    ],
+    "level": 1,
+    "chunks": [
+      "That’s",
+      "better"
+    ],
+    "hints": [
+      "개선 평가는 That’s better.",
+      "That’s + better",
+      "That’s ______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "That's better.",
+    "relatedExpressionIds": [
+      "e139",
+      "e107"
+    ],
+    "usageNotes": "개선된 선택·결과를 말할 때 써요.",
+    "nuanceNotes": "이전보다 낫다고 짧게 평가하는 말이에요."
+  },
+  {
+    "id": "e149",
+    "english": "It’s me.",
+    "naturalKorean": "저예요.",
+    "literalMeaning": "그것은 나예요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_me"
+    ],
+    "situationTags": [
+      "phone",
+      "home",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "It’s",
+      "me"
+    ],
+    "hints": [
+      "문 앞·전화에서 It’s me.",
+      "be + me",
+      "It’s __."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "It's me.",
+    "relatedExpressionIds": [
+      "e150",
+      "e123"
+    ],
+    "usageNotes": "문 앞·전화에서 누군지 밝힐 때 써요.",
+    "nuanceNotes": "Who is it?에 대한 가장 짧은 답이에요."
+  },
+  {
+    "id": "e150",
+    "english": "Who is it?",
+    "naturalKorean": "누구세요?",
+    "literalMeaning": "그것은 누구예요?",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "phone",
+      "home",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "Who",
+      "is",
+      "it"
+    ],
+    "hints": [
+      "상대 물을 때 Who is it?",
+      "Who + is + it",
+      "Who __ it?"
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Who is it?",
+    "relatedExpressionIds": [
+      "e149",
+      "e134"
+    ],
+    "usageNotes": "초인종·전화에서 상대를 물을 때 써요.",
+    "nuanceNotes": "사람 확인용 기본 질문이에요."
+  },
+  {
+    "id": "e151",
+    "english": "What’s wrong?",
+    "naturalKorean": "뭐가 문제예요?",
+    "literalMeaning": "무엇이 잘못된 상태예요?",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_problem"
+    ],
+    "situationTags": [
+      "conversation",
+      "health"
+    ],
+    "level": 1,
+    "chunks": [
+      "What’s",
+      "wrong"
+    ],
+    "hints": [
+      "이상 확인할 때 What’s wrong?",
+      "What + is + wrong",
+      "What’s _____?"
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "What's wrong?",
+    "relatedExpressionIds": [
+      "e152",
+      "e111"
+    ],
+    "usageNotes": "상대가 안 좋아 보이거나 문제가 느껴질 때 써요.",
+    "nuanceNotes": "걱정하며 원인을 묻는 말이에요.",
+    "contrast": {
+      "koVerb": "뭐가 문제예요",
+      "enEngine": "be",
+      "enNoun": "problem",
+      "assembly": "be everyday phrase",
+      "tip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다.",
+      "source": "derived"
+    }
+  },
+  {
+    "id": "e152",
+    "english": "What’s up?",
+    "naturalKorean": "뭐야? / 어떻게 지내?",
+    "literalMeaning": "무엇이 위에 있어요?",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_it"
+    ],
+    "situationTags": [
+      "conversation",
+      "social"
+    ],
+    "level": 1,
+    "chunks": [
+      "What’s",
+      "up"
+    ],
+    "hints": [
+      "안부·상황 물을 때 What’s up?",
+      "What + is + up",
+      "What’s __?"
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "What's up?",
+    "relatedExpressionIds": [
+      "e153",
+      "e151"
+    ],
+    "usageNotes": "친구에게 안부·상황을 가볍게 물을 때 써요.",
+    "nuanceNotes": "직역과 달리 ‘뭐해?/별일 있어?’에 가까워요."
+  },
+  {
+    "id": "e153",
+    "english": "How are you?",
+    "naturalKorean": "어떻게 지내세요?",
+    "literalMeaning": "당신은 어떤 상태예요?",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_you"
+    ],
+    "situationTags": [
+      "conversation",
+      "daily"
+    ],
+    "level": 1,
+    "chunks": [
+      "How",
+      "are",
+      "you"
+    ],
+    "hints": [
+      "안부 인사는 How + be.",
+      "How + are + you",
+      "How ___ you?"
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "How are you?",
+    "relatedExpressionIds": [
+      "e107",
+      "e105"
+    ],
+    "usageNotes": "처음 만나거나 안부할 때 써요.",
+    "nuanceNotes": "가장 기본적인 인사 질문이에요."
+  },
+  {
+    "id": "e154",
+    "english": "Be careful.",
+    "naturalKorean": "조심해요.",
+    "literalMeaning": "조심한 상태가 되세요.",
+    "coreVerbId": "v_be",
+    "patternId": "p_be_phrase",
+    "nounIds": [
+      "n_you"
+    ],
+    "situationTags": [
+      "daily",
+      "travel"
+    ],
+    "level": 1,
+    "chunks": [
+      "Be",
+      "careful"
+    ],
+    "hints": [
+      "주의할 때 Be careful.",
+      "Be + careful",
+      "Be _______."
+    ],
+    "quizTypes": [
+      "listening",
+      "speaking",
+      "koToEn",
+      "enToKo",
+      "blank",
+      "hint"
+    ],
+    "audioText": "Be careful.",
+    "relatedExpressionIds": [
+      "e111",
+      "e123"
+    ],
+    "usageNotes": "위험·실수 가능성을 경고할 때 써요.",
+    "nuanceNotes": "명령형 be로, ‘조심해’에 해당하는 생활 표현이에요."
+  }
+]

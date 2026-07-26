@@ -1,0 +1,47 @@
+{
+  "id": "unit-01-present-simple",
+  "series": "grammar-in-use",
+  "unit": 1,
+  "title": "Present Simple",
+  "concept": "현재의 습관, 사실, 반복",
+  "stage": 7,
+  "skillAxes": ["tense", "form"],
+  "prerequisites": [],
+  "items": [
+    {
+      "id": "ps-01",
+      "type": "sentence",
+      "en": "I usually drink coffee in the morning.",
+      "translations": { "ko": "나는 보통 아침에 커피를 마셔요." },
+      "form": "statement",
+      "tags": ["tense:present-simple", "function:habit", "stage:7"]
+    },
+    {
+      "id": "ps-02",
+      "type": "sentence",
+      "en": "She works at a bank.",
+      "translations": { "ko": "그녀는 은행에서 일해요." },
+      "form": "statement",
+      "tags": ["tense:present-simple", "grammar:third-person-s", "stage:7"]
+    },
+    {
+      "id": "ps-03",
+      "type": "sentence",
+      "en": "Do you like pizza?",
+      "translations": { "ko": "피자 좋아하세요?" },
+      "form": "question",
+      "tags": ["tense:present-simple", "form:question", "stage:7"]
+    },
+    {
+      "id": "ps-04",
+      "type": "pattern",
+      "pattern": "Subject + V(s/es) + ...",
+      "example": "He plays soccer.",
+      "tags": ["tense:present-simple", "grammar:third-person-s", "stage:7"]
+    }
+  ],
+  "exercises": [
+    { "type": "form-change", "from": "statement", "to": "question" },
+    { "type": "fill-blank", "target": "verb-conjugation" }
+  ]
+}

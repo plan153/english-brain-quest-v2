@@ -1,0 +1,152 @@
+[
+  {
+    "id": "v_be",
+    "word": "be",
+    "coreImage": "상태나 정체성을 그대로 놓아두기",
+    "easyKorean": "~이다, ~에 있다, ~한 상태다, (be+-ing로) 정해진 가까운 미래",
+    "representativeSituations": ["소개", "상태 설명", "위치", "약속", "계획"],
+    "patternIds": ["p_be_state", "p_be_on_way", "p_be_ing_future", "p_be_place", "p_be_phrase"],
+    "connectedVerbIds": ["v_feel", "v_get"],
+    "level": 1
+  },
+  {
+    "id": "v_do",
+    "word": "do",
+    "coreImage": "일이나 행동을 실제로 하기",
+    "easyKorean": "하다, 처리하다",
+    "representativeSituations": ["일", "도움", "확인"],
+    "patternIds": ["p_do_action", "p_do_need"],
+    "connectedVerbIds": ["v_make", "v_take"],
+    "level": 1
+  },
+  {
+    "id": "v_have",
+    "word": "have",
+    "coreImage": "내 손 안에 가지고 있기",
+    "easyKorean": "가지다, 있다, 겪다",
+    "representativeSituations": ["질문", "문제", "시간", "식사"],
+    "patternIds": ["p_have_thing", "p_have_time", "p_have_problem", "p_have_meal"],
+    "connectedVerbIds": ["v_need", "v_get"],
+    "level": 1
+  },
+  {
+    "id": "v_get",
+    "word": "get",
+    "coreImage": "내 쪽으로 들어오거나 상태가 바뀌기",
+    "easyKorean": "얻다, 받다, 이해하다, ~해지다",
+    "representativeSituations": ["이해", "연락", "도착", "상태 변화"],
+    "patternIds": ["p_get_it", "p_get_thing", "p_get_state", "p_get_place"],
+    "connectedVerbIds": ["v_have", "v_find", "v_feel"],
+    "level": 1
+  },
+  {
+    "id": "v_make",
+    "word": "make",
+    "coreImage": "없던 것을 만들어 결과를 내기",
+    "easyKorean": "만들다, 생기게 하다",
+    "representativeSituations": ["계획", "결정", "실수", "진전"],
+    "patternIds": ["p_make_thing", "p_make_sure", "p_make_person_state"],
+    "connectedVerbIds": ["v_do", "v_take"],
+    "level": 1
+  },
+  {
+    "id": "v_take",
+    "word": "take",
+    "coreImage": "무언가를 집어 들고 시간이나 행동을 가져가기",
+    "easyKorean": "가져가다, 걸리다, 하다",
+    "representativeSituations": ["시간", "휴식", "시선", "돌봄"],
+    "patternIds": ["p_take_time", "p_take_break", "p_take_look", "p_take_care", "p_take_transport"],
+    "connectedVerbIds": ["v_get", "v_make"],
+    "level": 1
+  },
+  {
+    "id": "v_give",
+    "word": "give",
+    "coreImage": "내 쪽에서 상대에게 넘겨주기",
+    "easyKorean": "주다, 해주다",
+    "representativeSituations": ["부탁", "기회", "연락", "조언"],
+    "patternIds": ["p_give_person_thing", "p_give_it_try", "p_give_call"],
+    "connectedVerbIds": ["v_take", "v_need"],
+    "level": 1
+  },
+  {
+    "id": "v_go",
+    "word": "go",
+    "coreImage": "앞으로 움직이거나 일이 진행되기",
+    "easyKorean": "가다, 진행되다",
+    "representativeSituations": ["이동", "진행", "계속"],
+    "patternIds": ["p_go_place", "p_go_well", "p_go_on"],
+    "connectedVerbIds": ["v_come", "v_keep"],
+    "level": 1
+  },
+  {
+    "id": "v_come",
+    "word": "come",
+    "coreImage": "말하는 사람 쪽으로 오거나 일이 생기기",
+    "easyKorean": "오다, 생기다, 떠오르다",
+    "representativeSituations": ["동행", "귀환", "갑작스러운 일"],
+    "patternIds": ["p_come_with", "p_come_back", "p_come_up"],
+    "connectedVerbIds": ["v_go", "v_find"],
+    "level": 1
+  },
+  {
+    "id": "v_put",
+    "word": "put",
+    "coreImage": "어딘가에 놓아 위치시키기",
+    "easyKorean": "놓다, 넣다, 붙이다",
+    "representativeSituations": ["정리", "위치", "연기"],
+    "patternIds": ["p_put_place", "p_put_on", "p_put_off"],
+    "connectedVerbIds": ["v_take", "v_keep"],
+    "level": 1
+  },
+  {
+    "id": "v_keep",
+    "word": "keep",
+    "coreImage": "상태나 행동을 계속 유지하기",
+    "easyKorean": "계속하다, 유지하다",
+    "representativeSituations": ["응원", "연락", "기억"],
+    "patternIds": ["p_keep_ing", "p_keep_state", "p_keep_in_touch"],
+    "connectedVerbIds": ["v_go", "v_put"],
+    "level": 1
+  },
+  {
+    "id": "v_find",
+    "word": "find",
+    "coreImage": "찾아서 눈앞에 두기",
+    "easyKorean": "찾다, 알게 되다",
+    "representativeSituations": ["분실", "방법", "장소"],
+    "patternIds": ["p_find_thing", "p_find_way", "p_find_out"],
+    "connectedVerbIds": ["v_get", "v_come"],
+    "level": 1
+  },
+  {
+    "id": "v_feel",
+    "word": "feel",
+    "coreImage": "몸과 마음의 상태를 느끼기",
+    "easyKorean": "느끼다, 기분이 ~하다",
+    "representativeSituations": ["몸 상태", "감정", "의견"],
+    "patternIds": ["p_feel_state", "p_feel_like", "p_feel_free"],
+    "connectedVerbIds": ["v_be", "v_get"],
+    "level": 1
+  },
+  {
+    "id": "v_want",
+    "word": "want",
+    "coreImage": "마음이 어떤 쪽으로 가기",
+    "easyKorean": "원하다, 하고 싶다",
+    "representativeSituations": ["희망", "시도", "요청"],
+    "patternIds": ["p_want_to", "p_want_thing"],
+    "connectedVerbIds": ["v_need", "v_do"],
+    "level": 1
+  },
+  {
+    "id": "v_need",
+    "word": "need",
+    "coreImage": "없으면 곤란해서 필요한 것",
+    "easyKorean": "필요하다, 해야 한다",
+    "representativeSituations": ["도움", "시간", "필요", "의무"],
+    "patternIds": ["p_need_thing", "p_need_to", "p_need_help"],
+    "connectedVerbIds": ["v_want", "v_have"],
+    "level": 1
+  }
+]

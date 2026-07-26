@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "sourceDoc": "docs/PHRASAL_VERBS.md",
+  "note": "Phrasal-only Q/A matrices. Never merge into data/qa-matrices.json or getUnlockedBank().",
+  "matrices": [
+    {
+      "id": "pm_get_to_work",
+      "baseExpressionId": "e081",
+      "coreVerbId": "v_get",
+      "groupId": "pv_get_place",
+      "label": "get to work",
+      "thinkingFrame": "직장에 도착했는지 말하기·묻기",
+      "forms": [
+        { "id": "statement", "label": "평서", "en": "I get to work.", "ko": "나는 직장에 도착해요.", "cue": "평서문으로 말해 보세요" },
+        { "id": "question", "label": "의문", "en": "Do you get to work?", "ko": "직장에 도착해요?", "cue": "의문문으로 바꿔 보세요", "baseFormId": "statement" },
+        { "id": "negative", "label": "부정", "en": "I don't get to work.", "ko": "직장에 도착하지 않아요.", "cue": "부정문으로 바꿔 보세요", "baseFormId": "statement", "acceptedAnswers": ["I do not get to work."] },
+        { "id": "shortYes", "label": "짧은 답", "en": "Yes, I do.", "ko": "네, 도착해요.", "cue": "짧게 긍정으로 답해 보세요", "baseFormId": "question" },
+        { "id": "shortNo", "label": "짧은 답", "en": "No, I don't.", "ko": "아니요, 안 해요.", "cue": "짧게 부정으로 답해 보세요", "baseFormId": "question", "acceptedAnswers": ["No, I do not."] }
+      ]
+    },
+    {
+      "id": "pm_get_to_school",
+      "baseExpressionId": "e085",
+      "coreVerbId": "v_get",
+      "groupId": "pv_get_place",
+      "label": "get to school",
+      "thinkingFrame": "학교에 도착했는지 말하기·묻기",
+      "forms": [
+        { "id": "statement", "label": "평서", "en": "I get to school.", "ko": "나는 학교에 도착해요.", "cue": "평서문으로 말해 보세요" },
+        { "id": "question", "label": "의문", "en": "Do you get to school?", "ko": "학교에 도착해요?", "cue": "의문문으로 바꿔 보세요", "baseFormId": "statement" },
+        { "id": "negative", "label": "부정", "en": "I don't get to school.", "ko": "학교에 도착하지 않아요.", "cue": "부정문으로 바꿔 보세요", "baseFormId": "statement", "acceptedAnswers": ["I do not get to school."] },
+        { "id": "shortYes", "label": "짧은 답", "en": "Yes, I do.", "ko": "네, 도착해요.", "cue": "짧게 긍정으로 답해 보세요", "baseFormId": "question" },
+        { "id": "shortNo", "label": "짧은 답", "en": "No, I don't.", "ko": "아니요, 안 해요.", "cue": "짧게 부정으로 답해 보세요", "baseFormId": "question", "acceptedAnswers": ["No, I do not."] }
+      ]
+    },
+    {
+      "id": "pm_get_to_station",
+      "baseExpressionId": "e086",
+      "coreVerbId": "v_get",
+      "groupId": "pv_get_place",
+      "label": "get to the station",
+      "thinkingFrame": "역에 도착했는지 말하기·묻기",
+      "forms": [
+        { "id": "statement", "label": "평서", "en": "I get to the station.", "ko": "나는 역에 도착해요.", "cue": "평서문으로 말해 보세요" },
+        { "id": "question", "label": "의문", "en": "Do you get to the station?", "ko": "역에 도착해요?", "cue": "의문문으로 바꿔 보세요", "baseFormId": "statement" },
+        { "id": "negative", "label": "부정", "en": "I don't get to the station.", "ko": "역에 도착하지 않아요.", "cue": "부정문으로 바꿔 보세요", "baseFormId": "statement", "acceptedAnswers": ["I do not get to the station."] },
+        { "id": "shortYes", "label": "짧은 답", "en": "Yes, I do.", "ko": "네, 도착해요.", "cue": "짧게 긍정으로 답해 보세요", "baseFormId": "question" },
+        { "id": "shortNo", "label": "짧은 답", "en": "No, I don't.", "ko": "아니요, 안 해요.", "cue": "짧게 부정으로 답해 보세요", "baseFormId": "question", "acceptedAnswers": ["No, I do not."] }
+      ]
+    },
+    {
+      "id": "pm_get_to_work_nine",
+      "baseExpressionId": "e087",
+      "coreVerbId": "v_get",
+      "groupId": "pv_get_place",
+      "label": "get to work at nine",
+      "thinkingFrame": "아홉 시에 도착하는지 말하기·묻기",
+      "forms": [
+        { "id": "statement", "label": "평서", "en": "I get to work at nine.", "ko": "나는 아홉 시에 직장에 도착해요.", "cue": "평서문으로 말해 보세요" },
+        { "id": "question", "label": "의문", "en": "Do you get to work at nine?", "ko": "아홉 시에 직장에 도착해요?", "cue": "의문문으로 바꿔 보세요", "baseFormId": "statement" },
+        { "id": "negative", "label": "부정", "en": "I don't get to work at nine.", "ko": "아홉 시에 도착하지 않아요.", "cue": "부정문으로 바꿔 보세요", "baseFormId": "statement", "acceptedAnswers": ["I do not get to work at nine."] },
+        { "id": "shortYes", "label": "짧은 답", "en": "Yes, I do.", "ko": "네, 그래요.", "cue": "짧게 긍정으로 답해 보세요", "baseFormId": "question" },
+        { "id": "shortNo", "label": "짧은 답", "en": "No, I don't.", "ko": "아니요, 아니에요.", "cue": "짧게 부정으로 답해 보세요", "baseFormId": "question", "acceptedAnswers": ["No, I do not."] }
+      ]
+    },
+    {
+      "id": "pm_came_up",
+      "baseExpressionId": "e061",
+      "coreVerbId": "v_come",
+      "groupId": "pv_come_particles",
+      "label": "come up",
+      "thinkingFrame": "일이 생겼는지 말하기·묻기",
+      "forms": [
+        { "id": "statement", "label": "평서", "en": "Something came up.", "ko": "일이 좀 생겼어요.", "cue": "평서문으로 말해 보세요" },
+        { "id": "question", "label": "의문", "en": "Did something come up?", "ko": "무슨 일이 생겼어요?", "cue": "의문문으로 바꿔 보세요", "baseFormId": "statement" },
+        { "id": "negative", "label": "부정", "en": "Nothing came up.", "ko": "아무 일도 안 생겼어요.", "cue": "부정문으로 바꿔 보세요", "baseFormId": "statement", "acceptedAnswers": ["Something didn't come up.", "Something did not come up."] },
+        { "id": "shortYes", "label": "짧은 답", "en": "Yes, it did.", "ko": "네, 생겼어요.", "cue": "짧게 긍정으로 답해 보세요", "baseFormId": "question" },
+        { "id": "shortNo", "label": "짧은 답", "en": "No, it didn't.", "ko": "아니요, 안 생겼어요.", "cue": "짧게 부정으로 답해 보세요", "baseFormId": "question", "acceptedAnswers": ["No, it did not."] }
+      ]
+    },
+    {
+      "id": "pm_put_off",
+      "baseExpressionId": "e053",
+      "coreVerbId": "v_put",
+      "groupId": "pv_put_on_off",
+      "label": "put off",
+      "thinkingFrame": "미루는지 말하기·묻기",
+      "forms": [
+        { "id": "statement", "label": "평서", "en": "I put it off.", "ko": "나는 그걸 미뤄요.", "cue": "평서문으로 말해 보세요", "acceptedAnswers": ["I put things off."] },
+        { "id": "question", "label": "의문", "en": "Do you put it off?", "ko": "그걸 미뤄요?", "cue": "의문문으로 바꿔 보세요", "baseFormId": "statement" },
+        { "id": "negative", "label": "부정", "en": "I don't put it off.", "ko": "나는 그걸 미루지 않아요.", "cue": "부정문으로 바꿔 보세요", "baseFormId": "statement", "acceptedAnswers": ["I do not put it off.", "I shouldn't put it off.", "I should not put it off."] },
+        { "id": "shortYes", "label": "짧은 답", "en": "Yes, I do.", "ko": "네, 미뤄요.", "cue": "짧게 긍정으로 답해 보세요", "baseFormId": "question" },
+        { "id": "shortNo", "label": "짧은 답", "en": "No, I don't.", "ko": "아니요, 안 미뤄요.", "cue": "짧게 부정으로 답해 보세요", "baseFormId": "question", "acceptedAnswers": ["No, I do not."] }
+      ]
+    },
+    {
+      "id": "pm_find_out",
+      "baseExpressionId": "e063",
+      "coreVerbId": "v_find",
+      "groupId": "pv_find_out",
+      "label": "find out",
+      "thinkingFrame": "알아내는지 말하기·묻기",
+      "forms": [
+        { "id": "statement", "label": "평서", "en": "I find out.", "ko": "나는 알아내요.", "cue": "평서문으로 말해 보세요", "acceptedAnswers": ["I'll find out.", "I will find out.", "Let's find out."] },
+        { "id": "question", "label": "의문", "en": "Did you find out?", "ko": "알아냈어요?", "cue": "의문문으로 바꿔 보세요", "baseFormId": "statement", "acceptedAnswers": ["Do you find out?", "Have you found out?"] },
+        { "id": "negative", "label": "부정", "en": "I don't find out.", "ko": "알아내지 못해요.", "cue": "부정문으로 바꿔 보세요", "baseFormId": "statement", "acceptedAnswers": ["I do not find out.", "I didn't find out.", "I did not find out."] },
+        { "id": "shortYes", "label": "짧은 답", "en": "Yes, I did.", "ko": "네, 알아냈어요.", "cue": "짧게 긍정으로 답해 보세요", "baseFormId": "question", "acceptedAnswers": ["Yes, I do."] },
+        { "id": "shortNo", "label": "짧은 답", "en": "No, I didn't.", "ko": "아니요, 못 했어요.", "cue": "짧게 부정으로 답해 보세요", "baseFormId": "question", "acceptedAnswers": ["No, I did not.", "No, I don't.", "No, I do not."] }
+      ]
+    }
+  ]
+}

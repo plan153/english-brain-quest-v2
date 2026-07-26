@@ -1,0 +1,471 @@
+[
+  {
+    "verbId": "v_get",
+    "coreSense": "(노력해서) 얻거나, 무언가가 내 쪽으로 들어오게 하다",
+    "routes": [
+      {
+        "routeId": "get_receive",
+        "label": "얻기·받기",
+        "explanation": "메시지나 문자를 받는 느낌의 get이에요.",
+        "patterns": [
+          {
+            "patternId": "p_get_thing",
+            "label": "get + noun",
+            "slotLabel": "명사 넣기",
+            "slots": [
+              {
+                "value": "message",
+                "label": "message",
+                "combinationId": "c_get_message"
+              },
+              {
+                "value": "text",
+                "label": "text",
+                "combinationId": "c_get_text"
+              }
+            ],
+            "combinations": [
+              {
+                "id": "c_get_message",
+                "label": "get your message",
+                "expressionIds": [
+                  "e027"
+                ],
+                "koreanContrast": "받다 / 문자를 받다 → get + message",
+                "contrastTip": "「받다」를 get + message로 조립합니다."
+              },
+              {
+                "id": "c_get_text",
+                "label": "get my text",
+                "expressionIds": [
+                  "e028"
+                ],
+                "koreanContrast": "문자 받다 → get + text",
+                "contrastTip": "「받다」= get + text/message."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "routeId": "get_understand",
+        "label": "이해",
+        "explanation": "말의 뜻이 내 안으로 들어와서 이해되는 get이에요.",
+        "patterns": [
+          {
+            "patternId": "p_get_it",
+            "label": "get it",
+            "slotLabel": "it",
+            "slots": [
+              {
+                "value": "it",
+                "label": "it",
+                "combinationId": "c_get_it"
+              }
+            ],
+            "combinations": [
+              {
+                "id": "c_get_it",
+                "label": "get it",
+                "expressionIds": [
+                  "e003"
+                ],
+                "koreanContrast": "이해하다 → get + it",
+                "contrastTip": "한국어 「이해하다」를 영어 get it로 자주 조립합니다."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "routeId": "get_state",
+        "label": "상태 변화",
+        "explanation": "어떤 상태가 되어 가는 get이에요.",
+        "patterns": [
+          {
+            "patternId": "p_get_state",
+            "label": "get + adjective",
+            "slotLabel": "상태 넣기",
+            "slots": [
+              {
+                "value": "better",
+                "label": "better",
+                "combinationId": "c_get_better"
+              },
+              {
+                "value": "tired",
+                "label": "tired",
+                "combinationId": "c_get_tired"
+              }
+            ],
+            "combinations": [
+              {
+                "id": "c_get_better",
+                "label": "get better",
+                "expressionIds": [
+                  "e029"
+                ]
+              },
+              {
+                "id": "c_get_tired",
+                "label": "get tired",
+                "expressionIds": [
+                  "e004"
+                ],
+                "koreanContrast": "점점 피곤해지고 있어요 → get + adjective",
+                "contrastTip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "routeId": "get_arrival",
+        "label": "도착",
+        "explanation": "어떤 장소까지 이르다, 즉 도착하다.",
+        "patterns": [
+          {
+            "patternId": "p_get_place",
+            "label": "get to + place",
+            "slotLabel": "장소 넣기",
+            "slots": [
+              {
+                "value": "work",
+                "label": "work",
+                "combinationId": "c_get_to_work"
+              },
+              {
+                "value": "school",
+                "label": "school",
+                "combinationId": "c_get_to_school"
+              },
+              {
+                "value": "the station",
+                "label": "the station",
+                "combinationId": "c_get_to_station"
+              }
+            ],
+            "combinations": [
+              {
+                "id": "c_get_to_work",
+                "label": "get to work",
+                "expressionIds": [
+                  "e087"
+                ],
+                "koreanContrast": "나는 아홉 시에 직장에 도착해요 → get to + place",
+                "contrastTip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다."
+              },
+              {
+                "id": "c_get_to_school",
+                "label": "get to school",
+                "expressionIds": [
+                  "e085"
+                ],
+                "koreanContrast": "나는 학교에 도착해요 → get to + place",
+                "contrastTip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다."
+              },
+              {
+                "id": "c_get_to_station",
+                "label": "get to the station",
+                "expressionIds": [
+                  "e086"
+                ],
+                "koreanContrast": "나는 역에 도착해요 → get to + place",
+                "contrastTip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "specialCases": [
+      {
+        "label": "특별한 경우: home",
+        "explanation": "home은 여기서 ‘집에/집으로’처럼 쓰여 보통 get home이라고 말해요.",
+        "combinations": [
+          {
+            "id": "c_get_home",
+            "label": "get home",
+            "expressionIds": [
+              "e030"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "verbId": "v_want",
+    "coreSense": "원하는 것이 있거나, 하고 싶은 행동이 있다",
+    "routes": [
+      {
+        "routeId": "want_thing",
+        "label": "원하는 것",
+        "explanation": "원하는 대상을 직접 말하는 want예요.",
+        "patterns": [
+          {
+            "patternId": "p_want_thing",
+            "label": "want + thing",
+            "slotLabel": "넣는 말",
+            "slots": [
+              {
+                "value": "more coffee",
+                "label": "more coffee",
+                "combinationId": "c_want_more_coffee"
+              },
+              {
+                "value": "a break",
+                "label": "a break",
+                "combinationId": "c_want_a_break"
+              },
+              {
+                "value": "more time",
+                "label": "more time",
+                "combinationId": "c_want_more_time"
+              }
+            ],
+            "combinations": [
+              {
+                "id": "c_want_more_coffee",
+                "label": "want more coffee",
+                "expressionIds": [
+                  "e070"
+                ],
+                "koreanContrast": "커피를 더 원해요 → want + noun",
+                "contrastTip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다."
+              },
+              {
+                "id": "c_want_a_break",
+                "label": "want a break",
+                "expressionIds": [
+                  "e088"
+                ],
+                "koreanContrast": "휴식이 필요해요 → want + noun",
+                "contrastTip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다."
+              },
+              {
+                "id": "c_want_more_time",
+                "label": "want more time",
+                "expressionIds": [
+                  "e089"
+                ],
+                "koreanContrast": "시간을 더 원해요 → want + noun",
+                "contrastTip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "routeId": "want_action",
+        "label": "하고 싶은 행동",
+        "explanation": "하고 싶은 행동을 말하는 want예요.",
+        "patterns": [
+          {
+            "patternId": "p_want_to",
+            "label": "want to + verb",
+            "slotLabel": "동사 넣기",
+            "slots": [
+              {
+                "value": "try",
+                "label": "try",
+                "combinationId": "c_want_to_try"
+              },
+              {
+                "value": "know",
+                "label": "know",
+                "combinationId": "c_want_to_know"
+              },
+              {
+                "value": "go home",
+                "label": "go home",
+                "combinationId": "c_want_to_go_home"
+              }
+            ],
+            "combinations": [
+              {
+                "id": "c_want_to_try",
+                "label": "want to try",
+                "expressionIds": [
+                  "e014"
+                ],
+                "koreanContrast": "해보고 싶어요 → want to + verb",
+                "contrastTip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다."
+              },
+              {
+                "id": "c_want_to_know",
+                "label": "want to know",
+                "expressionIds": [
+                  "e068"
+                ],
+                "koreanContrast": "알고 싶어요 → want to + verb",
+                "contrastTip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다."
+              },
+              {
+                "id": "c_want_to_go_home",
+                "label": "want to go home",
+                "expressionIds": [
+                  "e069"
+                ],
+                "koreanContrast": "집에 가고 싶어요 → want to + verb",
+                "contrastTip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "specialCases": []
+  },
+  {
+    "verbId": "v_need",
+    "coreSense": "무언가가 필요하거나, 해야 할 일이 있다",
+    "routes": [
+      {
+        "routeId": "need_thing",
+        "label": "필요한 것",
+        "explanation": "필요한 대상을 직접 말하는 need예요.",
+        "patterns": [
+          {
+            "patternId": "p_need_thing",
+            "label": "need + thing",
+            "slotLabel": "넣는 말",
+            "slots": [
+              {
+                "value": "time",
+                "label": "time",
+                "combinationId": "c_need_some_time"
+              },
+              {
+                "value": "a break",
+                "label": "a break",
+                "combinationId": "c_need_a_break"
+              },
+              {
+                "value": "a plan",
+                "label": "a plan",
+                "combinationId": "c_need_a_plan"
+              }
+            ],
+            "combinations": [
+              {
+                "id": "c_need_some_time",
+                "label": "need some time",
+                "expressionIds": [
+                  "e002"
+                ],
+                "koreanContrast": "시간이 필요하다 → need + some time",
+                "contrastTip": "「필요하다」를 need + 명사로 붙입니다."
+              },
+              {
+                "id": "c_need_a_break",
+                "label": "need a break",
+                "expressionIds": [
+                  "e072"
+                ],
+                "koreanContrast": "휴식이 필요해요 → need + noun",
+                "contrastTip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다."
+              },
+              {
+                "id": "c_need_a_plan",
+                "label": "need a plan",
+                "expressionIds": [
+                  "e071"
+                ],
+                "koreanContrast": "계획이 필요해요 → need + noun",
+                "contrastTip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "routeId": "need_action",
+        "label": "해야 하는 행동",
+        "explanation": "해야 할 행동을 말하는 need예요.",
+        "patterns": [
+          {
+            "patternId": "p_need_to",
+            "label": "need to + verb",
+            "slotLabel": "동사 넣기",
+            "slots": [
+              {
+                "value": "leave",
+                "label": "leave",
+                "combinationId": "c_need_to_leave"
+              },
+              {
+                "value": "go",
+                "label": "go",
+                "combinationId": "c_need_to_go"
+              },
+              {
+                "value": "sleep",
+                "label": "sleep",
+                "combinationId": "c_need_to_sleep"
+              }
+            ],
+            "combinations": [
+              {
+                "id": "c_need_to_leave",
+                "label": "need to leave",
+                "expressionIds": [
+                  "e084"
+                ]
+              },
+              {
+                "id": "c_need_to_go",
+                "label": "need to go",
+                "expressionIds": [
+                  "e073"
+                ],
+                "koreanContrast": "가야 해요 → need to + verb",
+                "contrastTip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다."
+              },
+              {
+                "id": "c_need_to_sleep",
+                "label": "need to sleep",
+                "expressionIds": [
+                  "e090"
+                ],
+                "koreanContrast": "자야 해요 → need to + verb",
+                "contrastTip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "routeId": "need_help",
+        "label": "도움 요청",
+        "explanation": "도움이 필요한 상태를 말하는 need예요.",
+        "patterns": [
+          {
+            "patternId": "p_need_help",
+            "label": "need + help",
+            "slotLabel": "도움",
+            "slots": [
+              {
+                "value": "help",
+                "label": "help",
+                "combinationId": "c_need_help"
+              }
+            ],
+            "combinations": [
+              {
+                "id": "c_need_help",
+                "label": "need help",
+                "expressionIds": [
+                  "e075"
+                ],
+                "koreanContrast": "도움이 필요해요 → need help",
+                "contrastTip": "한국어는 상황마다 동사가 갈라지고, 영어는 기본 동사 + 명사로 자주 조립합니다."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "specialCases": []
+  }
+]

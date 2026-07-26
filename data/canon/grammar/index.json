@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "series": "grammar-in-use",
+  "description": "그래머인유즈 식 문법 단원 시리즈. 새 단원 추가 시 units/unit-{NN}-{slug}.json 파일만 추가하면 됨 (코드 변경 불필요).",
+  "unitCount": 2,
+  "units": [
+    {
+      "id": "unit-01-present-simple",
+      "unit": 1,
+      "title": "Present Simple",
+      "concept": "현재의 습관, 사실, 반복",
+      "file": "units/unit-01-present-simple.json",
+      "itemCount": 4,
+      "difficulty": "beginner"
+    },
+    {
+      "id": "unit-02-present-continuous",
+      "unit": 2,
+      "title": "Present Continuous",
+      "concept": "지금 일어나고 있는 일",
+      "file": "units/unit-02-present-continuous.json",
+      "itemCount": 3,
+      "difficulty": "beginner"
+    }
+  ]
+}

@@ -1,0 +1,842 @@
+[
+  {
+    "id": "p_be_state",
+    "label": "be + state",
+    "coreVerbId": "v_be",
+    "structure": "subject + be + adjective/noun",
+    "thinkingFrame": "상태나 정체성을 말한다",
+    "slotTypes": [
+      "subject",
+      "state"
+    ],
+    "exampleExpressionIds": [
+      "e016",
+      "e059",
+      "e105",
+      "e106",
+      "e107",
+      "e108",
+      "e109",
+      "e110",
+      "e111",
+      "e112",
+      "e113",
+      "e114",
+      "e115",
+      "e116",
+      "e117",
+      "e118",
+      "e119",
+      "e120",
+      "e121",
+      "e122"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_be_on_way",
+    "label": "be on one's way",
+    "coreVerbId": "v_be",
+    "structure": "subject + be + on + possessor + way",
+    "thinkingFrame": "이동 중임을 말한다",
+    "slotTypes": [
+      "subject",
+      "way"
+    ],
+    "exampleExpressionIds": [
+      "e008",
+      "e060"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_be_ing_future",
+    "label": "be + -ing (near future)",
+    "coreVerbId": "v_be",
+    "structure": "subject + be + -ing (+ time)",
+    "thinkingFrame": "이미 정해진 가까운 미래를 말한다",
+    "slotTypes": [
+      "subject",
+      "action",
+      "time"
+    ],
+    "exampleExpressionIds": [
+      "e100",
+      "e101",
+      "e102",
+      "e103",
+      "e104"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_be_place",
+    "label": "be + place",
+    "coreVerbId": "v_be",
+    "structure": "subject + be + place/here/there",
+    "thinkingFrame": "어디에 있는지를 말한다",
+    "slotTypes": [
+      "subject",
+      "place"
+    ],
+    "exampleExpressionIds": [
+      "e123",
+      "e124",
+      "e125",
+      "e126",
+      "e127",
+      "e128",
+      "e129",
+      "e130",
+      "e131",
+      "e132",
+      "e133",
+      "e134",
+      "e135",
+      "e136"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_be_phrase",
+    "label": "be everyday phrase",
+    "coreVerbId": "v_be",
+    "structure": "fixed be phrase",
+    "thinkingFrame": "생활 속에서 굳어진 be 표현을 말한다",
+    "slotTypes": [
+      "phrase"
+    ],
+    "exampleExpressionIds": [
+      "e137",
+      "e138",
+      "e139",
+      "e140",
+      "e141",
+      "e142",
+      "e143",
+      "e144",
+      "e145",
+      "e146",
+      "e147",
+      "e148",
+      "e149",
+      "e150",
+      "e151",
+      "e152",
+      "e153",
+      "e154"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_do_action",
+    "label": "do + action",
+    "coreVerbId": "v_do",
+    "structure": "subject + do + thing/action",
+    "thinkingFrame": "일이나 행동을 처리한다",
+    "slotTypes": [
+      "subject",
+      "action"
+    ],
+    "exampleExpressionIds": [
+      "e049",
+      "e050"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_do_need",
+    "label": "do you need + noun",
+    "coreVerbId": "v_do",
+    "structure": "Do + subject + need + noun?",
+    "thinkingFrame": "상대에게 필요를 묻는다",
+    "slotTypes": [
+      "subject",
+      "noun"
+    ],
+    "exampleExpressionIds": [
+      "e015"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_have_thing",
+    "label": "have + noun",
+    "coreVerbId": "v_have",
+    "structure": "subject + have + noun",
+    "thinkingFrame": "내 쪽에 어떤 것이 있다",
+    "slotTypes": [
+      "subject",
+      "noun"
+    ],
+    "exampleExpressionIds": [
+      "e001",
+      "e021",
+      "e065",
+      "e093",
+      "e094",
+      "e095",
+      "e096",
+      "e097"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_have_time",
+    "label": "have + time",
+    "coreVerbId": "v_have",
+    "structure": "subject + have + time",
+    "thinkingFrame": "쓸 시간이 있다",
+    "slotTypes": [
+      "subject",
+      "time"
+    ],
+    "exampleExpressionIds": [
+      "e022",
+      "e062",
+      "e091",
+      "e092"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_have_problem",
+    "label": "have + problem",
+    "coreVerbId": "v_have",
+    "structure": "subject + have + problem",
+    "thinkingFrame": "문제를 가지고 있다",
+    "slotTypes": [
+      "subject",
+      "problem"
+    ],
+    "exampleExpressionIds": [
+      "e023"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_have_meal",
+    "label": "have + meal/drink",
+    "coreVerbId": "v_have",
+    "structure": "subject + have + food/drink",
+    "thinkingFrame": "먹거나 마시는 경험을 가진다",
+    "slotTypes": [
+      "subject",
+      "food"
+    ],
+    "exampleExpressionIds": [
+      "e024",
+      "e025"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_get_it",
+    "label": "get it",
+    "coreVerbId": "v_get",
+    "structure": "subject + get + it",
+    "thinkingFrame": "그 말을 내 안으로 받아 이해한다",
+    "slotTypes": [
+      "subject",
+      "it"
+    ],
+    "exampleExpressionIds": [
+      "e003",
+      "e026"
+    ],
+    "level": 1,
+    "mapCategory": "이해",
+    "mapOrder": 1
+  },
+  {
+    "id": "p_get_thing",
+    "label": "get + noun",
+    "coreVerbId": "v_get",
+    "structure": "subject + get + noun",
+    "thinkingFrame": "무언가가 내 쪽으로 온다",
+    "slotTypes": [
+      "subject",
+      "noun"
+    ],
+    "exampleExpressionIds": [
+      "e027",
+      "e028",
+      "e098",
+      "e099"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_get_state",
+    "label": "get + adjective",
+    "coreVerbId": "v_get",
+    "structure": "subject + get + adjective",
+    "thinkingFrame": "어떤 상태가 되어 간다",
+    "slotTypes": [
+      "subject",
+      "state"
+    ],
+    "exampleExpressionIds": [
+      "e004",
+      "e029"
+    ],
+    "level": 1,
+    "mapCategory": "상태 변화",
+    "mapOrder": 2
+  },
+  {
+    "id": "p_get_place",
+    "label": "get to + place",
+    "coreVerbId": "v_get",
+    "structure": "subject + get to + place",
+    "thinkingFrame": "어떤 장소에 도착한다",
+    "slotTypes": [
+      "subject",
+      "place"
+    ],
+    "exampleExpressionIds": [
+      "e030"
+    ],
+    "level": 1,
+    "mapCategory": "도착",
+    "mapOrder": 3,
+    "routeNote": "home 앞에는 보통 to를 쓰지 않아요."
+  },
+  {
+    "id": "p_make_thing",
+    "label": "make + noun",
+    "coreVerbId": "v_make",
+    "structure": "subject + make + noun",
+    "thinkingFrame": "결과물을 만들어 낸다",
+    "slotTypes": [
+      "subject",
+      "noun"
+    ],
+    "exampleExpressionIds": [
+      "e031",
+      "e032",
+      "e033"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_make_sure",
+    "label": "make sure",
+    "coreVerbId": "v_make",
+    "structure": "subject + make sure + clause",
+    "thinkingFrame": "확실한 상태를 만든다",
+    "slotTypes": [
+      "subject",
+      "clause"
+    ],
+    "exampleExpressionIds": [
+      "e034"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_make_person_state",
+    "label": "make + person + state",
+    "coreVerbId": "v_make",
+    "structure": "thing + make + person + adjective",
+    "thinkingFrame": "상대가 어떤 상태가 되게 만든다",
+    "slotTypes": [
+      "thing",
+      "person",
+      "state"
+    ],
+    "exampleExpressionIds": [
+      "e035"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_take_time",
+    "label": "take + time",
+    "coreVerbId": "v_take",
+    "structure": "subject/it + take + time",
+    "thinkingFrame": "시간을 가져간다",
+    "slotTypes": [
+      "subject",
+      "time"
+    ],
+    "exampleExpressionIds": [
+      "e006",
+      "e036"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_take_break",
+    "label": "take + a break",
+    "coreVerbId": "v_take",
+    "structure": "subject + take + a break",
+    "thinkingFrame": "휴식을 하나 가진다",
+    "slotTypes": [
+      "subject",
+      "break"
+    ],
+    "exampleExpressionIds": [
+      "e037"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_take_look",
+    "label": "take + a look",
+    "coreVerbId": "v_take",
+    "structure": "subject + take + a look",
+    "thinkingFrame": "시선을 한번 가져간다",
+    "slotTypes": [
+      "subject",
+      "look"
+    ],
+    "exampleExpressionIds": [
+      "e038"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_take_care",
+    "label": "take care",
+    "coreVerbId": "v_take",
+    "structure": "subject + take care",
+    "thinkingFrame": "몸과 상황을 챙긴다",
+    "slotTypes": [
+      "subject",
+      "care"
+    ],
+    "exampleExpressionIds": [
+      "e039"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_take_transport",
+    "label": "take + transport",
+    "coreVerbId": "v_take",
+    "structure": "subject + take + bus/train/taxi",
+    "thinkingFrame": "이동 수단을 선택해 탄다",
+    "slotTypes": [
+      "subject",
+      "transport"
+    ],
+    "exampleExpressionIds": [
+      "e080"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_give_person_thing",
+    "label": "give + person + noun",
+    "coreVerbId": "v_give",
+    "structure": "subject + give + person + noun",
+    "thinkingFrame": "상대에게 무언가를 건넨다",
+    "slotTypes": [
+      "subject",
+      "person",
+      "noun"
+    ],
+    "exampleExpressionIds": [
+      "e007",
+      "e040",
+      "e041"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_give_it_try",
+    "label": "give it a try",
+    "coreVerbId": "v_give",
+    "structure": "subject + give + it + a try",
+    "thinkingFrame": "시도할 기회를 준다",
+    "slotTypes": [
+      "subject",
+      "try"
+    ],
+    "exampleExpressionIds": [
+      "e042"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_give_call",
+    "label": "give + person + a call",
+    "coreVerbId": "v_give",
+    "structure": "subject + give + person + a call",
+    "thinkingFrame": "상대에게 전화를 준다",
+    "slotTypes": [
+      "subject",
+      "person",
+      "call"
+    ],
+    "exampleExpressionIds": [
+      "e043"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_go_place",
+    "label": "go + place",
+    "coreVerbId": "v_go",
+    "structure": "subject + go + place",
+    "thinkingFrame": "어떤 곳으로 이동한다",
+    "slotTypes": [
+      "subject",
+      "place"
+    ],
+    "exampleExpressionIds": [
+      "e044",
+      "e045"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_go_well",
+    "label": "go well",
+    "coreVerbId": "v_go",
+    "structure": "thing + go + well",
+    "thinkingFrame": "일이 잘 흘러간다",
+    "slotTypes": [
+      "thing",
+      "state"
+    ],
+    "exampleExpressionIds": [
+      "e046"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_go_on",
+    "label": "go on",
+    "coreVerbId": "v_go",
+    "structure": "subject/event + go on",
+    "thinkingFrame": "계속 진행된다",
+    "slotTypes": [
+      "subject"
+    ],
+    "exampleExpressionIds": [
+      "e047"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_come_with",
+    "label": "come with + person",
+    "coreVerbId": "v_come",
+    "structure": "subject + come with + person",
+    "thinkingFrame": "누군가와 함께 온다",
+    "slotTypes": [
+      "subject",
+      "person"
+    ],
+    "exampleExpressionIds": [
+      "e009"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_come_back",
+    "label": "come back",
+    "coreVerbId": "v_come",
+    "structure": "subject + come back",
+    "thinkingFrame": "다시 돌아온다",
+    "slotTypes": [
+      "subject"
+    ],
+    "exampleExpressionIds": [
+      "e048"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_come_up",
+    "label": "come up",
+    "coreVerbId": "v_come",
+    "structure": "thing + come up",
+    "thinkingFrame": "일이 위로 튀어나오듯 생긴다",
+    "slotTypes": [
+      "thing"
+    ],
+    "exampleExpressionIds": [
+      "e061"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_put_place",
+    "label": "put + thing + place",
+    "coreVerbId": "v_put",
+    "structure": "subject + put + thing + place",
+    "thinkingFrame": "물건을 위치에 놓는다",
+    "slotTypes": [
+      "subject",
+      "thing",
+      "place"
+    ],
+    "exampleExpressionIds": [
+      "e010",
+      "e051"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_put_on",
+    "label": "put on + thing",
+    "coreVerbId": "v_put",
+    "structure": "subject + put on + thing",
+    "thinkingFrame": "몸이나 표면에 올려놓는다",
+    "slotTypes": [
+      "subject",
+      "thing"
+    ],
+    "exampleExpressionIds": [
+      "e052"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_put_off",
+    "label": "put off + thing",
+    "coreVerbId": "v_put",
+    "structure": "subject + put off + thing",
+    "thinkingFrame": "일을 뒤로 놓아 미룬다",
+    "slotTypes": [
+      "subject",
+      "thing"
+    ],
+    "exampleExpressionIds": [
+      "e053"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_keep_ing",
+    "label": "keep + -ing",
+    "coreVerbId": "v_keep",
+    "structure": "subject + keep + verb-ing",
+    "thinkingFrame": "행동을 계속 유지한다",
+    "slotTypes": [
+      "subject",
+      "action"
+    ],
+    "exampleExpressionIds": [
+      "e011",
+      "e054"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_keep_state",
+    "label": "keep + object + state",
+    "coreVerbId": "v_keep",
+    "structure": "subject + keep + object + adjective",
+    "thinkingFrame": "상태를 유지한다",
+    "slotTypes": [
+      "subject",
+      "object",
+      "state"
+    ],
+    "exampleExpressionIds": [
+      "e055"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_keep_in_touch",
+    "label": "keep in touch",
+    "coreVerbId": "v_keep",
+    "structure": "subject + keep in touch",
+    "thinkingFrame": "연락이 닿는 상태를 유지한다",
+    "slotTypes": [
+      "subject"
+    ],
+    "exampleExpressionIds": [
+      "e056"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_find_thing",
+    "label": "find + noun",
+    "coreVerbId": "v_find",
+    "structure": "subject + find + noun",
+    "thinkingFrame": "찾아서 보이게 한다",
+    "slotTypes": [
+      "subject",
+      "noun"
+    ],
+    "exampleExpressionIds": [
+      "e012",
+      "e057"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_find_way",
+    "label": "find + a way",
+    "coreVerbId": "v_find",
+    "structure": "subject + find + a way",
+    "thinkingFrame": "해결 방법을 찾아낸다",
+    "slotTypes": [
+      "subject",
+      "way"
+    ],
+    "exampleExpressionIds": [
+      "e058"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_find_out",
+    "label": "find out",
+    "coreVerbId": "v_find",
+    "structure": "subject + find out + information",
+    "thinkingFrame": "몰랐던 것을 알아낸다",
+    "slotTypes": [
+      "subject",
+      "information"
+    ],
+    "exampleExpressionIds": [
+      "e063"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_feel_state",
+    "label": "feel + adjective",
+    "coreVerbId": "v_feel",
+    "structure": "subject + feel + adjective",
+    "thinkingFrame": "몸과 마음의 상태를 말한다",
+    "slotTypes": [
+      "subject",
+      "state"
+    ],
+    "exampleExpressionIds": [
+      "e013",
+      "e064"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_feel_like",
+    "label": "feel like + noun/-ing",
+    "coreVerbId": "v_feel",
+    "structure": "subject + feel like + noun/verb-ing",
+    "thinkingFrame": "마음이 그쪽으로 느껴진다",
+    "slotTypes": [
+      "subject",
+      "want"
+    ],
+    "exampleExpressionIds": [
+      "e066"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_feel_free",
+    "label": "feel free to + verb",
+    "coreVerbId": "v_feel",
+    "structure": "subject + feel free to + verb",
+    "thinkingFrame": "자유롭게 해도 된다고 느낀다",
+    "slotTypes": [
+      "subject",
+      "action"
+    ],
+    "exampleExpressionIds": [
+      "e067"
+    ],
+    "level": 1
+  },
+  {
+    "id": "p_want_to",
+    "label": "want to + verb",
+    "coreVerbId": "v_want",
+    "structure": "subject + want to + verb",
+    "thinkingFrame": "하고 싶은 방향으로 마음이 간다",
+    "slotTypes": [
+      "subject",
+      "action"
+    ],
+    "exampleExpressionIds": [
+      "e014",
+      "e068",
+      "e069"
+    ],
+    "level": 1,
+    "mapCategory": "하고 싶은 행동",
+    "mapOrder": 2
+  },
+  {
+    "id": "p_want_thing",
+    "label": "want + noun",
+    "coreVerbId": "v_want",
+    "structure": "subject + want + noun",
+    "thinkingFrame": "원하는 것을 말한다",
+    "slotTypes": [
+      "subject",
+      "noun"
+    ],
+    "exampleExpressionIds": [
+      "e070"
+    ],
+    "level": 1,
+    "mapCategory": "원하는 것",
+    "mapOrder": 1
+  },
+  {
+    "id": "p_need_thing",
+    "label": "need + noun",
+    "coreVerbId": "v_need",
+    "structure": "subject + need + noun",
+    "thinkingFrame": "필요한 것을 말한다",
+    "slotTypes": [
+      "subject",
+      "noun"
+    ],
+    "exampleExpressionIds": [
+      "e002",
+      "e071",
+      "e072"
+    ],
+    "level": 1,
+    "mapCategory": "필요한 것",
+    "mapOrder": 1
+  },
+  {
+    "id": "p_need_to",
+    "label": "need to + verb",
+    "coreVerbId": "v_need",
+    "structure": "subject + need to + verb",
+    "thinkingFrame": "해야 하는 행동을 말한다",
+    "slotTypes": [
+      "subject",
+      "action"
+    ],
+    "exampleExpressionIds": [
+      "e073",
+      "e074"
+    ],
+    "level": 1,
+    "mapCategory": "해야 하는 행동",
+    "mapOrder": 2
+  },
+  {
+    "id": "p_need_help",
+    "label": "need help",
+    "coreVerbId": "v_need",
+    "structure": "subject + need + help",
+    "thinkingFrame": "도움이 필요한 상태다",
+    "slotTypes": [
+      "subject",
+      "help"
+    ],
+    "exampleExpressionIds": [
+      "e015",
+      "e075"
+    ],
+    "level": 1,
+    "mapCategory": "도움 요청",
+    "mapOrder": 3
+  }
+]
