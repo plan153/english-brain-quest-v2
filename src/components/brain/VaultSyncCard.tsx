@@ -122,12 +122,12 @@ export function VaultSyncCard() {
                   const result = await exportVaultBundle();
                   if (result.shared) {
                     setMsg(
-                      `ZIP 공유됨: ${result.filename} → Mac으로 보낸 뒤 Vault 폴더에 압축 풀기`
+                      `ZIP 공유됨: ${result.filename} → Mac의 Project_English/_Inbox/EBQ 로 보내면 자동 배치`
                     );
                     return;
                   }
                   setMsg(
-                    `ZIP 저장됨: ${result.filename} → Mac Vault(최상위)에 압축 풀면 Brain.md·progress.md 자동 배치`
+                    `ZIP 저장: ${result.filename} → Mac _Inbox/EBQ 또는 Downloads 에 두면 자동 배치`
                   );
                 }, '')
               }
@@ -159,9 +159,8 @@ export function VaultSyncCard() {
       )}
 
       <div style={{ marginTop: '10px', fontSize: '11px', color: 'var(--ebq-text-muted)' }}>
-        아이폰: 「보내기」→ <strong>ZIP</strong> 하나. Mac으로 보낸 뒤
-        <strong> 옵시디언 Vault 폴더(맨 위)</strong>에 압축을 풀면
-        <code>Learners/me/Learning/</code>에 Brain.md·progress.md가 들어갑니다. 쪼갤 필요 없음.
+        아이폰: 「보내기」→ ZIP → Mac <strong>_Inbox/EBQ</strong> (또는 Downloads)로 보내기.
+        Mac이 자동으로 <code>Learners/me/Learning/</code>에 넣고 ZIP을 지웁니다. 직접 압축 풀 필요 없음.
       </div>
     </Card>
   );

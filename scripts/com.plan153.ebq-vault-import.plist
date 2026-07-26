@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.plan153.ebq-vault-import</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/mini/Obsidian Vault/Project_English/_tools/import-ebq-vault-zip.sh</string>
+  </array>
+  <key>WatchPaths</key>
+  <array>
+    <string>/Users/mini/Obsidian Vault/Project_English/_Inbox/EBQ</string>
+    <string>/Users/mini/Downloads</string>
+  </array>
+  <key>StartInterval</key>
+  <integer>120</integer>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>/Users/mini/Library/Logs/ebq-vault-import.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/mini/Library/Logs/ebq-vault-import.err.log</string>
+</dict>
+</plist>

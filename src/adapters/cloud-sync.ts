@@ -239,21 +239,24 @@ export async function exportVaultBundle(): Promise<{ filename: string; shared: b
   }
   if (progressMd) {
     parts.push(progress);
-    zipEntries.push({ path: 'Learners/me/Learning/progress.md', content: progressMd });
+    // Mac APFS: Progress.md 와 progress.md 는 같은 파일 — Vault 관례명 사용
+    zipEntries.push({ path: 'Learners/me/Learning/Progress.md', content: progressMd });
   }
   if (zipEntries.length === 0) {
     throw new Error('내보낼 노트가 없습니다. 먼저「지금 동기화」를 눌러 주세요.');
   }
 
-  // 풀기 안내 메모
   zipEntries.push({
     path: 'README-EBQ.txt',
     content: [
       'English Brain Quest → Obsidian',
       '',
-      '1) 이 ZIP을 Mac으로 보내기 (AirDrop 등)',
-      '2) 옵시디언 Vault 폴더(최상위)에 압축 풀기',
-      '3) Learners/me/Learning/ 아래에 Brain.md, progress.md 가 생김',
+      '가장 쉬운 방법 (Mac 자동화):',
+      '  AirDrop / 저장 위치를',
+      '  Project_English/_Inbox/EBQ/ 로 하세요.',
+      '  그러면 Brain.md · Progress.md 가 자동 배치되고 ZIP은 삭제됩니다.',
+      '',
+      '또는 Downloads 에 두어도 같은 자동화가 처리합니다.',
       '',
       `내보낸 시각: ${new Date().toISOString()}`,
       `앱 learnerId: ${userId}`,
