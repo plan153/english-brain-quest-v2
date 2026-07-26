@@ -330,6 +330,50 @@ export function summarizeWeakLinks(
   };
 }
 
+/** 약점 강화 훈련 큐 — due + 오답/힌트의존을 합쳐 우선순위 정렬 */
+export function pickWeakTrainingQueue(
+  memories: SentenceMemory[],
+  limit: number,
+  now = new Date()
+): SentenceMemory[] {
+  const list = Array.isArray(memories) ? memories : [];
+  const scored = list
+    .filter((m) => m.attempts > 0 || isDue(m, now) || m.owned)
+    .map((m) => {
+      const due = isDue(m, now);
+      const revealHeavy = (m.revealCorrect ?? 0) > (m.blindCorrect ?? 0);
+      const score =
+        (due ? 500 : 0) +
+        (m.owned ? 200 : 0) +
+        m.wrong * 40 +
+        (revealHeavy ? 25 : 0) +
+        m.skipped * 10 +
+        (m.attempts - m.correct) * 5 -
+        (m.blindCorrect ?? 0) * 8 -
+        m.exactCount * 3;
+      return { m, score };
+    })
+    .filter((s) => s.score > 0 || isDue(s.m, now) || s.m.wrong > 0)
+    .sort((a, b) => b.score - a.score);
+
+  const picked = scored.slice(0, Math.max(0, limit)).map((s) => s.m);
+  if (picked.length >= limit) return picked;
+
+  // 부족하면 due만으로 보충
+  const ids = new Set(picked.map((m) => m.sentenceId));
+  for (const m of pickReviewQueue(list, limit, now)) {
+    if (ids.has(m.sentenceId)) continue;
+    picked.push(m);
+    ids.add(m.sentenceId);
+    if (picked.length >= limit) break;
+  }
+  return picked;
+}
+
+export function countWeakTraining(memories: SentenceMemory[], now = new Date()): number {
+  return pickWeakTrainingQueue(memories, 50, now).length;
+}
+
 export function memoryToContentItem(m: SentenceMemory): {
   id: string;
   type: 'sentence';

@@ -30,6 +30,7 @@ import type { SkillProfile } from '../domain/difficulty-mixer';
 import type { Badge } from '../domain/reward-engine';
 import { createZipBlob } from './zip-store';
 import { summarizeWeakLinks, type SentenceMemory } from '../domain/srs-engine';
+import { parseGapFiles, type ImportedGap } from '../domain/vault-gap-import';
 
 export type SyncMode = 'filesystem' | 'indexeddb' | 'none';
 
@@ -312,6 +313,58 @@ export async function exportVaultBundle(): Promise<{ filename: string; shared: b
 
   return { filename, shared: false, parts };
 }
+
+/** 연결된 스토리지(IndexedDB/Vault 폴더)에서 Gaps/*.md 읽어 파싱 */
+export async function importVaultGaps(): Promise<ImportedGap[]> {
+  const storage = await ensureStorage();
+  const userId = getUserId();
+  const prefixes = [`Learners/${userId}/Gaps/`, 'Learners/me/Gaps/'];
+  const seen = new Set<string>();
+  const files: { path: string; content: string }[] = [];
+
+  for (const prefix of prefixes) {
+    let paths: string[] = [];
+    try {
+      paths = await storage.list(prefix);
+    } catch {
+      continue;
+    }
+    for (const path of paths) {
+      if (seen.has(path)) continue;
+      if (!path.endsWith('.md')) continue;
+      seen.add(path);
+      try {
+        const content = await storage.read(path);
+        files.push({ path, content });
+      } catch {
+        /* skip */
+      }
+    }
+  }
+
+  // filesystem: list may return only under one root — also try listing Learners/
+  if (files.length === 0) {
+    try {
+      const all = await storage.list('Learners/');
+      for (const path of all) {
+        if (!/\/Gaps\/[^/]+\.md$/i.test(path)) continue;
+        if (seen.has(path)) continue;
+        seen.add(path);
+        try {
+          files.push({ path, content: await storage.read(path) });
+        } catch {
+          /* skip */
+        }
+      }
+    } catch {
+      /* skip */
+    }
+  }
+
+  return parseGapFiles(files);
+}
+
+export type { ImportedGap };
 
 /** @deprecated 단일 파일 연속 다운로드는 iOS에서 Brain이 누락됨 — exportVaultBundle 사용 */
 export async function downloadVaultFile(path: string): Promise<void> {

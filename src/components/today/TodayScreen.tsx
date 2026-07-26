@@ -37,6 +37,12 @@ interface PackSource {
 
 const PACK_SOURCES: PackSource[] = [
   {
+    id: 'weak',
+    name: '약점 강화',
+    description: '오답·힌트 의존 · 볼트 Gap',
+    load: async () => [],
+  },
+  {
     id: 'review',
     name: '복습',
     description: '기한 도래 · 내 문장 우선',
@@ -70,7 +76,7 @@ const PACK_SOURCES: PackSource[] = [
 
 export function TodayScreen() {
   const [items, setItems] = useState<ContentItem[] | null>(null);
-  const [selectedPackId, setSelectedPackId] = useState<string>('starter');
+  const [selectedPackId, setSelectedPackId] = useState<string>('weak');
   const [packLoading, setPackLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [showEnglish, setShowEnglish] = useState(false);
@@ -98,6 +104,9 @@ export function TodayScreen() {
   const setActiveTab = useStore((s) => s.setActiveTab);
   const getDueReviewItems = useStore((s) => s.getDueReviewItems);
   const dueReviewCount = useStore((s) => s.dueReviewCount);
+  const getWeakTrainingItems = useStore((s) => s.getWeakTrainingItems);
+  const weakTrainingCount = useStore((s) => s.weakTrainingCount);
+  const consumePendingStartPack = useStore((s) => s.consumePendingStartPack);
 
   const currentSentenceRef = useRef(currentSentence);
   const pendingEvalRef = useRef(pendingEval);
@@ -155,25 +164,34 @@ export function TodayScreen() {
 
   const speech = useSpeech({ lang: 'en', onResult: handleSpeechResult, maxListenMs: 7000 });
 
-  // 시작 시 기본 starter pack 로드.
+  // 시작 시 약점 큐가 있으면 약점 팩, 없으면 스타터.
   useEffect(() => {
     let cancelled = false;
     setPackLoading(true);
-    loadStarterPack()
-      .then((loaded) => {
+    void (async () => {
+      try {
+        const weak = getWeakTrainingItems(SESSION_SIZE);
+        if (!cancelled && weak.length > 0) {
+          setSelectedPackId('weak');
+          setItems(weak);
+          setPackLoading(false);
+          return;
+        }
+        const loaded = await loadStarterPack();
         if (cancelled) return;
+        setSelectedPackId('starter');
         setItems(loaded);
         setPackLoading(false);
-      })
-      .catch((err) => {
+      } catch (err) {
         if (cancelled) return;
         setLoadError((err as Error).message);
         setPackLoading(false);
-      });
+      }
+    })();
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [getWeakTrainingItems]);
 
   // 팩 선택 시 해당 팩 로드.
   const handleSelectPack = useCallback(async (packId: string) => {
@@ -183,9 +201,20 @@ export function TodayScreen() {
     setPackLoading(true);
     setLoadError(null);
     try {
-      const loaded =
-        packId === 'review' ? getDueReviewItems(SESSION_SIZE) : await source.load();
+      let loaded: ContentItem[];
+      if (packId === 'weak') {
+        loaded = getWeakTrainingItems(SESSION_SIZE);
+      } else if (packId === 'review') {
+        loaded = getDueReviewItems(SESSION_SIZE);
+      } else {
+        loaded = await source.load();
+      }
       setItems(loaded);
+      if (packId === 'weak' && loaded.length === 0) {
+        setLoadError(
+          '약점 큐가 비어 있어요. 학습 후 오답이 쌓이거나, Brain에서 볼트 Gaps를 불러오세요.'
+        );
+      }
       if (packId === 'review' && loaded.length === 0) {
         setLoadError('복습 대기 문장이 없어요. 먼저 다른 팩으로 학습해 보세요.');
       }
@@ -194,7 +223,42 @@ export function TodayScreen() {
       setItems(null);
     }
     setPackLoading(false);
-  }, [getDueReviewItems]);
+  }, [getDueReviewItems, getWeakTrainingItems]);
+
+  // Brain「약점 강화」CTA → 자동 시작
+  useEffect(() => {
+    if (isPlaying || summary) return;
+    const pack = consumePendingStartPack();
+    if (!pack) return;
+    void (async () => {
+      await handleSelectPack(pack);
+      const itemsNow =
+        pack === 'weak'
+          ? getWeakTrainingItems(SESSION_SIZE)
+          : pack === 'review'
+            ? getDueReviewItems(SESSION_SIZE)
+            : null;
+      if (itemsNow && itemsNow.length > 0) {
+        setShowEnglish(false);
+        setShowHint(false);
+        pendingEvalRef.current = null;
+        setPendingEval(null);
+        resetCueFlags();
+        speech.reset();
+        startSessionFromItems(itemsNow, { mode: 'translate', size: SESSION_SIZE });
+      }
+    })();
+  }, [
+    isPlaying,
+    summary,
+    consumePendingStartPack,
+    handleSelectPack,
+    getWeakTrainingItems,
+    getDueReviewItems,
+    resetCueFlags,
+    speech,
+    startSessionFromItems,
+  ]);
 
   const handleStart = useCallback(() => {
     if (!items || items.length === 0) return;
@@ -309,7 +373,12 @@ export function TodayScreen() {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '16px' }}>
           {PACK_SOURCES.map((p) => {
-            const due = p.id === 'review' ? dueReviewCount() : null;
+            const badge =
+              p.id === 'weak'
+                ? weakTrainingCount()
+                : p.id === 'review'
+                  ? dueReviewCount()
+                  : null;
             return (
             <button
               key={p.id}
@@ -326,7 +395,7 @@ export function TodayScreen() {
             >
               <div style={{ fontWeight: 700, fontSize: '14px' }}>
                 {p.name}
-                {due !== null ? ` (${due})` : ''}
+                {badge !== null ? ` (${badge})` : ''}
               </div>
               <div style={{ fontSize: '11px', color: 'var(--ebq-text-muted)', marginTop: '2px' }}>
                 {p.description}

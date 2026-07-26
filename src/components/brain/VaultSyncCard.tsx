@@ -26,6 +26,8 @@ export function VaultSyncCard() {
   const [msg, setMsg] = useState<string | null>(null);
   const [fileCount, setFileCount] = useState(0);
   const syncNow = useStore((s) => s.syncNow);
+  const absorbVaultGaps = useStore((s) => s.absorbVaultGaps);
+  const requestStartPack = useStore((s) => s.requestStartPack);
   const adapters = getAvailableAdapters();
   const fsaOk = adapters.find((a) => a.type === 'local-cloud')?.available;
   const idbOk = adapters.find((a) => a.type === 'indexeddb')?.available;
@@ -118,6 +120,20 @@ export function VaultSyncCard() {
               disabled={busy}
               onClick={() =>
                 run(async () => {
+                  const result = await absorbVaultGaps();
+                  setMsg(result.message);
+                  if (result.imported > 0) {
+                    requestStartPack('weak');
+                  }
+                }, '')
+              }
+            >
+              📥 볼트 Gaps → 약점 훈련
+            </Button>
+            <Button
+              disabled={busy}
+              onClick={() =>
+                run(async () => {
                   await syncNow();
                   const result = await exportVaultBundle();
                   if (result.shared) {
@@ -159,8 +175,9 @@ export function VaultSyncCard() {
       )}
 
       <div style={{ marginTop: '10px', fontSize: '11px', color: 'var(--ebq-text-muted)' }}>
-        아이폰: 「보내기」→ ZIP → Mac <strong>_Inbox/EBQ</strong> (또는 Downloads)로 보내기.
-        Mac이 자동으로 <code>Learners/me/Learning/</code>에 넣고 ZIP을 지웁니다. 직접 압축 풀 필요 없음.
+        「볼트 Gaps → 약점 훈련」은 연결된 Vault/IndexedDB의 Gaps를 읽어 Today 약점 팩에 넣습니다.
+        Mac은 폴더 연결 후, 아이폰은 동기화로 Gaps가 쌓인 뒤 사용하세요.
+        보내기: ZIP → <code>_Inbox/EBQ</code>.
       </div>
     </Card>
   );

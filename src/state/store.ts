@@ -49,6 +49,7 @@ import type { SessionEvaluateResult } from '../interfaces/SessionMode';
 import {
   syncToVault,
   makeGapId,
+  importVaultGaps,
   type GapNote,
 } from '../adapters/cloud-sync';
 import {
@@ -57,15 +58,20 @@ import {
   markOwned,
   unmarkOwned,
   pickReviewQueue,
+  pickWeakTrainingQueue,
   countDue,
   countOwned,
+  countWeakTraining,
   memoryToContentItem,
+  summarizeWeakLinks,
   type SentenceMemory,
   type ReviewIntensity,
+  type WeakLinkSummary,
 } from '../domain/srs-engine';
 
-export type { SentenceMemory, ReviewIntensity };
+export type { SentenceMemory, ReviewIntensity, WeakLinkSummary };
 export type TabId = 'today' | 'brain' | 'dictionary';
+export type TrainingPackId = 'review' | 'weak';
 
 /** 오늘 세션에서 만난 문장 (복습용) */
 export interface TodayEncounter {
@@ -141,6 +147,15 @@ interface AppStore
   getDueReviewItems: (limit?: number) => ContentItem[];
   dueReviewCount: () => number;
   ownedCount: () => number;
+  getWeakTrainingItems: (limit?: number) => ContentItem[];
+  weakTrainingCount: () => number;
+  getWeakLinkSummary: () => WeakLinkSummary;
+  /** Brain/Today — 약점 강화 세션 자동 시작 요청 */
+  pendingStartPack: TrainingPackId | null;
+  requestStartPack: (pack: TrainingPackId) => void;
+  consumePendingStartPack: () => TrainingPackId | null;
+  /** 볼트 Gaps.md → memories에 흡수 (복습 기한 즉시) */
+  absorbVaultGaps: () => Promise<{ imported: number; message: string }>;
 
   // progress
   addXp: (amount: number) => void;
@@ -276,6 +291,7 @@ export const useStore = create<AppStore>((set, get) => {
     todayLog: loadTodayLog(),
     memories: loadMemories(),
     reviewIntensity: loadReviewIntensity(),
+    pendingStartPack: null as TrainingPackId | null,
 
     setActiveTab: (tab) => set({ activeTab: tab }),
 
@@ -314,6 +330,63 @@ export const useStore = create<AppStore>((set, get) => {
     dueReviewCount: () => countDue(Object.values(get().memories)),
 
     ownedCount: () => countOwned(Object.values(get().memories)),
+
+    getWeakTrainingItems: (limit = 10) => {
+      const queue = pickWeakTrainingQueue(Object.values(get().memories), limit);
+      return queue.map(memoryToContentItem);
+    },
+
+    weakTrainingCount: () => countWeakTraining(Object.values(get().memories)),
+
+    getWeakLinkSummary: () => summarizeWeakLinks(Object.values(get().memories)),
+
+    requestStartPack: (pack) => {
+      set({ pendingStartPack: pack, activeTab: 'today', brainFocusTodayLog: false });
+    },
+
+    consumePendingStartPack: () => {
+      const pack = get().pendingStartPack;
+      if (pack) set({ pendingStartPack: null });
+      return pack;
+    },
+
+    absorbVaultGaps: async () => {
+      const gaps = await importVaultGaps();
+      if (gaps.length === 0) {
+        return {
+          imported: 0,
+          message:
+            '볼트 Gaps가 없어요. Mac이면 Vault 폴더 연결 후 다시, 아이폰이면 먼저 동기화·보내기로 Gaps를 쌓아 주세요.',
+        };
+      }
+      const memories = { ...get().memories };
+      let imported = 0;
+      const now = new Date();
+      for (const gap of gaps) {
+        let mem =
+          memories[gap.expressionId] ??
+          createMemory(gap.expressionId, gap.en, gap.ko, now);
+        // 볼트에서 온 약점 → 즉시 복습 대상
+        mem = {
+          ...mem,
+          en: mem.en || gap.en,
+          ko: mem.ko || gap.ko,
+          wrong: Math.max(mem.wrong, 1),
+          attempts: Math.max(mem.attempts, 1),
+          nextReviewAt: new Date(now.getTime() - 60_000).toISOString(),
+          updatedAt: now.toISOString(),
+          lastMatch: mem.lastMatch ?? 'wrong',
+        };
+        memories[gap.expressionId] = mem;
+        imported += 1;
+      }
+      persistMemories(memories);
+      set({ memories });
+      return {
+        imported,
+        message: `볼트 Gap ${imported}개를 약점 훈련 큐에 넣었어요. Today → 약점 강화를 시작하세요.`,
+      };
+    },
 
     addXp: (amount) => {
       const xp = get().xp + amount;

@@ -1,12 +1,16 @@
 /**
  * BrainScreen — My English Brain.
- * XP/스킬/배지 + 복습 빈도 + 오늘 만난 문장.
+ * XP/스킬/배지 + 약점 강화 + 복습 빈도 + 오늘 만난 문장.
  */
 import { Card } from '../ui/Card';
 import { useStore } from '../../state/store';
 import { levelFromXp } from '../../domain/reward-engine';
 import type { SkillAxis } from '../../domain/difficulty-mixer';
-import { REVIEW_INTENSITY_LABEL, type ReviewIntensity } from '../../domain/srs-engine';
+import {
+  REVIEW_INTENSITY_LABEL,
+  CUE_MODE_LABEL,
+  type ReviewIntensity,
+} from '../../domain/srs-engine';
 import { VaultSyncCard } from './VaultSyncCard';
 import { TodayLogCard } from './TodayLogCard';
 
@@ -34,9 +38,11 @@ export function BrainScreen() {
   const memories = useStore((s) => s.memories);
   const reviewIntensity = useStore((s) => s.reviewIntensity);
   const setReviewIntensity = useStore((s) => s.setReviewIntensity);
-  const setActiveTab = useStore((s) => s.setActiveTab);
   const dueCount = useStore((s) => s.dueReviewCount());
   const owned = useStore((s) => s.ownedCount());
+  const weakCount = useStore((s) => s.weakTrainingCount());
+  const weakSummary = useStore((s) => s.getWeakLinkSummary());
+  const requestStartPack = useStore((s) => s.requestStartPack);
 
   const accuracy = attemptCount > 0 ? Math.round((correctCount / attemptCount) * 100) : 0;
   const lvl = levelFromXp(xp);
@@ -60,7 +66,7 @@ export function BrainScreen() {
       </Card>
 
       <Card style={{ marginTop: '12px' }}>
-        <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)' }}>복습 · 내 문장</div>
+        <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)' }}>약한 고리 강화</div>
         <div
           style={{
             display: 'grid',
@@ -69,6 +75,12 @@ export function BrainScreen() {
             marginTop: '10px',
           }}
         >
+          <div>
+            <div style={{ fontSize: '11px', color: 'var(--ebq-text-muted)' }}>약점 큐</div>
+            <div style={{ fontSize: '20px', fontWeight: 700, color: 'var(--ebq-danger)' }}>
+              {weakCount}
+            </div>
+          </div>
           <div>
             <div style={{ fontSize: '11px', color: 'var(--ebq-text-muted)' }}>복습 대기</div>
             <div style={{ fontSize: '20px', fontWeight: 700, color: 'var(--ebq-primary)' }}>
@@ -81,13 +93,50 @@ export function BrainScreen() {
               {owned}
             </div>
           </div>
-          <div>
-            <div style={{ fontSize: '11px', color: 'var(--ebq-text-muted)' }}>기억 카드</div>
-            <div style={{ fontSize: '20px', fontWeight: 700 }}>{memoryCount}</div>
-          </div>
         </div>
-        <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)', marginTop: '12px' }}>
-          복습 빈도
+
+        {weakSummary.weak.length > 0 ? (
+          <ul style={{ margin: '12px 0 0', padding: '0 0 0 18px', fontSize: '13px' }}>
+            {weakSummary.weak.slice(0, 5).map((w) => (
+              <li key={w.sentenceId} style={{ marginBottom: '6px' }}>
+                <strong>{w.en}</strong>
+                <div style={{ fontSize: '11px', color: 'var(--ebq-text-muted)' }}>
+                  {w.reason}
+                  {w.lastCueMode ? ` · ${CUE_MODE_LABEL[w.lastCueMode]}` : ''}
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div style={{ marginTop: '10px', fontSize: '12px', color: 'var(--ebq-text-muted)' }}>
+            아직 표시할 약점이 없어요. 틀린 문장·볼트 Gaps가 여기 쌓입니다.
+          </div>
+        )}
+
+        <button
+          type="button"
+          disabled={weakCount === 0}
+          onClick={() => requestStartPack('weak')}
+          style={{
+            marginTop: '12px',
+            width: '100%',
+            padding: '12px',
+            borderRadius: '12px',
+            border: '1px solid var(--ebq-danger)',
+            background: weakCount > 0 ? 'var(--ebq-danger)' : 'var(--ebq-surface-alt)',
+            color: weakCount > 0 ? '#fff' : 'var(--ebq-text-muted)',
+            fontWeight: 800,
+            cursor: weakCount > 0 ? 'pointer' : 'not-allowed',
+          }}
+        >
+          약점 강화 훈련 시작 →
+        </button>
+      </Card>
+
+      <Card style={{ marginTop: '12px' }}>
+        <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)' }}>복습 · 기억</div>
+        <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)', marginTop: '8px' }}>
+          기억 카드 {memoryCount} · 복습 빈도
         </div>
         <div className="review-intensity">
           {INTENSITY_OPTIONS.map((id) => (
@@ -104,7 +153,7 @@ export function BrainScreen() {
         {dueCount > 0 && (
           <button
             type="button"
-            onClick={() => setActiveTab('today')}
+            onClick={() => requestStartPack('review')}
             style={{
               marginTop: '12px',
               width: '100%',
@@ -117,7 +166,7 @@ export function BrainScreen() {
               cursor: 'pointer',
             }}
           >
-            Today에서 복습 팩 시작 →
+            복습 팩 시작 →
           </button>
         )}
       </Card>

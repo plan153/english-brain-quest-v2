@@ -35,6 +35,7 @@ import {
   createMemory,
   markOwned,
   pickReviewQueue,
+  pickWeakTrainingQueue,
   summarizeWeakLinks,
 } from '../domain/srs-engine';
 
@@ -312,6 +313,7 @@ describe('6. makeGapId', () => {
 });
 
 import { createZipBlob } from '../adapters/zip-store';
+import { parseGapMarkdown } from '../domain/vault-gap-import';
 
 describe('7. zip-store', () => {
   it('builds a zip with PK headers', async () => {
@@ -323,5 +325,36 @@ describe('7. zip-store', () => {
     expect(buf[0]).toBe(0x50); // P
     expect(buf[1]).toBe(0x4b); // K
     expect(blob.size).toBeGreaterThan(40);
+  });
+});
+
+describe('8. vault-gap-import + weak queue', () => {
+  it('parses legacy webapp gap notes', () => {
+    const md = `---
+type: gap-note
+expressionId: e015
+---
+
+# Gap · e015
+
+## 내 추측
+안전하게 있어.
+## 실제 의미 / 정답
+Do you need help?
+- 한국어: 도움이 필요하세요?
+`;
+    const gap = parseGapMarkdown(md, 'Learners/me/Gaps/gap_e015_x.md');
+    expect(gap?.expressionId).toBe('e015');
+    expect(gap?.en).toBe('Do you need help?');
+    expect(gap?.ko).toContain('도움');
+  });
+
+  it('builds weak training queue from wrong memories', () => {
+    const now = new Date('2026-07-27T00:00:00.000Z');
+    let mem = createMemory('e130', "It's there.", '거기 있어요.', now);
+    mem = applyReview(mem, 'wrong', 'normal', { cueMode: 'after_reveal' });
+    mem = applyReview(mem, 'wrong', 'normal', { cueMode: 'after_reveal' });
+    const queue = pickWeakTrainingQueue([mem], 5, now);
+    expect(queue.some((m) => m.sentenceId === 'e130')).toBe(true);
   });
 });
