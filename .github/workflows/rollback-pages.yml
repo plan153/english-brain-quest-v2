@@ -1,0 +1,66 @@
+name: Rollback GitHub Pages
+
+# 문제 발생 시 이전 태그로 Pages를 되돌립니다.
+# 사용: Actions → Rollback GitHub Pages → Run workflow → version에 v0.2.7 입력
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: '되돌릴 태그 (예: v0.2.7)'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.version }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Verify package version
+        run: |
+          PKG=$(node -p "require('./package.json').version")
+          WANT="${{ inputs.version }}"
+          WANT="${WANT#v}"
+          echo "package.json=$PKG checkout=${{ inputs.version }}"
+          if [ "$PKG" != "$WANT" ]; then
+            echo "::warning::Tag version and package.json differ (tag wants $WANT, package is $PKG). Deploying checked-out commit anyway."
+          fi
+      - name: Install
+        run: npm ci
+      - name: Test
+        run: npm test
+      - name: Build
+        env:
+          VITE_BASE: /${{ github.event.repository.name }}/
+        run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Summary
+        run: |
+          echo "### Rolled back Pages to \`${{ inputs.version }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "Open the site and confirm TopBar shows this version (or run fresh.html once)." >> "$GITHUB_STEP_SUMMARY"
