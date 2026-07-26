@@ -231,6 +231,20 @@ function loadReviewIntensity(): ReviewIntensity {
   return 'normal';
 }
 
+function loadTheme(): 'dark' | 'light' {
+  const v = readLocal<'dark' | 'light'>('theme');
+  return v === 'light' ? 'light' : 'dark';
+}
+
+function applyTheme(theme: 'dark' | 'light') {
+  if (typeof document === 'undefined') return;
+  document.documentElement.setAttribute('data-theme', theme);
+}
+
+function persistTheme(theme: 'dark' | 'light') {
+  writeLocal('theme', theme);
+}
+
 export const useStore = create<AppStore>((set, get) => {
   const savedProgress = loadProgress();
   const initialProgress: ProgressState = { ...DEFAULT_PROGRESS, ...savedProgress };
@@ -256,7 +270,7 @@ export const useStore = create<AppStore>((set, get) => {
     // settings
     lang: 'en',
     ttsEnabled: true,
-    theme: 'dark',
+    theme: loadTheme(),
     activeTab: 'today',
     brainFocusTodayLog: false,
     todayLog: loadTodayLog(),
@@ -699,12 +713,13 @@ export const useStore = create<AppStore>((set, get) => {
 
     toggleTheme: () => {
       const theme = get().theme === 'dark' ? 'light' : 'dark';
-      if (typeof document !== 'undefined') {
-        document.documentElement.setAttribute('data-theme', theme);
-      }
+      applyTheme(theme);
+      persistTheme(theme);
       set({ theme });
     },
 
     setLang: (lang) => set({ lang }),
   };
 });
+
+applyTheme(loadTheme());

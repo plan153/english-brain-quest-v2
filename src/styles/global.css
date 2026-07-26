@@ -11,18 +11,51 @@
   --ebq-border: #2D333B;
   --ebq-radius-md: 12px;
   --ebq-radius-pill: 999px;
+  color-scheme: dark;
 }
 
+/* 낮 모드 — 밝은 쿨 그레이 + 옅은 청색 */
 :root[data-theme='light'] {
-  --ebq-bg: #F6F3ED;
+  --ebq-bg: #EEF2F6;
   --ebq-surface: #FFFFFF;
-  --ebq-surface-alt: #F0EDE5;
-  --ebq-primary: #16A34A;
-  --ebq-accent: #D97706;
+  --ebq-surface-alt: #E4EBF3;
+  --ebq-primary: #0D9488;
+  --ebq-accent: #0284C7;
   --ebq-danger: #DC2626;
-  --ebq-text: #1A1F26;
-  --ebq-text-muted: #6B7280;
-  --ebq-border: #E5E7EB;
+  --ebq-text: #1E293B;
+  --ebq-text-muted: #64748B;
+  --ebq-border: #CDD7E3;
+  color-scheme: light;
+}
+
+:root[data-theme='light'] .top-bar-review {
+  background: rgba(13, 148, 136, 0.1);
+}
+
+:root[data-theme='light'] .today-log-item {
+  background: #F5F8FB;
+}
+
+:root[data-theme='light'] .today-log-own.is-owned {
+  background: rgba(2, 132, 199, 0.12);
+  border-color: var(--ebq-accent);
+  color: var(--ebq-accent);
+}
+
+.top-bar-theme {
+  background: var(--ebq-surface-alt);
+  border: 1px solid var(--ebq-border);
+  color: var(--ebq-text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.top-bar-theme:hover {
+  color: var(--ebq-text);
+  border-color: var(--ebq-accent);
 }
 
 * {
@@ -62,11 +95,22 @@ button:disabled {
   border-color: var(--ebq-border);
 }
 
-.action-btn.primary:disabled,
-.action-btn.primary.playing {
+/* 비활성 primary만 톤다운 — 재생 중(.playing)은 솔리드 유지 */
+.action-btn.primary:disabled:not(.playing) {
   background-color: var(--ebq-surface-alt);
   color: var(--ebq-primary);
+  -webkit-text-fill-color: var(--ebq-primary);
   border-color: var(--ebq-primary);
+}
+
+.action-btn.primary.playing,
+.action-btn.primary.playing:disabled {
+  background: var(--ebq-primary);
+  background-color: var(--ebq-primary);
+  color: #0F1419;
+  -webkit-text-fill-color: #0F1419;
+  border-color: var(--ebq-primary);
+  opacity: 1;
 }
 
 .app-shell {

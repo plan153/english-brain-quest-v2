@@ -25,16 +25,17 @@ export const darkTokens: ColorTokens = {
   border: '#2D333B',
 };
 
+/** 낮 모드 — 밝은 쿨 그레이 + 옅은 청색 */
 export const lightTokens: ColorTokens = {
-  bg: '#F6F3ED',
+  bg: '#EEF2F6',
   surface: '#FFFFFF',
-  surfaceAlt: '#F0EDE5',
-  primary: '#16A34A',
-  accent: '#D97706',
+  surfaceAlt: '#E4EBF3',
+  primary: '#0D9488',
+  accent: '#0284C7',
   danger: '#DC2626',
-  text: '#1A1F26',
-  textMuted: '#6B7280',
-  border: '#E5E7EB',
+  text: '#1E293B',
+  textMuted: '#64748B',
+  border: '#CDD7E3',
 };
 
 export const spacing = {
