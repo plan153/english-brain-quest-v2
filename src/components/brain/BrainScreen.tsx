@@ -1,12 +1,13 @@
 /**
  * BrainScreen — Phase 2: My English Brain.
- * 실제 XP/레벨/스킬/배지 표시 + 다음 레벨 진행 바.
+ * 실제 XP/레벨/스킬/배지 표시 + 오늘 만난 문장 복습.
  */
 import { Card } from '../ui/Card';
 import { useStore } from '../../state/store';
 import { levelFromXp } from '../../domain/reward-engine';
 import type { SkillAxis } from '../../domain/difficulty-mixer';
 import { VaultSyncCard } from './VaultSyncCard';
+import { TodayLogCard } from './TodayLogCard';
 
 const SKILL_AXIS_META: { axis: SkillAxis; label: string }[] = [
   { axis: 'form', label: '형태 (form)' },
@@ -26,13 +27,13 @@ export function BrainScreen() {
   const totalSentences = useStore((s) => s.totalSentences);
   const skill = useStore((s) => s.skill);
   const badges = useStore((s) => s.badges);
+  const brainFocusTodayLog = useStore((s) => s.brainFocusTodayLog);
 
   const accuracy = attemptCount > 0 ? Math.round((correctCount / attemptCount) * 100) : 0;
   const lvl = levelFromXp(xp);
 
   return (
     <div>
-      {/* 레벨 + XP 진행 */}
       <Card>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
           <div style={{ fontSize: '28px', fontWeight: 800, color: 'var(--ebq-primary)' }}>
@@ -48,7 +49,6 @@ export function BrainScreen() {
         </div>
       </Card>
 
-      {/* 일일 통계 */}
       <div
         style={{
           display: 'grid',
@@ -75,7 +75,8 @@ export function BrainScreen() {
         </Card>
       </div>
 
-      {/* 다축 스킬 */}
+      <TodayLogCard autoFocus={brainFocusTodayLog} />
+
       <Card style={{ marginTop: '12px' }}>
         <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)' }}>
           6축 숙련도 — My English Brain Map
@@ -87,7 +88,6 @@ export function BrainScreen() {
         </div>
       </Card>
 
-      {/* 배지 */}
       <Card style={{ marginTop: '12px' }}>
         <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)' }}>
           배지 ({badges.length}개 획득)

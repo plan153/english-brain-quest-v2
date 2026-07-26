@@ -15,6 +15,7 @@ import {
   INITIAL_PROGRESS,
   createSession,
   advance,
+  replaceLastTrial,
   isSessionComplete,
   summarizeSession,
 } from '../domain/session-engine';
@@ -52,6 +53,17 @@ import {
 } from '../adapters/cloud-sync';
 
 export type TabId = 'today' | 'brain' | 'dictionary';
+
+/** 오늘 세션에서 만난 문장 (복습용) */
+export interface TodayEncounter {
+  id: string;
+  sentenceId: string;
+  en: string;
+  ko: string;
+  match: 'exact' | 'fuzzy' | 'wrong' | 'skipped';
+  guess?: string;
+  at: string;
+}
 
 export interface ProgressState {
   xp: number;
@@ -98,6 +110,15 @@ interface AppStore
   // navigation
   activeTab: TabId;
   setActiveTab: (tab: TabId) => void;
+  /** TopBar 홈 — Today로 이동, 완주 화면이면 시작 화면으로 */
+  goHome: () => void;
+  /** 세션 완주 → Brain 오늘 문장으로 스크롤 */
+  brainFocusTodayLog: boolean;
+  openTodayLog: () => void;
+  clearBrainFocus: () => void;
+
+  /** 오늘 만난 문장 (당일 localStorage) */
+  todayLog: TodayEncounter[];
 
   // progress
   addXp: (amount: number) => void;
@@ -162,6 +183,18 @@ function loadReward(): Partial<RewardState> {
   };
 }
 
+const TODAY_LOG_MAX = 200;
+
+function loadTodayLog(): TodayEncounter[] {
+  const saved = readLocal<{ date: string; items: TodayEncounter[] }>('todayLog');
+  if (!saved || saved.date !== todayStr()) return [];
+  return saved.items ?? [];
+}
+
+function persistTodayLog(items: TodayEncounter[]) {
+  writeLocal('todayLog', { date: todayStr(), items });
+}
+
 export const useStore = create<AppStore>((set, get) => {
   const savedProgress = loadProgress();
   const initialProgress: ProgressState = { ...DEFAULT_PROGRESS, ...savedProgress };
@@ -189,8 +222,23 @@ export const useStore = create<AppStore>((set, get) => {
     ttsEnabled: true,
     theme: 'dark',
     activeTab: 'today',
+    brainFocusTodayLog: false,
+    todayLog: loadTodayLog(),
 
     setActiveTab: (tab) => set({ activeTab: tab }),
+
+    goHome: () => {
+      const { summary, isPlaying } = get();
+      // 완주 화면에서 홈 → 팩 선택으로. 진행 중 세션은 유지.
+      if (summary && !isPlaying) {
+        get().resetSession();
+      }
+      set({ activeTab: 'today', brainFocusTodayLog: false });
+    },
+
+    openTodayLog: () => set({ activeTab: 'brain', brainFocusTodayLog: true }),
+
+    clearBrainFocus: () => set({ brainFocusTodayLog: false }),
 
     addXp: (amount) => {
       const xp = get().xp + amount;
@@ -202,13 +250,19 @@ export const useStore = create<AppStore>((set, get) => {
 
     markStudyToday: () => {
       const today = todayStr();
-      const { lastStudyDate, streakDays } = get();
+      const { lastStudyDate, streakDays, todayLog } = get();
       if (lastStudyDate !== today) {
         const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
         const newStreak = lastStudyDate === yesterday ? streakDays + 1 : 1;
         const next = { streakDays: newStreak, lastStudyDate: today };
         writeLocal('progress', { ...loadProgress(), ...next });
-        set(next);
+        // 날짜가 바뀌면 어제 로그 비움 (자정 넘김 대응)
+        if (todayLog.length > 0) {
+          persistTodayLog([]);
+          set({ ...next, todayLog: [] });
+        } else {
+          set(next);
+        }
       }
     },
 
@@ -225,10 +279,12 @@ export const useStore = create<AppStore>((set, get) => {
     resetProgress: () => {
       writeLocal('progress', null);
       writeLocal('reward', null);
+      writeLocal('todayLog', null);
       set({
         ...DEFAULT_PROGRESS,
         ...DEFAULT_REWARD_STATE,
         progress: { ...INITIAL_PROGRESS },
+        todayLog: [],
       });
     },
 
@@ -271,14 +327,29 @@ export const useStore = create<AppStore>((set, get) => {
     },
 
     recordTrial: (sentence, evaluation, response) => {
-      const { progress, xp, earnedBadgeIds, skill } = get();
+      const { progress, xp, earnedBadgeIds, skill, lastTrial } = get();
       const tier = sentence.difficulty ?? 'normal';
       const isCorrect = evaluation.match === 'exact' || evaluation.match === 'fuzzy';
+      const isRetry = !!lastTrial && lastTrial.sentence.id === sentence.id;
 
-      // reward-engine 로 trial 보상 계산
+      // 재시도 시 콤보는 교체 전 progress 기준으로 다시 계산
+      const comboForReward = isRetry
+        ? Math.max(
+            0,
+            progress.combo -
+              (lastTrial.evaluation.match === 'exact' || lastTrial.evaluation.match === 'fuzzy'
+                ? 1
+                : 0)
+          ) + (isCorrect ? 1 : 0)
+        : progress.combo + (isCorrect ? 1 : 0);
+
       const reward = computeTrialReward(
         evaluation,
-        { tier, combo: progress.combo + (isCorrect ? 1 : 0), isFirstCorrect: progress.correct === 0 },
+        {
+          tier,
+          combo: comboForReward,
+          isFirstCorrect: !isRetry && progress.correct === 0,
+        },
         xp,
         earnedBadgeIds
       );
@@ -288,18 +359,27 @@ export const useStore = create<AppStore>((set, get) => {
         response,
         evaluation,
         xpDelta: reward.totalXp,
-        comboDelta: isCorrect ? 1 : -progress.combo,
+        comboDelta: isCorrect ? 1 : -(isRetry ? comboForReward : progress.combo),
       };
 
-      const newProgress = advance(progress, trial);
-      // index 가 total 에 도달하면 finished
-      const total = get().plan?.total ?? 0;
-      if (isSessionComplete(newProgress, total)) {
-        newProgress.finished = true;
+      let newProgress: SessionProgress;
+      let xpDeltaApplied = reward.totalXp;
+      if (isRetry && lastTrial) {
+        newProgress = replaceLastTrial(progress, lastTrial, trial);
+        xpDeltaApplied = reward.totalXp - lastTrial.xpDelta;
+        const total = get().plan?.total ?? 0;
+        if (isSessionComplete(newProgress, total)) {
+          newProgress.finished = true;
+        }
+      } else {
+        newProgress = advance(progress, trial);
+        const total = get().plan?.total ?? 0;
+        if (isSessionComplete(newProgress, total)) {
+          newProgress.finished = true;
+        }
       }
 
-      // progress / xp 영구 저장
-      const newXp = xp + reward.totalXp;
+      const newXp = Math.max(0, xp + xpDeltaApplied);
       const newLevel = levelFromXp(newXp).level;
       writeLocal('progress', {
         ...loadProgress(),
@@ -307,19 +387,35 @@ export const useStore = create<AppStore>((set, get) => {
         level: newLevel,
       });
 
-      // skill 업데이트 — Phase 2에서는 form 축 단순 가감
       const newSkill = isCorrect
         ? updateSkill(skill, 'form', true, 2)
         : updateSkill(skill, 'form', false, 2);
 
-      const newBadges = [...get().badges, ...reward.newBadges];
+      const newBadges = isRetry
+        ? get().badges
+        : [...get().badges, ...reward.newBadges];
       writeLocal('reward', { badges: newBadges, skill: newSkill });
 
-      // attempt/correct/total 카운트
-      get().recordAnswer(isCorrect);
+      // 재시도는 문장 수 카운트 중복 없이 정답 여부만 보정
+      if (isRetry && lastTrial) {
+        const wasCorrect =
+          lastTrial.evaluation.match === 'exact' || lastTrial.evaluation.match === 'fuzzy';
+        if (wasCorrect !== isCorrect) {
+          const correctCount = Math.max(
+            0,
+            get().correctCount + (isCorrect ? 1 : -1)
+          );
+          writeLocal('progress', { ...loadProgress(), correctCount });
+          set({ correctCount });
+        }
+      } else {
+        get().recordAnswer(isCorrect);
+      }
 
-      // Phase 4: 오답/스킵 → Gap 노트 버퍼
       let pendingGaps = get().pendingGaps;
+      if (isRetry) {
+        pendingGaps = pendingGaps.filter((g) => g.expressionId !== sentence.id);
+      }
       if (
         (evaluation.match === 'wrong' || evaluation.match === 'skipped') &&
         sentence.en
@@ -335,16 +431,45 @@ export const useStore = create<AppStore>((set, get) => {
         pendingGaps = [...pendingGaps, gap];
       }
 
+      const encounter: TodayEncounter = {
+        id: `${sentence.id}-${Date.now()}`,
+        sentenceId: sentence.id,
+        en: sentence.en,
+        ko: sentence.ko,
+        match: evaluation.match,
+        guess: response.text,
+        at: new Date().toISOString(),
+      };
+      let todayLog = get().todayLog;
+      if (isRetry) {
+        const idx = [...todayLog].map((e) => e.sentenceId).lastIndexOf(sentence.id);
+        if (idx >= 0) {
+          todayLog = [...todayLog];
+          todayLog[idx] = { ...encounter, id: todayLog[idx].id };
+        } else {
+          todayLog = [...todayLog, encounter];
+        }
+      } else {
+        todayLog = [...todayLog, encounter];
+      }
+      todayLog = todayLog.slice(-TODAY_LOG_MAX);
+      persistTodayLog(todayLog);
+
       set({
         progress: newProgress,
         lastTrial: trial,
-        lastReward: reward,
+        lastReward: {
+          ...reward,
+          totalXp: isRetry ? Math.max(0, xpDeltaApplied) : reward.totalXp,
+          feedback: isRetry ? `${reward.feedback} (재시도)` : reward.feedback,
+        },
         xp: newXp,
         level: newLevel,
         badges: newBadges,
         earnedBadgeIds,
         skill: newSkill,
         pendingGaps,
+        todayLog,
       });
 
       return reward;
@@ -370,6 +495,7 @@ export const useStore = create<AppStore>((set, get) => {
     endSession: () => {
       const { plan, progress, xp, earnedBadgeIds } = get();
       if (!plan) return null;
+      // 방어: 조기 호출돼도 요약/보상은 실제 응답 수 기준으로
       const summary = summarizeSession(progress, plan.total);
       const completion = computeSessionCompletionRewards(summary, earnedBadgeIds);
 

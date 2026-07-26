@@ -1,7 +1,6 @@
 /**
  * SessionComplete.tsx — 세션 종료 요약 화면.
  * 랭크(S~D), 정답률, 최대 콤보, 획득 XP, 새 배지 표시.
- * "다시 시작" / "My English Brain 보기" 버튼.
  */
 import type { SessionSummary } from '../../domain/session-engine';
 import type { SessionCompletionRewards, Badge } from '../../domain/reward-engine';
@@ -14,6 +13,7 @@ interface SessionCompleteProps {
   newBadges: Badge[];
   onRestart: () => void;
   onGoBrain: () => void;
+  onGoTodayLog: () => void;
 }
 
 const rankColor: Record<SessionSummary['rank'], string> = {
@@ -30,7 +30,13 @@ export function SessionComplete({
   newBadges,
   onRestart,
   onGoBrain,
+  onGoTodayLog,
 }: SessionCompleteProps) {
+  const title = summary.fullyComplete ? '세션 완주!' : '세션 종료';
+  const subtitle = summary.fullyComplete
+    ? `${summary.total}문장 중 ${summary.correct + summary.fuzzy}개 완벽/근접 정답`
+    : `${summary.total}문장 중 ${summary.answered}문장 응답 · 완벽/근접 ${summary.correct + summary.fuzzy}`;
+
   return (
     <Card className="session-complete">
       <div className="rank-display" style={{ color: rankColor[summary.rank] }}>
@@ -38,10 +44,8 @@ export function SessionComplete({
         <span className="rank-label">RANK</span>
       </div>
 
-      <h2 className="complete-title">세션 완주!</h2>
-      <p className="complete-subtitle">
-        {summary.total}문장 중 {summary.correct + summary.fuzzy}개 완벽/근접 정답
-      </p>
+      <h2 className="complete-title">{title}</h2>
+      <p className="complete-subtitle">{subtitle}</p>
 
       <div className="complete-stats">
         <div className="stat">
@@ -71,7 +75,9 @@ export function SessionComplete({
       </div>
 
       <div className="xp-summary">
-        <div className="xp-line">완주 보너스: +{rewards.completionXp} XP</div>
+        <div className="xp-line">
+          {summary.fullyComplete ? '완주' : '참여'} 보너스: +{rewards.completionXp} XP
+        </div>
         <div className="xp-line">랭크 보너스: +{rewards.rankXp} XP</div>
         <div className="xp-line total">획득 총 XP: +{rewards.totalXp}</div>
       </div>
@@ -92,8 +98,11 @@ export function SessionComplete({
       )}
 
       <div className="complete-actions">
-        <Button variant="primary" onClick={onRestart}>
+        <Button variant="primary" className="restart-btn" onClick={onRestart}>
           다시 학습하기
+        </Button>
+        <Button variant="default" onClick={onGoTodayLog}>
+          오늘 문장 보기
         </Button>
         <Button variant="default" onClick={onGoBrain}>
           My English Brain 보기

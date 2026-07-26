@@ -23,11 +23,64 @@ function createFuzzyMatch() {
     'through', 'between', 'among', 'against', 'without',
   ]);
 
+  /**
+   * 축약형 전개 — STT는 you'll↔you will, don't↔do not 를 섞어 줌.
+   * 1) 아포스트로피 있는 형태 전개 → 2) 제거 → 3) 잔여형(dont/youll) 전개
+   */
+  function expandContractions(text) {
+    let t = String(text || '');
+    const withApos = [
+      [/\bwon't\b/gi, 'will not'],
+      [/\bcan't\b/gi, 'can not'],
+      [/\bcannot\b/gi, 'can not'],
+      [/\bshan't\b/gi, 'shall not'],
+      [/\bain't\b/gi, 'am not'],
+      [/\bn't\b/gi, ' not'],
+      [/\b'll\b/gi, ' will'],
+      [/\b're\b/gi, ' are'],
+      [/\b've\b/gi, ' have'],
+      [/\b'm\b/gi, ' am'],
+      [/\b'd\b/gi, ' would'],
+    ];
+    for (let i = 0; i < withApos.length; i++) {
+      t = t.replace(withApos[i][0], withApos[i][1]);
+    }
+    // 아포스트로피 제거 후 STT 잔여형
+    t = t.replace(/['’]/g, '');
+    const bare = [
+      [/\bwont\b/gi, 'will not'],
+      [/\bcant\b/gi, 'can not'],
+      [/\bdont\b/gi, 'do not'],
+      [/\bisnt\b/gi, 'is not'],
+      [/\barent\b/gi, 'are not'],
+      [/\bwasnt\b/gi, 'was not'],
+      [/\bwerent\b/gi, 'were not'],
+      [/\bhasnt\b/gi, 'has not'],
+      [/\bhavent\b/gi, 'have not'],
+      [/\bhadnt\b/gi, 'had not'],
+      [/\bdidnt\b/gi, 'did not'],
+      [/\bwouldnt\b/gi, 'would not'],
+      [/\bcouldnt\b/gi, 'could not'],
+      [/\bshouldnt\b/gi, 'should not'],
+      [/\byoull\b/gi, 'you will'],
+      [/\btheyll\b/gi, 'they will'],
+      [/\bweve\b/gi, 'we have'],
+      [/\btheyre\b/gi, 'they are'],
+      [/\byoure\b/gi, 'you are'],
+      [/\bim\b/gi, 'i am'],
+      [/\bive\b/gi, 'i have'],
+    ];
+    for (let i = 0; i < bare.length; i++) {
+      t = t.replace(bare[i][0], bare[i][1]);
+    }
+    return t;
+  }
+
   function normalize(text) {
-    return String(text || '')
+    return expandContractions(String(text || ''))
       .toLowerCase()
       .replace(/[.!?,;:]/g, ' ')
-      .replace(/['"]/g, '')
+      .replace(/["“”]/g, '')
       .replace(/\s+/g, ' ')
       .trim();
   }
@@ -228,6 +281,7 @@ function createFuzzyMatch() {
     tokenize,
     analyzeDiff,
     pluralize,
+    expandContractions,
   };
 
   return api;

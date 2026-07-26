@@ -198,46 +198,72 @@ export function createSession(
  * 세션 진행 — 한 trial 결과를 받아 progress 갱신.
  */
 export function advance(progress: SessionProgress, trial: TrialResult): SessionProgress {
-  const next: SessionProgress = { ...progress };
+  const next = applyMatchDelta({ ...progress }, trial.evaluation.match, +1);
   next.completed += 1;
-
-  switch (trial.evaluation.match) {
-    case 'exact':
-      next.correct += 1;
-      next.combo += 1;
-      next.maxCombo = Math.max(next.maxCombo, next.combo);
-      break;
-    case 'fuzzy':
-      next.fuzzy += 1;
-      next.combo += 1;
-      next.maxCombo = Math.max(next.maxCombo, next.combo);
-      break;
-    case 'wrong':
-      next.wrong += 1;
-      next.combo = 0;
-      break;
-    case 'skipped':
-      next.skipped += 1;
-      next.combo = 0;
-      break;
-  }
-
   next.xpEarned += trial.xpDelta;
   next.index = progress.index + 1;
-  next.finished = next.index >= trial.sentence.order! + 1 && next.completed >= next.index;
+  // finished는 total을 아는 상위(store)가 isSessionComplete로만 켠다.
+  next.finished = false;
+  return next;
+}
 
-  // 세션 종료 판정: completed 가 total 에 도달.
-  if (next.completed >= next.index) {
-    // 마지막 trial 인 경우는 상위에서 endSession 으로 finished=true 처리.
+/** 같은 문장 재시도 — index/completed는 유지하고 결과·XP만 교체 */
+export function replaceLastTrial(
+  progress: SessionProgress,
+  previous: TrialResult,
+  nextTrial: TrialResult
+): SessionProgress {
+  let next = applyMatchDelta({ ...progress }, previous.evaluation.match, -1);
+  next = applyMatchDelta(next, nextTrial.evaluation.match, +1);
+  next.xpEarned = Math.max(0, next.xpEarned - previous.xpDelta + nextTrial.xpDelta);
+  next.finished = false;
+  return next;
+}
+
+function applyMatchDelta(
+  progress: SessionProgress,
+  match: TrialResult['evaluation']['match'],
+  sign: 1 | -1
+): SessionProgress {
+  const next = { ...progress };
+  switch (match) {
+    case 'exact':
+      next.correct = Math.max(0, next.correct + sign);
+      if (sign > 0) {
+        next.combo += 1;
+        next.maxCombo = Math.max(next.maxCombo, next.combo);
+      } else {
+        next.combo = Math.max(0, next.combo - 1);
+      }
+      break;
+    case 'fuzzy':
+      next.fuzzy = Math.max(0, next.fuzzy + sign);
+      if (sign > 0) {
+        next.combo += 1;
+        next.maxCombo = Math.max(next.maxCombo, next.combo);
+      } else {
+        next.combo = Math.max(0, next.combo - 1);
+      }
+      break;
+    case 'wrong':
+      next.wrong = Math.max(0, next.wrong + sign);
+      if (sign > 0) next.combo = 0;
+      break;
+    case 'skipped':
+      next.skipped = Math.max(0, next.skipped + sign);
+      if (sign > 0) next.combo = 0;
+      break;
   }
   return next;
 }
 
 /**
  * 세션 종료 판정 — 커서가 total 에 도달하면 finished.
+ * finished 플래그만 믿지 말고 index/completed로도 확인.
  */
 export function isSessionComplete(progress: SessionProgress, total: number): boolean {
-  return progress.index >= total;
+  if (total <= 0) return false;
+  return progress.index >= total && progress.completed >= total;
 }
 
 /**
@@ -245,26 +271,38 @@ export function isSessionComplete(progress: SessionProgress, total: number): boo
  */
 export interface SessionSummary {
   total: number;
+  /** 실제 응답한 문항 수 (조기 종료 시 total보다 작음) */
+  answered: number;
   correct: number;
   fuzzy: number;
   wrong: number;
   skipped: number;
-  accuracy: number; // (correct + fuzzy*0.5) / total
+  accuracy: number; // (correct + fuzzy*0.5) / answered
   maxCombo: number;
   xpEarned: number;
   rank: 'S' | 'A' | 'B' | 'C' | 'D';
+  fullyComplete: boolean;
 }
 
 export function summarizeSession(progress: SessionProgress, total: number): SessionSummary {
+  const answered = Math.max(
+    progress.completed,
+    progress.correct + progress.fuzzy + progress.wrong + progress.skipped
+  );
   const weighted = progress.correct + progress.fuzzy * 0.5;
-  const accuracy = total > 0 ? weighted / total : 0;
+  // 정확도는 실제 응답 기준으로 계산 (조기 종료 시 0/10 왜곡 방지)
+  const denom = Math.max(answered, 1);
+  const accuracy = weighted / denom;
   let rank: SessionSummary['rank'] = 'D';
-  if (accuracy >= 0.95) rank = 'S';
+  if (answered === 0) rank = 'D';
+  else if (accuracy >= 0.95) rank = 'S';
   else if (accuracy >= 0.85) rank = 'A';
   else if (accuracy >= 0.7) rank = 'B';
   else if (accuracy >= 0.5) rank = 'C';
+  const fullyComplete = answered >= total && total > 0;
   return {
     total,
+    answered,
     correct: progress.correct,
     fuzzy: progress.fuzzy,
     wrong: progress.wrong,
@@ -273,5 +311,6 @@ export function summarizeSession(progress: SessionProgress, total: number): Sess
     maxCombo: progress.maxCombo,
     xpEarned: progress.xpEarned,
     rank,
+    fullyComplete,
   };
 }

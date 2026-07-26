@@ -222,12 +222,24 @@ export interface SessionCompletionRewards {
 }
 
 export function computeSessionCompletionRewards(
-  summary: { rank: string; total: number; correct: number; fuzzy: number },
+  summary: {
+    rank: string;
+    total: number;
+    answered?: number;
+    correct: number;
+    fuzzy: number;
+    fullyComplete?: boolean;
+  },
   earnedBadges: Set<string>
 ): SessionCompletionRewards {
-  const completionXp = summary.total * 5; // 완주 보너스 — 문장당 5XP
+  const answered =
+    summary.answered ?? summary.correct + summary.fuzzy;
+  const fullyComplete =
+    summary.fullyComplete ?? (summary.total > 0 && answered >= summary.total);
+  // 완주 보너스는 전부 끝냈을 때만. 조기 종료는 응답 수만큼만.
+  const completionXp = fullyComplete ? summary.total * 5 : Math.max(0, answered) * 2;
   const rankXpMap: Record<string, number> = { S: 200, A: 120, B: 70, C: 30, D: 10 };
-  const rankXp = rankXpMap[summary.rank] ?? 10;
+  const rankXp = fullyComplete ? (rankXpMap[summary.rank] ?? 10) : 0;
   const totalXp = completionXp + rankXp;
 
   const badges: Badge[] = [];
@@ -237,8 +249,8 @@ export function computeSessionCompletionRewards(
       badges.push({ ...BADGES[id], earnedAt: new Date().toISOString() });
     }
   };
-  tryBadge('session_complete', true);
-  tryBadge('rank_s', summary.rank === 'S');
+  tryBadge('session_complete', fullyComplete);
+  tryBadge('rank_s', fullyComplete && summary.rank === 'S');
 
   return { completionXp, rankXp, totalXp, badges };
 }

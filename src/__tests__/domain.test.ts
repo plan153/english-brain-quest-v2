@@ -13,6 +13,7 @@ import {
   summarizeSession,
   INITIAL_PROGRESS,
   advance,
+  replaceLastTrial,
 } from '../domain/session-engine';
 import type { ContentItem } from '../interfaces/ContentItem';
 import { mixDifficulty, verifyMixRatio, DEFAULT_SKILL_PROFILE } from '../domain/difficulty-mixer';
@@ -20,6 +21,7 @@ import {
   levelFromXp,
   computeTrialReward,
   comboBonus,
+  computeSessionCompletionRewards,
 } from '../domain/reward-engine';
 import {
   projectBrain,
@@ -59,11 +61,94 @@ describe('1. session-engine', () => {
         xpDelta: 20,
         comboDelta: 1,
       });
+      // 중간 trial에서는 finished를 켜지 않음 (total은 store가 판정)
+      if (i < 9) expect(progress.finished).toBe(false);
     }
     const summary = summarizeSession(progress, 10);
     expect(summary.correct).toBe(10);
     expect(summary.rank).toBe('S');
     expect(summary.accuracy).toBe(100);
+    expect(summary.fullyComplete).toBe(true);
+    expect(summary.answered).toBe(10);
+  });
+
+  it('does not mark finished after the first correct answer', () => {
+    const items = Array.from({ length: 10 }, (_, i) => fakeItem(`e${i}`));
+    const plan = createSession(items, { size: 10 });
+    const progress = advance({ ...INITIAL_PROGRESS }, {
+      sentence: plan.sentences[0],
+      response: { text: plan.sentences[0].en },
+      evaluation: { match: 'exact', score: 1, feedback: 'ok' },
+      xpDelta: 20,
+      comboDelta: 1,
+    });
+    expect(progress.completed).toBe(1);
+    expect(progress.index).toBe(1);
+    expect(progress.finished).toBe(false);
+  });
+
+  it('replaceLastTrial keeps index and swaps wrong→exact', () => {
+    const items = Array.from({ length: 5 }, (_, i) => fakeItem(`r${i}`));
+    const plan = createSession(items, { size: 5 });
+    const first = {
+      sentence: plan.sentences[0],
+      response: { text: 'nope' },
+      evaluation: { match: 'wrong' as const, score: 0, feedback: 'x' },
+      xpDelta: 3,
+      comboDelta: 0,
+    };
+    let progress = advance({ ...INITIAL_PROGRESS }, first);
+    expect(progress.wrong).toBe(1);
+    expect(progress.index).toBe(1);
+    const retry = {
+      ...first,
+      response: { text: plan.sentences[0].en },
+      evaluation: { match: 'exact' as const, score: 1, feedback: 'ok' },
+      xpDelta: 20,
+      comboDelta: 1,
+    };
+    progress = replaceLastTrial(progress, first, retry);
+    expect(progress.index).toBe(1);
+    expect(progress.completed).toBe(1);
+    expect(progress.wrong).toBe(0);
+    expect(progress.correct).toBe(1);
+    expect(progress.xpEarned).toBe(20);
+  });
+});
+
+describe('1c. early-end summary rewards', () => {
+  it('does not grant full completion XP for 1/10 answers', () => {
+    const summary = summarizeSession(
+      {
+        ...INITIAL_PROGRESS,
+        index: 1,
+        completed: 1,
+        wrong: 1,
+      },
+      10
+    );
+    expect(summary.fullyComplete).toBe(false);
+    expect(summary.answered).toBe(1);
+    const rewards = computeSessionCompletionRewards(summary, new Set());
+    expect(rewards.completionXp).toBe(2); // answered * 2
+    expect(rewards.rankXp).toBe(0);
+  });
+});
+
+describe('1b. fuzzy-match contractions', () => {
+  it('treats you will as equal to you will contraction and ignores commas', () => {
+    const expected = "If you don't hurry, you'll be late.";
+    const user = "If you don't hurry you will be late";
+    const result = FuzzyMatch.matchAnswer(user, expected);
+    expect(result.level).toBe('exact');
+  });
+
+  it('accepts dont / do not as the same', () => {
+    const result = FuzzyMatch.matchAnswer(
+      'I do not know',
+      "I don't know"
+    );
+    expect(result.level).toBe('exact');
   });
 });
 

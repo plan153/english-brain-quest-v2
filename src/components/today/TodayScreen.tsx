@@ -194,7 +194,9 @@ export function TodayScreen() {
 
   const handleSpeak = useCallback(() => {
     if (!currentSentence) return;
+    // 평가 후에도 재시도 가능 — 피드백 지우고 다시 듣기
     setPendingEval(null);
+    speech.reset();
     speech.startListening();
   }, [currentSentence, speech]);
 
@@ -208,13 +210,15 @@ export function TodayScreen() {
     setShowEnglish(false);
     setShowHint(false);
     speech.reset();
-    // progress.index가 마지막이면 endSession 호출
-    if (progress.finished) {
+    // finished 플래그만 믿지 않음 — index가 total에 도달했을 때만 완주
+    const done =
+      !!plan && progress.index >= plan.total && progress.completed >= plan.total;
+    if (done) {
       endSession();
     } else {
       nextSentence();
     }
-  }, [speech, progress.finished, nextSentence, endSession]);
+  }, [speech, progress.index, progress.completed, plan, nextSentence, endSession]);
 
   const handleReplay = useCallback(async () => {
     if (!currentSentence) return;
@@ -224,6 +228,13 @@ export function TodayScreen() {
   const handleGoBrain = useCallback(() => {
     setActiveTab('brain');
   }, [setActiveTab]);
+
+  const openTodayLog = useStore((s) => s.openTodayLog);
+  const todayLogCount = useStore((s) => s.todayLog.length);
+
+  const handleGoTodayLog = useCallback(() => {
+    openTodayLog();
+  }, [openTodayLog]);
 
   // 로딩 상태
   if (loadError) {
@@ -291,6 +302,26 @@ export function TodayScreen() {
         >
           🚀 세션 시작
         </Button>
+        {todayLogCount > 0 && (
+          <button
+            type="button"
+            onClick={handleGoTodayLog}
+            style={{
+              display: 'block',
+              width: '100%',
+              marginTop: '12px',
+              padding: '10px',
+              background: 'transparent',
+              border: '1px solid var(--ebq-border)',
+              borderRadius: '12px',
+              color: 'var(--ebq-text)',
+              cursor: 'pointer',
+              fontSize: '13px',
+            }}
+          >
+            오늘 만난 문장 {todayLogCount}개 보기 →
+          </button>
+        )}
       </Card>
     );
   }
@@ -306,6 +337,7 @@ export function TodayScreen() {
         newBadges={newBadges}
         onRestart={handleStart}
         onGoBrain={handleGoBrain}
+        onGoTodayLog={handleGoTodayLog}
       />
     );
   }
@@ -384,18 +416,24 @@ export function TodayScreen() {
       <div className="action-row">
         <Button
           variant="primary"
+          className={speech.speaking ? 'playing' : ''}
           onClick={handleListen}
           disabled={speech.speaking}
           title="정답 영어 들리기"
         >
-          🔊 정답 듣기
+          {speech.speaking ? '🔊 재생 중…' : '🔊 정답 듣기'}
         </Button>
         <Button
-          variant={speech.listening ? 'recording' : 'default'}
+          variant={speech.listening ? 'recording' : pendingEval ? 'primary' : 'default'}
           onClick={handleSpeak}
-          disabled={!speech.supported || speech.listening || !!pendingEval}
+          disabled={!speech.supported || speech.listening || speech.speaking}
         >
-          🎤 {speech.listening ? '말하는 중...' : '영어로 말하기'}
+          🎤{' '}
+          {speech.listening
+            ? '말하는 중...'
+            : pendingEval
+              ? '다시 말하기'
+              : '영어로 말하기'}
         </Button>
       </div>
 
@@ -456,8 +494,19 @@ export function TodayScreen() {
               justifyContent: 'center',
             }}
           >
-            <Button variant="primary" onClick={handleListenOriginal}>
-              원래 표현 듣기
+            <Button
+              variant="primary"
+              className={speech.speaking ? 'playing' : ''}
+              onClick={handleListenOriginal}
+              disabled={speech.speaking}
+            >
+              {speech.speaking ? '재생 중…' : '원래 표현 듣기'}
+            </Button>
+            <Button
+              onClick={handleSpeak}
+              disabled={!speech.supported || speech.listening || speech.speaking}
+            >
+              다시 말하기
             </Button>
             <Button onClick={handleNext}>다음 →</Button>
           </div>
@@ -468,15 +517,13 @@ export function TodayScreen() {
       <div className="toggle-row">
         <Button
           onClick={() => setShowEnglish((v) => !v)}
-          variant={showEnglish ? 'primary' : 'default'}
-          className="toggle-btn"
+          className={`toggle-btn${showEnglish ? ' active' : ''}`}
         >
           {showEnglish ? '🇰🇷 한국어만' : '🇺🇸 한→영 토글'}
         </Button>
         <Button
           onClick={() => setShowHint((v) => !v)}
-          variant={showHint ? 'primary' : 'default'}
-          className="toggle-btn"
+          className={`toggle-btn${showHint ? ' active' : ''}`}
         >
           💬 힌트
         </Button>
