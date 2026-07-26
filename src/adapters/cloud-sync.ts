@@ -28,6 +28,7 @@ import {
 } from '../domain/vault-projection';
 import type { SkillProfile } from '../domain/difficulty-mixer';
 import type { Badge } from '../domain/reward-engine';
+import { createZipBlob } from './zip-store';
 
 export type SyncMode = 'filesystem' | 'indexeddb' | 'none';
 
@@ -216,8 +217,9 @@ async function readOptional(path: string): Promise<string | null> {
 }
 
 /**
- * Brain + progress를 하나의 Markdown으로 묶어 내보내기.
- * iOS Safari는 연속 a.download를 하나만 허용하고, 같은 파일명은 progress-1.md로 붙임.
+ * Brain + progress를 ZIP으로 내보내기.
+ * ZIP 안에 Learners/me/Learning/ 경로가 들어 있어 Vault 루트에 풀면 끝.
+ * iOS는 공유 시트 우선 (연속 다운로드·파일명 번호 문제 회피).
  */
 export async function exportVaultBundle(): Promise<{ filename: string; shared: boolean; parts: string[] }> {
   await ensureStorage();
@@ -228,77 +230,56 @@ export async function exportVaultBundle(): Promise<{ filename: string; shared: b
   const progressMd = await readOptional(progress);
 
   const parts: string[] = [];
-  if (brainMd) parts.push(brain);
-  if (progressMd) parts.push(progress);
-  if (parts.length === 0) {
+  const zipEntries: { path: string; content: string }[] = [];
+
+  // 옵시디언 볼트 관례 경로(me)로 넣음 — 폰 userId와 달라도 Mac Vault에 바로 맞춤
+  if (brainMd) {
+    parts.push(brain);
+    zipEntries.push({ path: 'Learners/me/Learning/Brain.md', content: brainMd });
+  }
+  if (progressMd) {
+    parts.push(progress);
+    zipEntries.push({ path: 'Learners/me/Learning/progress.md', content: progressMd });
+  }
+  if (zipEntries.length === 0) {
     throw new Error('내보낼 노트가 없습니다. 먼저「지금 동기화」를 눌러 주세요.');
   }
 
-  const body = [
-    '---',
-    'type: ebq-vault-export',
-    `learnerId: ${userId}`,
-    `exportedAt: ${new Date().toISOString()}`,
-    'source: english-brain-quest-v2',
-    '---',
-    '',
-    '# EBQ Vault Export',
-    '',
-    'Mac 옵시디언 볼트에 넣을 때:',
-    '',
-    ...(brainMd
-      ? [
-          `1. 아래 **Brain.md** 본문만 복사 → \`Learners/me/Learning/Brain.md\` (또는 \`Learners/${userId}/Learning/Brain.md\`)`,
-        ]
-      : ['1. (Brain.md 없음 — 동기화 후 다시보내기)']),
-    ...(progressMd
-      ? [
-          `2. 아래 **progress.md** 본문만 복사 → \`Learners/me/Learning/progress.md\``,
-        ]
-      : ['2. (progress.md 없음)']),
-    '',
-    '또는 이 파일 전체를 Vault 아무 곳에 두고, 섹션별로 나눠 저장해도 됩니다.',
-    '',
-  ];
+  // 풀기 안내 메모
+  zipEntries.push({
+    path: 'README-EBQ.txt',
+    content: [
+      'English Brain Quest → Obsidian',
+      '',
+      '1) 이 ZIP을 Mac으로 보내기 (AirDrop 등)',
+      '2) 옵시디언 Vault 폴더(최상위)에 압축 풀기',
+      '3) Learners/me/Learning/ 아래에 Brain.md, progress.md 가 생김',
+      '',
+      `내보낸 시각: ${new Date().toISOString()}`,
+      `앱 learnerId: ${userId}`,
+      '',
+    ].join('\n'),
+  });
 
-  if (brainMd) {
-    body.push(
-      '---',
-      '',
-      `## FILE: ${brain}`,
-      '',
-      brainMd.trim(),
-      ''
-    );
-  }
-  if (progressMd) {
-    body.push(
-      '---',
-      '',
-      `## FILE: ${progress}`,
-      '',
-      progressMd.trim(),
-      ''
-    );
-  }
+  const filename = `ebq-vault-${stampForFilename()}.zip`;
+  const blob = createZipBlob(zipEntries);
+  const file = new File([blob], filename, { type: 'application/zip' });
 
-  const markdown = body.join('\n');
-  const filename = `ebq-vault-${stampForFilename()}.md`;
-  const file = new File([markdown], filename, { type: 'text/markdown' });
-
-  // iOS: 공유 시트가 가장 안정적 (파일 앱 / AirDrop / Obsidian)
   const nav = navigator as Navigator & {
     canShare?: (data: ShareData) => boolean;
   };
   if (typeof nav.share === 'function') {
-    const data: ShareData = { files: [file], title: filename, text: 'EBQ Vault → Obsidian' };
+    const data: ShareData = {
+      files: [file],
+      title: filename,
+      text: 'EBQ → Obsidian Vault (ZIP 풀기)',
+    };
     const canFiles = typeof nav.canShare !== 'function' || nav.canShare(data);
     if (canFiles) {
       try {
         await nav.share(data);
         return { filename, shared: true, parts };
       } catch (err) {
-        // 사용자가 공유 취소하면 조용히 다운로드로 폴백하지 않음(의도적 취소)
         if ((err as Error).name === 'AbortError') {
           return { filename, shared: false, parts };
         }
@@ -306,7 +287,6 @@ export async function exportVaultBundle(): Promise<{ filename: string; shared: b
     }
   }
 
-  const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -315,7 +295,6 @@ export async function exportVaultBundle(): Promise<{ filename: string; shared: b
   document.body.appendChild(a);
   a.click();
   a.remove();
-  // iOS에서 즉시 revoke하면 다운로드가 끊길 수 있음
   window.setTimeout(() => URL.revokeObjectURL(url), 2000);
 
   return { filename, shared: false, parts };

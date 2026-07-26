@@ -122,12 +122,12 @@ export function VaultSyncCard() {
                   const result = await exportVaultBundle();
                   if (result.shared) {
                     setMsg(
-                      `공유됨: ${result.filename} (${result.parts.length}개 노트) → 파일/AirDrop으로 Mac Vault에 넣기`
+                      `ZIP 공유됨: ${result.filename} → Mac으로 보낸 뒤 Vault 폴더에 압축 풀기`
                     );
                     return;
                   }
                   setMsg(
-                    `저장됨: ${result.filename} (Brain+progress 한 파일). Mac에서 Learners/me/Learning/ 에 나눠 넣기`
+                    `ZIP 저장됨: ${result.filename} → Mac Vault(최상위)에 압축 풀면 Brain.md·progress.md 자동 배치`
                   );
                 }, '')
               }
@@ -159,9 +159,9 @@ export function VaultSyncCard() {
       )}
 
       <div style={{ marginTop: '10px', fontSize: '11px', color: 'var(--ebq-text-muted)' }}>
-        아이폰: 「보내기」는 Brain+progress를 <strong>파일 하나</strong>로 만듭니다 (progress-1 중복·Brain 누락 방지).
-        공유 시트 → 파일/AirDrop → Mac Vault의 <code>Learners/me/Learning/</code>에 넣으세요.
-        데스크톱은 Vault 폴더 연결이 더 편합니다.
+        아이폰: 「보내기」→ <strong>ZIP</strong> 하나. Mac으로 보낸 뒤
+        <strong> 옵시디언 Vault 폴더(맨 위)</strong>에 압축을 풀면
+        <code>Learners/me/Learning/</code>에 Brain.md·progress.md가 들어갑니다. 쪼갤 필요 없음.
       </div>
     </Card>
   );

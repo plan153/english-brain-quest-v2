@@ -272,3 +272,18 @@ describe('6. makeGapId', () => {
     expect(a.startsWith('gap_e001_')).toBe(true);
   });
 });
+
+import { createZipBlob } from '../adapters/zip-store';
+
+describe('7. zip-store', () => {
+  it('builds a zip with PK headers', async () => {
+    const blob = createZipBlob([
+      { path: 'Learners/me/Learning/Brain.md', content: '# Brain\n' },
+      { path: 'Learners/me/Learning/progress.md', content: '# Progress\n' },
+    ]);
+    const buf = new Uint8Array(await blob.arrayBuffer());
+    expect(buf[0]).toBe(0x50); // P
+    expect(buf[1]).toBe(0x4b); // K
+    expect(blob.size).toBeGreaterThan(40);
+  });
+});
