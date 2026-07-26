@@ -1,8 +1,8 @@
 {
-  "version": 3,
-  "targetCount": 50,
-  "actualCount": 50,
-  "stageCount": 10,
+  "version": 4,
+  "targetCount": 100,
+  "actualCount": 102,
+  "stageCount": 15,
   "byStage": [
     { "stage": "stage_get_place", "title": "1. get + 장소", "count": 5 },
     { "stage": "stage_come_go", "title": "2. come / go 입자", "count": 7 },
@@ -13,6 +13,11 @@
     { "stage": "stage_turn", "title": "7. turn on·off·out", "count": 3 },
     { "stage": "stage_look", "title": "8. look at·for·after", "count": 3 },
     { "stage": "stage_break", "title": "9. break down·up·out", "count": 3 },
-    { "stage": "stage_call", "title": "10. call back·off·on", "count": 3 }
+    { "stage": "stage_call", "title": "10. call back·off·on", "count": 3 },
+    { "stage": "stage_bring_carry", "title": "11. bring / carry", "count": 7 },
+    { "stage": "stage_check_figure", "title": "12. check / figure", "count": 4 },
+    { "stage": "stage_fill_hang", "title": "13. fill / hang", "count": 6 },
+    { "stage": "stage_pass_point", "title": "14. pass / point", "count": 4 },
+    { "stage": "stage_stand_try", "title": "15. stand / try / wake / more", "count": 41 }
   ]
 }

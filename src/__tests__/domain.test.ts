@@ -1,0 +1,152 @@
+/**
+ * 도메인 테스트 6종 — Phase 5.
+ * 1. session-engine
+ * 2. difficulty-mixer
+ * 3. reward-engine
+ * 4. vault-projection
+ * 5. fuzzy-match
+ * 6. makeGapId (cloud-sync 투영 ID)
+ */
+import { describe, expect, it } from 'vitest';
+import {
+  createSession,
+  summarizeSession,
+  INITIAL_PROGRESS,
+  advance,
+} from '../domain/session-engine';
+import type { ContentItem } from '../interfaces/ContentItem';
+import { mixDifficulty, verifyMixRatio, DEFAULT_SKILL_PROFILE } from '../domain/difficulty-mixer';
+import {
+  levelFromXp,
+  computeTrialReward,
+  comboBonus,
+} from '../domain/reward-engine';
+import {
+  projectBrain,
+  projectProgress,
+  makeGapId,
+  brainPath,
+} from '../domain/vault-projection';
+import FuzzyMatch from '../domain/fuzzy-match';
+
+function fakeItem(id: string, level = 1): ContentItem {
+  return {
+    id,
+    type: 'sentence',
+    data: { en: `Hello ${id}`, translations: { ko: `안녕 ${id}` } },
+    translations: { ko: `안녕 ${id}` },
+    tags: [],
+    form: 'statement',
+    level,
+    packId: 'test',
+  };
+}
+
+describe('1. session-engine', () => {
+  it('creates a session with difficulty tags and summarizes rank', () => {
+    const items = Array.from({ length: 10 }, (_, i) => fakeItem(`e${i}`, i < 2 ? 1 : i > 8 ? 3 : 2));
+    const plan = createSession(items, { size: 10 });
+    expect(plan.total).toBe(10);
+    expect(plan.sentences.length).toBe(10);
+    expect(plan.challengeCount + plan.easyCount + plan.normalCount).toBe(10);
+
+    let progress = { ...INITIAL_PROGRESS };
+    for (let i = 0; i < 10; i++) {
+      progress = advance(progress, {
+        sentence: plan.sentences[i],
+        response: { text: plan.sentences[i].en },
+        evaluation: { match: 'exact', score: 1, feedback: 'ok' },
+        xpDelta: 20,
+        comboDelta: 1,
+      });
+    }
+    const summary = summarizeSession(progress, 10);
+    expect(summary.correct).toBe(10);
+    expect(summary.rank).toBe('S');
+    expect(summary.accuracy).toBe(100);
+  });
+});
+
+describe('2. difficulty-mixer', () => {
+  it('mixes near 10/80/10 ratio', () => {
+    const items = Array.from({ length: 20 }, (_, i) => fakeItem(`m${i}`, (i % 3) + 1));
+    const mixed = mixDifficulty(items, {
+      challengeRatio: 0.1,
+      easyRatio: 0.1,
+      skill: DEFAULT_SKILL_PROFILE,
+      shuffle: false,
+    });
+    const ratio = verifyMixRatio(mixed);
+    expect(ratio.total).toBe(20);
+    expect(ratio.challenge).toBeGreaterThanOrEqual(1);
+    expect(ratio.easy).toBeGreaterThanOrEqual(1);
+    expect(ratio.challenge + ratio.easy + ratio.normal).toBe(20);
+  });
+});
+
+describe('3. reward-engine', () => {
+  it('levels from XP and awards trial XP with combo', () => {
+    expect(levelFromXp(0).level).toBe(1);
+    expect(levelFromXp(100).level).toBeGreaterThanOrEqual(2);
+    expect(comboBonus(5)).toBeGreaterThan(0);
+
+    const reward = computeTrialReward(
+      { match: 'exact', score: 1, feedback: 'ok' },
+      { tier: 'challenge', combo: 5, isFirstCorrect: true },
+      0,
+      new Set()
+    );
+    expect(reward.totalXp).toBeGreaterThan(20);
+    expect(reward.newBadges.some((b) => b.id === 'first_correct')).toBe(true);
+  });
+});
+
+describe('4. vault-projection', () => {
+  it('projects Brain.md under Learners/<userId>', () => {
+    const progress = {
+      xp: 40,
+      level: 1,
+      streakDays: 2,
+      todaySentenceCount: 5,
+      correctCount: 4,
+      attemptCount: 5,
+      totalSentences: 5,
+    };
+    const brain = projectBrain({
+      userId: 'local-test',
+      skill: DEFAULT_SKILL_PROFILE,
+      badges: [],
+      progress,
+    });
+    expect(brain.path).toBe(brainPath('local-test'));
+    expect(brain.markdown).toContain('type: brain-state');
+    expect(brain.markdown).toContain('Brain State');
+
+    const prog = projectProgress({ userId: 'local-test', progress });
+    expect(prog.path).toContain('progress.md');
+    expect(prog.markdown).toContain('정답률');
+  });
+});
+
+describe('5. fuzzy-match', () => {
+  it('accepts exact and near answers with beginner leniency', () => {
+    const exact = FuzzyMatch.matchAnswer('I have a question.', 'I have a question.', {
+      leniency: 1,
+    });
+    expect(exact.level).toBe('exact');
+
+    const fuzzy = FuzzyMatch.matchAnswer('I have question', 'I have a question.', {
+      leniency: 1,
+    });
+    expect(['exact', 'fuzzy']).toContain(fuzzy.level);
+  });
+});
+
+describe('6. makeGapId', () => {
+  it('is stable for same expression+guess', () => {
+    const a = makeGapId('e001', 'I go home');
+    const b = makeGapId('e001', 'I go home');
+    expect(a).toBe(b);
+    expect(a.startsWith('gap_e001_')).toBe(true);
+  });
+});

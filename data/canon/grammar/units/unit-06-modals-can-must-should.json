@@ -1,0 +1,17 @@
+{
+  "id": "unit-06-modals-can-must-should",
+  "series": "grammar-in-use",
+  "unit": 6,
+  "title": "Modals: can / must / should",
+  "concept": "조동사 — 능력/의무/충고/가능/허가 (뉘앙스)",
+  "stage": 7,
+  "skillAxes": ["pattern", "nuance"],
+  "prerequisites": ["unit-01-present-simple"],
+  "items": [
+    { "id": "mod-01", "type": "sentence", "en": "I can swim.", "translations": { "ko": "수영할 줄 알아요." }, "form": "statement", "tags": ["modal:can", "function:ability"] },
+    { "id": "mod-02", "type": "sentence", "en": "You must wear a seatbelt.", "translations": { "ko": "안전벨트 매야 해요." }, "form": "statement", "tags": ["modal:must", "function:obligation"] },
+    { "id": "mod-03", "type": "sentence", "en": "You should see a doctor.", "translations": { "ko": "의사에게 가보세요." }, "form": "statement", "tags": ["modal:should", "function:advice"] },
+    { "id": "mod-04", "type": "sentence", "en": "Can I borrow this?", "translations": { "ko": "이거 빌릴 수 있을까요?" }, "form": "question", "tags": ["modal:can", "function:permission"] },
+    { "id": "mod-05", "type": "sentence", "en": "You shouldn't skip breakfast.", "translations": { "ko": "아침 건너뛰면 안 돼요." }, "form": "negative", "tags": ["modal:should", "form:negative"] }
+  ]
+}

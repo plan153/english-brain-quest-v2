@@ -7,16 +7,9 @@
  * - 관사/전치사/단수복수/대소자/구두점/부속어 차이 → fuzzy (TTS로 원래 표현 들려줌)
  * - 핵심 동사/표현 다름 → wrong
  *
- * Browser: window.FuzzyMatch
- * Node: module.exports
+ * ESM default export + window.FuzzyMatch(Node 호환) 동시 지원.
  */
-(function (root, factory) {
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = factory();
-  } else {
-    root.FuzzyMatch = factory();
-  }
-})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+function createFuzzyMatch() {
   'use strict';
 
   const DEFAULT_LENiENCY = 1; // 0=엄격, 1=초보자 관대, 2=일반 관대
@@ -238,4 +231,13 @@
   };
 
   return api;
-});
+}
+
+const FuzzyMatch = createFuzzyMatch();
+
+// 브라우저 글로벌 호환 (기존 코드 유지 보수용)
+if (typeof globalThis !== 'undefined') {
+  globalThis.FuzzyMatch = FuzzyMatch;
+}
+// ESM default export (Vite/TS import용)
+export default FuzzyMatch;

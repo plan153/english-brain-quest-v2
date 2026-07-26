@@ -1,0 +1,17 @@
+{
+  "id": "unit-04-past-simple",
+  "series": "grammar-in-use",
+  "unit": 4,
+  "title": "Past Simple",
+  "concept": "과거의 완료된 사실/행동",
+  "stage": 7,
+  "skillAxes": ["tense", "form"],
+  "prerequisites": ["unit-01-present-simple"],
+  "items": [
+    { "id": "ps2-01", "type": "sentence", "en": "I went to the gym yesterday.", "translations": { "ko": "어제 체육관에 갔어요." }, "form": "statement", "tags": ["tense:past-simple"] },
+    { "id": "ps2-02", "type": "sentence", "en": "She bought a new car.", "translations": { "ko": "새 차를 샀어요." }, "form": "statement", "tags": ["tense:past-simple"] },
+    { "id": "ps2-03", "type": "sentence", "en": "Did you see the movie?", "translations": { "ko": "영화 봤어요?" }, "form": "question", "tags": ["tense:past-simple", "form:question"] },
+    { "id": "ps2-04", "type": "sentence", "en": "I did not know that.", "translations": { "ko": "그건 몰랐어요." }, "form": "negative", "tags": ["tense:past-simple", "form:negative"] },
+    { "id": "ps2-05", "type": "sentence", "en": "We had dinner together.", "translations": { "ko": "함께 저녁 식사했어요." }, "form": "statement", "tags": ["tense:past-simple"] }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "unit-08-conditionals-if",
+  "series": "grammar-in-use",
+  "unit": 8,
+  "title": "Conditionals (if)",
+  "concept": "조건문 — 0/1/2형 (사실/가능/가정)",
+  "stage": 9,
+  "skillAxes": ["pattern", "tense"],
+  "prerequisites": ["unit-04-past-simple"],
+  "items": [
+    { "id": "cond-01", "type": "sentence", "en": "If you heat ice, it melts.", "translations": { "ko": "얼음을 가열하면 녹아요." }, "form": "statement", "tags": ["conditional:0", "function:fact"] },
+    { "id": "cond-02", "type": "sentence", "en": "If it rains, I will stay home.", "translations": { "ko": "비가 오면 집에 있을게요." }, "form": "statement", "tags": ["conditional:1", "function:possible"] },
+    { "id": "cond-03", "type": "sentence", "en": "If I had time, I would travel.", "translations": { "ko": "시간 있으면 여행할 텐데." }, "form": "statement", "tags": ["conditional:2", "function:hypothetical"] },
+    { "id": "cond-04", "type": "sentence", "en": "What would you do if you won?", "translations": { "ko": "당기면 뭐 할 건가요?" }, "form": "question", "tags": ["conditional:2", "form:question"] },
+    { "id": "cond-05", "type": "sentence", "en": "If you don't hurry, you'll be late.", "translations": { "ko": "서두르지 않으면 늦을 거예요." }, "form": "statement", "tags": ["conditional:1"] }
+  ]
+}

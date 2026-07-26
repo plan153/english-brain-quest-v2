@@ -1,20 +1,29 @@
 {
-  "version": 1,
-  "totalCollocations": 50,
+  "version": 2,
+  "totalCollocations": 100,
   "byVerb": {
-    "have": 8,
-    "get": 7,
-    "take": 7,
-    "make": 7,
-    "give": 6,
+    "have": 12,
+    "get": 11,
+    "take": 11,
+    "make": 11,
+    "give": 9,
     "go": 3,
     "come": 2,
     "put": 2,
-    "keep": 2,
+    "keep": 5,
     "find": 2,
     "feel": 1,
-    "do": 2,
-    "need": 1
+    "do": 5,
+    "need": 1,
+    "pay": 3,
+    "catch": 3,
+    "break": 3,
+    "save": 3,
+    "lose": 3,
+    "set": 3,
+    "raise": 3,
+    "run": 2,
+    "meet": 2
   },
   "byPattern": [
     "have + noun",
@@ -29,6 +38,15 @@
     "find + noun",
     "feel + adj",
     "do + noun",
-    "need + noun"
+    "need + noun",
+    "pay + noun",
+    "catch + noun",
+    "break + noun",
+    "save + noun",
+    "lose + noun",
+    "set + noun",
+    "raise + noun",
+    "run + noun",
+    "meet + noun"
   ]
 }

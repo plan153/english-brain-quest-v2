@@ -1,0 +1,17 @@
+{
+  "id": "unit-09-passive-voice",
+  "series": "grammar-in-use",
+  "unit": 9,
+  "title": "Passive Voice",
+  "concept": "수동태 — be + past participle (주어=행위 대상)",
+  "stage": 9,
+  "skillAxes": ["pattern", "form"],
+  "prerequisites": ["unit-04-past-simple"],
+  "items": [
+    { "id": "pas-01", "type": "sentence", "en": "English is spoken here.", "translations": { "ko": "여기서 영어를 써요." }, "form": "statement", "tags": ["pattern:passive", "tense:present-simple"] },
+    { "id": "pas-02", "type": "sentence", "en": "The book was written in 1990.", "translations": { "ko": "이 책은 1990년에 쓰였어요." }, "form": "statement", "tags": ["pattern:passive", "tense:past-simple"] },
+    { "id": "pas-03", "type": "sentence", "en": "The report will be finished tomorrow.", "translations": { "ko": "보고서는 내일 완성될 거예요." }, "form": "statement", "tags": ["pattern:passive", "tense:future"] },
+    { "id": "pas-04", "type": "sentence", "en": "This problem can be solved.", "translations": { "ko": "이 문제는 해결될 수 있어요." }, "form": "statement", "tags": ["pattern:passive", "modal:can"] },
+    { "id": "pas-05", "type": "sentence", "en": "Was the window broken?", "translations": { "ko": "창문이 깨졌나요?" }, "form": "question", "tags": ["pattern:passive", "form:question"] }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "unit-10-relative-clauses",
+  "series": "grammar-in-use",
+  "unit": 10,
+  "title": "Relative Clauses",
+  "concept": "관계절 — who/which/that/where로 명사 수식",
+  "stage": 9,
+  "skillAxes": ["pattern", "form"],
+  "prerequisites": ["unit-01-present-simple"],
+  "items": [
+    { "id": "rel-01", "type": "sentence", "en": "The man who called me is my uncle.", "translations": { "ko": "나한테 전화한 사람이 삼촌이에요." }, "form": "statement", "tags": ["pattern:relative", "who"] },
+    { "id": "rel-02", "type": "sentence", "en": "This is the book that I bought.", "translations": { "ko": "이게 내가 산 책이에요." }, "form": "statement", "tags": ["pattern:relative", "that"] },
+    { "id": "rel-03", "type": "sentence", "en": "The cafe where we met is closed.", "translations": { "ko": "우리가 만난 카페가 문을 닫았어요." }, "form": "statement", "tags": ["pattern:relative", "where"] },
+    { "id": "rel-04", "type": "sentence", "en": "Do you know anyone who can help?", "translations": { "ko": "도와줄 수 있는 사람 알아요?" }, "form": "question", "tags": ["pattern:relative", "form:question"] },
+    { "id": "rel-05", "type": "sentence", "en": "I like movies which make me laugh.", "translations": { "ko": "나를 웃게 만드는 영화를 좋아해요." }, "form": "statement", "tags": ["pattern:relative", "which"] }
+  ]
+}

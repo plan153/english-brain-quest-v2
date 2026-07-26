@@ -33,10 +33,23 @@ export interface CurriculumPack {
   };
 }
 
-export interface GrammarUnitPack extends CurriculumPack {
+export interface GrammarUnitItem {
+  id: string;
+  type: 'sentence' | 'pattern';
+  en?: string; // type='sentence'일 때
+  translations?: { ko: string };
+  form?: 'statement' | 'question' | 'negative' | 'imperative';
+  pattern?: string; // type='pattern'일 때
+  example?: string; // type='pattern'일 때
+  tags?: string[];
+}
+
+export interface GrammarUnitPack extends Omit<CurriculumPack, 'items' | 'series'> {
   series: 'grammar-in-use';
   unit: number; // 단원 번호
   concept?: string; // 핵심 개념
+  /** 실제 학습 아이템 (sentence + pattern 혼합). CurriculumPack.items: string[]를 오버라이드. */
+  items: GrammarUnitItem[];
   exercises?: { type: string; from?: string; to?: string }[];
 }
 

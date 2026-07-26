@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local debug dumps
+ebq-dom.html
+ebq-stderr.log
+probe-*.json

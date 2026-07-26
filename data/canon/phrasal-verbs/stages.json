@@ -1,99 +1,1179 @@
 {
-  "version": 3,
+  "version": 4,
   "sourceDoc": "docs/PHRASAL_VERBS.md",
   "unlockRule": "unlock_pack_count",
   "unlockPackCountRequired": 1,
   "groupClearThreshold": 1,
-  "targetCount": 50,
+  "targetCount": 100,
   "stages": [
-    { "id": "stage_get_place", "title": "1. get + 장소", "groupIds": ["pv_get_place"] },
-    { "id": "stage_come_go", "title": "2. come / go 입자", "groupIds": ["pv_come_particles", "pv_go_on"] },
-    { "id": "stage_put", "title": "3. put on·off", "groupIds": ["pv_put_on_off"] },
-    { "id": "stage_keep_find_make", "title": "4. keep / find / make sure", "groupIds": ["pv_keep_in", "pv_find_out", "pv_make_sure"] },
-    { "id": "stage_take", "title": "5. take off·over·up", "groupIds": ["pv_take_off", "pv_take_over", "pv_take_up"] },
-    { "id": "stage_give", "title": "6. give up·in·back", "groupIds": ["pv_give_up", "pv_give_in", "pv_give_back"] },
-    { "id": "stage_turn", "title": "7. turn on·off·out", "groupIds": ["pv_turn_on", "pv_turn_off", "pv_turn_out"] },
-    { "id": "stage_look", "title": "8. look at·for·after", "groupIds": ["pv_look_at", "pv_look_for", "pv_look_after"] },
-    { "id": "stage_break", "title": "9. break down·up·out", "groupIds": ["pv_break_down", "pv_break_up", "pv_break_out"] },
-    { "id": "stage_call", "title": "10. call back·off·on", "groupIds": ["pv_call_back", "pv_call_off", "pv_call_on"] }
+    {
+      "id": "stage_get_place",
+      "title": "1. get + 장소",
+      "groupIds": [
+        "pv_get_place"
+      ]
+    },
+    {
+      "id": "stage_come_go",
+      "title": "2. come / go 입자",
+      "groupIds": [
+        "pv_come_particles",
+        "pv_go_on"
+      ]
+    },
+    {
+      "id": "stage_put",
+      "title": "3. put on·off",
+      "groupIds": [
+        "pv_put_on_off"
+      ]
+    },
+    {
+      "id": "stage_keep_find_make",
+      "title": "4. keep / find / make sure",
+      "groupIds": [
+        "pv_keep_in",
+        "pv_find_out",
+        "pv_make_sure"
+      ]
+    },
+    {
+      "id": "stage_take",
+      "title": "5. take off·over·up",
+      "groupIds": [
+        "pv_take_off",
+        "pv_take_over",
+        "pv_take_up"
+      ]
+    },
+    {
+      "id": "stage_give",
+      "title": "6. give up·in·back",
+      "groupIds": [
+        "pv_give_up",
+        "pv_give_in",
+        "pv_give_back"
+      ]
+    },
+    {
+      "id": "stage_turn",
+      "title": "7. turn on·off·out",
+      "groupIds": [
+        "pv_turn_on",
+        "pv_turn_off",
+        "pv_turn_out"
+      ]
+    },
+    {
+      "id": "stage_look",
+      "title": "8. look at·for·after",
+      "groupIds": [
+        "pv_look_at",
+        "pv_look_for",
+        "pv_look_after"
+      ]
+    },
+    {
+      "id": "stage_break",
+      "title": "9. break down·up·out",
+      "groupIds": [
+        "pv_break_down",
+        "pv_break_up",
+        "pv_break_out"
+      ]
+    },
+    {
+      "id": "stage_call",
+      "title": "10. call back·off·on",
+      "groupIds": [
+        "pv_call_back",
+        "pv_call_off",
+        "pv_call_on"
+      ]
+    },
+    {
+      "id": "stage_bring_carry",
+      "title": "11. bring / carry",
+      "groupIds": [
+        "pv_bring",
+        "pv_carry"
+      ]
+    },
+    {
+      "id": "stage_check_figure",
+      "title": "12. check / figure",
+      "groupIds": [
+        "pv_check",
+        "pv_figure"
+      ]
+    },
+    {
+      "id": "stage_fill_hang",
+      "title": "13. fill / hang",
+      "groupIds": [
+        "pv_fill",
+        "pv_hang"
+      ]
+    },
+    {
+      "id": "stage_pass_point",
+      "title": "14. pass / point",
+      "groupIds": [
+        "pv_pass",
+        "pv_point"
+      ]
+    },
+    {
+      "id": "stage_stand_try",
+      "title": "15. stand / try / wake / more",
+      "groupIds": [
+        "pv_stand",
+        "pv_try",
+        "pv_wake",
+        "pv_extra"
+      ]
+    }
   ],
   "groups": [
-    { "id": "pv_get_place", "title": "get to/get in/get out", "items": ["pv_get_to", "pv_get_in", "pv_get_out", "pv_get_back", "pv_get_home"] },
-    { "id": "pv_come_particles", "title": "come in/out/back/over", "items": ["pv_come_in", "pv_come_out", "pv_come_back", "pv_come_over"] },
-    { "id": "pv_go_on", "title": "go on/off/out", "items": ["pv_go_on", "pv_go_off", "pv_go_out"] },
-    { "id": "pv_put_on_off", "title": "put on/off/up with", "items": ["pv_put_on", "pv_put_off", "pv_put_up_with"] },
-    { "id": "pv_keep_in", "title": "keep on/up/in", "items": ["pv_keep_on", "pv_keep_up", "pv_keep_in"] },
-    { "id": "pv_find_out", "title": "find out/about", "items": ["pv_find_out", "pv_find_about"] },
-    { "id": "pv_make_sure", "title": "make sure/up", "items": ["pv_make_sure", "pv_make_up"] },
-    { "id": "pv_take_off", "title": "take off", "items": ["pv_take_off"] },
-    { "id": "pv_take_over", "title": "take over", "items": ["pv_take_over"] },
-    { "id": "pv_take_up", "title": "take up", "items": ["pv_take_up"] },
-    { "id": "pv_give_up", "title": "give up", "items": ["pv_give_up"] },
-    { "id": "pv_give_in", "title": "give in", "items": ["pv_give_in"] },
-    { "id": "pv_give_back", "title": "give back", "items": ["pv_give_back"] },
-    { "id": "pv_turn_on", "title": "turn on", "items": ["pv_turn_on"] },
-    { "id": "pv_turn_off", "title": "turn off", "items": ["pv_turn_off"] },
-    { "id": "pv_turn_out", "title": "turn out", "items": ["pv_turn_out"] },
-    { "id": "pv_look_at", "title": "look at", "items": ["pv_look_at"] },
-    { "id": "pv_look_for", "title": "look for", "items": ["pv_look_for"] },
-    { "id": "pv_look_after", "title": "look after", "items": ["pv_look_after"] },
-    { "id": "pv_break_down", "title": "break down", "items": ["pv_break_down"] },
-    { "id": "pv_break_up", "title": "break up", "items": ["pv_break_up"] },
-    { "id": "pv_break_out", "title": "break out", "items": ["pv_break_out"] },
-    { "id": "pv_call_back", "title": "call back", "items": ["pv_call_back"] },
-    { "id": "pv_call_off", "title": "call off", "items": ["pv_call_off"] },
-    { "id": "pv_call_on", "title": "call on", "items": ["pv_call_on"] }
+    {
+      "id": "pv_get_place",
+      "title": "get to/get in/get out",
+      "items": [
+        "pv_get_to",
+        "pv_get_in",
+        "pv_get_out",
+        "pv_get_back",
+        "pv_get_home"
+      ]
+    },
+    {
+      "id": "pv_come_particles",
+      "title": "come in/out/back/over",
+      "items": [
+        "pv_come_in",
+        "pv_come_out",
+        "pv_come_back",
+        "pv_come_over"
+      ]
+    },
+    {
+      "id": "pv_go_on",
+      "title": "go on/off/out",
+      "items": [
+        "pv_go_on",
+        "pv_go_off",
+        "pv_go_out"
+      ]
+    },
+    {
+      "id": "pv_put_on_off",
+      "title": "put on/off/up with",
+      "items": [
+        "pv_put_on",
+        "pv_put_off",
+        "pv_put_up_with"
+      ]
+    },
+    {
+      "id": "pv_keep_in",
+      "title": "keep on/up/in",
+      "items": [
+        "pv_keep_on",
+        "pv_keep_up",
+        "pv_keep_in"
+      ]
+    },
+    {
+      "id": "pv_find_out",
+      "title": "find out/about",
+      "items": [
+        "pv_find_out",
+        "pv_find_about"
+      ]
+    },
+    {
+      "id": "pv_make_sure",
+      "title": "make sure/up",
+      "items": [
+        "pv_make_sure",
+        "pv_make_up"
+      ]
+    },
+    {
+      "id": "pv_take_off",
+      "title": "take off",
+      "items": [
+        "pv_take_off"
+      ]
+    },
+    {
+      "id": "pv_take_over",
+      "title": "take over",
+      "items": [
+        "pv_take_over"
+      ]
+    },
+    {
+      "id": "pv_take_up",
+      "title": "take up",
+      "items": [
+        "pv_take_up"
+      ]
+    },
+    {
+      "id": "pv_give_up",
+      "title": "give up",
+      "items": [
+        "pv_give_up"
+      ]
+    },
+    {
+      "id": "pv_give_in",
+      "title": "give in",
+      "items": [
+        "pv_give_in"
+      ]
+    },
+    {
+      "id": "pv_give_back",
+      "title": "give back",
+      "items": [
+        "pv_give_back"
+      ]
+    },
+    {
+      "id": "pv_turn_on",
+      "title": "turn on",
+      "items": [
+        "pv_turn_on"
+      ]
+    },
+    {
+      "id": "pv_turn_off",
+      "title": "turn off",
+      "items": [
+        "pv_turn_off"
+      ]
+    },
+    {
+      "id": "pv_turn_out",
+      "title": "turn out",
+      "items": [
+        "pv_turn_out"
+      ]
+    },
+    {
+      "id": "pv_look_at",
+      "title": "look at",
+      "items": [
+        "pv_look_at"
+      ]
+    },
+    {
+      "id": "pv_look_for",
+      "title": "look for",
+      "items": [
+        "pv_look_for"
+      ]
+    },
+    {
+      "id": "pv_look_after",
+      "title": "look after",
+      "items": [
+        "pv_look_after"
+      ]
+    },
+    {
+      "id": "pv_break_down",
+      "title": "break down",
+      "items": [
+        "pv_break_down"
+      ]
+    },
+    {
+      "id": "pv_break_up",
+      "title": "break up",
+      "items": [
+        "pv_break_up"
+      ]
+    },
+    {
+      "id": "pv_break_out",
+      "title": "break out",
+      "items": [
+        "pv_break_out"
+      ]
+    },
+    {
+      "id": "pv_call_back",
+      "title": "call back",
+      "items": [
+        "pv_call_back"
+      ]
+    },
+    {
+      "id": "pv_call_off",
+      "title": "call off",
+      "items": [
+        "pv_call_off"
+      ]
+    },
+    {
+      "id": "pv_call_on",
+      "title": "call on",
+      "items": [
+        "pv_call_on"
+      ]
+    },
+    {
+      "id": "pv_bring",
+      "title": "bring up/back/about",
+      "items": [
+        "pv_bring_up",
+        "pv_bring_back",
+        "pv_bring_about",
+        "pv_bring_in",
+        "pv_bring_out"
+      ]
+    },
+    {
+      "id": "pv_carry",
+      "title": "carry on/out",
+      "items": [
+        "pv_carry_on",
+        "pv_carry_out"
+      ]
+    },
+    {
+      "id": "pv_check",
+      "title": "check in/out/up",
+      "items": [
+        "pv_check_in",
+        "pv_check_out",
+        "pv_check_up"
+      ]
+    },
+    {
+      "id": "pv_figure",
+      "title": "figure out",
+      "items": [
+        "pv_figure_out"
+      ]
+    },
+    {
+      "id": "pv_fill",
+      "title": "fill in/out/up",
+      "items": [
+        "pv_fill_in",
+        "pv_fill_out",
+        "pv_fill_up"
+      ]
+    },
+    {
+      "id": "pv_hang",
+      "title": "hang on/out/up",
+      "items": [
+        "pv_hang_on",
+        "pv_hang_out",
+        "pv_hang_up"
+      ]
+    },
+    {
+      "id": "pv_pass",
+      "title": "pass by/out/up",
+      "items": [
+        "pv_pass_by",
+        "pv_pass_out",
+        "pv_pass_up"
+      ]
+    },
+    {
+      "id": "pv_point",
+      "title": "point out",
+      "items": [
+        "pv_point_out"
+      ]
+    },
+    {
+      "id": "pv_stand",
+      "title": "stand up/for/out",
+      "items": [
+        "pv_stand_up",
+        "pv_stand_for",
+        "pv_stand_out"
+      ]
+    },
+    {
+      "id": "pv_try",
+      "title": "try on/out",
+      "items": [
+        "pv_try_on",
+        "pv_try_out"
+      ]
+    },
+    {
+      "id": "pv_wake",
+      "title": "wake up",
+      "items": [
+        "pv_wake_up"
+      ]
+    },
+    {
+      "id": "pv_extra",
+      "title": "more common phrasals",
+      "items": [
+        "pv_pick_up",
+        "pv_pick_out",
+        "pv_hold_on",
+        "pv_hold_back",
+        "pv_set_up",
+        "pv_set_off",
+        "pv_run_into",
+        "pv_run_out",
+        "pv_work_out",
+        "pv_show_up",
+        "pv_blow_up",
+        "pv_blow_out",
+        "pv_cut_off",
+        "pv_cut_down",
+        "pv_drop_by",
+        "pv_drop_off",
+        "pv_fall_apart",
+        "pv_fall_behind",
+        "pv_get_along",
+        "pv_get_over",
+        "pv_get_through",
+        "pv_look_forward",
+        "pv_look_into",
+        "pv_put_away",
+        "pv_put_down",
+        "pv_take_after",
+        "pv_take_back",
+        "pv_turn_around",
+        "pv_turn_down",
+        "pv_turn_up",
+        "pv_come_across",
+        "pv_come_up",
+        "pv_go_through",
+        "pv_go_over",
+        "pv_put_together"
+      ]
+    }
   ],
   "items": [
-    { "id": "pv_get_to", "verb": "get", "particle": "to", "en": "I get to work.", "ko": "직장에 도착해요." },
-    { "id": "pv_get_in", "verb": "get", "particle": "in", "en": "Get in the car.", "ko": "차에 타요." },
-    { "id": "pv_get_out", "verb": "get", "particle": "out", "en": "Get out of here.", "ko": "여기서 나가요." },
-    { "id": "pv_get_back", "verb": "get", "particle": "back", "en": "I'll get back to you.", "ko": "다시 연락할게요." },
-    { "id": "pv_get_home", "verb": "get", "particle": "home", "en": "I get home late.", "ko": "늦게 집에 가요." },
-    { "id": "pv_come_in", "verb": "come", "particle": "in", "en": "Come in, please.", "ko": "들어오세요." },
-    { "id": "pv_come_out", "verb": "come", "particle": "out", "en": "Come out and play.", "ko": "나와서 놀아요." },
-    { "id": "pv_come_back", "verb": "come", "particle": "back", "en": "Come back soon.", "ko": "빨리 돌아와요." },
-    { "id": "pv_come_over", "verb": "come", "particle": "over", "en": "Come over tonight.", "ko": "오늘 밤에 놀러 와요." },
-    { "id": "pv_go_on", "verb": "go", "particle": "on", "en": "Go on, tell me.", "ko": "계속 말해요." },
-    { "id": "pv_go_off", "verb": "go", "particle": "off", "en": "The alarm went off.", "ko": "알람이 울렸어요." },
-    { "id": "pv_go_out", "verb": "go", "particle": "out", "en": "Let's go out tonight.", "ko": "오늘 밤 외출해요." },
-    { "id": "pv_put_on", "verb": "put", "particle": "on", "en": "Put on your coat.", "ko": "코트를 입어요." },
-    { "id": "pv_put_off", "verb": "put", "particle": "off", "en": "Don't put it off.", "ko": "미루지 마세요." },
-    { "id": "pv_put_up_with", "verb": "put", "particle": "up with", "en": "I can't put up with it.", "ko": "참을 수 없어요." },
-    { "id": "pv_keep_on", "verb": "keep", "particle": "on", "en": "Keep on trying.", "ko": "계속 시도해요." },
-    { "id": "pv_keep_up", "verb": "keep", "particle": "up", "en": "Keep up the good work.", "ko": "좋은 작업 계속해요." },
-    { "id": "pv_keep_in", "verb": "keep", "particle": "in", "en": "Keep it in mind.", "ko": "명심해요." },
-    { "id": "pv_find_out", "verb": "find", "particle": "out", "en": "I found out the truth.", "ko": "진실을 알게 됐어요." },
-    { "id": "pv_find_about", "verb": "find", "particle": "about", "en": "Find out about it.", "ko": "그것에 대해 알아봐요." },
-    { "id": "pv_make_sure", "verb": "make", "particle": "sure", "en": "Make sure it's right.", "ko": "맞는지 확인해요." },
-    { "id": "pv_make_up", "verb": "make", "particle": "up", "en": "We made up.", "ko": "우린 화해했어요." },
-    { "id": "pv_take_off", "verb": "take", "particle": "off", "en": "The plane took off.", "ko": "비행기가 이륙했어요." },
-    { "id": "pv_take_over", "verb": "take", "particle": "over", "en": "He took over the team.", "ko": "그가 팀을 인계받았어요." },
-    { "id": "pv_take_up", "verb": "take", "particle": "up", "en": "I took up tennis.", "ko": "테니스를 시작했어요." },
-    { "id": "pv_give_up", "verb": "give", "particle": "up", "en": "Don't give up.", "ko": "포기하지 마세요." },
-    { "id": "pv_give_in", "verb": "give", "particle": "in", "en": "He gave in to pressure.", "ko": "그는 압력에 굴복했어요." },
-    { "id": "pv_give_back", "verb": "give", "particle": "back", "en": "Give it back to me.", "ko": "그것을 돌려줘요." },
-    { "id": "pv_turn_on", "verb": "turn", "particle": "on", "en": "Turn on the light.", "ko": "불을 켜요." },
-    { "id": "pv_turn_off", "verb": "turn", "particle": "off", "en": "Turn off the TV.", "ko": "TV를 꺼요." },
-    { "id": "pv_turn_out", "verb": "turn", "particle": "out", "en": "It turned out fine.", "ko": "잘 됐어요." },
-    { "id": "pv_look_at", "verb": "look", "particle": "at", "en": "Look at me.", "ko": "나를 봐요." },
-    { "id": "pv_look_for", "verb": "look", "particle": "for", "en": "I'm looking for it.", "ko": "그것을 찾고 있어요." },
-    { "id": "pv_look_after", "verb": "look", "particle": "after", "en": "Look after the kids.", "ko": "아이들을 돌봐요." },
-    { "id": "pv_break_down", "verb": "break", "particle": "down", "en": "The car broke down.", "ko": "차가 고장 났어요." },
-    { "id": "pv_break_up", "verb": "break", "particle": "up", "en": "They broke up.", "ko": "그들은 헤어졌어요." },
-    { "id": "pv_break_out", "verb": "break", "particle": "out", "en": "Fire broke out.", "ko": "불이 났어요." },
-    { "id": "pv_call_back", "verb": "call", "particle": "back", "en": "I'll call back later.", "ko": "나중에 다시 전화할게요." },
-    { "id": "pv_call_off", "verb": "call", "particle": "off", "en": "They called off the meeting.", "ko": "회의를 취소했어요." },
-    { "id": "pv_call_on", "verb": "call", "particle": "on", "en": "I'll call on you.", "ko": "찾아갈게요." },
-    { "id": "pv_pick_up", "verb": "pick", "particle": "up", "en": "Pick up the phone.", "ko": "전화를 받아요." },
-    { "id": "pv_pick_out", "verb": "pick", "particle": "out", "en": "Pick out a gift.", "ko": "선물을 골라요." },
-    { "id": "pv_hold_on", "verb": "hold", "particle": "on", "en": "Hold on a second.", "ko": "잠깐만요." },
-    { "id": "pv_hold_back", "verb": "hold", "particle": "back", "en": "Don't hold back.", "ko": "참지 마세요." },
-    { "id": "pv_set_up", "verb": "set", "particle": "up", "en": "I set up a meeting.", "ko": "회의를 준비했어요." },
-    { "id": "pv_set_off", "verb": "set", "particle": "off", "en": "They set off early.", "ko": "일찍 출발했어요." },
-    { "id": "pv_run_into", "verb": "run", "particle": "into", "en": "I ran into her.", "ko": "그녀를 우연히 만났어요." },
-    { "id": "pv_run_out", "verb": "run", "particle": "out", "en": "We ran out of milk.", "ko": "우유가 떨어졌어요." },
-    { "id": "pv_work_out", "verb": "work", "particle": "out", "en": "It worked out fine.", "ko": "잘 해결됐어요." },
-    { "id": "pv_show_up", "verb": "show", "particle": "up", "en": "He showed up late.", "ko": "그가 늦게 나타났어요." }
+    {
+      "id": "pv_get_to",
+      "verb": "get",
+      "particle": "to",
+      "en": "I get to work.",
+      "ko": "직장에 도착해요."
+    },
+    {
+      "id": "pv_get_in",
+      "verb": "get",
+      "particle": "in",
+      "en": "Get in the car.",
+      "ko": "차에 타요."
+    },
+    {
+      "id": "pv_get_out",
+      "verb": "get",
+      "particle": "out",
+      "en": "Get out of here.",
+      "ko": "여기서 나가요."
+    },
+    {
+      "id": "pv_get_back",
+      "verb": "get",
+      "particle": "back",
+      "en": "I'll get back to you.",
+      "ko": "다시 연락할게요."
+    },
+    {
+      "id": "pv_get_home",
+      "verb": "get",
+      "particle": "home",
+      "en": "I get home late.",
+      "ko": "늦게 집에 가요."
+    },
+    {
+      "id": "pv_come_in",
+      "verb": "come",
+      "particle": "in",
+      "en": "Come in, please.",
+      "ko": "들어오세요."
+    },
+    {
+      "id": "pv_come_out",
+      "verb": "come",
+      "particle": "out",
+      "en": "Come out and play.",
+      "ko": "나와서 놀아요."
+    },
+    {
+      "id": "pv_come_back",
+      "verb": "come",
+      "particle": "back",
+      "en": "Come back soon.",
+      "ko": "빨리 돌아와요."
+    },
+    {
+      "id": "pv_come_over",
+      "verb": "come",
+      "particle": "over",
+      "en": "Come over tonight.",
+      "ko": "오늘 밤에 놀러 와요."
+    },
+    {
+      "id": "pv_go_on",
+      "verb": "go",
+      "particle": "on",
+      "en": "Go on, tell me.",
+      "ko": "계속 말해요."
+    },
+    {
+      "id": "pv_go_off",
+      "verb": "go",
+      "particle": "off",
+      "en": "The alarm went off.",
+      "ko": "알람이 울렸어요."
+    },
+    {
+      "id": "pv_go_out",
+      "verb": "go",
+      "particle": "out",
+      "en": "Let's go out tonight.",
+      "ko": "오늘 밤 외출해요."
+    },
+    {
+      "id": "pv_put_on",
+      "verb": "put",
+      "particle": "on",
+      "en": "Put on your coat.",
+      "ko": "코트를 입어요."
+    },
+    {
+      "id": "pv_put_off",
+      "verb": "put",
+      "particle": "off",
+      "en": "Don't put it off.",
+      "ko": "미루지 마세요."
+    },
+    {
+      "id": "pv_put_up_with",
+      "verb": "put",
+      "particle": "up with",
+      "en": "I can't put up with it.",
+      "ko": "참을 수 없어요."
+    },
+    {
+      "id": "pv_keep_on",
+      "verb": "keep",
+      "particle": "on",
+      "en": "Keep on trying.",
+      "ko": "계속 시도해요."
+    },
+    {
+      "id": "pv_keep_up",
+      "verb": "keep",
+      "particle": "up",
+      "en": "Keep up the good work.",
+      "ko": "좋은 작업 계속해요."
+    },
+    {
+      "id": "pv_keep_in",
+      "verb": "keep",
+      "particle": "in",
+      "en": "Keep it in mind.",
+      "ko": "명심해요."
+    },
+    {
+      "id": "pv_find_out",
+      "verb": "find",
+      "particle": "out",
+      "en": "I found out the truth.",
+      "ko": "진실을 알게 됐어요."
+    },
+    {
+      "id": "pv_find_about",
+      "verb": "find",
+      "particle": "about",
+      "en": "Find out about it.",
+      "ko": "그것에 대해 알아봐요."
+    },
+    {
+      "id": "pv_make_sure",
+      "verb": "make",
+      "particle": "sure",
+      "en": "Make sure it's right.",
+      "ko": "맞는지 확인해요."
+    },
+    {
+      "id": "pv_make_up",
+      "verb": "make",
+      "particle": "up",
+      "en": "We made up.",
+      "ko": "우린 화해했어요."
+    },
+    {
+      "id": "pv_take_off",
+      "verb": "take",
+      "particle": "off",
+      "en": "The plane took off.",
+      "ko": "비행기가 이륙했어요."
+    },
+    {
+      "id": "pv_take_over",
+      "verb": "take",
+      "particle": "over",
+      "en": "He took over the team.",
+      "ko": "그가 팀을 인계받았어요."
+    },
+    {
+      "id": "pv_take_up",
+      "verb": "take",
+      "particle": "up",
+      "en": "I took up tennis.",
+      "ko": "테니스를 시작했어요."
+    },
+    {
+      "id": "pv_give_up",
+      "verb": "give",
+      "particle": "up",
+      "en": "Don't give up.",
+      "ko": "포기하지 마세요."
+    },
+    {
+      "id": "pv_give_in",
+      "verb": "give",
+      "particle": "in",
+      "en": "He gave in to pressure.",
+      "ko": "그는 압력에 굴복했어요."
+    },
+    {
+      "id": "pv_give_back",
+      "verb": "give",
+      "particle": "back",
+      "en": "Give it back to me.",
+      "ko": "그것을 돌려줘요."
+    },
+    {
+      "id": "pv_turn_on",
+      "verb": "turn",
+      "particle": "on",
+      "en": "Turn on the light.",
+      "ko": "불을 켜요."
+    },
+    {
+      "id": "pv_turn_off",
+      "verb": "turn",
+      "particle": "off",
+      "en": "Turn off the TV.",
+      "ko": "TV를 꺼요."
+    },
+    {
+      "id": "pv_turn_out",
+      "verb": "turn",
+      "particle": "out",
+      "en": "It turned out fine.",
+      "ko": "잘 됐어요."
+    },
+    {
+      "id": "pv_look_at",
+      "verb": "look",
+      "particle": "at",
+      "en": "Look at me.",
+      "ko": "나를 봐요."
+    },
+    {
+      "id": "pv_look_for",
+      "verb": "look",
+      "particle": "for",
+      "en": "I'm looking for it.",
+      "ko": "그것을 찾고 있어요."
+    },
+    {
+      "id": "pv_look_after",
+      "verb": "look",
+      "particle": "after",
+      "en": "Look after the kids.",
+      "ko": "아이들을 돌봐요."
+    },
+    {
+      "id": "pv_break_down",
+      "verb": "break",
+      "particle": "down",
+      "en": "The car broke down.",
+      "ko": "차가 고장 났어요."
+    },
+    {
+      "id": "pv_break_up",
+      "verb": "break",
+      "particle": "up",
+      "en": "They broke up.",
+      "ko": "그들은 헤어졌어요."
+    },
+    {
+      "id": "pv_break_out",
+      "verb": "break",
+      "particle": "out",
+      "en": "Fire broke out.",
+      "ko": "불이 났어요."
+    },
+    {
+      "id": "pv_call_back",
+      "verb": "call",
+      "particle": "back",
+      "en": "I'll call back later.",
+      "ko": "나중에 다시 전화할게요."
+    },
+    {
+      "id": "pv_call_off",
+      "verb": "call",
+      "particle": "off",
+      "en": "They called off the meeting.",
+      "ko": "회의를 취소했어요."
+    },
+    {
+      "id": "pv_call_on",
+      "verb": "call",
+      "particle": "on",
+      "en": "I'll call on you.",
+      "ko": "찾아갈게요."
+    },
+    {
+      "id": "pv_pick_up",
+      "verb": "pick",
+      "particle": "up",
+      "en": "Pick up the phone.",
+      "ko": "전화를 받아요."
+    },
+    {
+      "id": "pv_pick_out",
+      "verb": "pick",
+      "particle": "out",
+      "en": "Pick out a gift.",
+      "ko": "선물을 골라요."
+    },
+    {
+      "id": "pv_hold_on",
+      "verb": "hold",
+      "particle": "on",
+      "en": "Hold on a second.",
+      "ko": "잠깐만요."
+    },
+    {
+      "id": "pv_hold_back",
+      "verb": "hold",
+      "particle": "back",
+      "en": "Don't hold back.",
+      "ko": "참지 마세요."
+    },
+    {
+      "id": "pv_set_up",
+      "verb": "set",
+      "particle": "up",
+      "en": "I set up a meeting.",
+      "ko": "회의를 준비했어요."
+    },
+    {
+      "id": "pv_set_off",
+      "verb": "set",
+      "particle": "off",
+      "en": "They set off early.",
+      "ko": "일찍 출발했어요."
+    },
+    {
+      "id": "pv_run_into",
+      "verb": "run",
+      "particle": "into",
+      "en": "I ran into her.",
+      "ko": "그녀를 우연히 만났어요."
+    },
+    {
+      "id": "pv_run_out",
+      "verb": "run",
+      "particle": "out",
+      "en": "We ran out of milk.",
+      "ko": "우유가 떨어졌어요."
+    },
+    {
+      "id": "pv_work_out",
+      "verb": "work",
+      "particle": "out",
+      "en": "It worked out fine.",
+      "ko": "잘 해결됐어요."
+    },
+    {
+      "id": "pv_show_up",
+      "verb": "show",
+      "particle": "up",
+      "en": "He showed up late.",
+      "ko": "그가 늦게 나타났어요."
+    },
+    {
+      "id": "pv_bring_up",
+      "verb": "bring",
+      "particle": "up",
+      "en": "Don't bring that up.",
+      "ko": "그 이야기 꺼내지 마세요."
+    },
+    {
+      "id": "pv_bring_back",
+      "verb": "bring",
+      "particle": "back",
+      "en": "Bring it back tomorrow.",
+      "ko": "내일 가져와요."
+    },
+    {
+      "id": "pv_bring_about",
+      "verb": "bring",
+      "particle": "about",
+      "en": "It brought about change.",
+      "ko": "변화를 가져왔어요."
+    },
+    {
+      "id": "pv_bring_in",
+      "verb": "bring",
+      "particle": "in",
+      "en": "Bring in the packages.",
+      "ko": "택배 들여와요."
+    },
+    {
+      "id": "pv_bring_out",
+      "verb": "bring",
+      "particle": "out",
+      "en": "This brings out the best.",
+      "ko": "이게 장점을 드러내요."
+    },
+    {
+      "id": "pv_carry_on",
+      "verb": "carry",
+      "particle": "on",
+      "en": "Carry on with your work.",
+      "ko": "하던 일 계속해요."
+    },
+    {
+      "id": "pv_carry_out",
+      "verb": "carry",
+      "particle": "out",
+      "en": "Carry out the plan.",
+      "ko": "계획을 실행해요."
+    },
+    {
+      "id": "pv_check_in",
+      "verb": "check",
+      "particle": "in",
+      "en": "I checked in at noon.",
+      "ko": "정오에 체크인했어요."
+    },
+    {
+      "id": "pv_check_out",
+      "verb": "check",
+      "particle": "out",
+      "en": "Check out this place.",
+      "ko": "여기 한번 봐요."
+    },
+    {
+      "id": "pv_check_up",
+      "verb": "check",
+      "particle": "up",
+      "en": "I need a check-up.",
+      "ko": "건강검진이 필요해요."
+    },
+    {
+      "id": "pv_figure_out",
+      "verb": "figure",
+      "particle": "out",
+      "en": "I figured it out.",
+      "ko": "알아냈어요."
+    },
+    {
+      "id": "pv_fill_in",
+      "verb": "fill",
+      "particle": "in",
+      "en": "Fill in the form.",
+      "ko": "양식을 채워요."
+    },
+    {
+      "id": "pv_fill_out",
+      "verb": "fill",
+      "particle": "out",
+      "en": "Fill out this paper.",
+      "ko": "이 서류를 작성해요."
+    },
+    {
+      "id": "pv_fill_up",
+      "verb": "fill",
+      "particle": "up",
+      "en": "Fill up the tank.",
+      "ko": "기름을 가득 채워요."
+    },
+    {
+      "id": "pv_hang_on",
+      "verb": "hang",
+      "particle": "on",
+      "en": "Hang on a minute.",
+      "ko": "잠깐만요."
+    },
+    {
+      "id": "pv_hang_out",
+      "verb": "hang",
+      "particle": "out",
+      "en": "Let's hang out.",
+      "ko": "놀러 가요."
+    },
+    {
+      "id": "pv_hang_up",
+      "verb": "hang",
+      "particle": "up",
+      "en": "She hung up on me.",
+      "ko": "그녀가 전화를 끊었어요."
+    },
+    {
+      "id": "pv_pass_by",
+      "verb": "pass",
+      "particle": "by",
+      "en": "I passed by the store.",
+      "ko": "가게 앞을 지나갔어요."
+    },
+    {
+      "id": "pv_pass_out",
+      "verb": "pass",
+      "particle": "out",
+      "en": "He passed out.",
+      "ko": "그가 기절했어요."
+    },
+    {
+      "id": "pv_pass_up",
+      "verb": "pass",
+      "particle": "up",
+      "en": "Don't pass up this chance.",
+      "ko": "이 기회를 놓치지 마세요."
+    },
+    {
+      "id": "pv_point_out",
+      "verb": "point",
+      "particle": "out",
+      "en": "She pointed out the mistake.",
+      "ko": "그녀가 실수를 지적했어요."
+    },
+    {
+      "id": "pv_stand_up",
+      "verb": "stand",
+      "particle": "up",
+      "en": "Please stand up.",
+      "ko": "일어나 주세요."
+    },
+    {
+      "id": "pv_stand_for",
+      "verb": "stand",
+      "particle": "for",
+      "en": "What does it stand for?",
+      "ko": "그게 뭐의 약자예요?"
+    },
+    {
+      "id": "pv_stand_out",
+      "verb": "stand",
+      "particle": "out",
+      "en": "You really stand out.",
+      "ko": "당신이 정말 눈에 띄어요."
+    },
+    {
+      "id": "pv_try_on",
+      "verb": "try",
+      "particle": "on",
+      "en": "Try on this jacket.",
+      "ko": "이 재킷을 입어 보세요."
+    },
+    {
+      "id": "pv_try_out",
+      "verb": "try",
+      "particle": "out",
+      "en": "Try out the new app.",
+      "ko": "새 앱을 써 보세요."
+    },
+    {
+      "id": "pv_wake_up",
+      "verb": "wake",
+      "particle": "up",
+      "en": "I wake up early.",
+      "ko": "일찍 일어나요."
+    },
+    {
+      "id": "pv_blow_up",
+      "verb": "blow",
+      "particle": "up",
+      "en": "Don't blow up at me.",
+      "ko": "나한테 화내지 마세요."
+    },
+    {
+      "id": "pv_blow_out",
+      "verb": "blow",
+      "particle": "out",
+      "en": "Blow out the candles.",
+      "ko": "초를 끄세요."
+    },
+    {
+      "id": "pv_cut_off",
+      "verb": "cut",
+      "particle": "off",
+      "en": "They cut off the power.",
+      "ko": "전기를 끊었어요."
+    },
+    {
+      "id": "pv_cut_down",
+      "verb": "cut",
+      "particle": "down",
+      "en": "Cut down on sugar.",
+      "ko": "설탕을 줄이세요."
+    },
+    {
+      "id": "pv_drop_by",
+      "verb": "drop",
+      "particle": "by",
+      "en": "Drop by anytime.",
+      "ko": "언제든 들러요."
+    },
+    {
+      "id": "pv_drop_off",
+      "verb": "drop",
+      "particle": "off",
+      "en": "Drop me off here.",
+      "ko": "여기서 내려 주세요."
+    },
+    {
+      "id": "pv_fall_apart",
+      "verb": "fall",
+      "particle": "apart",
+      "en": "Everything fell apart.",
+      "ko": "모든 게 무너졌어요."
+    },
+    {
+      "id": "pv_fall_behind",
+      "verb": "fall",
+      "particle": "behind",
+      "en": "Don't fall behind.",
+      "ko": "뒤처지지 마세요."
+    },
+    {
+      "id": "pv_get_along",
+      "verb": "get",
+      "particle": "along",
+      "en": "We get along well.",
+      "ko": "우린 잘 지내요."
+    },
+    {
+      "id": "pv_get_over",
+      "verb": "get",
+      "particle": "over",
+      "en": "Get over it.",
+      "ko": "극복해요."
+    },
+    {
+      "id": "pv_get_through",
+      "verb": "get",
+      "particle": "through",
+      "en": "I got through the exam.",
+      "ko": "시험을 통과했어요."
+    },
+    {
+      "id": "pv_look_forward",
+      "verb": "look",
+      "particle": "forward to",
+      "en": "I look forward to it.",
+      "ko": "기대하고 있어요."
+    },
+    {
+      "id": "pv_look_into",
+      "verb": "look",
+      "particle": "into",
+      "en": "I'll look into it.",
+      "ko": "알아볼게요."
+    },
+    {
+      "id": "pv_put_away",
+      "verb": "put",
+      "particle": "away",
+      "en": "Put away your toys.",
+      "ko": "장난감을 치우세요."
+    },
+    {
+      "id": "pv_put_down",
+      "verb": "put",
+      "particle": "down",
+      "en": "Put the bag down.",
+      "ko": "가방을 내려놓아요."
+    },
+    {
+      "id": "pv_take_after",
+      "verb": "take",
+      "particle": "after",
+      "en": "She takes after her mom.",
+      "ko": "엄마를 닮았어요."
+    },
+    {
+      "id": "pv_take_back",
+      "verb": "take",
+      "particle": "back",
+      "en": "I take that back.",
+      "ko": "그 말 취소해요."
+    },
+    {
+      "id": "pv_turn_around",
+      "verb": "turn",
+      "particle": "around",
+      "en": "Turn around slowly.",
+      "ko": "천천히 돌아보세요."
+    },
+    {
+      "id": "pv_turn_down",
+      "verb": "turn",
+      "particle": "down",
+      "en": "She turned down the offer.",
+      "ko": "제안을 거절했어요."
+    },
+    {
+      "id": "pv_turn_up",
+      "verb": "turn",
+      "particle": "up",
+      "en": "He turned up late.",
+      "ko": "그가 늦게 나타났어요."
+    },
+    {
+      "id": "pv_come_across",
+      "verb": "come",
+      "particle": "across",
+      "en": "I came across an old photo.",
+      "ko": "오래된 사진을 우연히 봤어요."
+    },
+    {
+      "id": "pv_come_up",
+      "verb": "come",
+      "particle": "up with",
+      "en": "Come up with an idea.",
+      "ko": "아이디어를 내보세요."
+    },
+    {
+      "id": "pv_go_through",
+      "verb": "go",
+      "particle": "through",
+      "en": "I'm going through a hard time.",
+      "ko": "힘든 시기를 겪고 있어요."
+    },
+    {
+      "id": "pv_go_over",
+      "verb": "go",
+      "particle": "over",
+      "en": "Let's go over the plan.",
+      "ko": "계획을 다시 살펴봐요."
+    },
+    {
+      "id": "pv_put_together",
+      "verb": "put",
+      "particle": "together",
+      "en": "Put the pieces together.",
+      "ko": "조각들을 맞춰 보세요."
+    }
   ]
 }

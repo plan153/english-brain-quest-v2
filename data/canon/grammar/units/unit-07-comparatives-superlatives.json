@@ -1,0 +1,17 @@
+{
+  "id": "unit-07-comparatives-superlatives",
+  "series": "grammar-in-use",
+  "unit": 7,
+  "title": "Comparatives & Superlatives",
+  "concept": "비교급/최상급 — -er/-est, more/most, as...as",
+  "stage": 8,
+  "skillAxes": ["pattern"],
+  "prerequisites": ["unit-01-present-simple"],
+  "items": [
+    { "id": "cmp-01", "type": "sentence", "en": "This is bigger than that.", "translations": { "ko": "이게 저것보다 커요." }, "form": "statement", "tags": ["pattern:comparative"] },
+    { "id": "cmp-02", "type": "sentence", "en": "She is the tallest in the class.", "translations": { "ko": "그녀가 반에서 제일 커요." }, "form": "statement", "tags": ["pattern:superlative"] },
+    { "id": "cmp-03", "type": "sentence", "en": "He is more careful than me.", "translations": { "ko": "그는 나보다 더 조심스러워요." }, "form": "statement", "tags": ["pattern:comparative", "more"] },
+    { "id": "cmp-04", "type": "sentence", "en": "This is the most interesting book.", "translations": { "ko": "이게 제일 재미있는 책이에요." }, "form": "statement", "tags": ["pattern:superlative", "most"] },
+    { "id": "cmp-05", "type": "sentence", "en": "He is as tall as his brother.", "translations": { "ko": "그는 형만큼 커요." }, "form": "statement", "tags": ["pattern:as-as"] }
+  ]
+}

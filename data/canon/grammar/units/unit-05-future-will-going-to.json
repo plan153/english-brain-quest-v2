@@ -1,0 +1,17 @@
+{
+  "id": "unit-05-future-will-going-to",
+  "series": "grammar-in-use",
+  "unit": 5,
+  "title": "Future: will / be going to",
+  "concept": "미래 예정/예측 — will (즉석) vs going to (계획/징후)",
+  "stage": 7,
+  "skillAxes": ["tense", "nuance"],
+  "prerequisites": ["unit-01-present-simple"],
+  "items": [
+    { "id": "fut-01", "type": "sentence", "en": "I will call you later.", "translations": { "ko": "나중에 전화할게요." }, "form": "statement", "tags": ["tense:future", "will:instant-decision"] },
+    { "id": "fut-02", "type": "sentence", "en": "I'm going to visit my parents.", "translations": { "ko": "부모님 뵈러 가려고요." }, "form": "statement", "tags": ["tense:future", "going-to:plan"] },
+    { "id": "fut-03", "type": "sentence", "en": "It will rain tomorrow.", "translations": { "ko": "내일 비가 올 거예요." }, "form": "statement", "tags": ["tense:future", "will:prediction"] },
+    { "id": "fut-04", "type": "sentence", "en": "Look at those clouds. It's going to rain.", "translations": { "ko": "저 구름 좀 봐. 비가 오겠어요." }, "form": "statement", "tags": ["tense:future", "going-to:evidence"] },
+    { "id": "fut-05", "type": "sentence", "en": "Will you help me?", "translations": { "ko": "도와줄 수 있어요?" }, "form": "question", "tags": ["tense:future", "form:question", "function:request"] }
+  ]
+}

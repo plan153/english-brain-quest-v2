@@ -1,8 +1,8 @@
 {
-  "version": 1,
+  "version": 2,
   "series": "grammar-in-use",
   "description": "그래머인유즈 식 문법 단원 시리즈. 새 단원 추가 시 units/unit-{NN}-{slug}.json 파일만 추가하면 됨 (코드 변경 불필요).",
-  "unitCount": 2,
+  "unitCount": 10,
   "units": [
     {
       "id": "unit-01-present-simple",
@@ -21,6 +21,78 @@
       "file": "units/unit-02-present-continuous.json",
       "itemCount": 3,
       "difficulty": "beginner"
+    },
+    {
+      "id": "unit-03-present-perfect",
+      "unit": 3,
+      "title": "Present Perfect",
+      "concept": "과거-현재 연결: 경험, 결과, 계속",
+      "file": "units/unit-03-present-perfect.json",
+      "itemCount": 5,
+      "difficulty": "beginner"
+    },
+    {
+      "id": "unit-04-past-simple",
+      "unit": 4,
+      "title": "Past Simple",
+      "concept": "과거의 완료된 사실/행동",
+      "file": "units/unit-04-past-simple.json",
+      "itemCount": 5,
+      "difficulty": "beginner"
+    },
+    {
+      "id": "unit-05-future-will-going-to",
+      "unit": 5,
+      "title": "Future: will / be going to",
+      "concept": "미래 예정/예측 — will (즉석) vs going to (계획/징후)",
+      "file": "units/unit-05-future-will-going-to.json",
+      "itemCount": 5,
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "unit-06-modals-can-must-should",
+      "unit": 6,
+      "title": "Modals: can / must / should",
+      "concept": "조동사 — 능력/의무/충고/가능/허가",
+      "file": "units/unit-06-modals-can-must-should.json",
+      "itemCount": 5,
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "unit-07-comparatives-superlatives",
+      "unit": 7,
+      "title": "Comparatives & Superlatives",
+      "concept": "비교급/최상급",
+      "file": "units/unit-07-comparatives-superlatives.json",
+      "itemCount": 5,
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "unit-08-conditionals-if",
+      "unit": 8,
+      "title": "Conditionals (if)",
+      "concept": "조건문 — 0/1/2형",
+      "file": "units/unit-08-conditionals-if.json",
+      "itemCount": 5,
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "unit-09-passive-voice",
+      "unit": 9,
+      "title": "Passive Voice",
+      "concept": "수동태 — be + past participle",
+      "file": "units/unit-09-passive-voice.json",
+      "itemCount": 5,
+      "difficulty": "advanced"
+    },
+    {
+      "id": "unit-10-relative-clauses",
+      "unit": 10,
+      "title": "Relative Clauses",
+      "concept": "관계절 — who/which/that/where",
+      "file": "units/unit-10-relative-clauses.json",
+      "itemCount": 5,
+      "difficulty": "advanced"
     }
   ]
 }
