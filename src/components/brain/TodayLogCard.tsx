@@ -4,6 +4,7 @@
  */
 import { useEffect, useRef } from 'react';
 import { Card } from '../ui/Card';
+import { KoPrompt } from '../ui/KoPrompt';
 import { useStore, type TodayEncounter } from '../../state/store';
 import { speech } from '../../adapters/speech';
 import { accuracyPct } from '../../domain/srs-engine';
@@ -64,7 +65,7 @@ export function TodayLogCard({ autoFocus = false }: TodayLogCardProps) {
                 <div className="today-log-body">
                   <div className="today-log-ko">
                     {owned ? '⭐ ' : ''}
-                    {item.ko}
+                    <KoPrompt text={item.ko} size={14} />
                   </div>
                   <div className="today-log-en">{item.en}</div>
                   {item.guess && item.match !== 'exact' && (

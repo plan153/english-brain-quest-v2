@@ -9,6 +9,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
+import { KoPrompt } from '../ui/KoPrompt';
 import { useSpeech } from '../../hooks/useSpeech';
 import { useStore } from '../../state/store';
 import {
@@ -433,9 +434,7 @@ export function TodayScreen() {
 
       {/* 문장 카드 — 한국어 먼저 */}
       <Card key={currentSentence.id} className="sentence-card">
-        <div style={{ fontSize: '22px', lineHeight: 1.4, fontWeight: 600 }}>
-          {currentSentence.ko}
-        </div>
+        <KoPrompt text={currentSentence.ko} />
         {showEnglish && (
           <div
             style={{

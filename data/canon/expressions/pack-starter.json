@@ -51,7 +51,7 @@
   {
     "id": "e002",
     "english": "I need some time.",
-    "naturalKorean": "시간이 좀 필요해요.",
+    "naturalKorean": "시간이 좀 필요해요. (필요하다 · need)",
     "literalMeaning": "나는 약간의 시간이 필요해요.",
     "coreVerbId": "v_need",
     "patternId": "p_need_thing",
@@ -318,7 +318,7 @@
   {
     "id": "e007",
     "english": "Give me a second.",
-    "naturalKorean": "잠깐만요.",
+    "naturalKorean": "잠깐만요. (아주 잠깐 · a second)",
     "literalMeaning": "나에게 1초를 주세요.",
     "coreVerbId": "v_give",
     "patternId": "p_give_person_thing",
@@ -1574,7 +1574,7 @@
   {
     "id": "e082",
     "english": "I want help.",
-    "naturalKorean": "도움이 필요해요.",
+    "naturalKorean": "도움이 필요해요. (원하다 · want)",
     "literalMeaning": "나는 도움이 필요해요.",
     "coreVerbId": "v_want",
     "patternId": "p_want_thing",
@@ -1624,7 +1624,7 @@
   {
     "id": "e083",
     "english": "I want some time.",
-    "naturalKorean": "시간이 좀 필요해요.",
+    "naturalKorean": "시간이 좀 필요해요. (원하다 · want)",
     "literalMeaning": "나는 약간의 시간이 필요해요.",
     "coreVerbId": "v_want",
     "patternId": "p_want_thing",
@@ -2171,7 +2171,7 @@
   {
     "id": "e040",
     "english": "Give me a minute.",
-    "naturalKorean": "잠깐만요.",
+    "naturalKorean": "잠깐만요. (잠시 · a minute)",
     "literalMeaning": "나에게 1분을 주세요.",
     "coreVerbId": "v_give",
     "patternId": "p_give_person_thing",
@@ -3214,7 +3214,7 @@
   {
     "id": "e062",
     "english": "I have no time.",
-    "naturalKorean": "시간이 없어요.",
+    "naturalKorean": "시간이 없어요. (전혀 없다 · have no time)",
     "literalMeaning": "나는 시간이 하나도 없어요.",
     "coreVerbId": "v_have",
     "patternId": "p_have_time",
@@ -3691,7 +3691,7 @@
   {
     "id": "e072",
     "english": "I need a break.",
-    "naturalKorean": "휴식이 필요해요.",
+    "naturalKorean": "휴식이 필요해요. (필요하다 · need)",
     "literalMeaning": "나는 휴식 하나가 필요해요.",
     "coreVerbId": "v_need",
     "patternId": "p_need_thing",
@@ -3741,7 +3741,7 @@
   {
     "id": "e073",
     "english": "I need to go.",
-    "naturalKorean": "가야 해요.",
+    "naturalKorean": "가야 해요. (필요해서 · need to)",
     "literalMeaning": "나는 가는 행동이 필요해요.",
     "coreVerbId": "v_need",
     "patternId": "p_need_to",
@@ -3791,7 +3791,7 @@
   {
     "id": "e074",
     "english": "You need to sleep.",
-    "naturalKorean": "자야 해요.",
+    "naturalKorean": "자야 해요. (당신이 자야 해요)",
     "literalMeaning": "당신은 자는 행동이 필요해요.",
     "coreVerbId": "v_need",
     "patternId": "p_need_to",
@@ -3838,7 +3838,7 @@
   {
     "id": "e075",
     "english": "I need help.",
-    "naturalKorean": "도움이 필요해요.",
+    "naturalKorean": "도움이 필요해요. (필요하다 · need)",
     "literalMeaning": "나는 도움이 필요해요.",
     "coreVerbId": "v_need",
     "patternId": "p_need_help",
@@ -4258,7 +4258,7 @@
   {
     "id": "e088",
     "english": "I want a break.",
-    "naturalKorean": "휴식이 필요해요.",
+    "naturalKorean": "휴식이 필요해요. (원하다 · want)",
     "literalMeaning": "나는 휴식 하나를 원해요.",
     "coreVerbId": "v_want",
     "patternId": "p_want_thing",
@@ -4356,7 +4356,7 @@
   {
     "id": "e090",
     "english": "I need to sleep.",
-    "naturalKorean": "자야 해요.",
+    "naturalKorean": "자야 해요. (내가 자야 해요)",
     "literalMeaning": "나는 자는 행동이 필요해요.",
     "coreVerbId": "v_need",
     "patternId": "p_need_to",
@@ -4453,7 +4453,7 @@
   {
     "id": "e092",
     "english": "I don't have time.",
-    "naturalKorean": "시간이 없어요.",
+    "naturalKorean": "시간이 없어요. (지금은 없다 · don't have time)",
     "literalMeaning": "나는 시간을 가지고 있지 않아요.",
     "coreVerbId": "v_have",
     "patternId": "p_have_time",
@@ -4644,7 +4644,7 @@
   {
     "id": "e096",
     "english": "I have to go.",
-    "naturalKorean": "가야 해요.",
+    "naturalKorean": "가야 해요. (의무 · have to)",
     "literalMeaning": "나는 가야 해요.",
     "coreVerbId": "v_have",
     "patternId": "p_have_thing",
@@ -5078,7 +5078,7 @@
   {
     "id": "e105",
     "english": "I’m fine.",
-    "naturalKorean": "괜찮아요.",
+    "naturalKorean": "괜찮아요. (내가 괜찮다 · 안부)",
     "literalMeaning": "나는 괜찮은 상태예요.",
     "coreVerbId": "v_be",
     "patternId": "p_be_state",
@@ -5118,7 +5118,7 @@
   {
     "id": "e106",
     "english": "I’m okay.",
-    "naturalKorean": "괜찮아요.",
+    "naturalKorean": "괜찮아요. (내가 괜찮다 · 안심)",
     "literalMeaning": "나는 괜찮은 상태예요.",
     "coreVerbId": "v_be",
     "patternId": "p_be_state",
@@ -5837,7 +5837,7 @@
   {
     "id": "e123",
     "english": "I’m here.",
-    "naturalKorean": "여기 있어요.",
+    "naturalKorean": "여기 있어요. (내가 여기 있다)",
     "literalMeaning": "나는 여기에 있어요.",
     "coreVerbId": "v_be",
     "patternId": "p_be_place",
@@ -6128,7 +6128,7 @@
   {
     "id": "e129",
     "english": "It’s here.",
-    "naturalKorean": "여기 있어요.",
+    "naturalKorean": "여기 있어요. (물건이 여기 있다)",
     "literalMeaning": "그것은 여기에 있어요.",
     "coreVerbId": "v_be",
     "patternId": "p_be_place",
@@ -6177,7 +6177,7 @@
   {
     "id": "e130",
     "english": "It’s there.",
-    "naturalKorean": "거기 있어요.",
+    "naturalKorean": "거기 있어요. (물건이 거기 있다)",
     "literalMeaning": "그것은 거기에 있어요.",
     "coreVerbId": "v_be",
     "patternId": "p_be_place",
@@ -6226,7 +6226,7 @@
   {
     "id": "e131",
     "english": "Here it is.",
-    "naturalKorean": "여기 있어요.",
+    "naturalKorean": "여기 있어요. (자, 찾았다/건네준다)",
     "literalMeaning": "여기에 그것이 있어요.",
     "coreVerbId": "v_be",
     "patternId": "p_be_place",
@@ -6275,7 +6275,7 @@
   {
     "id": "e132",
     "english": "There it is.",
-    "naturalKorean": "저기 있네요.",
+    "naturalKorean": "저기 있네요. (물건이 저기 보인다)",
     "literalMeaning": "거기에 그것이 있어요.",
     "coreVerbId": "v_be",
     "patternId": "p_be_place",
@@ -6416,7 +6416,7 @@
   {
     "id": "e135",
     "english": "Are you there?",
-    "naturalKorean": "거기 있어요?",
+    "naturalKorean": "거기 있어요? (당신 거기 있어요? · 확인)",
     "literalMeaning": "당신은 거기에 있어요?",
     "coreVerbId": "v_be",
     "patternId": "p_be_place",
@@ -6587,7 +6587,7 @@
   {
     "id": "e139",
     "english": "That’s fine.",
-    "naturalKorean": "괜찮아요.",
+    "naturalKorean": "괜찮아요. (그거/그 상황은 괜찮다 · 수락)",
     "literalMeaning": "그것은 괜찮은 상태예요.",
     "coreVerbId": "v_be",
     "patternId": "p_be_phrase",
@@ -6627,7 +6627,7 @@
   {
     "id": "e140",
     "english": "It’s okay.",
-    "naturalKorean": "괜찮아요.",
+    "naturalKorean": "괜찮아요. (그거 괜찮다 · 실수·걱정 달래기)",
     "literalMeaning": "그것은 괜찮은 상태예요.",
     "coreVerbId": "v_be",
     "patternId": "p_be_phrase",
@@ -6667,7 +6667,7 @@
   {
     "id": "e141",
     "english": "You’re right.",
-    "naturalKorean": "맞아요.",
+    "naturalKorean": "맞아요. (당신 말이 맞다)",
     "literalMeaning": "당신은 옳은 상태예요.",
     "coreVerbId": "v_be",
     "patternId": "p_be_phrase",
@@ -6746,7 +6746,7 @@
   {
     "id": "e143",
     "english": "That’s right.",
-    "naturalKorean": "맞아요.",
+    "naturalKorean": "맞아요. (그게 맞다 · 사실 확인)",
     "literalMeaning": "그것은 옳은 상태예요.",
     "coreVerbId": "v_be",
     "patternId": "p_be_phrase",
