@@ -12,8 +12,17 @@ export interface SpeechResult {
 
 export type RecognitionState = 'idle' | 'listening' | 'processing' | 'error';
 
+export interface SpeechRecognitionResultLike {
+  isFinal: boolean;
+  0: { transcript: string; confidence: number };
+  length: number;
+}
+
 export interface SpeechRecognitionEvent {
-  results: { 0: { 0: { transcript: string; confidence: number } } };
+  resultIndex: number;
+  results: ArrayLike<SpeechRecognitionResultLike> & {
+    length: number;
+  };
 }
 
 export interface SpeechRecognitionLike {

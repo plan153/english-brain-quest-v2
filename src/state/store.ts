@@ -51,7 +51,20 @@ import {
   makeGapId,
   type GapNote,
 } from '../adapters/cloud-sync';
+import {
+  applyReview,
+  createMemory,
+  markOwned,
+  unmarkOwned,
+  pickReviewQueue,
+  countDue,
+  countOwned,
+  memoryToContentItem,
+  type SentenceMemory,
+  type ReviewIntensity,
+} from '../domain/srs-engine';
 
+export type { SentenceMemory, ReviewIntensity };
 export type TabId = 'today' | 'brain' | 'dictionary';
 
 /** 오늘 세션에서 만난 문장 (복습용) */
@@ -119,6 +132,15 @@ interface AppStore
 
   /** 오늘 만난 문장 (당일 localStorage) */
   todayLog: TodayEncounter[];
+
+  /** SRS 문장 메모리 + 복습 빈도 */
+  memories: Record<string, SentenceMemory>;
+  reviewIntensity: ReviewIntensity;
+  setReviewIntensity: (intensity: ReviewIntensity) => void;
+  markSentenceOwned: (sentenceId: string, owned?: boolean) => void;
+  getDueReviewItems: (limit?: number) => ContentItem[];
+  dueReviewCount: () => number;
+  ownedCount: () => number;
 
   // progress
   addXp: (amount: number) => void;
@@ -195,6 +217,20 @@ function persistTodayLog(items: TodayEncounter[]) {
   writeLocal('todayLog', { date: todayStr(), items });
 }
 
+function loadMemories(): Record<string, SentenceMemory> {
+  return readLocal<Record<string, SentenceMemory>>('memories') ?? {};
+}
+
+function persistMemories(memories: Record<string, SentenceMemory>) {
+  writeLocal('memories', memories);
+}
+
+function loadReviewIntensity(): ReviewIntensity {
+  const v = readLocal<ReviewIntensity>('reviewIntensity');
+  if (v === 'intense' || v === 'normal' || v === 'relaxed') return v;
+  return 'normal';
+}
+
 export const useStore = create<AppStore>((set, get) => {
   const savedProgress = loadProgress();
   const initialProgress: ProgressState = { ...DEFAULT_PROGRESS, ...savedProgress };
@@ -224,6 +260,8 @@ export const useStore = create<AppStore>((set, get) => {
     activeTab: 'today',
     brainFocusTodayLog: false,
     todayLog: loadTodayLog(),
+    memories: loadMemories(),
+    reviewIntensity: loadReviewIntensity(),
 
     setActiveTab: (tab) => set({ activeTab: tab }),
 
@@ -239,6 +277,29 @@ export const useStore = create<AppStore>((set, get) => {
     openTodayLog: () => set({ activeTab: 'brain', brainFocusTodayLog: true }),
 
     clearBrainFocus: () => set({ brainFocusTodayLog: false }),
+
+    setReviewIntensity: (intensity) => {
+      writeLocal('reviewIntensity', intensity);
+      set({ reviewIntensity: intensity });
+    },
+
+    markSentenceOwned: (sentenceId, owned = true) => {
+      const memories = { ...get().memories };
+      const existing = memories[sentenceId];
+      if (!existing) return;
+      memories[sentenceId] = owned ? markOwned(existing) : unmarkOwned(existing);
+      persistMemories(memories);
+      set({ memories });
+    },
+
+    getDueReviewItems: (limit = 10) => {
+      const queue = pickReviewQueue(Object.values(get().memories), limit);
+      return queue.map(memoryToContentItem);
+    },
+
+    dueReviewCount: () => countDue(Object.values(get().memories)),
+
+    ownedCount: () => countOwned(Object.values(get().memories)),
 
     addXp: (amount) => {
       const xp = get().xp + amount;
@@ -280,11 +341,15 @@ export const useStore = create<AppStore>((set, get) => {
       writeLocal('progress', null);
       writeLocal('reward', null);
       writeLocal('todayLog', null);
+      writeLocal('memories', null);
+      writeLocal('reviewIntensity', null);
       set({
         ...DEFAULT_PROGRESS,
         ...DEFAULT_REWARD_STATE,
         progress: { ...INITIAL_PROGRESS },
         todayLog: [],
+        memories: {},
+        reviewIntensity: 'normal',
       });
     },
 
@@ -455,6 +520,24 @@ export const useStore = create<AppStore>((set, get) => {
       todayLog = todayLog.slice(-TODAY_LOG_MAX);
       persistTodayLog(todayLog);
 
+      // SRS 메모리 갱신
+      const memories = { ...get().memories };
+      const prevMem =
+        memories[sentence.id] ??
+        createMemory(sentence.id, sentence.en, sentence.ko);
+      const previousWrong =
+        isRetry &&
+        !!lastTrial &&
+        (lastTrial.evaluation.match === 'wrong' ||
+          lastTrial.evaluation.match === 'skipped');
+      memories[sentence.id] = applyReview(
+        prevMem,
+        evaluation.match,
+        get().reviewIntensity,
+        { previousWrong }
+      );
+      persistMemories(memories);
+
       set({
         progress: newProgress,
         lastTrial: trial,
@@ -470,16 +553,21 @@ export const useStore = create<AppStore>((set, get) => {
         skill: newSkill,
         pendingGaps,
         todayLog,
+        memories,
       });
 
       return reward;
     },
 
     nextSentence: () => {
-      const { plan, progress } = get();
+      const { plan, progress, currentSentence } = get();
       if (!plan) return;
-      const nextIndex = progress.index;
-      if (nextIndex >= plan.total) {
+      // 현재 카드 기준 다음 문장 — 채점 후 index와 어긋나도 한 칸 전진
+      const curIdx = currentSentence
+        ? plan.sentences.findIndex((s) => s.id === currentSentence.id)
+        : -1;
+      const nextIndex = Math.max(curIdx + 1, progress.index);
+      if (nextIndex < 0 || nextIndex >= plan.total) {
         set({ isPlaying: false, currentSentence: null });
         return;
       }

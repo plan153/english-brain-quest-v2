@@ -6,7 +6,7 @@
  *  - store.nextSentence / endSession: 큐 진행 + 완료 요약
  * FeedbackBar + SessionComplete UI 통합.
  */
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { useSpeech } from '../../hooks/useSpeech';
@@ -19,6 +19,7 @@ import {
 } from '../../domain/content-loader';
 import type { ContentItem } from '../../interfaces/ContentItem';
 import type { MatchLevel } from '../../interfaces/Evaluator';
+import type { SpeechResult } from '../../interfaces/SpeechResult';
 import FuzzyMatch from '../../domain/fuzzy-match';
 import { FeedbackBar } from './FeedbackBar';
 import { SessionComplete } from './SessionComplete';
@@ -34,6 +35,12 @@ interface PackSource {
 }
 
 const PACK_SOURCES: PackSource[] = [
+  {
+    id: 'review',
+    name: '복습',
+    description: '기한 도래 · 내 문장 우선',
+    load: async () => [], // store에서 채움
+  },
   {
     id: 'starter',
     name: '표현 스타터',
@@ -74,8 +81,6 @@ export function TodayScreen() {
     userText: string;
   } | null>(null);
 
-  const speech = useSpeech({ lang: 'en' });
-
   // store — session engine
   const isPlaying = useStore((s) => s.isPlaying);
   const plan = useStore((s) => s.plan);
@@ -90,6 +95,51 @@ export function TodayScreen() {
   const nextSentence = useStore((s) => s.nextSentence);
   const endSession = useStore((s) => s.endSession);
   const setActiveTab = useStore((s) => s.setActiveTab);
+  const getDueReviewItems = useStore((s) => s.getDueReviewItems);
+  const dueReviewCount = useStore((s) => s.dueReviewCount);
+
+  const currentSentenceRef = useRef(currentSentence);
+  const pendingEvalRef = useRef(pendingEval);
+  currentSentenceRef.current = currentSentence;
+  pendingEvalRef.current = pendingEval;
+
+  /** STT final → 즉시 채점 (useEffect 대기 없음) */
+  const handleSpeechResult = useCallback(
+    (result: SpeechResult) => {
+      const sentence = currentSentenceRef.current;
+      if (!sentence || pendingEvalRef.current) return;
+      if (!result.text.trim()) return;
+
+      const matched = FuzzyMatch.matchAnswer(result.text, sentence.en, {
+        leniency: 1,
+      });
+      const level = matched.level as MatchLevel;
+      const evalInfo = {
+        level,
+        feedback: matched.feedback,
+        canonicalTTS: matched.canonicalTTS,
+        userText: result.text,
+      };
+      pendingEvalRef.current = evalInfo;
+      setPendingEval(evalInfo);
+
+      const matchKind: 'exact' | 'fuzzy' | 'wrong' | 'skipped' =
+        level === 'exact' ? 'exact' : level === 'fuzzy' ? 'fuzzy' : 'wrong';
+      recordTrial(
+        sentence,
+        {
+          match: matchKind,
+          score: matchKind === 'exact' ? 1 : matchKind === 'fuzzy' ? 0.7 : 0.2,
+          feedback: matched.feedback,
+          ttsContent: matched.canonicalTTS,
+        },
+        { text: result.text, skipped: false }
+      );
+    },
+    [recordTrial]
+  );
+
+  const speech = useSpeech({ lang: 'en', onResult: handleSpeechResult, maxListenMs: 7000 });
 
   // 시작 시 기본 starter pack 로드.
   useEffect(() => {
@@ -119,67 +169,40 @@ export function TodayScreen() {
     setPackLoading(true);
     setLoadError(null);
     try {
-      const loaded = await source.load();
+      const loaded =
+        packId === 'review' ? getDueReviewItems(SESSION_SIZE) : await source.load();
       setItems(loaded);
+      if (packId === 'review' && loaded.length === 0) {
+        setLoadError('복습 대기 문장이 없어요. 먼저 다른 팩으로 학습해 보세요.');
+      }
     } catch (err) {
       setLoadError((err as Error).message);
       setItems(null);
     }
     setPackLoading(false);
-  }, []);
+  }, [getDueReviewItems]);
 
   const handleStart = useCallback(() => {
     if (!items || items.length === 0) return;
     setShowEnglish(false);
     setShowHint(false);
+    pendingEvalRef.current = null;
     setPendingEval(null);
     speech.reset();
     startSessionFromItems(items, { mode: 'translate', size: SESSION_SIZE });
   }, [items, startSessionFromItems, speech]);
 
-  // 인식 결과가 들어오면 fuzzy-match로 평가 → store.recordTrial 호출.
-  useEffect(() => {
-    const result = speech.lastResult;
-    if (!result || !currentSentence) return;
-    if (pendingEval) return; // 이미 평가됨.
-
-    const matched = FuzzyMatch.matchAnswer(result.text, currentSentence.en, {
-      leniency: 1, // 초보자 관대
-    });
-    const level = matched.level as MatchLevel;
-    const evalInfo = {
-      level,
-      feedback: matched.feedback,
-      canonicalTTS: matched.canonicalTTS,
-      userText: result.text,
-    };
-    setPendingEval(evalInfo);
-
-    // SessionEvaluateResult 변환
-    const matchKind: 'exact' | 'fuzzy' | 'wrong' | 'skipped' =
-      level === 'exact' ? 'exact' : level === 'fuzzy' ? 'fuzzy' : 'wrong';
-    const evaluation = {
-      match: matchKind,
-      score: matchKind === 'exact' ? 1 : matchKind === 'fuzzy' ? 0.7 : 0.2,
-      feedback: matched.feedback,
-      ttsContent: matched.canonicalTTS,
-    };
-    recordTrial(
-      currentSentence,
-      evaluation,
-      { text: result.text, skipped: false }
-    );
-  }, [speech.lastResult, currentSentence, pendingEval, recordTrial]);
-
   // 스킵 처리
   const handleSkip = useCallback(() => {
     if (!currentSentence) return;
-    setPendingEval({
-      level: 'wrong',
+    const evalInfo = {
+      level: 'wrong' as MatchLevel,
       feedback: '스킵했어요.',
       canonicalTTS: currentSentence.en,
       userText: '',
-    });
+    };
+    pendingEvalRef.current = evalInfo;
+    setPendingEval(evalInfo);
     recordTrial(
       currentSentence,
       { match: 'skipped', score: 0, feedback: '스킵', ttsContent: currentSentence.en },
@@ -194,7 +217,7 @@ export function TodayScreen() {
 
   const handleSpeak = useCallback(() => {
     if (!currentSentence) return;
-    // 평가 후에도 재시도 가능 — 피드백 지우고 다시 듣기
+    pendingEvalRef.current = null;
     setPendingEval(null);
     speech.reset();
     speech.startListening();
@@ -206,11 +229,11 @@ export function TodayScreen() {
   }, [pendingEval, speech]);
 
   const handleNext = useCallback(() => {
+    pendingEvalRef.current = null;
     setPendingEval(null);
     setShowEnglish(false);
     setShowHint(false);
     speech.reset();
-    // finished 플래그만 믿지 않음 — index가 total에 도달했을 때만 완주
     const done =
       !!plan && progress.index >= plan.total && progress.completed >= plan.total;
     if (done) {
@@ -266,7 +289,9 @@ export function TodayScreen() {
           학습 팩 선택 ({items?.length ?? 0}문장)
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '16px' }}>
-          {PACK_SOURCES.map((p) => (
+          {PACK_SOURCES.map((p) => {
+            const due = p.id === 'review' ? dueReviewCount() : null;
+            return (
             <button
               key={p.id}
               onClick={() => handleSelectPack(p.id)}
@@ -280,12 +305,16 @@ export function TodayScreen() {
                 textAlign: 'left',
               }}
             >
-              <div style={{ fontWeight: 700, fontSize: '14px' }}>{p.name}</div>
+              <div style={{ fontWeight: 700, fontSize: '14px' }}>
+                {p.name}
+                {due !== null ? ` (${due})` : ''}
+              </div>
               <div style={{ fontSize: '11px', color: 'var(--ebq-text-muted)', marginTop: '2px' }}>
                 {p.description}
               </div>
             </button>
-          ))}
+            );
+          })}
         </div>
 
         {packLoading && (
@@ -354,7 +383,9 @@ export function TodayScreen() {
     );
   }
 
-  const progressPct = Math.round(((progress.index) / plan.total) * 100);
+  const sentenceOrdinal = plan.sentences.findIndex((s) => s.id === currentSentence.id);
+  const displayNum = sentenceOrdinal >= 0 ? sentenceOrdinal + 1 : progress.completed + 1;
+  const progressPct = Math.round((progress.completed / plan.total) * 100);
   const tierLabel =
     currentSentence.difficulty === 'challenge'
       ? '🔥 도전'
@@ -369,12 +400,12 @@ export function TodayScreen() {
         <div className="fill" style={{ width: `${progressPct}%` }} />
       </div>
       <div className="session-progress-strip">
-        <span>{progress.index + 1} / {plan.total}</span>
+        <span>{displayNum} / {plan.total}</span>
         <span>•</span>
         <span>🎯 {progress.correct}</span>
         <span>✨ {progress.fuzzy}</span>
         <span>❌ {progress.wrong}</span>
-        <span className="tier-chip ${currentSentence.difficulty || ''}">
+        <span className={`tier-chip ${currentSentence.difficulty || ''}`}>
           {tierLabel}
         </span>
         {progress.combo >= 3 && (
@@ -383,7 +414,7 @@ export function TodayScreen() {
       </div>
 
       {/* 문장 카드 — 한국어 먼저 */}
-      <Card className="sentence-card">
+      <Card key={currentSentence.id} className="sentence-card">
         <div style={{ fontSize: '22px', lineHeight: 1.4, fontWeight: 600 }}>
           {currentSentence.ko}
         </div>
@@ -445,6 +476,11 @@ export function TodayScreen() {
       {speech.error && (
         <div style={{ color: 'var(--ebq-danger)', textAlign: 'center', fontSize: '12px' }}>
           {speech.error}
+        </div>
+      )}
+      {speech.listening && speech.interimText && (
+        <div style={{ textAlign: 'center', fontSize: '14px', marginTop: '12px', color: 'var(--ebq-text-muted)' }}>
+          듣는 중: &quot;{speech.interimText}&quot;
         </div>
       )}
       {speech.lastResult && !pendingEval && (

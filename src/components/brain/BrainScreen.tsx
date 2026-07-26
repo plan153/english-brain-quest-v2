@@ -1,11 +1,12 @@
 /**
- * BrainScreen — Phase 2: My English Brain.
- * 실제 XP/레벨/스킬/배지 표시 + 오늘 만난 문장 복습.
+ * BrainScreen — My English Brain.
+ * XP/스킬/배지 + 복습 빈도 + 오늘 만난 문장.
  */
 import { Card } from '../ui/Card';
 import { useStore } from '../../state/store';
 import { levelFromXp } from '../../domain/reward-engine';
 import type { SkillAxis } from '../../domain/difficulty-mixer';
+import { REVIEW_INTENSITY_LABEL, type ReviewIntensity } from '../../domain/srs-engine';
 import { VaultSyncCard } from './VaultSyncCard';
 import { TodayLogCard } from './TodayLogCard';
 
@@ -18,6 +19,8 @@ const SKILL_AXIS_META: { axis: SkillAxis; label: string }[] = [
   { axis: 'tense', label: '시간 (tense)' },
 ];
 
+const INTENSITY_OPTIONS: ReviewIntensity[] = ['intense', 'normal', 'relaxed'];
+
 export function BrainScreen() {
   const xp = useStore((s) => s.xp);
   const streakDays = useStore((s) => s.streakDays);
@@ -28,9 +31,16 @@ export function BrainScreen() {
   const skill = useStore((s) => s.skill);
   const badges = useStore((s) => s.badges);
   const brainFocusTodayLog = useStore((s) => s.brainFocusTodayLog);
+  const memories = useStore((s) => s.memories);
+  const reviewIntensity = useStore((s) => s.reviewIntensity);
+  const setReviewIntensity = useStore((s) => s.setReviewIntensity);
+  const setActiveTab = useStore((s) => s.setActiveTab);
+  const dueCount = useStore((s) => s.dueReviewCount());
+  const owned = useStore((s) => s.ownedCount());
 
   const accuracy = attemptCount > 0 ? Math.round((correctCount / attemptCount) * 100) : 0;
   const lvl = levelFromXp(xp);
+  const memoryCount = Object.keys(memories).length;
 
   return (
     <div>
@@ -47,6 +57,69 @@ export function BrainScreen() {
         <div style={{ fontSize: '11px', color: 'var(--ebq-text-muted)', marginTop: '4px' }}>
           다음 레벨까지 {lvl.nextLevelXp} XP
         </div>
+      </Card>
+
+      <Card style={{ marginTop: '12px' }}>
+        <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)' }}>복습 · 내 문장</div>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr 1fr',
+            gap: '8px',
+            marginTop: '10px',
+          }}
+        >
+          <div>
+            <div style={{ fontSize: '11px', color: 'var(--ebq-text-muted)' }}>복습 대기</div>
+            <div style={{ fontSize: '20px', fontWeight: 700, color: 'var(--ebq-primary)' }}>
+              {dueCount}
+            </div>
+          </div>
+          <div>
+            <div style={{ fontSize: '11px', color: 'var(--ebq-text-muted)' }}>내 문장</div>
+            <div style={{ fontSize: '20px', fontWeight: 700, color: 'var(--ebq-accent)' }}>
+              {owned}
+            </div>
+          </div>
+          <div>
+            <div style={{ fontSize: '11px', color: 'var(--ebq-text-muted)' }}>기억 카드</div>
+            <div style={{ fontSize: '20px', fontWeight: 700 }}>{memoryCount}</div>
+          </div>
+        </div>
+        <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)', marginTop: '12px' }}>
+          복습 빈도
+        </div>
+        <div className="review-intensity">
+          {INTENSITY_OPTIONS.map((id) => (
+            <button
+              key={id}
+              type="button"
+              className={reviewIntensity === id ? 'active' : ''}
+              onClick={() => setReviewIntensity(id)}
+            >
+              {REVIEW_INTENSITY_LABEL[id]}
+            </button>
+          ))}
+        </div>
+        {dueCount > 0 && (
+          <button
+            type="button"
+            onClick={() => setActiveTab('today')}
+            style={{
+              marginTop: '12px',
+              width: '100%',
+              padding: '10px',
+              borderRadius: '12px',
+              border: '1px solid var(--ebq-primary)',
+              background: 'rgba(74,222,128,0.1)',
+              color: 'var(--ebq-primary)',
+              fontWeight: 700,
+              cursor: 'pointer',
+            }}
+          >
+            Today에서 복습 팩 시작 →
+          </button>
+        )}
       </Card>
 
       <div

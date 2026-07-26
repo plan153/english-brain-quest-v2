@@ -1,11 +1,12 @@
 /**
  * TodayLogCard — 오늘 만난 문장 복습 목록.
- * Brain 탭 / 세션 완주에서 진입.
+ * 듣기 + 「내 문장」 수동 편입.
  */
 import { useEffect, useRef } from 'react';
 import { Card } from '../ui/Card';
 import { useStore, type TodayEncounter } from '../../state/store';
 import { speech } from '../../adapters/speech';
+import { accuracyPct } from '../../domain/srs-engine';
 
 const MATCH_LABEL: Record<TodayEncounter['match'], { text: string; color: string }> = {
   exact: { text: '완벽', color: 'var(--ebq-primary)' },
@@ -15,12 +16,13 @@ const MATCH_LABEL: Record<TodayEncounter['match'], { text: string; color: string
 };
 
 interface TodayLogCardProps {
-  /** 마운트 시 이 카드로 스크롤 (세션 완주 → 복습 진입용) */
   autoFocus?: boolean;
 }
 
 export function TodayLogCard({ autoFocus = false }: TodayLogCardProps) {
   const todayLog = useStore((s) => s.todayLog);
+  const memories = useStore((s) => s.memories);
+  const markSentenceOwned = useStore((s) => s.markSentenceOwned);
   const clearBrainFocus = useStore((s) => s.clearBrainFocus);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -47,6 +49,8 @@ export function TodayLogCard({ autoFocus = false }: TodayLogCardProps) {
         <ul className="today-log-list">
           {[...todayLog].reverse().map((item) => {
             const meta = MATCH_LABEL[item.match];
+            const mem = memories[item.sentenceId];
+            const owned = mem?.owned === true;
             return (
               <li key={item.id} className="today-log-item">
                 <button
@@ -58,15 +62,35 @@ export function TodayLogCard({ autoFocus = false }: TodayLogCardProps) {
                   🔊
                 </button>
                 <div className="today-log-body">
-                  <div className="today-log-ko">{item.ko}</div>
+                  <div className="today-log-ko">
+                    {owned ? '⭐ ' : ''}
+                    {item.ko}
+                  </div>
                   <div className="today-log-en">{item.en}</div>
                   {item.guess && item.match !== 'exact' && (
                     <div className="today-log-guess">내 말: {item.guess}</div>
                   )}
+                  {mem && mem.attempts > 0 && (
+                    <div className="today-log-stats">
+                      시도 {mem.attempts} · 정답률 {accuracyPct(mem)}%
+                      {mem.intervalDays > 0
+                        ? ` · 다음 ${Math.max(1, Math.round(mem.intervalDays))}일 후`
+                        : ' · 복습 대기'}
+                    </div>
+                  )}
                 </div>
-                <span className="today-log-match" style={{ color: meta.color }}>
-                  {meta.text}
-                </span>
+                <div className="today-log-aside">
+                  <span className="today-log-match" style={{ color: meta.color }}>
+                    {meta.text}
+                  </span>
+                  <button
+                    type="button"
+                    className={`today-log-own${owned ? ' is-owned' : ''}`}
+                    onClick={() => markSentenceOwned(item.sentenceId, !owned)}
+                  >
+                    {owned ? '내 문장 ✓' : '내 문장'}
+                  </button>
+                </div>
               </li>
             );
           })}

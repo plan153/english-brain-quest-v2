@@ -98,7 +98,8 @@ function createSpeechAdapter(): SpeechAdapter {
     const recognizer = new Recognition();
     recognizer.lang = lang === 'ko' ? 'ko-KR' : 'en-US';
     recognizer.continuous = false;
-    recognizer.interimResults = false;
+    // interim으로 빠르게 받고, final 나오는 즉시 stop (침묵 대기 단축)
+    recognizer.interimResults = true;
     recognizer.maxAlternatives = 1;
     return recognizer;
   }

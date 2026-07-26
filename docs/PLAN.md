@@ -92,7 +92,10 @@
 - [x] GitHub Pages 배포 설정 (Actions workflow + `VITE_BASE`)
 - [x] `difficulty-mixer` leftover 아이템 누락 버그 수정
 
-### Phase 6 — 커리큘럼 확장 (이후 별도)
+### Phase 6 — 커리큘럼 확장 + 복습(SRS)
+- [x] `srs-engine` — 복습 빈도(빡셈/보통/여유) + 「내 문장」 자동/수동 편입
+- [x] Today **복습** 팩 + Brain 복습 대기/빈도 UI
+- [x] 문장별 시도·정답률 표시 (today log)
 - [ ] Stage 4-12 커리큘럼 팩 추가
 - [ ] 코로케이션 + 구동사 100개 → 300개 이상
 - [ ] 그래머인유즈 145단원까지 점진적 추가

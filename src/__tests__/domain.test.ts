@@ -30,6 +30,12 @@ import {
   brainPath,
 } from '../domain/vault-projection';
 import FuzzyMatch from '../domain/fuzzy-match';
+import {
+  applyReview,
+  createMemory,
+  markOwned,
+  pickReviewQueue,
+} from '../domain/srs-engine';
 
 function fakeItem(id: string, level = 1): ContentItem {
   return {
@@ -149,6 +155,34 @@ describe('1b. fuzzy-match contractions', () => {
       "I don't know"
     );
     expect(result.level).toBe('exact');
+  });
+});
+
+describe('1d. srs-engine', () => {
+  it('schedules review and auto-owns after exact×2', () => {
+    let mem = createMemory('s1', 'Hello', '안녕');
+    mem = applyReview(mem, 'exact', 'normal');
+    expect(mem.owned).toBe(false);
+    mem = applyReview(mem, 'exact', 'normal');
+    expect(mem.owned).toBe(true);
+    expect(mem.ownedReason).toBe('auto-exact2');
+    expect(mem.intervalDays).toBeGreaterThan(0);
+  });
+
+  it('auto-owns on wrong→exact recover', () => {
+    let mem = createMemory('s2', 'Bye', '잘가');
+    mem = applyReview(mem, 'wrong', 'normal');
+    expect(mem.owned).toBe(false);
+    mem = applyReview(mem, 'exact', 'normal', { previousWrong: true });
+    expect(mem.owned).toBe(true);
+    expect(mem.ownedReason).toBe('auto-recover');
+  });
+
+  it('picks due owned sentences first', () => {
+    const a = applyReview(createMemory('a', 'A', '에이'), 'wrong', 'normal');
+    const b = markOwned(createMemory('b', 'B', '비'));
+    const queue = pickReviewQueue([a, b], 5);
+    expect(queue[0].sentenceId).toBe('b');
   });
 });
 

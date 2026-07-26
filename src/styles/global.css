@@ -193,6 +193,61 @@ button:disabled {
   background: rgba(255, 255, 255, 0.02);
 }
 
+.today-log-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.today-log-stats {
+  font-size: 11px;
+  color: var(--ebq-text-muted);
+  margin-top: 4px;
+}
+
+.today-log-own {
+  background: transparent;
+  border: 1px solid var(--ebq-border);
+  color: var(--ebq-text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.today-log-own.is-owned {
+  border-color: var(--ebq-accent);
+  color: var(--ebq-accent);
+  background: rgba(251, 191, 36, 0.12);
+}
+
+.review-intensity {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.review-intensity button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--ebq-border);
+  background: transparent;
+  color: var(--ebq-text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.review-intensity button.active {
+  border-color: var(--ebq-primary);
+  color: var(--ebq-primary);
+  background: rgba(74, 222, 128, 0.1);
+}
+
 .today-log-speak {
   background: none;
   border: none;
