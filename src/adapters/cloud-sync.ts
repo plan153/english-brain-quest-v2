@@ -21,6 +21,8 @@ import {
   projectGap,
   projectIndex,
   makeGapId,
+  brainPath,
+  progressPath,
   type ProgressSnapshot,
   type GapNote,
 } from '../domain/vault-projection';
@@ -199,17 +201,141 @@ export async function listVaultFiles(prefix = ''): Promise<string[]> {
   return storage.list(prefix);
 }
 
-/** 단일 파일 Markdown 다운로드 (모바일에서 Obsidian으로 가져가기). */
+function stampForFilename(d = new Date()): string {
+  const p = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}`;
+}
+
+async function readOptional(path: string): Promise<string | null> {
+  const storage = await ensureStorage();
+  try {
+    return await storage.read(path);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Brain + progress를 하나의 Markdown으로 묶어 내보내기.
+ * iOS Safari는 연속 a.download를 하나만 허용하고, 같은 파일명은 progress-1.md로 붙임.
+ */
+export async function exportVaultBundle(): Promise<{ filename: string; shared: boolean; parts: string[] }> {
+  await ensureStorage();
+  const userId = getUserId();
+  const brain = brainPath(userId);
+  const progress = progressPath(userId);
+  const brainMd = await readOptional(brain);
+  const progressMd = await readOptional(progress);
+
+  const parts: string[] = [];
+  if (brainMd) parts.push(brain);
+  if (progressMd) parts.push(progress);
+  if (parts.length === 0) {
+    throw new Error('내보낼 노트가 없습니다. 먼저「지금 동기화」를 눌러 주세요.');
+  }
+
+  const body = [
+    '---',
+    'type: ebq-vault-export',
+    `learnerId: ${userId}`,
+    `exportedAt: ${new Date().toISOString()}`,
+    'source: english-brain-quest-v2',
+    '---',
+    '',
+    '# EBQ Vault Export',
+    '',
+    'Mac 옵시디언 볼트에 넣을 때:',
+    '',
+    ...(brainMd
+      ? [
+          `1. 아래 **Brain.md** 본문만 복사 → \`Learners/me/Learning/Brain.md\` (또는 \`Learners/${userId}/Learning/Brain.md\`)`,
+        ]
+      : ['1. (Brain.md 없음 — 동기화 후 다시보내기)']),
+    ...(progressMd
+      ? [
+          `2. 아래 **progress.md** 본문만 복사 → \`Learners/me/Learning/progress.md\``,
+        ]
+      : ['2. (progress.md 없음)']),
+    '',
+    '또는 이 파일 전체를 Vault 아무 곳에 두고, 섹션별로 나눠 저장해도 됩니다.',
+    '',
+  ];
+
+  if (brainMd) {
+    body.push(
+      '---',
+      '',
+      `## FILE: ${brain}`,
+      '',
+      brainMd.trim(),
+      ''
+    );
+  }
+  if (progressMd) {
+    body.push(
+      '---',
+      '',
+      `## FILE: ${progress}`,
+      '',
+      progressMd.trim(),
+      ''
+    );
+  }
+
+  const markdown = body.join('\n');
+  const filename = `ebq-vault-${stampForFilename()}.md`;
+  const file = new File([markdown], filename, { type: 'text/markdown' });
+
+  // iOS: 공유 시트가 가장 안정적 (파일 앱 / AirDrop / Obsidian)
+  const nav = navigator as Navigator & {
+    canShare?: (data: ShareData) => boolean;
+  };
+  if (typeof nav.share === 'function') {
+    const data: ShareData = { files: [file], title: filename, text: 'EBQ Vault → Obsidian' };
+    const canFiles = typeof nav.canShare !== 'function' || nav.canShare(data);
+    if (canFiles) {
+      try {
+        await nav.share(data);
+        return { filename, shared: true, parts };
+      } catch (err) {
+        // 사용자가 공유 취소하면 조용히 다운로드로 폴백하지 않음(의도적 취소)
+        if ((err as Error).name === 'AbortError') {
+          return { filename, shared: false, parts };
+        }
+      }
+    }
+  }
+
+  const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.rel = 'noopener';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  // iOS에서 즉시 revoke하면 다운로드가 끊길 수 있음
+  window.setTimeout(() => URL.revokeObjectURL(url), 2000);
+
+  return { filename, shared: false, parts };
+}
+
+/** @deprecated 단일 파일 연속 다운로드는 iOS에서 Brain이 누락됨 — exportVaultBundle 사용 */
 export async function downloadVaultFile(path: string): Promise<void> {
   const storage = await ensureStorage();
   const content = await storage.read(path);
+  const base = path.split('/').pop()?.replace(/\.md$/i, '') ?? 'note';
+  const filename = `ebq-${base}-${stampForFilename()}.md`;
   const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = path.split('/').pop() ?? 'note.md';
+  a.download = filename;
+  document.body.appendChild(a);
   a.click();
-  URL.revokeObjectURL(url);
+  a.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
 
 export { makeGapId };

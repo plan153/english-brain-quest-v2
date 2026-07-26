@@ -1,7 +1,7 @@
 /**
  * VaultSyncCard — Phase 4 Obsidian Vault 동기화 UI.
  * 데스크톱: 폴더 연결 (File System Access)
- * 모바일: IndexedDB 가상 볼트 + Markdown 다운로드
+ * 모바일: IndexedDB 가상 볼트 + 단일 Markdown보내기(공유/다운로드)
  */
 import { useCallback, useEffect, useState } from 'react';
 import { Card } from '../ui/Card';
@@ -15,10 +15,9 @@ import {
   getSyncStatus,
   getAvailableAdapters,
   listVaultFiles,
-  downloadVaultFile,
+  exportVaultBundle,
   type SyncStatus,
 } from '../../adapters/cloud-sync';
-import { brainPath, progressPath } from '../../domain/vault-projection';
 import { getUserId } from '../../adapters/storage';
 
 export function VaultSyncCard() {
@@ -63,7 +62,7 @@ export function VaultSyncCard() {
       setMsg(null);
       try {
         await fn();
-        setMsg(okMsg);
+        if (okMsg) setMsg(okMsg);
         await refresh();
       } catch (err) {
         setMsg((err as Error).message);
@@ -119,13 +118,21 @@ export function VaultSyncCard() {
               disabled={busy}
               onClick={() =>
                 run(async () => {
-                  const uid = getUserId();
-                  await downloadVaultFile(brainPath(uid));
-                  await downloadVaultFile(progressPath(uid));
-                }, 'Brain.md / progress.md 다운로드')
+                  await syncNow();
+                  const result = await exportVaultBundle();
+                  if (result.shared) {
+                    setMsg(
+                      `공유됨: ${result.filename} (${result.parts.length}개 노트) → 파일/AirDrop으로 Mac Vault에 넣기`
+                    );
+                    return;
+                  }
+                  setMsg(
+                    `저장됨: ${result.filename} (Brain+progress 한 파일). Mac에서 Learners/me/Learning/ 에 나눠 넣기`
+                  );
+                }, '')
               }
             >
-              ⬇️ Markdown 다운로드
+              ⬇️ 옵시디언용보내기
             </Button>
             <Button
               disabled={busy}
@@ -142,7 +149,7 @@ export function VaultSyncCard() {
           style={{
             marginTop: '10px',
             fontSize: '12px',
-            color: msg.includes('실패') || msg.includes('Error') || msg.includes('지원')
+            color: msg.includes('실패') || msg.includes('Error') || msg.includes('지원') || msg.includes('없습니다')
               ? 'var(--ebq-danger)'
               : 'var(--ebq-primary)',
           }}
@@ -152,8 +159,9 @@ export function VaultSyncCard() {
       )}
 
       <div style={{ marginTop: '10px', fontSize: '11px', color: 'var(--ebq-text-muted)' }}>
-        세션 종료 시 Brain.md / progress.md / Gaps가 자동 기록됩니다.
-        데스크톱은 Vault 폴더를, 모바일은 IndexedDB + 다운로드를 쓰세요.
+        아이폰: 「보내기」는 Brain+progress를 <strong>파일 하나</strong>로 만듭니다 (progress-1 중복·Brain 누락 방지).
+        공유 시트 → 파일/AirDrop → Mac Vault의 <code>Learners/me/Learning/</code>에 넣으세요.
+        데스크톱은 Vault 폴더 연결이 더 편합니다.
       </div>
     </Card>
   );
