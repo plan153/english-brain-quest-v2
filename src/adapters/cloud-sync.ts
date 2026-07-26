@@ -29,6 +29,7 @@ import {
 import type { SkillProfile } from '../domain/difficulty-mixer';
 import type { Badge } from '../domain/reward-engine';
 import { createZipBlob } from './zip-store';
+import { summarizeWeakLinks, type SentenceMemory } from '../domain/srs-engine';
 
 export type SyncMode = 'filesystem' | 'indexeddb' | 'none';
 
@@ -154,6 +155,8 @@ export interface SyncPayload {
   skill: SkillProfile;
   badges: Badge[];
   gaps?: GapNote[];
+  /** SRS 기억 — 볼트에 due/약점 거울 투영 */
+  memories?: Record<string, SentenceMemory>;
 }
 
 /** 학습 상태를 Vault에 Markdown으로 투영. */
@@ -161,10 +164,17 @@ export async function syncToVault(payload: SyncPayload): Promise<SyncStatus> {
   try {
     const storage = await ensureStorage();
     const userId = getUserId();
+    const weakLinks = summarizeWeakLinks(Object.values(payload.memories ?? {}));
     const files = [
-      projectBrain({ userId, skill: payload.skill, badges: payload.badges, progress: payload.progress }),
-      projectProgress({ userId, progress: payload.progress }),
-      projectIndex({ userId, progress: payload.progress }),
+      projectBrain({
+        userId,
+        skill: payload.skill,
+        badges: payload.badges,
+        progress: payload.progress,
+        weakLinks,
+      }),
+      projectProgress({ userId, progress: payload.progress, weakLinks }),
+      projectIndex({ userId, progress: payload.progress, weakLinks }),
       ...(payload.gaps ?? []).map((gap) => projectGap({ userId, gap })),
     ];
     for (const f of files) {

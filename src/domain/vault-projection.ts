@@ -1,9 +1,15 @@
 /**
- * vault-projection.ts — Obsidian Markdown 투영 (Phase 4 최소 세트).
+ * vault-projection.ts — Obsidian Markdown 투영.
  * Learners/<userId>/Learning/Brain.md, progress.md, Gaps/<id>.md
+ * 약점(due·오답) 요약은 앱 SRS 거울 — 출제 엔진은 앱에 유지.
  */
 import type { SkillProfile } from './difficulty-mixer';
 import type { Badge } from './reward-engine';
+import {
+  CUE_MODE_LABEL,
+  type WeakLinkRow,
+  type WeakLinkSummary,
+} from './srs-engine';
 
 export interface ProgressSnapshot {
   xp: number;
@@ -52,13 +58,63 @@ export function indexPath(userId: string): string {
   return `${learnerRoot(userId)}/English Brain Index.md`;
 }
 
+function formatWeakRow(row: WeakLinkRow, index: number): string {
+  const cue = row.lastCueMode ? CUE_MODE_LABEL[row.lastCueMode] : '';
+  const cueBit = cue ? ` · ${cue}` : '';
+  const ko = row.ko.replace(/\s+/g, ' ').trim();
+  return `${index + 1}. **${row.en}** — ${ko}\n   - ${row.reason}${cueBit} · \`${row.sentenceId}\``;
+}
+
+function formatWeakSections(weak?: WeakLinkSummary): string {
+  if (!weak) {
+    return `## 복습 대기
+
+- (동기화 시 문장 기억 데이터 없음)
+
+## 약한 고리
+
+- (없음)
+`;
+  }
+
+  const dueBlock =
+    weak.due.length === 0
+      ? '- (지금 복습 기한인 문장 없음)'
+      : weak.due.map((row, i) => formatWeakRow(row, i)).join('\n');
+
+  const weakBlock =
+    weak.weak.length === 0
+      ? '- (오답·힌트 의존 약점 없음)'
+      : weak.weak.map((row, i) => formatWeakRow(row, i)).join('\n');
+
+  return `## 복습 대기 (${weak.dueCount}문장)
+
+앱 Today → **복습** 팩과 동일 큐입니다.
+
+${dueBlock}
+
+## 약한 고리 (TOP ${weak.weak.length})
+
+오답이 많거나 정답을 보고 맞힌 비중이 높은 문장입니다. 앱에서 다시 말해 보세요.
+
+${weakBlock}
+
+## 기억 요약
+
+- 추적 문장: ${weak.memoryCount}
+- 내 문장: ${weak.ownedCount}
+- 복습 대기: ${weak.dueCount}
+`;
+}
+
 export function projectBrain(args: {
   userId: string;
   skill: SkillProfile;
   badges: Badge[];
   progress: ProgressSnapshot;
+  weakLinks?: WeakLinkSummary;
 }): { path: string; markdown: string } {
-  const { userId, skill, badges, progress } = args;
+  const { userId, skill, badges, progress, weakLinks } = args;
   const updatedAt = new Date().toISOString();
   const skillLines = Object.entries(skill)
     .map(([k, v]) => `- ${k}: ${v}%`)
@@ -68,6 +124,9 @@ export function projectBrain(args: {
       ? '- (아직 없음)'
       : badges.map((b) => `- 🏆 ${b.name} — ${b.description}`).join('\n');
 
+  const dueCount = weakLinks?.dueCount ?? 0;
+  const ownedCount = weakLinks?.ownedCount ?? 0;
+
   const markdown = `---
 type: brain-state
 learnerId: ${escapeYaml(userId)}
@@ -75,6 +134,8 @@ updatedAt: ${escapeYaml(updatedAt)}
 level: ${progress.level}
 xp: ${progress.xp}
 streakDays: ${progress.streakDays}
+dueCount: ${dueCount}
+ownedCount: ${ownedCount}
 source: english-brain-quest-v2
 ---
 
@@ -88,6 +149,7 @@ ${skillLines}
 
 ${badgeLines}
 
+${formatWeakSections(weakLinks)}
 ## 연결
 
 - [[progress]]
@@ -100,13 +162,22 @@ ${badgeLines}
 export function projectProgress(args: {
   userId: string;
   progress: ProgressSnapshot;
+  weakLinks?: WeakLinkSummary;
 }): { path: string; markdown: string } {
-  const { userId, progress } = args;
+  const { userId, progress, weakLinks } = args;
   const updatedAt = new Date().toISOString();
   const accuracy =
     progress.attemptCount > 0
       ? Math.round((progress.correctCount / progress.attemptCount) * 100)
       : 0;
+
+  const duePreview =
+    weakLinks && weakLinks.due.length > 0
+      ? weakLinks.due
+          .slice(0, 5)
+          .map((r, i) => `${i + 1}. ${r.en} (\`${r.sentenceId}\`)`)
+          .join('\n')
+      : '- (없음)';
 
   const markdown = `---
 type: progress
@@ -120,6 +191,8 @@ totalSentences: ${progress.totalSentences}
 correctCount: ${progress.correctCount}
 attemptCount: ${progress.attemptCount}
 accuracy: ${accuracy}
+dueCount: ${weakLinks?.dueCount ?? 0}
+ownedCount: ${weakLinks?.ownedCount ?? 0}
 source: english-brain-quest-v2
 ---
 
@@ -133,6 +206,14 @@ source: english-brain-quest-v2
 | 오늘 문장 | ${progress.todaySentenceCount} |
 | 누적 문장 | ${progress.totalSentences} |
 | 정답률 | ${accuracy}% |
+| 복습 대기 | ${weakLinks?.dueCount ?? 0} |
+| 내 문장 | ${weakLinks?.ownedCount ?? 0} |
+
+## 지금 복습하면 좋은 문장
+
+${duePreview}
+
+자세한 약점 목록은 [[Brain]] 참고.
 
 ## 연결
 
@@ -179,9 +260,11 @@ ${gap.en}
 export function projectIndex(args: {
   userId: string;
   progress: ProgressSnapshot;
+  weakLinks?: WeakLinkSummary;
 }): { path: string; markdown: string } {
-  const { userId, progress } = args;
+  const { userId, progress, weakLinks } = args;
   const updatedAt = new Date().toISOString();
+  const due = weakLinks?.dueCount ?? 0;
   const markdown = `---
 type: english-brain-index
 learnerId: ${escapeYaml(userId)}
@@ -205,6 +288,7 @@ source: english-brain-quest-v2
 ## 요약
 
 - Lv ${progress.level} · ${progress.xp} XP · ${progress.streakDays}일 연속
+- 복습 대기 ${due}문장 · 내 문장 ${weakLinks?.ownedCount ?? 0}
 `;
 
   return { path: indexPath(userId), markdown };

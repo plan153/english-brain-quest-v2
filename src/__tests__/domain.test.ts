@@ -35,6 +35,7 @@ import {
   createMemory,
   markOwned,
   pickReviewQueue,
+  summarizeWeakLinks,
 } from '../domain/srs-engine';
 
 function fakeItem(id: string, level = 1): ContentItem {
@@ -247,6 +248,43 @@ describe('4. vault-projection', () => {
     const prog = projectProgress({ userId: 'local-test', progress });
     expect(prog.path).toContain('progress.md');
     expect(prog.markdown).toContain('정답률');
+  });
+
+  it('embeds due and weak-link sections from SRS summary', () => {
+    const now = new Date('2026-07-27T00:00:00.000Z');
+    let mem = createMemory('e130', "It's there.", '거기 있어요. (물건)', now);
+    mem = applyReview(mem, 'wrong', 'normal', { cueMode: 'after_reveal' });
+    mem = applyReview(mem, 'wrong', 'normal', { cueMode: 'after_reveal' });
+    mem.nextReviewAt = new Date('2026-07-26T00:00:00.000Z').toISOString();
+
+    const weakLinks = summarizeWeakLinks([mem], { now });
+    expect(weakLinks.dueCount).toBeGreaterThanOrEqual(1);
+    expect(weakLinks.weak.length).toBeGreaterThanOrEqual(1);
+
+    const progress = {
+      xp: 100,
+      level: 2,
+      streakDays: 1,
+      todaySentenceCount: 3,
+      correctCount: 1,
+      attemptCount: 3,
+      totalSentences: 3,
+    };
+    const brain = projectBrain({
+      userId: 'me',
+      skill: DEFAULT_SKILL_PROFILE,
+      badges: [],
+      progress,
+      weakLinks,
+    });
+    expect(brain.markdown).toContain('복습 대기');
+    expect(brain.markdown).toContain('약한 고리');
+    expect(brain.markdown).toContain("It's there.");
+    expect(brain.markdown).toContain('dueCount:');
+
+    const prog = projectProgress({ userId: 'me', progress, weakLinks });
+    expect(prog.markdown).toContain('지금 복습하면 좋은 문장');
+    expect(prog.markdown).toContain("It's there.");
   });
 });
 

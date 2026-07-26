@@ -258,6 +258,78 @@ export function countOwned(memories: SentenceMemory[]): number {
   return memories.filter((m) => m.owned).length;
 }
 
+export interface WeakLinkRow {
+  sentenceId: string;
+  en: string;
+  ko: string;
+  wrong: number;
+  attempts: number;
+  lastCueMode?: CueMode;
+  reason: string;
+}
+
+export interface WeakLinkSummary {
+  dueCount: number;
+  ownedCount: number;
+  memoryCount: number;
+  due: WeakLinkRow[];
+  weak: WeakLinkRow[];
+}
+
+/** 볼트 투영용 — due 복습 + 오답·힌트의존 약점 TOP */
+export function summarizeWeakLinks(
+  memories: SentenceMemory[],
+  options: { dueLimit?: number; weakLimit?: number; now?: Date } = {}
+): WeakLinkSummary {
+  const dueLimit = options.dueLimit ?? 10;
+  const weakLimit = options.weakLimit ?? 10;
+  const now = options.now ?? new Date();
+  const list = Array.isArray(memories) ? memories : [];
+
+  const due = pickReviewQueue(list, dueLimit, now).map((m) => ({
+    sentenceId: m.sentenceId,
+    en: m.en,
+    ko: m.ko,
+    wrong: m.wrong,
+    attempts: m.attempts,
+    lastCueMode: m.lastCueMode,
+    reason: m.owned ? '내 문장 · 복습 기한' : '복습 기한',
+  }));
+
+  const weak = [...list]
+    .filter((m) => m.attempts > 0 && (m.wrong > 0 || (m.revealCorrect ?? 0) > (m.blindCorrect ?? 0)))
+    .map((m) => {
+      const revealHeavy = (m.revealCorrect ?? 0) > (m.blindCorrect ?? 0);
+      const reason =
+        m.wrong >= 2
+          ? `오답 ${m.wrong}회`
+          : revealHeavy
+            ? '정답 보고 맞힌 비중 높음'
+            : `오답 ${m.wrong}회`;
+      return {
+        sentenceId: m.sentenceId,
+        en: m.en,
+        ko: m.ko,
+        wrong: m.wrong,
+        attempts: m.attempts,
+        lastCueMode: m.lastCueMode,
+        reason,
+        score: m.wrong * 10 + (revealHeavy ? 5 : 0) + (m.attempts - m.correct),
+      };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, weakLimit)
+    .map(({ score: _s, ...row }) => row);
+
+  return {
+    dueCount: countDue(list, now),
+    ownedCount: countOwned(list),
+    memoryCount: list.length,
+    due,
+    weak,
+  };
+}
+
 export function memoryToContentItem(m: SentenceMemory): {
   id: string;
   type: 'sentence';

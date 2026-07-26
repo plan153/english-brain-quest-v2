@@ -668,6 +668,7 @@ export const useStore = create<AppStore>((set, get) => {
             skill: s.skill,
             badges: s.badges,
             gaps,
+            memories: s.memories,
           });
         } catch {
           /* 미연결이면 조용히 스킵 */
@@ -692,6 +693,7 @@ export const useStore = create<AppStore>((set, get) => {
         skill: s.skill,
         badges: s.badges,
         gaps: s.pendingGaps,
+        memories: s.memories,
       });
       if (s.pendingGaps.length > 0) {
         set({ pendingGaps: [] });
