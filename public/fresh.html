@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta name="robots" content="noindex" />
+  <title>새 버전으로 새로고침…</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: ui-rounded, "SF Pro Rounded", "Apple SD Gothic Neo", system-ui, sans-serif;
+      color: #f3f4f6;
+      background: #0f1419;
+      padding: 24px;
+      text-align: center;
+    }
+    p { margin: 0; line-height: 1.5; }
+    .muted { margin-top: 10px; color: #9ca3af; font-size: 14px; }
+    a.btn {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      background: #4ade80;
+      color: #0f1419;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p><b>캐시를 지우고 새 버전으로 이동합니다…</b></p>
+    <p class="muted" id="status">잠시만 기다려 주세요.</p>
+    <p class="muted">안 넘어가면 아래 버튼을 눌러 주세요.</p>
+    <a class="btn" id="go" href="./">앱 열기</a>
+  </div>
+  <script>
+    (async () => {
+      const VERSION = '__EBQ_APP_VERSION__';
+      const status = document.getElementById('status');
+      const go = document.getElementById('go');
+      const target = `./?v=${encodeURIComponent(VERSION)}&fresh=${Date.now()}`;
+      go.setAttribute('href', target);
+      try {
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(regs.map((registration) => registration.unregister()));
+        }
+        if (typeof caches !== 'undefined') {
+          const keys = await caches.keys();
+          await Promise.all(keys.map((key) => caches.delete(key)));
+        }
+        try {
+          localStorage.removeItem('ebq-cache-version');
+        } catch (_) {}
+        status.textContent = '캐시 삭제 완료 · v' + VERSION;
+      } catch (error) {
+        console.warn('fresh clear failed', error);
+        status.textContent = '캐시 삭제 중 문제가 있어 바로 이동합니다.';
+      }
+      setTimeout(() => {
+        location.replace(target);
+      }, 250);
+    })();
+  </script>
+</body>
+</html>

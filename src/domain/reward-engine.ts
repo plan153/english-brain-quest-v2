@@ -11,11 +11,14 @@
  */
 import type { DifficultyTier } from './difficulty-mixer';
 import type { SessionEvaluateResult } from '../interfaces/SessionMode';
+import type { CueMode } from './srs-engine';
 
 export interface RewardContext {
   tier?: DifficultyTier;
   combo: number;
   isFirstCorrect?: boolean;
+  /** 힌트 경로 — XP 배율 */
+  cueMode?: CueMode;
 }
 
 export interface TrialReward {
@@ -156,8 +159,12 @@ export function computeTrialReward(
     wrong: 2,
     skipped: 0,
   };
-  const baseXp = Math.round(baseXpMap[evalResult.match] ?? 0 * tierMultiplier(ctx.tier));
-  const cBonus = evalResult.match === 'exact' || evalResult.match === 'fuzzy' ? comboBonus(ctx.combo) : 0;
+  const cueMult =
+    ctx.cueMode === 'blind' ? 1.5 : ctx.cueMode === 'after_reveal' ? 0.6 : 1;
+  const rawBase = baseXpMap[evalResult.match] ?? 0;
+  const baseXp = Math.round(rawBase * cueMult);
+  const cBonus =
+    evalResult.match === 'exact' || evalResult.match === 'fuzzy' ? comboBonus(ctx.combo) : 0;
   const tierBonus = Math.round(baseXp * (tierMultiplier(ctx.tier) - 1));
 
   const totalXp = baseXp + cBonus + tierBonus;
@@ -187,8 +194,14 @@ export function computeTrialReward(
 
   // 피드백 메시지
   let feedback = '';
-  if (evalResult.match === 'exact') feedback = '완벽해요! 🎯';
-  else if (evalResult.match === 'fuzzy') feedback = '거의 맞았어요. 원래 표현을 들어보세요.';
+  if (evalResult.match === 'exact') {
+    feedback =
+      ctx.cueMode === 'blind'
+        ? '힌트 없이 완벽! 🎯'
+        : ctx.cueMode === 'after_reveal'
+          ? '정답 보고 맞춤 — 다음에 힌트 없이!'
+          : '완벽해요! 🎯';
+  } else if (evalResult.match === 'fuzzy') feedback = '거의 맞았어요. 원래 표현을 들어보세요.';
   else if (evalResult.match === 'wrong') feedback = '틀렸어도 괜찮아요. 원래 표현을 들으면서 익혀요.';
   else feedback = '스킵. 다음에 다시 도전!';
 

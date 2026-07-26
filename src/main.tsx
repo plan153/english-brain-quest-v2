@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import './styles/global.css';
+import { registerServiceWorker, getAppVersion } from './adapters/cache-bust';
 
 const rootEl = document.getElementById('root');
 if (!rootEl) {
@@ -14,11 +15,8 @@ createRoot(rootEl).render(
   </StrictMode>
 );
 
-// PWA service worker (production only)
-if (import.meta.env.PROD && 'serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(() => {
-      /* SW optional */
-    });
-  });
-}
+void registerServiceWorker().then(() => {
+  if (import.meta.env.DEV) {
+    console.info(`[EBQ] v${getAppVersion()}`);
+  }
+});

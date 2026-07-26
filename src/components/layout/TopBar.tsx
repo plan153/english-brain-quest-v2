@@ -1,4 +1,5 @@
 import { useStore } from '../../state/store';
+import { getAppVersion } from '../../adapters/cache-bust';
 
 export function TopBar() {
   const level = useStore((s) => s.level);
@@ -12,6 +13,7 @@ export function TopBar() {
       <button type="button" className="top-bar-home" onClick={goHome} aria-label="오늘로 이동">
         <span className="top-bar-brand">오늘</span>
         <span className="level">Lv {level}</span>
+        <span className="app-version">v{getAppVersion()}</span>
       </button>
       <div className="top-bar-actions">
         {todayLogCount > 0 && (

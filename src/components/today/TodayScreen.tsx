@@ -100,8 +100,21 @@ export function TodayScreen() {
 
   const currentSentenceRef = useRef(currentSentence);
   const pendingEvalRef = useRef(pendingEval);
+  const heardAnswerRef = useRef(false);
+  const sawEnglishRef = useRef(false);
   currentSentenceRef.current = currentSentence;
   pendingEvalRef.current = pendingEval;
+
+  const resetCueFlags = useCallback(() => {
+    heardAnswerRef.current = false;
+    sawEnglishRef.current = false;
+  }, []);
+
+  const resolveCueMode = useCallback((): 'blind' | 'after_listen' | 'after_reveal' => {
+    if (sawEnglishRef.current) return 'after_reveal';
+    if (heardAnswerRef.current) return 'after_listen';
+    return 'blind';
+  }, []);
 
   /** STT final → 즉시 채점 (useEffect 대기 없음) */
   const handleSpeechResult = useCallback(
@@ -133,10 +146,10 @@ export function TodayScreen() {
           feedback: matched.feedback,
           ttsContent: matched.canonicalTTS,
         },
-        { text: result.text, skipped: false }
+        { text: result.text, skipped: false, cueMode: resolveCueMode() }
       );
     },
-    [recordTrial]
+    [recordTrial, resolveCueMode]
   );
 
   const speech = useSpeech({ lang: 'en', onResult: handleSpeechResult, maxListenMs: 7000 });
@@ -188,9 +201,10 @@ export function TodayScreen() {
     setShowHint(false);
     pendingEvalRef.current = null;
     setPendingEval(null);
+    resetCueFlags();
     speech.reset();
     startSessionFromItems(items, { mode: 'translate', size: SESSION_SIZE });
-  }, [items, startSessionFromItems, speech]);
+  }, [items, startSessionFromItems, speech, resetCueFlags]);
 
   // 스킵 처리
   const handleSkip = useCallback(() => {
@@ -206,12 +220,13 @@ export function TodayScreen() {
     recordTrial(
       currentSentence,
       { match: 'skipped', score: 0, feedback: '스킵', ttsContent: currentSentence.en },
-      { skipped: true }
+      { skipped: true, cueMode: resolveCueMode() }
     );
-  }, [currentSentence, recordTrial]);
+  }, [currentSentence, recordTrial, resolveCueMode]);
 
   const handleListen = useCallback(async () => {
     if (!currentSentence) return;
+    heardAnswerRef.current = true;
     await speech.speak(currentSentence.en, 'en');
   }, [currentSentence, speech]);
 
@@ -225,6 +240,7 @@ export function TodayScreen() {
 
   const handleListenOriginal = useCallback(async () => {
     if (!pendingEval) return;
+    heardAnswerRef.current = true;
     await speech.speak(pendingEval.canonicalTTS, 'en');
   }, [pendingEval, speech]);
 
@@ -233,6 +249,7 @@ export function TodayScreen() {
     setPendingEval(null);
     setShowEnglish(false);
     setShowHint(false);
+    resetCueFlags();
     speech.reset();
     const done =
       !!plan && progress.index >= plan.total && progress.completed >= plan.total;
@@ -241,10 +258,11 @@ export function TodayScreen() {
     } else {
       nextSentence();
     }
-  }, [speech, progress.index, progress.completed, plan, nextSentence, endSession]);
+  }, [speech, progress.index, progress.completed, plan, nextSentence, endSession, resetCueFlags]);
 
   const handleReplay = useCallback(async () => {
     if (!currentSentence) return;
+    heardAnswerRef.current = true;
     await speech.speak(currentSentence.en, 'en');
   }, [currentSentence, speech]);
 
@@ -552,7 +570,13 @@ export function TodayScreen() {
       {/* 보조 버튼 */}
       <div className="toggle-row">
         <Button
-          onClick={() => setShowEnglish((v) => !v)}
+          onClick={() => {
+            setShowEnglish((v) => {
+              const next = !v;
+              if (next) sawEnglishRef.current = true;
+              return next;
+            });
+          }}
           className={`toggle-btn${showEnglish ? ' active' : ''}`}
         >
           {showEnglish ? '🇰🇷 한국어만' : '🇺🇸 한→영 토글'}

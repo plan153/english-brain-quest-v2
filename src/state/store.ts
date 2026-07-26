@@ -156,7 +156,7 @@ interface AppStore
   recordTrial: (
     sentence: SessionSentence,
     evaluation: SessionEvaluateResult,
-    response: { text?: string; skipped?: boolean }
+    response: { text?: string; skipped?: boolean; cueMode?: import('../domain/srs-engine').CueMode }
   ) => TrialReward;
   nextSentence: () => void;
   endSession: () => SessionSummary | null;
@@ -396,6 +396,7 @@ export const useStore = create<AppStore>((set, get) => {
       const tier = sentence.difficulty ?? 'normal';
       const isCorrect = evaluation.match === 'exact' || evaluation.match === 'fuzzy';
       const isRetry = !!lastTrial && lastTrial.sentence.id === sentence.id;
+      const cueMode = response.cueMode ?? 'blind';
 
       // 재시도 시 콤보는 교체 전 progress 기준으로 다시 계산
       const comboForReward = isRetry
@@ -414,6 +415,7 @@ export const useStore = create<AppStore>((set, get) => {
           tier,
           combo: comboForReward,
           isFirstCorrect: !isRetry && progress.correct === 0,
+          cueMode,
         },
         xp,
         earnedBadgeIds
@@ -534,7 +536,7 @@ export const useStore = create<AppStore>((set, get) => {
         prevMem,
         evaluation.match,
         get().reviewIntensity,
-        { previousWrong }
+        { previousWrong, cueMode }
       );
       persistMemories(memories);
 

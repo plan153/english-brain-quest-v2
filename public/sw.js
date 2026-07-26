@@ -1,49 +1,74 @@
 /**
- * sw.js — 최소 서비스 워커.
- * 앱 셸 캐시 + 네트워크 우선 데이터 JSON.
+ * sw.js — 버전드 캐시 (이전 etd-quest 패턴).
+ * - HTML은 캐시하지 않음 (Safari stuck-UI 주원인)
+ * - data JSON은 network-only
+ * - 정적 에셋은 network-first
+ * CACHE 이름은 빌드 시 버전으로 치환됨 (__EBQ_CACHE_VERSION__).
  */
-const CACHE = 'ebq-v2-shell-v1';
-const SHELL = ['./', './index.html', './manifest.webmanifest', './favicon.svg'];
+const CACHE = '__EBQ_CACHE_VERSION__';
+
+function sameOriginGet(request) {
+  return request.method === 'GET' && new URL(request.url).origin === self.location.origin;
+}
+
+function isHtmlNavigation(request, url) {
+  if (request.mode === 'navigate') return true;
+  const path = url.pathname;
+  return path.endsWith('/') || path.endsWith('/index.html') || path.endsWith('index.html');
+}
+
+function isBypassPath(url) {
+  return url.pathname.endsWith('/fresh.html') || url.pathname.endsWith('fresh.html');
+}
+
+function isDataJson(url) {
+  return url.pathname.includes('/data/') && url.pathname.endsWith('.json');
+}
+
+async function networkOnly(request) {
+  return fetch(request, { cache: 'no-store' });
+}
+
+async function networkFirstAsset(request) {
+  const cache = await caches.open(CACHE);
+  try {
+    const response = await fetch(request, { cache: 'reload' });
+    if (sameOriginGet(request) && response.ok) {
+      cache.put(request, response.clone());
+    }
+    return response;
+  } catch {
+    const cached = await cache.match(request, { ignoreSearch: true });
+    if (cached) return cached;
+    throw new Error('offline');
+  }
+}
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(SHELL)).then(() => self.skipWaiting())
-  );
+  event.waitUntil(self.skipWaiting());
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
-    ).then(() => self.clients.claim())
+    caches
+      .keys()
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then(() => self.clients.claim())
   );
 });
 
 self.addEventListener('fetch', (event) => {
-  const req = event.request;
-  if (req.method !== 'GET') return;
-
-  const url = new URL(req.url);
-  // 데이터 JSON은 네트워크 우선
-  if (url.pathname.includes('/data/')) {
-    event.respondWith(
-      fetch(req)
-        .then((res) => {
-          const copy = res.clone();
-          caches.open(CACHE).then((c) => c.put(req, copy));
-          return res;
-        })
-        .catch(() => caches.match(req))
-    );
+  const request = event.request;
+  if (!sameOriginGet(request)) return;
+  const url = new URL(request.url);
+  if (isBypassPath(url)) return;
+  if (isHtmlNavigation(request, url)) {
+    event.respondWith(networkOnly(request));
     return;
   }
-
-  // 앱 셸: 캐시 우선
-  event.respondWith(
-    caches.match(req).then((cached) => cached || fetch(req).then((res) => {
-      const copy = res.clone();
-      caches.open(CACHE).then((c) => c.put(req, copy));
-      return res;
-    }))
-  );
+  if (isDataJson(url)) {
+    event.respondWith(networkOnly(request));
+    return;
+  }
+  event.respondWith(networkFirstAsset(request));
 });

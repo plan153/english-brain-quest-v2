@@ -171,6 +171,12 @@ button:disabled {
   font-size: 13px;
 }
 
+.top-bar .app-version {
+  font-size: 10px;
+  color: var(--ebq-text-muted);
+  font-weight: 600;
+}
+
 .today-log-list {
   list-style: none;
   margin: 12px 0 0;

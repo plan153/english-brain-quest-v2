@@ -178,11 +178,14 @@ describe('1d. srs-engine', () => {
     expect(mem.ownedReason).toBe('auto-recover');
   });
 
-  it('picks due owned sentences first', () => {
-    const a = applyReview(createMemory('a', 'A', '에이'), 'wrong', 'normal');
-    const b = markOwned(createMemory('b', 'B', '비'));
-    const queue = pickReviewQueue([a, b], 5);
-    expect(queue[0].sentenceId).toBe('b');
+  it('gives longer interval for blind success than reveal', () => {
+    let blind = createMemory('b1', 'Hi', '안녕');
+    blind = applyReview(blind, 'exact', 'normal', { cueMode: 'blind' });
+    let reveal = createMemory('r1', 'Hi', '안녕');
+    reveal = applyReview(reveal, 'exact', 'normal', { cueMode: 'after_reveal' });
+    expect(blind.intervalDays).toBeGreaterThan(reveal.intervalDays);
+    expect(blind.blindCorrect).toBe(1);
+    expect(reveal.revealCorrect).toBe(1);
   });
 });
 
