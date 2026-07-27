@@ -18,6 +18,7 @@ import {
 } from '../../domain/srs-engine';
 import { VaultSyncCard } from './VaultSyncCard';
 import { TodayLogCard } from './TodayLogCard';
+import { GapReasonCard } from '../today/GapReasonCard';
 
 const SKILL_AXIS_META: { axis: SkillAxis; label: string }[] = [
   { axis: 'form', label: '형태 (form)' },
@@ -44,12 +45,22 @@ export function BrainScreen() {
   const reviewIntensity = useStore((s) => s.reviewIntensity);
   const setReviewIntensity = useStore((s) => s.setReviewIntensity);
   const requestStartPack = useStore((s) => s.requestStartPack);
+  const gapNotes = useStore((s) => s.gapNotes);
+  const resolveGapReason = useStore((s) => s.resolveGapReason);
 
   const memoryList = useMemo(() => Object.values(memories), [memories]);
   const dueCount = useMemo(() => countDue(memoryList), [memoryList]);
   const owned = useMemo(() => countOwned(memoryList), [memoryList]);
   const weakCount = useMemo(() => countWeakTraining(memoryList), [memoryList]);
   const weakSummary = useMemo(() => summarizeWeakLinks(memoryList), [memoryList]);
+  const pendingReasonGaps = useMemo(
+    () =>
+      [...gapNotes]
+        .filter((g) => (g.reasonStatus ?? 'pending') === 'pending')
+        .reverse()
+        .slice(0, 5),
+    [gapNotes]
+  );
 
   const accuracy = attemptCount > 0 ? Math.round((correctCount / attemptCount) * 100) : 0;
   const lvl = levelFromXp(xp);
@@ -139,6 +150,32 @@ export function BrainScreen() {
           약점 강화 훈련 시작 →
         </button>
       </Card>
+
+      {pendingReasonGaps.length > 0 && (
+        <Card style={{ marginTop: '12px' }}>
+          <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)' }}>
+            간극 이유 확인 ({pendingReasonGaps.length})
+          </div>
+          <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)', marginTop: '6px' }}>
+            틀린 문장에 자동으로 붙인 이유가 맞는지 확인해 주세요.
+          </div>
+          {pendingReasonGaps.map((gap) => (
+            <div key={gap.id} style={{ marginTop: '10px' }}>
+              <div style={{ fontSize: '13px', fontWeight: 700 }}>{gap.en}</div>
+              <div style={{ fontSize: '11px', color: 'var(--ebq-text-muted)' }}>
+                내 말: {gap.guess || '(없음)'}
+              </div>
+              <GapReasonCard
+                gap={gap}
+                onConfirm={(id) => resolveGapReason(id, { type: 'confirmed' })}
+                onSaveEdit={(id, reason) =>
+                  resolveGapReason(id, { type: 'edited', reason })
+                }
+              />
+            </div>
+          ))}
+        </Card>
+      )}
 
       <Card style={{ marginTop: '12px' }}>
         <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)' }}>복습 · 기억</div>

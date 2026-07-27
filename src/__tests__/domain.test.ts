@@ -26,10 +26,13 @@ import {
 import {
   projectBrain,
   projectProgress,
+  projectGap,
+  projectVaultScaffold,
   makeGapId,
   brainPath,
 } from '../domain/vault-projection';
 import FuzzyMatch from '../domain/fuzzy-match';
+import { analyzeGapSlots, inferGapReason, problemSlots } from '../domain/gap-reason';
 import {
   applyReview,
   createMemory,
@@ -247,7 +250,7 @@ describe('4. vault-projection', () => {
     expect(brain.markdown).toContain('Brain State');
 
     const prog = projectProgress({ userId: 'local-test', progress });
-    expect(prog.path).toContain('progress.md');
+    expect(prog.path).toContain('Progress.md');
     expect(prog.markdown).toContain('정답률');
   });
 
@@ -312,6 +315,100 @@ describe('6. makeGapId', () => {
   });
 });
 
+describe('6b. gap-reason + projectGap', () => {
+  it('infers skip and structural slot reasons', () => {
+    expect(
+      inferGapReason({
+        en: 'Do you need help?',
+        ko: '도움이 필요하세요?',
+        guess: '(스킵)',
+        match: 'skipped',
+      })
+    ).toContain('건너뛰');
+
+    const wrong = inferGapReason({
+      en: 'I have a question.',
+      ko: '질문이 있어요.',
+      guess: 'I have',
+      match: 'wrong',
+      cueMode: 'blind',
+    });
+    expect(wrong).toContain('힌트 없이');
+    expect(wrong).toMatch(/명사|question/);
+  });
+
+  it('flags wrong subject, missing noun, tense, and 3sg', () => {
+    const subject = analyzeGapSlots({
+      en: 'She needs help.',
+      guess: 'He needs help.',
+    });
+    expect(subject.some((f) => f.role === 'subject' && f.status === 'wrong')).toBe(true);
+
+    const noun = analyzeGapSlots({
+      en: 'I have a question.',
+      guess: 'I have',
+    });
+    expect(noun.some((f) => f.role === 'noun' && f.status === 'missing')).toBe(true);
+
+    const tense = analyzeGapSlots({
+      en: 'I went home.',
+      guess: 'I go home.',
+    });
+    expect(tense.some((f) => f.role === 'tense' && f.status === 'wrong')).toBe(true);
+
+    const agr = analyzeGapSlots({
+      en: 'She needs help.',
+      guess: 'She need help.',
+    });
+    expect(agr.some((f) => f.role === 'agreement' && f.status === 'wrong')).toBe(true);
+
+    const text = inferGapReason({
+      en: 'She needs help.',
+      ko: '그녀는 도움이 필요해요.',
+      guess: 'He need help.',
+      match: 'wrong',
+      cueMode: 'blind',
+    });
+    expect(text).toContain('주어');
+    expect(text).toMatch(/3인칭|동사/);
+  });
+
+  it('writes reason into gap markdown', () => {
+    const file = projectGap({
+      userId: 'me',
+      gap: {
+        id: 'gap_e1_x',
+        expressionId: 'e1',
+        en: 'Hello.',
+        ko: '안녕.',
+        guess: 'Hi',
+        createdAt: '2026-07-27T00:00:00.000Z',
+        match: 'wrong',
+        slots: ['noun'],
+        inputMode: 'type',
+        reasonAuto: '자동 추정 이유',
+        reasonFinal: '내가 고친 이유',
+        reasonStatus: 'edited',
+      },
+    });
+    expect(file.markdown).toContain('간극이 생긴 이유');
+    expect(file.markdown).toContain('내가 고친 이유');
+    expect(file.markdown).toContain('사용자 수정');
+    expect(file.markdown).toContain('처음 추정');
+    expect(file.markdown).toContain('pattern/noun');
+    expect(file.markdown).toContain('[[Patterns/noun');
+    expect(file.markdown).toContain('inputMode: type');
+  });
+
+  it('scaffolds Gaps index and Patterns hubs', () => {
+    const files = projectVaultScaffold('me');
+    expect(files.some((f) => f.path.endsWith('Gaps/_Index.md'))).toBe(true);
+    expect(files.some((f) => f.path.endsWith('Patterns/subject.md'))).toBe(true);
+    expect(files.find((f) => f.path.includes('_Index'))?.markdown).toContain('dataview');
+    expect(problemSlots({ en: 'She needs help.', guess: 'He need help.' }).length).toBeGreaterThan(0);
+  });
+});
+
 import { createZipBlob } from '../adapters/zip-store';
 import { parseGapMarkdown } from '../domain/vault-gap-import';
 
@@ -319,7 +416,7 @@ describe('7. zip-store', () => {
   it('builds a zip with PK headers', async () => {
     const blob = createZipBlob([
       { path: 'Learners/me/Learning/Brain.md', content: '# Brain\n' },
-      { path: 'Learners/me/Learning/progress.md', content: '# Progress\n' },
+      { path: 'Learners/me/Learning/Progress.md', content: '# Progress\n' },
     ]);
     const buf = new Uint8Array(await blob.arrayBuffer());
     expect(buf[0]).toBe(0x50); // P

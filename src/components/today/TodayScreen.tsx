@@ -23,6 +23,7 @@ import type { MatchLevel } from '../../interfaces/Evaluator';
 import type { SpeechResult } from '../../interfaces/SpeechResult';
 import FuzzyMatch from '../../domain/fuzzy-match';
 import { FeedbackBar } from './FeedbackBar';
+import { GapReasonCard } from './GapReasonCard';
 import { SessionComplete } from './SessionComplete';
 
 const SESSION_SIZE = 10; // Phase 2 데모. 추후 50으로 확장.
@@ -87,6 +88,8 @@ export function TodayScreen() {
     canonicalTTS: string;
     userText: string;
   } | null>(null);
+  const [typeDraft, setTypeDraft] = useState('');
+  const [showTypeInput, setShowTypeInput] = useState(false);
 
   // store — session engine
   const isPlaying = useStore((s) => s.isPlaying);
@@ -101,6 +104,8 @@ export function TodayScreen() {
   const recordTrial = useStore((s) => s.recordTrial);
   const nextSentence = useStore((s) => s.nextSentence);
   const endSession = useStore((s) => s.endSession);
+  const getGapForSentence = useStore((s) => s.getGapForSentence);
+  const resolveGapReason = useStore((s) => s.resolveGapReason);
   const setActiveTab = useStore((s) => s.setActiveTab);
   const getDueReviewItems = useStore((s) => s.getDueReviewItems);
   const dueReviewCount = useStore((s) => s.dueReviewCount);
@@ -126,14 +131,15 @@ export function TodayScreen() {
     return 'blind';
   }, []);
 
-  /** STT final → 즉시 채점 (useEffect 대기 없음) */
-  const handleSpeechResult = useCallback(
-    (result: SpeechResult) => {
+  /** 말하기·타이핑 공통 채점 */
+  const submitAnswer = useCallback(
+    (text: string, inputMode: 'speak' | 'type') => {
       const sentence = currentSentenceRef.current;
       if (!sentence || pendingEvalRef.current) return;
-      if (!result.text.trim()) return;
+      const trimmed = text.trim();
+      if (!trimmed) return;
 
-      const matched = FuzzyMatch.matchAnswer(result.text, sentence.en, {
+      const matched = FuzzyMatch.matchAnswer(trimmed, sentence.en, {
         leniency: 1,
       });
       const level = matched.level as MatchLevel;
@@ -141,10 +147,11 @@ export function TodayScreen() {
         level,
         feedback: matched.feedback,
         canonicalTTS: matched.canonicalTTS,
-        userText: result.text,
+        userText: trimmed,
       };
       pendingEvalRef.current = evalInfo;
       setPendingEval(evalInfo);
+      setTypeDraft('');
 
       const matchKind: 'exact' | 'fuzzy' | 'wrong' | 'skipped' =
         level === 'exact' ? 'exact' : level === 'fuzzy' ? 'fuzzy' : 'wrong';
@@ -156,11 +163,24 @@ export function TodayScreen() {
           feedback: matched.feedback,
           ttsContent: matched.canonicalTTS,
         },
-        { text: result.text, skipped: false, cueMode: resolveCueMode() }
+        { text: trimmed, skipped: false, cueMode: resolveCueMode(), inputMode }
       );
     },
     [recordTrial, resolveCueMode]
   );
+
+  /** STT final → 즉시 채점 */
+  const handleSpeechResult = useCallback(
+    (result: SpeechResult) => {
+      if (!result.text.trim()) return;
+      submitAnswer(result.text, 'speak');
+    },
+    [submitAnswer]
+  );
+
+  const handleTypeSubmit = useCallback(() => {
+    submitAnswer(typeDraft, 'type');
+  }, [submitAnswer, typeDraft]);
 
   const speech = useSpeech({ lang: 'en', onResult: handleSpeechResult, maxListenMs: 7000 });
 
@@ -241,6 +261,8 @@ export function TodayScreen() {
       if (itemsNow && itemsNow.length > 0) {
         setShowEnglish(false);
         setShowHint(false);
+        setShowTypeInput(false);
+        setTypeDraft('');
         pendingEvalRef.current = null;
         setPendingEval(null);
         resetCueFlags();
@@ -264,6 +286,8 @@ export function TodayScreen() {
     if (!items || items.length === 0) return;
     setShowEnglish(false);
     setShowHint(false);
+    setShowTypeInput(false);
+    setTypeDraft('');
     pendingEvalRef.current = null;
     setPendingEval(null);
     resetCueFlags();
@@ -314,6 +338,8 @@ export function TodayScreen() {
     setPendingEval(null);
     setShowEnglish(false);
     setShowHint(false);
+    setShowTypeInput(false);
+    setTypeDraft('');
     resetCueFlags();
     speech.reset();
     const done =
@@ -524,7 +550,7 @@ export function TodayScreen() {
               marginTop: '10px',
             }}
           >
-            영어로 말해 보세요. (정답 보려면 아래 '한→영' 버튼)
+            영어로 말하거나 타이핑해 보세요. (정답 보려면 아래 &apos;한→영&apos; 버튼)
           </div>
         )}
       </Card>
@@ -552,11 +578,63 @@ export function TodayScreen() {
               ? '다시 말하기'
               : '영어로 말하기'}
         </Button>
+        <Button
+          onClick={() => {
+            setShowTypeInput((v) => !v);
+            if (speech.listening) speech.stopListening();
+          }}
+          disabled={!!pendingEval || speech.listening}
+          className={showTypeInput ? 'active' : ''}
+        >
+          ⌨️ 타이핑
+        </Button>
       </div>
+
+      {showTypeInput && !pendingEval && (
+        <Card style={{ marginTop: '10px' }}>
+          <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)', marginBottom: '8px' }}>
+            영어로 입력 후 제출 (말하기와 같은 채점)
+          </div>
+          <input
+            type="text"
+            value={typeDraft}
+            onChange={(e) => setTypeDraft(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleTypeSubmit();
+              }
+            }}
+            placeholder="Type the English sentence…"
+            autoCapitalize="off"
+            autoCorrect="off"
+            spellCheck={false}
+            style={{
+              width: '100%',
+              padding: '12px',
+              borderRadius: '10px',
+              border: '1px solid var(--ebq-border)',
+              background: 'var(--ebq-surface-alt)',
+              color: 'var(--ebq-text)',
+              fontSize: '16px',
+              fontFamily: 'inherit',
+              boxSizing: 'border-box',
+            }}
+          />
+          <Button
+            variant="primary"
+            onClick={handleTypeSubmit}
+            disabled={!typeDraft.trim()}
+            style={{ width: '100%', marginTop: '10px' }}
+          >
+            제출
+          </Button>
+        </Card>
+      )}
 
       {!speech.supported && (
         <div style={{ color: 'var(--ebq-danger)', textAlign: 'center', fontSize: '12px' }}>
-          이 브라우저는 음성 인식을 지원하지 않습니다. Chrome/Safari를 추천합니다.
+          이 브라우저는 음성 인식을 지원하지 않습니다. Chrome/Safari를 추천합니다. 타이핑으로도 연습할 수 있어요.
         </div>
       )}
       {speech.error && (
@@ -604,9 +682,24 @@ export function TodayScreen() {
                 marginTop: '4px',
               }}
             >
-              네가 말한 것: &quot;{pendingEval.userText}&quot;
+              네가 쓴/말한 것: &quot;{pendingEval.userText}&quot;
             </div>
           )}
+          {pendingEval.level === 'wrong' &&
+            currentSentence &&
+            (() => {
+              const gap = getGapForSentence(currentSentence.id);
+              if (!gap) return null;
+              return (
+                <GapReasonCard
+                  gap={gap}
+                  onConfirm={(id) => resolveGapReason(id, { type: 'confirmed' })}
+                  onSaveEdit={(id, reason) =>
+                    resolveGapReason(id, { type: 'edited', reason })
+                  }
+                />
+              );
+            })()}
           <div
             style={{
               marginTop: '12px',
@@ -629,6 +722,16 @@ export function TodayScreen() {
               disabled={!speech.supported || speech.listening || speech.speaking}
             >
               다시 말하기
+            </Button>
+            <Button
+              onClick={() => {
+                pendingEvalRef.current = null;
+                setPendingEval(null);
+                setShowTypeInput(true);
+                setTypeDraft('');
+              }}
+            >
+              다시 타이핑
             </Button>
             <Button onClick={handleNext}>다음 →</Button>
           </div>

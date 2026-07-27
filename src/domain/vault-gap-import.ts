@@ -86,6 +86,7 @@ export function parseGapFiles(
   for (const f of files) {
     if (!/Gaps\/[^/]+\.md$/i.test(f.path)) continue;
     if (/\/_keep\.md$/i.test(f.path)) continue;
+    if (/\/_Index\.md$/i.test(f.path)) continue;
     const parsed = parseGapMarkdown(f.content, f.path);
     if (!parsed) continue;
     // 같은 expressionId면 더 최근 path 우선(파일명에 날짜 있으면)

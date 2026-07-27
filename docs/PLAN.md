@@ -79,7 +79,8 @@
 ### Phase 4 — 클라우드 동기화 (완료)
 - [x] `cloud-sync.ts` (`StorageAdapter` 인터페이스)
 - [x] File System Access API (데스크톱) + IndexedDB 폴백 (모바일)
-- [x] `Brain.md` / `progress.md` / `gaps/` 폴더 구조 관리 (`vault-projection.ts`)
+- [x] `Brain.md` / `Progress.md` / `Gaps/` / `Patterns/` 폴더 구조 (`vault-projection.ts`, `docs/vault-schema.md`)
+- [x] Gap 슬롯·이유 확인 + 말하기/타이핑 입력 (`gap-reason.ts`, TodayScreen)
 - [x] `getUserId()` 추상화 (향후 로그인 대비) — `adapters/storage.ts`
 - [x] BrainScreen `VaultSyncCard` UI (연결/동기화/다운로드)
 - [x] 세션 종료 시 자동 Vault 투영 + 오답 Gap 노트

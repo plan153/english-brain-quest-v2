@@ -52,6 +52,7 @@ import {
   importVaultGaps,
   type GapNote,
 } from '../adapters/cloud-sync';
+import { inferGapReason, problemSlots } from '../domain/gap-reason';
 import {
   applyReview,
   createMemory,
@@ -67,6 +68,7 @@ import {
   type SentenceMemory,
   type ReviewIntensity,
   type WeakLinkSummary,
+  type CueMode,
 } from '../domain/srs-engine';
 
 export type { SentenceMemory, ReviewIntensity, WeakLinkSummary };
@@ -113,6 +115,8 @@ export interface RewardState {
   skill: SkillProfile;
   /** 세션 중 쌓인 Gap 노트 — endSession 시 Vault 동기화 */
   pendingGaps: GapNote[];
+  /** 확인·수정 가능한 간극 보관 (localStorage) */
+  gapNotes: GapNote[];
 }
 
 export interface SettingsState {
@@ -126,6 +130,11 @@ interface AppStore
     SessionState,
     RewardState,
     SettingsState {
+  resolveGapReason: (
+    gapId: string,
+    resolution: { type: 'confirmed' } | { type: 'edited'; reason: string }
+  ) => void;
+  getGapForSentence: (sentenceId: string) => GapNote | undefined;
   // navigation
   activeTab: TabId;
   setActiveTab: (tab: TabId) => void;
@@ -171,7 +180,12 @@ interface AppStore
   recordTrial: (
     sentence: SessionSentence,
     evaluation: SessionEvaluateResult,
-    response: { text?: string; skipped?: boolean; cueMode?: import('../domain/srs-engine').CueMode }
+    response: {
+      text?: string;
+      skipped?: boolean;
+      cueMode?: import('../domain/srs-engine').CueMode;
+      inputMode?: 'speak' | 'type';
+    }
   ) => TrialReward;
   nextSentence: () => void;
   endSession: () => SessionSummary | null;
@@ -208,7 +222,16 @@ const DEFAULT_REWARD_STATE: RewardState = {
   earnedBadgeIds: new Set<string>(),
   skill: { ...DEFAULT_SKILL_PROFILE },
   pendingGaps: [],
+  gapNotes: [],
 };
+
+function loadGapNotes(): GapNote[] {
+  return readLocal<GapNote[]>('gapNotes') ?? [];
+}
+
+function persistGapNotes(notes: GapNote[]) {
+  writeLocal('gapNotes', notes.slice(-200));
+}
 
 function loadReward(): Partial<RewardState> {
   const saved = readLocal<{ badges: Badge[]; skill: SkillProfile }>('reward');
@@ -266,7 +289,11 @@ export const useStore = create<AppStore>((set, get) => {
   if (initialProgress.lastStudyDate !== todayStr()) {
     initialProgress.todaySentenceCount = 0;
   }
-  const rewardInit = { ...DEFAULT_REWARD_STATE, ...loadReward() };
+  const rewardInit = {
+    ...DEFAULT_REWARD_STATE,
+    ...loadReward(),
+    gapNotes: loadGapNotes(),
+  };
   initialProgress.level = levelFromXp(initialProgress.xp).level;
 
   return {
@@ -330,6 +357,41 @@ export const useStore = create<AppStore>((set, get) => {
     dueReviewCount: () => countDue(Object.values(get().memories)),
 
     ownedCount: () => countOwned(Object.values(get().memories)),
+
+    getGapForSentence: (sentenceId) => {
+      const notes = get().gapNotes;
+      for (let i = notes.length - 1; i >= 0; i--) {
+        if (notes[i].expressionId === sentenceId) return notes[i];
+      }
+      return undefined;
+    },
+
+    resolveGapReason: (gapId, resolution) => {
+      const nowIso = new Date().toISOString();
+      const gapNotes = get().gapNotes.map((g) => {
+        if (g.id !== gapId) return g;
+        if (resolution.type === 'confirmed') {
+          return {
+            ...g,
+            reasonStatus: 'confirmed' as const,
+            reasonFinal: g.reasonAuto || g.reasonFinal || '',
+            updatedAt: nowIso,
+          };
+        }
+        return {
+          ...g,
+          reasonStatus: 'edited' as const,
+          reasonFinal: resolution.reason.trim(),
+          updatedAt: nowIso,
+        };
+      });
+      persistGapNotes(gapNotes);
+      const pendingGaps = get().pendingGaps.map((g) => {
+        const updated = gapNotes.find((n) => n.id === g.id);
+        return updated ?? g;
+      });
+      set({ gapNotes, pendingGaps });
+    },
 
     getWeakTrainingItems: (limit = 10) => {
       const queue = pickWeakTrainingQueue(Object.values(get().memories), limit);
@@ -567,22 +629,49 @@ export const useStore = create<AppStore>((set, get) => {
       }
 
       let pendingGaps = get().pendingGaps;
+      let gapNotes = get().gapNotes;
       if (isRetry) {
         pendingGaps = pendingGaps.filter((g) => g.expressionId !== sentence.id);
+        gapNotes = gapNotes.filter((g) => g.expressionId !== sentence.id);
       }
       if (
         (evaluation.match === 'wrong' || evaluation.match === 'skipped') &&
         sentence.en
       ) {
+        const matchKind = evaluation.match === 'skipped' ? 'skipped' : 'wrong';
+        const cueMode = (response.cueMode ?? 'blind') as CueMode;
+        const guess = response.text ?? '(스킵)';
+        const reasonAuto = inferGapReason({
+          en: sentence.en,
+          ko: sentence.ko,
+          guess,
+          match: matchKind,
+          cueMode,
+        });
+        const slots =
+          matchKind === 'wrong' && guess && guess !== '(스킵)'
+            ? problemSlots({ en: sentence.en, guess })
+            : [];
+        const nowIso = new Date().toISOString();
         const gap: GapNote = {
-          id: makeGapId(sentence.id, response.text ?? ''),
+          id: makeGapId(sentence.id, guess),
           expressionId: sentence.id,
           en: sentence.en,
           ko: sentence.ko,
-          guess: response.text ?? '(스킵)',
-          createdAt: new Date().toISOString(),
+          guess,
+          createdAt: nowIso,
+          updatedAt: nowIso,
+          match: matchKind,
+          cueMode,
+          inputMode: response.inputMode,
+          slots,
+          reasonAuto,
+          reasonFinal: reasonAuto,
+          reasonStatus: 'pending',
         };
         pendingGaps = [...pendingGaps, gap];
+        gapNotes = [...gapNotes.filter((g) => g.expressionId !== sentence.id), gap].slice(-200);
+        persistGapNotes(gapNotes);
       }
 
       const encounter: TodayEncounter = {
@@ -641,6 +730,7 @@ export const useStore = create<AppStore>((set, get) => {
         earnedBadgeIds,
         skill: newSkill,
         pendingGaps,
+        gapNotes,
         todayLog,
         memories,
       });
@@ -712,7 +802,10 @@ export const useStore = create<AppStore>((set, get) => {
       const allNewBadges = [...newBadges, ...streakBadge, ...sentencesBadge];
       writeLocal('reward', { badges: allNewBadges, skill: get().skill });
 
-      const gaps = get().pendingGaps;
+      const gaps = get().pendingGaps.map((g) => {
+        const latest = get().gapNotes.find((n) => n.id === g.id);
+        return latest ?? g;
+      });
       set({
         isPlaying: false,
         summary,
@@ -753,6 +846,9 @@ export const useStore = create<AppStore>((set, get) => {
 
     syncNow: async () => {
       const s = get();
+      const gaps = (s.pendingGaps.length > 0 ? s.pendingGaps : s.gapNotes.slice(-20)).map(
+        (g) => s.gapNotes.find((n) => n.id === g.id) ?? g
+      );
       await syncToVault({
         progress: {
           xp: s.xp,
@@ -765,7 +861,7 @@ export const useStore = create<AppStore>((set, get) => {
         },
         skill: s.skill,
         badges: s.badges,
-        gaps: s.pendingGaps,
+        gaps,
         memories: s.memories,
       });
       if (s.pendingGaps.length > 0) {

@@ -2,7 +2,7 @@
  * cloud-sync.ts — StorageAdapter 오케스트레이터.
  * 데스크톱: File System Access API (Vault 폴더 연결)
  * 모바일/폴백: IndexedDB 가상 볼트
- * Markdown 투영으로 Brain.md / progress.md / Gaps 기록.
+ * Markdown 투영으로 Brain / Progress / Gaps / Patterns 기록.
  */
 import type { StorageAdapter, StorageAdapterType } from '../interfaces/StorageAdapter';
 import { getUserId, readLocal, writeLocal } from './storage';
@@ -20,6 +20,7 @@ import {
   projectProgress,
   projectGap,
   projectIndex,
+  projectVaultScaffold,
   makeGapId,
   brainPath,
   progressPath,
@@ -176,6 +177,7 @@ export async function syncToVault(payload: SyncPayload): Promise<SyncStatus> {
       }),
       projectProgress({ userId, progress: payload.progress, weakLinks }),
       projectIndex({ userId, progress: payload.progress, weakLinks }),
+      ...projectVaultScaffold(userId),
       ...(payload.gaps ?? []).map((gap) => projectGap({ userId, gap })),
     ];
     for (const f of files) {

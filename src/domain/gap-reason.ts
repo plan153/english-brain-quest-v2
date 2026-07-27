@@ -1,0 +1,745 @@
+/**
+ * gap-reason.ts — 오답/스킵 간극의 구조적 추정 이유.
+ * 주어·동사·명사·시제·3인칭 단수 슬롯을 휴리스틱으로 비교.
+ * 사용자는 앱에서 확인·수정할 수 있음.
+ */
+import type { CueMode } from './srs-engine';
+
+export type GapMatch = 'wrong' | 'skipped';
+
+export type GapSlotRole =
+  | 'subject'
+  | 'verb'
+  | 'noun'
+  | 'tense'
+  | 'agreement';
+
+export type GapSlotStatus = 'ok' | 'missing' | 'wrong';
+
+export interface GapSlotFinding {
+  role: GapSlotRole;
+  status: GapSlotStatus;
+  expected: string;
+  actual: string;
+  /** 잘못/못 찾은 추정 이유 */
+  why: string;
+}
+
+const SUBJECT_PRONOUNS = new Set([
+  'i',
+  'you',
+  'he',
+  'she',
+  'it',
+  'we',
+  'they',
+]);
+const OBJECT_PRONOUNS = new Set([
+  'me',
+  'him',
+  'her',
+  'us',
+  'them',
+]);
+const AUX = new Set([
+  'am',
+  'is',
+  'are',
+  'was',
+  'were',
+  'do',
+  'does',
+  'did',
+  'have',
+  'has',
+  'had',
+  'will',
+  'would',
+  'can',
+  'could',
+  'may',
+  'might',
+  'must',
+  'should',
+  'shall',
+]);
+const DETERMINERS = new Set([
+  'a',
+  'an',
+  'the',
+  'my',
+  'your',
+  'his',
+  'her',
+  'its',
+  'our',
+  'their',
+  'this',
+  'that',
+  'these',
+  'those',
+  'some',
+  'any',
+  'no',
+]);
+const PREPS = new Set([
+  'to',
+  'for',
+  'of',
+  'in',
+  'on',
+  'at',
+  'with',
+  'from',
+  'by',
+  'about',
+  'into',
+  'onto',
+  'over',
+  'under',
+  'as',
+]);
+const FUNCTION = new Set([
+  ...SUBJECT_PRONOUNS,
+  ...OBJECT_PRONOUNS,
+  ...AUX,
+  ...DETERMINERS,
+  ...PREPS,
+  'not',
+  'and',
+  'or',
+  'but',
+  'if',
+  'so',
+  'too',
+  'very',
+  'just',
+  'also',
+  'please',
+]);
+
+/** 불규칙 과거 → 원형 (간단 맵) */
+const PAST_TO_BASE: Record<string, string> = {
+  was: 'be',
+  were: 'be',
+  been: 'be',
+  am: 'be',
+  is: 'be',
+  are: 'be',
+  went: 'go',
+  gone: 'go',
+  did: 'do',
+  done: 'do',
+  had: 'have',
+  has: 'have',
+  made: 'make',
+  said: 'say',
+  took: 'take',
+  taken: 'take',
+  came: 'come',
+  saw: 'see',
+  seen: 'see',
+  got: 'get',
+  gotten: 'get',
+  knew: 'know',
+  known: 'know',
+  thought: 'think',
+  found: 'find',
+  gave: 'give',
+  given: 'give',
+  told: 'tell',
+  felt: 'feel',
+  left: 'leave',
+  kept: 'keep',
+  began: 'begin',
+  begun: 'begin',
+  became: 'become',
+  brought: 'bring',
+  bought: 'buy',
+  built: 'build',
+  caught: 'catch',
+  chose: 'choose',
+  chosen: 'choose',
+  drew: 'draw',
+  drawn: 'draw',
+  drank: 'drink',
+  drunk: 'drink',
+  drove: 'drive',
+  driven: 'drive',
+  ate: 'eat',
+  eaten: 'eat',
+  fell: 'fall',
+  fallen: 'fall',
+  flew: 'fly',
+  flown: 'fly',
+  forgot: 'forget',
+  forgotten: 'forget',
+  froze: 'freeze',
+  frozen: 'freeze',
+  grew: 'grow',
+  grown: 'grow',
+  heard: 'hear',
+  held: 'hold',
+  hid: 'hide',
+  hidden: 'hide',
+  hit: 'hit',
+  hurt: 'hurt',
+  led: 'lead',
+  lent: 'lend',
+  let: 'let',
+  lost: 'lose',
+  meant: 'mean',
+  met: 'meet',
+  paid: 'pay',
+  put: 'put',
+  read: 'read',
+  rode: 'ride',
+  ridden: 'ride',
+  rang: 'ring',
+  rung: 'ring',
+  rose: 'rise',
+  risen: 'rise',
+  ran: 'run',
+  sold: 'sell',
+  sent: 'send',
+  set: 'set',
+  shook: 'shake',
+  shaken: 'shake',
+  shone: 'shine',
+  shot: 'shoot',
+  showed: 'show',
+  shown: 'show',
+  shut: 'shut',
+  sang: 'sing',
+  sung: 'sing',
+  sat: 'sit',
+  slept: 'sleep',
+  spoke: 'speak',
+  spoken: 'speak',
+  spent: 'spend',
+  stood: 'stand',
+  stole: 'steal',
+  stolen: 'steal',
+  stuck: 'stick',
+  swam: 'swim',
+  swum: 'swim',
+  taught: 'teach',
+  tore: 'tear',
+  torn: 'tear',
+  threw: 'throw',
+  thrown: 'throw',
+  understood: 'understand',
+  woke: 'wake',
+  woken: 'wake',
+  wore: 'wear',
+  worn: 'wear',
+  won: 'win',
+  wrote: 'write',
+  written: 'write',
+};
+
+const PAST_MARKERS = new Set([
+  'was',
+  'were',
+  'did',
+  'had',
+  'went',
+  'made',
+  'said',
+  'took',
+  'came',
+  'saw',
+  'got',
+  'knew',
+  'thought',
+  'found',
+  'gave',
+  'told',
+]);
+
+const PRESENT_AUX = new Set(['am', 'is', 'are', 'do', 'does', 'have', 'has']);
+
+function tokenize(text: string): string[] {
+  return String(text || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9'\s]/g, ' ')
+    .split(/\s+/)
+    .filter(Boolean);
+}
+
+function baseForm(word: string): string {
+  const w = word.toLowerCase();
+  if (PAST_TO_BASE[w]) return PAST_TO_BASE[w];
+  if (w.endsWith('ies') && w.length > 4) return `${w.slice(0, -3)}y`;
+  if (w.endsWith('es') && (w.endsWith('ches') || w.endsWith('shes') || w.endsWith('xes') || w.endsWith('zes') || w.endsWith('sses'))) {
+    return w.slice(0, -2);
+  }
+  if (w.endsWith('s') && !w.endsWith('ss') && w.length > 3) return w.slice(0, -1);
+  if (w.endsWith('ied') && w.length > 4) return `${w.slice(0, -3)}y`;
+  if (w.endsWith('ed') && w.length > 4) {
+    const stem = w.slice(0, -2);
+    if (stem.endsWith(stem[stem.length - 1]!) && stem.length > 3) {
+      return stem.slice(0, -1);
+    }
+    return stem;
+  }
+  if (w.endsWith('ing') && w.length > 5) {
+    const stem = w.slice(0, -3);
+    if (stem.endsWith(stem[stem.length - 1]!) && stem.length > 3) {
+      return stem.slice(0, -1);
+    }
+    return stem;
+  }
+  return w;
+}
+
+function looksPast(word: string): boolean {
+  const w = word.toLowerCase();
+  if (PAST_MARKERS.has(w)) return true;
+  if (PAST_TO_BASE[w] && !PRESENT_AUX.has(w)) return true;
+  return w.endsWith('ed') && w.length > 3 && !AUX.has(w);
+}
+
+function looks3sgVerb(word: string): boolean {
+  const w = word.toLowerCase();
+  if (w === 'is' || w === 'does' || w === 'has') return true;
+  if (AUX.has(w)) return false;
+  return (
+    (w.endsWith('s') && !w.endsWith('ss') && w.length > 3) ||
+    w.endsWith('es')
+  );
+}
+
+interface PhraseSlots {
+  subject: string;
+  verb: string;
+  noun: string;
+  tokens: string[];
+  isQuestion: boolean;
+}
+
+function takeNounPhrase(tokens: string[], start: number): { text: string; end: number } {
+  if (start >= tokens.length) return { text: '', end: start };
+  const t0 = tokens[start]!;
+  if (OBJECT_PRONOUNS.has(t0) || SUBJECT_PRONOUNS.has(t0)) {
+    return { text: t0, end: start + 1 };
+  }
+  if (DETERMINERS.has(t0)) {
+    const parts = [t0];
+    let i = start + 1;
+    while (i < tokens.length && !AUX.has(tokens[i]!) && !PREPS.has(tokens[i]!) && !SUBJECT_PRONOUNS.has(tokens[i]!)) {
+      parts.push(tokens[i]!);
+      i += 1;
+      if (parts.length >= 3) break;
+    }
+    return { text: parts.join(' '), end: i };
+  }
+  if (!FUNCTION.has(t0) || DETERMINERS.has(t0)) {
+    return { text: t0, end: start + 1 };
+  }
+  return { text: '', end: start };
+}
+
+function extractSlots(tokens: string[]): PhraseSlots {
+  if (tokens.length === 0) {
+    return { subject: '', verb: '', noun: '', tokens, isQuestion: false };
+  }
+
+  let i = 0;
+  let isQuestion = false;
+  let subject = '';
+  let verb = '';
+  let noun = '';
+
+  // Do/Does/Did/Can... you need help?
+  if (AUX.has(tokens[0]!) && tokens.length >= 2) {
+    isQuestion = true;
+    const aux = tokens[0]!;
+    i = 1;
+    const subj = takeNounPhrase(tokens, i);
+    subject = subj.text;
+    i = subj.end;
+    if (i < tokens.length && !AUX.has(tokens[i]!)) {
+      verb = `${aux} ${tokens[i]}`;
+      i += 1;
+    } else {
+      verb = aux;
+    }
+  } else {
+    const subj = takeNounPhrase(tokens, 0);
+    subject = subj.text;
+    i = subj.end;
+    // be / have / do + rest
+    if (i < tokens.length && AUX.has(tokens[i]!)) {
+      const aux = tokens[i]!;
+      i += 1;
+      if (i < tokens.length && tokens[i] === 'not') i += 1;
+      if (i < tokens.length && !PREPS.has(tokens[i]!) && !DETERMINERS.has(tokens[i]!)) {
+        // "is going", "has finished", "can go"
+        if (
+          tokens[i]!.endsWith('ing') ||
+          tokens[i]!.endsWith('ed') ||
+          PAST_TO_BASE[tokens[i]!] ||
+          !FUNCTION.has(tokens[i]!)
+        ) {
+          verb = `${aux} ${tokens[i]}`;
+          i += 1;
+        } else {
+          verb = aux;
+        }
+      } else {
+        verb = aux;
+      }
+    } else if (i < tokens.length) {
+      verb = tokens[i]!;
+      i += 1;
+    }
+  }
+
+  while (i < tokens.length && (PREPS.has(tokens[i]!) || tokens[i] === 'to')) {
+    // "to the store" / "for help" — keep prep for noun phrase
+    break;
+  }
+  if (i < tokens.length && PREPS.has(tokens[i]!)) {
+    i += 1;
+  }
+  const obj = takeNounPhrase(tokens, i);
+  noun = obj.text;
+
+  return { subject, verb, noun, tokens, isQuestion };
+}
+
+function findTokenMatch(haystack: string[], needle: string): boolean {
+  if (!needle) return false;
+  const parts = needle.split(/\s+/);
+  if (parts.length === 1) {
+    const n = parts[0]!;
+    return haystack.some((t) => t === n || baseForm(t) === baseForm(n));
+  }
+  // multi-word: all parts present in order (loose)
+  let idx = 0;
+  for (const t of haystack) {
+    const want = parts[idx]!;
+    if (t === want || baseForm(t) === baseForm(want)) idx += 1;
+    if (idx >= parts.length) return true;
+  }
+  return false;
+}
+
+function subjectWhy(expected: string, actual: string): string {
+  const e = expected.toLowerCase();
+  const a = actual.toLowerCase();
+  if (!actual) return '주어 자리가 비어 있어요. 누가 하는지부터 떠올려 보세요.';
+  if (
+    (['he', 'she', 'it'].includes(e) && ['he', 'she', 'it'].includes(a) && e !== a) ||
+    (e === 'he' && a === 'she') ||
+    (e === 'she' && a === 'he')
+  ) {
+    return '인칭·성별(he/she/it)을 헷갈린 듯해요.';
+  }
+  if ((e === 'i' && a === 'you') || (e === 'you' && a === 'i')) {
+    return '화자(나)와 청자(너)를 바꿔 말한 듯해요.';
+  }
+  if ((e === 'we' && a === 'they') || (e === 'they' && a === 'we')) {
+    return '우리/그들 쪽 인칭을 헷갈린 듯해요.';
+  }
+  if (baseForm(e) === baseForm(a)) {
+    return '주어 뜻은 비슷한데 형태가 달라요.';
+  }
+  return `정답 주어「${expected}」대신「${actual}」을(를) 골랐어요.`;
+}
+
+function verbWhy(expected: string, actual: string): string {
+  if (!actual) return '동사 자리가 비어 있어요. 무슨 동작/상태인지 먼저 정해 보세요.';
+  const eb = baseForm(expected.split(/\s+/).pop()!);
+  const ab = baseForm(actual.split(/\s+/).pop()!);
+  if (eb === ab) {
+    return '동사 원형은 맞는데 시제·인칭 형태가 달라요.';
+  }
+  return `정답 동사「${expected}」대신「${actual}」을(를) 썼어요.`;
+}
+
+function nounWhy(expected: string, actual: string): string {
+  if (!actual) return '목적어·명사 자리가 비어 있어요. 무엇을/누구를 말하는지 떠올려 보세요.';
+  if (baseForm(expected.split(/\s+/).pop()!) === baseForm(actual.split(/\s+/).pop()!)) {
+    return '명사 핵은 비슷한데 관사·한정어가 달라요.';
+  }
+  return `정답 명사「${expected}」대신「${actual}」을(를) 골랐어요.`;
+}
+
+function tenseLabel(slots: PhraseSlots): 'past' | 'present' | 'future' | 'unknown' {
+  const v = slots.verb.toLowerCase();
+  if (!v) return 'unknown';
+  if (/\b(will|won't|'ll)\b/.test(v) || v.includes('going to')) return 'future';
+  const parts = v.split(/\s+/);
+  if (parts.some(looksPast) || parts.some((p) => p === 'did' || p === 'was' || p === 'were' || p === 'had')) {
+    return 'past';
+  }
+  return 'present';
+}
+
+function roleLabel(role: GapSlotRole): string {
+  switch (role) {
+    case 'subject':
+      return '주어';
+    case 'verb':
+      return '동사';
+    case 'noun':
+      return '명사';
+    case 'tense':
+      return '시제';
+    case 'agreement':
+      return '3인칭 단수';
+  }
+}
+
+function formatFinding(f: GapSlotFinding): string {
+  const label = roleLabel(f.role);
+  if (f.status === 'missing') {
+    return `• ${label}: 못 찾음 — 정답「${f.expected}」. 이유: ${f.why}`;
+  }
+  if (f.status === 'wrong') {
+    if (f.role === 'tense' || f.role === 'agreement') {
+      return `• ${label}: 오류 — ${f.why}`;
+    }
+    return `• ${label}: 잘못 찾음 — 말한 것「${f.actual}」, 정답「${f.expected}」. 이유: ${f.why}`;
+  }
+  return `• ${label}: 맞음 — 「${f.expected}」`;
+}
+
+function cueLead(cueMode?: CueMode): string {
+  if (cueMode === 'after_reveal') {
+    return '영어를 본 뒤에도 달랐어요.';
+  }
+  if (cueMode === 'after_listen') {
+    return '듣고 따라 말했지만 정답과 달랐어요.';
+  }
+  return '힌트 없이 말하다 틀렸어요.';
+}
+
+/** 구조 분석 결과 (테스트·UI용) */
+export function analyzeGapSlots(args: {
+  en: string;
+  guess: string;
+}): GapSlotFinding[] {
+  const target = extractSlots(tokenize(args.en));
+  const said = extractSlots(tokenize(args.guess));
+  const saidTokens = tokenize(args.guess);
+  const findings: GapSlotFinding[] = [];
+
+  // 주어
+  if (target.subject) {
+    const has = findTokenMatch(saidTokens, target.subject);
+    const actual = said.subject;
+    if (!has && !actual) {
+      findings.push({
+        role: 'subject',
+        status: 'missing',
+        expected: target.subject,
+        actual: '',
+        why: subjectWhy(target.subject, ''),
+      });
+    } else if (!has || (actual && actual !== target.subject && baseForm(actual) !== baseForm(target.subject))) {
+      findings.push({
+        role: 'subject',
+        status: 'wrong',
+        expected: target.subject,
+        actual: actual || '(없음)',
+        why: subjectWhy(target.subject, actual || ''),
+      });
+    } else {
+      findings.push({
+        role: 'subject',
+        status: 'ok',
+        expected: target.subject,
+        actual: actual || target.subject,
+        why: '',
+      });
+    }
+  }
+
+  // 동사
+  if (target.verb) {
+    const targetVerbParts = target.verb.split(/\s+/);
+    const mainExpected = targetVerbParts[targetVerbParts.length - 1]!;
+    const hasExact = findTokenMatch(saidTokens, target.verb);
+    const hasBase = saidTokens.some((t) => baseForm(t) === baseForm(mainExpected));
+    const actual = said.verb;
+    if (!hasExact && !hasBase && !actual) {
+      findings.push({
+        role: 'verb',
+        status: 'missing',
+        expected: target.verb,
+        actual: '',
+        why: verbWhy(target.verb, ''),
+      });
+    } else if (!hasExact) {
+      findings.push({
+        role: 'verb',
+        status: 'wrong',
+        expected: target.verb,
+        actual: actual || saidTokens.find((t) => !SUBJECT_PRONOUNS.has(t)) || '(다름)',
+        why: verbWhy(target.verb, actual || ''),
+      });
+    } else {
+      findings.push({
+        role: 'verb',
+        status: 'ok',
+        expected: target.verb,
+        actual: actual || target.verb,
+        why: '',
+      });
+    }
+  }
+
+  // 명사(목적어)
+  if (target.noun) {
+    const has = findTokenMatch(saidTokens, target.noun);
+    const actual = said.noun;
+    if (!has && !actual) {
+      findings.push({
+        role: 'noun',
+        status: 'missing',
+        expected: target.noun,
+        actual: '',
+        why: nounWhy(target.noun, ''),
+      });
+    } else if (!has) {
+      findings.push({
+        role: 'noun',
+        status: 'wrong',
+        expected: target.noun,
+        actual: actual || '(다름)',
+        why: nounWhy(target.noun, actual || ''),
+      });
+    } else {
+      findings.push({
+        role: 'noun',
+        status: 'ok',
+        expected: target.noun,
+        actual: actual || target.noun,
+        why: '',
+      });
+    }
+  }
+
+  // 시제
+  const tenseTarget = tenseLabel(target);
+  const tenseSaid = tenseLabel(said);
+  if (
+    tenseTarget !== 'unknown' &&
+    tenseSaid !== 'unknown' &&
+    tenseTarget !== tenseSaid &&
+    said.verb
+  ) {
+    const label = { past: '과거', present: '현재', future: '미래' } as const;
+    findings.push({
+      role: 'tense',
+      status: 'wrong',
+      expected: label[tenseTarget],
+      actual: label[tenseSaid],
+      why: `시제 오류 — 정답은 ${label[tenseTarget]}, 말한 것은 ${label[tenseSaid]} 쪽에 가까워요.`,
+    });
+  }
+
+  // 3인칭 단수
+  const subj = target.subject.toLowerCase();
+  const needs3sg =
+    subj === 'he' ||
+    subj === 'she' ||
+    subj === 'it' ||
+    (subj !== 'i' &&
+      subj !== 'you' &&
+      subj !== 'we' &&
+      subj !== 'they' &&
+      subj.length > 0 &&
+      !subj.includes(' '));
+  if (needs3sg && target.verb) {
+    const main = target.verb.split(/\s+/).pop()!;
+    const expect3 = looks3sgVerb(main) || target.verb.split(/\s+/).some((p) => p === 'is' || p === 'does' || p === 'has');
+    if (expect3) {
+      const saidMain = (said.verb || '').split(/\s+/).pop() || '';
+      const saidHas3 =
+        looks3sgVerb(saidMain) ||
+        said.verb.split(/\s+/).some((p) => p === 'is' || p === 'does' || p === 'has') ||
+        saidTokens.some((t) => looks3sgVerb(t) && baseForm(t) === baseForm(main));
+      const saidHasBase = saidTokens.some(
+        (t) => baseForm(t) === baseForm(main) && !looks3sgVerb(t) && t !== 'is' && t !== 'does' && t !== 'has'
+      );
+      if (!saidHas3 && (saidHasBase || said.verb)) {
+        findings.push({
+          role: 'agreement',
+          status: 'wrong',
+          expected: main,
+          actual: saidMain || '(원형)',
+          why: `3인칭 단수 오류 — 「${target.subject}」 뒤에서 동사 -s/is/does/has 형태가 맞아야 해요. 말한 것「${saidMain || '원형'}」.`,
+        });
+      }
+    }
+  }
+
+  return findings;
+}
+
+/** 문제가 있는 슬롯만 (Obsidian tags / frontmatter용) */
+export function problemSlots(args: { en: string; guess: string }): GapSlotRole[] {
+  return analyzeGapSlots(args)
+    .filter((f) => f.status !== 'ok')
+    .map((f) => f.role);
+}
+
+export const PATTERN_NOTE_IDS: GapSlotRole[] = [
+  'subject',
+  'verb',
+  'noun',
+  'tense',
+  'agreement',
+];
+
+export function patternNoteTitle(role: GapSlotRole): string {
+  return roleLabel(role);
+}
+
+export function inferGapReason(args: {
+  en: string;
+  ko: string;
+  guess: string;
+  match: GapMatch;
+  cueMode?: CueMode;
+}): string {
+  const { en, ko, guess, match, cueMode } = args;
+  if (match === 'skipped') {
+    return '문장을 건너뛰었어요. 확신이 없거나 입이 아직 안 열린 상태일 수 있어요.';
+  }
+
+  const g = (guess || '').trim();
+  if (!g || g === '(스킵)' || g === '(없음)') {
+    return '말이 인식되지 않았거나 침묵했어요. 발화 전 망설임·마이크 문제일 수 있어요.';
+  }
+
+  const findings = analyzeGapSlots({ en, guess: g });
+  const problems = findings.filter((f) => f.status !== 'ok');
+  const lines: string[] = [cueLead(cueMode)];
+
+  if (problems.length > 0) {
+    for (const f of problems) {
+      lines.push(formatFinding(f));
+    }
+  } else {
+    const target = tokenize(en);
+    const said = tokenize(g);
+    const missing = target.filter((w) => !said.includes(w));
+    const extra = said.filter((w) => !target.includes(w));
+    if (missing.length) lines.push(`• 빠진 말: ${missing.slice(0, 6).join(', ')}`);
+    if (extra.length) lines.push(`• 덧붙인 말: ${extra.slice(0, 6).join(', ')}`);
+    if (!missing.length && !extra.length) {
+      lines.push('• 단어는 비슷한데 어순·발음 인식이 달랐을 수 있어요.');
+    }
+  }
+
+  if (ko) {
+    lines.push(`목표 뜻: 「${ko.replace(/\s+/g, ' ').trim()}」`);
+  }
+
+  return lines.join('\n');
+}
