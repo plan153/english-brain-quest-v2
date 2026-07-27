@@ -42,3 +42,8 @@ Gap의 `slots` / 태그 `pattern/subject` 등이 Patterns 허브와 연결됩니
 ## 동기화
 
 `syncToVault` → Brain, Progress, Index, Gaps/_Index, Patterns/*, 세션 Gap 노트.
+
+## 앱 패턴 약점 팩
+
+`gapNotes.slots` → Today **패턴 약점** 팩 / Brain CTA.
+슬롯 칩(주어·동사·명사·시제·3sg) 또는 자동(가장 많은 슬롯부터).

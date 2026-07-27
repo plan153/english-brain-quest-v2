@@ -52,7 +52,14 @@ import {
   importVaultGaps,
   type GapNote,
 } from '../adapters/cloud-sync';
-import { inferGapReason, problemSlots } from '../domain/gap-reason';
+import { inferGapReason, problemSlots, type GapSlotRole } from '../domain/gap-reason';
+import {
+  countPatternTraining,
+  pickPatternTrainingQueue,
+  patternItemToContentItem,
+  summarizePatternGaps,
+  type PatternGapRow,
+} from '../domain/pattern-queue';
 import {
   applyReview,
   createMemory,
@@ -73,7 +80,8 @@ import {
 
 export type { SentenceMemory, ReviewIntensity, WeakLinkSummary };
 export type TabId = 'today' | 'brain' | 'dictionary';
-export type TrainingPackId = 'review' | 'weak';
+export type TrainingPackId = 'review' | 'weak' | 'pattern';
+export type { GapSlotRole };
 
 /** 오늘 세션에서 만난 문장 (복습용) */
 export interface TodayEncounter {
@@ -159,9 +167,15 @@ interface AppStore
   getWeakTrainingItems: (limit?: number) => ContentItem[];
   weakTrainingCount: () => number;
   getWeakLinkSummary: () => WeakLinkSummary;
+  /** Gap slots 기반 패턴 약점 */
+  selectedPatternRole: GapSlotRole | null;
+  setSelectedPatternRole: (role: GapSlotRole | null) => void;
+  getPatternTrainingItems: (limit?: number, role?: GapSlotRole | null) => ContentItem[];
+  patternTrainingCount: (role?: GapSlotRole | null) => number;
+  getPatternSummary: () => PatternGapRow[];
   /** Brain/Today — 약점 강화 세션 자동 시작 요청 */
   pendingStartPack: TrainingPackId | null;
-  requestStartPack: (pack: TrainingPackId) => void;
+  requestStartPack: (pack: TrainingPackId, options?: { role?: GapSlotRole | null }) => void;
   consumePendingStartPack: () => TrainingPackId | null;
   /** 볼트 Gaps.md → memories에 흡수 (복습 기한 즉시) */
   absorbVaultGaps: () => Promise<{ imported: number; message: string }>;
@@ -319,6 +333,7 @@ export const useStore = create<AppStore>((set, get) => {
     memories: loadMemories(),
     reviewIntensity: loadReviewIntensity(),
     pendingStartPack: null as TrainingPackId | null,
+    selectedPatternRole: null as GapSlotRole | null,
 
     setActiveTab: (tab) => set({ activeTab: tab }),
 
@@ -393,6 +408,21 @@ export const useStore = create<AppStore>((set, get) => {
       set({ gapNotes, pendingGaps });
     },
 
+    setSelectedPatternRole: (role) => set({ selectedPatternRole: role }),
+
+    getPatternSummary: () => summarizePatternGaps(get().gapNotes),
+
+    patternTrainingCount: (role) =>
+      countPatternTraining(get().gapNotes, role ?? get().selectedPatternRole),
+
+    getPatternTrainingItems: (limit = 10, role) => {
+      const r = role !== undefined ? role : get().selectedPatternRole;
+      return pickPatternTrainingQueue(get().gapNotes, get().memories, {
+        role: r,
+        limit,
+      }).map(patternItemToContentItem);
+    },
+
     getWeakTrainingItems: (limit = 10) => {
       const queue = pickWeakTrainingQueue(Object.values(get().memories), limit);
       return queue.map(memoryToContentItem);
@@ -402,8 +432,21 @@ export const useStore = create<AppStore>((set, get) => {
 
     getWeakLinkSummary: () => summarizeWeakLinks(Object.values(get().memories)),
 
-    requestStartPack: (pack) => {
-      set({ pendingStartPack: pack, activeTab: 'today', brainFocusTodayLog: false });
+    requestStartPack: (pack, options) => {
+      const next: Partial<{
+        pendingStartPack: TrainingPackId;
+        selectedPatternRole: GapSlotRole | null;
+        activeTab: TabId;
+        brainFocusTodayLog: boolean;
+      }> = {
+        pendingStartPack: pack,
+        activeTab: 'today',
+        brainFocusTodayLog: false,
+      };
+      if (pack === 'pattern' && options && 'role' in options) {
+        next.selectedPatternRole = options.role ?? null;
+      }
+      set(next);
     },
 
     consumePendingStartPack: () => {

@@ -411,6 +411,67 @@ describe('6b. gap-reason + projectGap', () => {
 
 import { createZipBlob } from '../adapters/zip-store';
 import { parseGapMarkdown } from '../domain/vault-gap-import';
+import {
+  countPatternTraining,
+  pickPatternTrainingQueue,
+  summarizePatternGaps,
+} from '../domain/pattern-queue';
+import type { GapNote } from '../domain/vault-projection';
+
+describe('9. pattern-queue', () => {
+  const gaps: GapNote[] = [
+    {
+      id: 'g1',
+      expressionId: 'e1',
+      en: 'She needs help.',
+      ko: '도움이 필요해요.',
+      guess: 'She need help.',
+      createdAt: '2026-07-27T00:00:00.000Z',
+      updatedAt: '2026-07-27T00:00:00.000Z',
+      slots: ['agreement'],
+      reasonStatus: 'pending',
+    },
+    {
+      id: 'g2',
+      expressionId: 'e2',
+      en: 'I went home.',
+      ko: '집에 갔어요.',
+      guess: 'I go home.',
+      createdAt: '2026-07-27T00:00:00.000Z',
+      updatedAt: '2026-07-27T01:00:00.000Z',
+      slots: ['tense', 'verb'],
+      reasonStatus: 'confirmed',
+    },
+    {
+      id: 'g3',
+      expressionId: 'e3',
+      en: 'He is here.',
+      ko: '그가 여기 있어요.',
+      guess: 'She is here.',
+      createdAt: '2026-07-27T00:00:00.000Z',
+      slots: ['subject'],
+    },
+  ];
+
+  it('summarizes slots and picks agreement queue', () => {
+    const summary = summarizePatternGaps(gaps);
+    expect(summary.some((r) => r.role === 'agreement')).toBe(true);
+    expect(countPatternTraining(gaps)).toBeGreaterThanOrEqual(3);
+
+    const queue = pickPatternTrainingQueue(gaps, {}, { role: 'agreement', limit: 5 });
+    expect(queue).toHaveLength(1);
+    expect(queue[0].sentenceId).toBe('e1');
+    expect(queue[0].role).toBe('agreement');
+  });
+
+  it('auto-fills from top roles when role omitted', () => {
+    const queue = pickPatternTrainingQueue(gaps, {}, { limit: 10 });
+    expect(queue.length).toBeGreaterThanOrEqual(3);
+    const ids = new Set(queue.map((q) => q.sentenceId));
+    expect(ids.has('e1')).toBe(true);
+    expect(ids.has('e2')).toBe(true);
+  });
+});
 
 describe('7. zip-store', () => {
   it('builds a zip with PK headers', async () => {

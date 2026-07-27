@@ -19,6 +19,7 @@ import {
 import { VaultSyncCard } from './VaultSyncCard';
 import { TodayLogCard } from './TodayLogCard';
 import { GapReasonCard } from '../today/GapReasonCard';
+import { summarizePatternGaps } from '../../domain/pattern-queue';
 
 const SKILL_AXIS_META: { axis: SkillAxis; label: string }[] = [
   { axis: 'form', label: '형태 (form)' },
@@ -150,6 +151,70 @@ export function BrainScreen() {
           약점 강화 훈련 시작 →
         </button>
       </Card>
+
+      {(() => {
+        const patternRows = summarizePatternGaps(gapNotes);
+        const patternTotal = patternRows.reduce((n, r) => n + r.sentenceCount, 0);
+        if (patternTotal === 0) return null;
+        return (
+          <Card style={{ marginTop: '12px' }}>
+            <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)' }}>
+              패턴 약점 ({patternTotal})
+            </div>
+            <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)', marginTop: '6px' }}>
+              같은 슬롯(주어·시제·3인칭 등) Gap만 모아 다시 말합니다.
+            </div>
+            <ul style={{ margin: '10px 0 0', padding: '0 0 0 18px', fontSize: '13px' }}>
+              {patternRows.slice(0, 5).map((r) => (
+                <li key={r.role} style={{ marginBottom: '6px' }}>
+                  <strong>{r.label}</strong>
+                  <span style={{ color: 'var(--ebq-text-muted)' }}>
+                    {' '}
+                    · 문장 {r.sentenceCount} · Gap {r.gapHits}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '12px' }}>
+              <button
+                type="button"
+                onClick={() => requestStartPack('pattern', { role: null })}
+                style={{
+                  flex: '1 1 140px',
+                  padding: '10px',
+                  borderRadius: '12px',
+                  border: '1px solid var(--ebq-accent)',
+                  background: 'rgba(96,165,250,0.12)',
+                  color: 'var(--ebq-accent)',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                }}
+              >
+                패턴 자동 훈련 →
+              </button>
+              {patternRows.slice(0, 3).map((r) => (
+                <button
+                  key={r.role}
+                  type="button"
+                  onClick={() => requestStartPack('pattern', { role: r.role })}
+                  style={{
+                    padding: '10px 12px',
+                    borderRadius: '12px',
+                    border: '1px solid var(--ebq-border)',
+                    background: 'var(--ebq-surface-alt)',
+                    color: 'var(--ebq-text)',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    fontSize: '12px',
+                  }}
+                >
+                  {r.label} →
+                </button>
+              ))}
+            </div>
+          </Card>
+        );
+      })()}
 
       {pendingReasonGaps.length > 0 && (
         <Card style={{ marginTop: '12px' }}>

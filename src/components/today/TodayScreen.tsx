@@ -22,6 +22,11 @@ import type { ContentItem } from '../../interfaces/ContentItem';
 import type { MatchLevel } from '../../interfaces/Evaluator';
 import type { SpeechResult } from '../../interfaces/SpeechResult';
 import FuzzyMatch from '../../domain/fuzzy-match';
+import {
+  PATTERN_NOTE_IDS,
+  patternNoteTitle,
+  type GapSlotRole,
+} from '../../domain/gap-reason';
 import { FeedbackBar } from './FeedbackBar';
 import { GapReasonCard } from './GapReasonCard';
 import { SessionComplete } from './SessionComplete';
@@ -41,6 +46,12 @@ const PACK_SOURCES: PackSource[] = [
     id: 'weak',
     name: '약점 강화',
     description: '오답·힌트 의존 · 볼트 Gap',
+    load: async () => [],
+  },
+  {
+    id: 'pattern',
+    name: '패턴 약점',
+    description: '주어·동사·시제·3sg 등 슬롯',
     load: async () => [],
   },
   {
@@ -111,6 +122,11 @@ export function TodayScreen() {
   const dueReviewCount = useStore((s) => s.dueReviewCount);
   const getWeakTrainingItems = useStore((s) => s.getWeakTrainingItems);
   const weakTrainingCount = useStore((s) => s.weakTrainingCount);
+  const getPatternTrainingItems = useStore((s) => s.getPatternTrainingItems);
+  const patternTrainingCount = useStore((s) => s.patternTrainingCount);
+  const getPatternSummary = useStore((s) => s.getPatternSummary);
+  const selectedPatternRole = useStore((s) => s.selectedPatternRole);
+  const setSelectedPatternRole = useStore((s) => s.setSelectedPatternRole);
   const consumePendingStartPack = useStore((s) => s.consumePendingStartPack);
 
   const currentSentenceRef = useRef(currentSentence);
@@ -224,6 +240,8 @@ export function TodayScreen() {
       let loaded: ContentItem[];
       if (packId === 'weak') {
         loaded = getWeakTrainingItems(SESSION_SIZE);
+      } else if (packId === 'pattern') {
+        loaded = getPatternTrainingItems(SESSION_SIZE, selectedPatternRole);
       } else if (packId === 'review') {
         loaded = getDueReviewItems(SESSION_SIZE);
       } else {
@@ -235,6 +253,11 @@ export function TodayScreen() {
           '약점 큐가 비어 있어요. 학습 후 오답이 쌓이거나, Brain에서 볼트 Gaps를 불러오세요.'
         );
       }
+      if (packId === 'pattern' && loaded.length === 0) {
+        setLoadError(
+          '패턴 Gap이 없어요. 문장을 틀리면 주어·동사·시제 등 슬롯이 쌓인 뒤 여기에 나타납니다.'
+        );
+      }
       if (packId === 'review' && loaded.length === 0) {
         setLoadError('복습 대기 문장이 없어요. 먼저 다른 팩으로 학습해 보세요.');
       }
@@ -243,7 +266,12 @@ export function TodayScreen() {
       setItems(null);
     }
     setPackLoading(false);
-  }, [getDueReviewItems, getWeakTrainingItems]);
+  }, [
+    getDueReviewItems,
+    getWeakTrainingItems,
+    getPatternTrainingItems,
+    selectedPatternRole,
+  ]);
 
   // Brain「약점 강화」CTA → 자동 시작
   useEffect(() => {
@@ -255,9 +283,11 @@ export function TodayScreen() {
       const itemsNow =
         pack === 'weak'
           ? getWeakTrainingItems(SESSION_SIZE)
-          : pack === 'review'
-            ? getDueReviewItems(SESSION_SIZE)
-            : null;
+          : pack === 'pattern'
+            ? getPatternTrainingItems(SESSION_SIZE)
+            : pack === 'review'
+              ? getDueReviewItems(SESSION_SIZE)
+              : null;
       if (itemsNow && itemsNow.length > 0) {
         setShowEnglish(false);
         setShowHint(false);
@@ -276,6 +306,7 @@ export function TodayScreen() {
     consumePendingStartPack,
     handleSelectPack,
     getWeakTrainingItems,
+    getPatternTrainingItems,
     getDueReviewItems,
     resetCueFlags,
     speech,
@@ -402,9 +433,11 @@ export function TodayScreen() {
             const badge =
               p.id === 'weak'
                 ? weakTrainingCount()
-                : p.id === 'review'
-                  ? dueReviewCount()
-                  : null;
+                : p.id === 'pattern'
+                  ? patternTrainingCount()
+                  : p.id === 'review'
+                    ? dueReviewCount()
+                    : null;
             return (
             <button
               key={p.id}
@@ -430,6 +463,74 @@ export function TodayScreen() {
             );
           })}
         </div>
+
+        {selectedPackId === 'pattern' && (
+          <div style={{ marginBottom: '16px' }}>
+            <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)', marginBottom: '8px' }}>
+              슬롯 필터 (비우면 가장 많은 패턴부터)
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedPatternRole(null);
+                  void handleSelectPack('pattern');
+                }}
+                style={{
+                  padding: '6px 10px',
+                  borderRadius: '999px',
+                  border: `1px solid ${selectedPatternRole == null ? 'var(--ebq-accent)' : 'var(--ebq-border)'}`,
+                  background:
+                    selectedPatternRole == null ? 'rgba(96,165,250,0.15)' : 'transparent',
+                  color: 'var(--ebq-text)',
+                  fontSize: '12px',
+                  cursor: 'pointer',
+                }}
+              >
+                자동
+              </button>
+              {PATTERN_NOTE_IDS.map((role: GapSlotRole) => {
+                const row = getPatternSummary().find((r) => r.role === role);
+                const n = row?.sentenceCount ?? 0;
+                return (
+                  <button
+                    key={role}
+                    type="button"
+                    disabled={n === 0}
+                    onClick={() => {
+                      setSelectedPatternRole(role);
+                      void (async () => {
+                        setSelectedPackId('pattern');
+                        setPackLoading(true);
+                        setLoadError(null);
+                        const loaded = getPatternTrainingItems(SESSION_SIZE, role);
+                        setItems(loaded);
+                        if (loaded.length === 0) {
+                          setLoadError('이 슬롯에 쌓인 Gap이 없어요.');
+                        }
+                        setPackLoading(false);
+                      })();
+                    }}
+                    style={{
+                      padding: '6px 10px',
+                      borderRadius: '999px',
+                      border: `1px solid ${selectedPatternRole === role ? 'var(--ebq-accent)' : 'var(--ebq-border)'}`,
+                      background:
+                        selectedPatternRole === role ? 'rgba(96,165,250,0.15)' : 'transparent',
+                      color: n === 0 ? 'var(--ebq-text-muted)' : 'var(--ebq-text)',
+                      fontSize: '12px',
+                      cursor: n === 0 ? 'not-allowed' : 'pointer',
+                      opacity: n === 0 ? 0.5 : 1,
+                    }}
+                  >
+                    {patternNoteTitle(role)}
+                    {n > 0 ? ` ${n}` : ''}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {packLoading && (
           <div style={{ color: 'var(--ebq-text-muted)', textAlign: 'center', fontSize: '13px', marginBottom: '12px' }}>
