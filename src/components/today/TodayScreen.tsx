@@ -91,10 +91,11 @@ export function TodayScreen() {
   const [selectedPackId, setSelectedPackId] = useState<string>('weak');
   const [packLoading, setPackLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [packNotice, setPackNotice] = useState<string | null>(null);
   const [showEnglish, setShowEnglish] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [pendingEval, setPendingEval] = useState<{
-    level: MatchLevel;
+    match: 'exact' | 'fuzzy' | 'wrong' | 'skipped';
     feedback: string;
     canonicalTTS: string;
     userText: string;
@@ -159,8 +160,10 @@ export function TodayScreen() {
         leniency: 1,
       });
       const level = matched.level as MatchLevel;
+      const matchKind: 'exact' | 'fuzzy' | 'wrong' | 'skipped' =
+        level === 'exact' ? 'exact' : level === 'fuzzy' ? 'fuzzy' : 'wrong';
       const evalInfo = {
-        level,
+        match: matchKind,
         feedback: matched.feedback,
         canonicalTTS: matched.canonicalTTS,
         userText: trimmed,
@@ -169,8 +172,6 @@ export function TodayScreen() {
       setPendingEval(evalInfo);
       setTypeDraft('');
 
-      const matchKind: 'exact' | 'fuzzy' | 'wrong' | 'skipped' =
-        level === 'exact' ? 'exact' : level === 'fuzzy' ? 'fuzzy' : 'wrong';
       recordTrial(
         sentence,
         {
@@ -236,6 +237,7 @@ export function TodayScreen() {
     setSelectedPackId(packId);
     setPackLoading(true);
     setLoadError(null);
+    setPackNotice(null);
     try {
       let loaded: ContentItem[];
       if (packId === 'weak') {
@@ -249,17 +251,17 @@ export function TodayScreen() {
       }
       setItems(loaded);
       if (packId === 'weak' && loaded.length === 0) {
-        setLoadError(
+        setPackNotice(
           '약점 큐가 비어 있어요. 학습 후 오답이 쌓이거나, Brain에서 볼트 Gaps를 불러오세요.'
         );
       }
       if (packId === 'pattern' && loaded.length === 0) {
-        setLoadError(
+        setPackNotice(
           '패턴 Gap이 없어요. 문장을 틀리면 주어·동사·시제 등 슬롯이 쌓인 뒤 여기에 나타납니다.'
         );
       }
       if (packId === 'review' && loaded.length === 0) {
-        setLoadError('복습 대기 문장이 없어요. 먼저 다른 팩으로 학습해 보세요.');
+        setPackNotice('복습 대기 문장이 없어요. 먼저 다른 팩으로 학습해 보세요.');
       }
     } catch (err) {
       setLoadError((err as Error).message);
@@ -330,7 +332,7 @@ export function TodayScreen() {
   const handleSkip = useCallback(() => {
     if (!currentSentence) return;
     const evalInfo = {
-      level: 'wrong' as MatchLevel,
+      match: 'skipped' as const,
       feedback: '스킵했어요.',
       canonicalTTS: currentSentence.en,
       userText: '',
@@ -502,11 +504,11 @@ export function TodayScreen() {
                       void (async () => {
                         setSelectedPackId('pattern');
                         setPackLoading(true);
-                        setLoadError(null);
+                        setPackNotice(null);
                         const loaded = getPatternTrainingItems(SESSION_SIZE, role);
                         setItems(loaded);
                         if (loaded.length === 0) {
-                          setLoadError('이 슬롯에 쌓인 Gap이 없어요.');
+                          setPackNotice('이 슬롯에 쌓인 Gap이 없어요.');
                         }
                         setPackLoading(false);
                       })();
@@ -529,6 +531,23 @@ export function TodayScreen() {
                 );
               })}
             </div>
+          </div>
+        )}
+
+        {packNotice && (
+          <div
+            style={{
+              fontSize: '13px',
+              color: 'var(--ebq-accent)',
+              textAlign: 'center',
+              marginBottom: '12px',
+              padding: '10px',
+              borderRadius: '10px',
+              background: 'rgba(96,165,250,0.08)',
+              border: '1px solid var(--ebq-border)',
+            }}
+          >
+            {packNotice}
           </div>
         )}
 
@@ -759,14 +778,7 @@ export function TodayScreen() {
         <>
           <FeedbackBar
             evaluation={{
-              match:
-                pendingEval.level === 'exact'
-                  ? 'exact'
-                  : pendingEval.level === 'fuzzy'
-                  ? 'fuzzy'
-                  : pendingEval.level === 'wrong'
-                  ? 'wrong'
-                  : 'skipped',
+              match: pendingEval.match,
               score: 1,
               feedback: pendingEval.feedback,
               ttsContent: pendingEval.canonicalTTS,
@@ -786,7 +798,7 @@ export function TodayScreen() {
               네가 쓴/말한 것: &quot;{pendingEval.userText}&quot;
             </div>
           )}
-          {pendingEval.level === 'wrong' &&
+          {(pendingEval.match === 'wrong' || pendingEval.match === 'skipped') &&
             currentSentence &&
             (() => {
               const gap = getGapForSentence(currentSentence.id);

@@ -471,6 +471,23 @@ describe('9. pattern-queue', () => {
     expect(ids.has('e1')).toBe(true);
     expect(ids.has('e2')).toBe(true);
   });
+
+  it('does not double-count sentences across slots in badge total', () => {
+    const multi = [
+      {
+        id: 'g1',
+        expressionId: 'e1',
+        en: 'She needs help.',
+        ko: '도움이 필요해요.',
+        guess: 'She need help.',
+        createdAt: '2026-07-27T00:00:00.000Z',
+        slots: ['agreement', 'verb'] as const,
+      },
+    ];
+    expect(countPatternTraining(multi)).toBe(1);
+    expect(countPatternTraining(multi, 'agreement')).toBe(1);
+    expect(countPatternTraining(multi, 'subject')).toBe(0);
+  });
 });
 
 describe('7. zip-store', () => {

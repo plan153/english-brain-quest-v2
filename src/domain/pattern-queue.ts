@@ -95,7 +95,7 @@ export function countPatternTraining(gapNotes: GapNote[], role?: GapSlotRole | n
   if (role) {
     return rows.find((r) => r.role === role)?.sentenceCount ?? 0;
   }
-  return rows.reduce((n, r) => n + r.sentenceCount, 0);
+  return latestGapsBySentence(gapNotes).length;
 }
 
 /** 가장 Gap이 많은 슬롯 (없으면 null) */

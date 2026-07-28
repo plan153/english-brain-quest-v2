@@ -19,7 +19,7 @@ import {
 import { VaultSyncCard } from './VaultSyncCard';
 import { TodayLogCard } from './TodayLogCard';
 import { GapReasonCard } from '../today/GapReasonCard';
-import { summarizePatternGaps } from '../../domain/pattern-queue';
+import { summarizePatternGaps, countPatternTraining } from '../../domain/pattern-queue';
 
 const SKILL_AXIS_META: { axis: SkillAxis; label: string }[] = [
   { axis: 'form', label: '형태 (form)' },
@@ -154,7 +154,7 @@ export function BrainScreen() {
 
       {(() => {
         const patternRows = summarizePatternGaps(gapNotes);
-        const patternTotal = patternRows.reduce((n, r) => n + r.sentenceCount, 0);
+        const patternTotal = countPatternTraining(gapNotes);
         if (patternTotal === 0) return null;
         return (
           <Card style={{ marginTop: '12px' }}>
