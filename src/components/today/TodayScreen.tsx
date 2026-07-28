@@ -17,6 +17,7 @@ import {
   loadCollocationsAsItems,
   loadPhrasalVerbsAsItems,
   loadAllGrammarAsItems,
+  loadQuizVerbsAsItems,
 } from '../../domain/content-loader';
 import type { ContentItem } from '../../interfaces/ContentItem';
 import type { MatchLevel } from '../../interfaces/Evaluator';
@@ -61,6 +62,12 @@ const PACK_SOURCES: PackSource[] = [
     name: '복습',
     description: '기한 도래 · 내 문장 우선',
     load: async () => [], // store에서 채움
+  },
+  {
+    id: 'quiz-verbs',
+    name: '기본동사 100',
+    description: '퀴즈 잉글리시 · Day 1–100 · 500문장',
+    load: loadQuizVerbsAsItems,
   },
   {
     id: 'starter',

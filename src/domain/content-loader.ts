@@ -168,6 +168,50 @@ export async function loadPhrasalVerbsAsItems(): Promise<ContentItem[]> {
   return items;
 }
 
+export interface QuizVerbItem {
+  id: string;
+  day: number;
+  verb: string;
+  sense: string;
+  en: string;
+  ko: string;
+  level?: number;
+}
+
+/** 퀴즈 잉글리시 기본동사 100 (Day 1–100, 500문장) */
+export async function loadQuizVerbsAsItems(): Promise<ContentItem[]> {
+  if (cache.has('quiz-verbs-items')) {
+    return cache.get('quiz-verbs-items') as ContentItem[];
+  }
+  const raw = await fetchJson<{ items: QuizVerbItem[] }>('/quiz-verbs/catalog.json');
+  const items: ContentItem[] = raw.items.map((q) => ({
+    id: q.id,
+    type: 'sentence' as const,
+    data: {
+      en: q.en,
+      translations: { ko: q.ko },
+      chunks: [q.verb.toLowerCase()],
+      hints: [
+        `Day ${q.day} · ${q.verb}${q.sense ? `: ${q.sense}` : ''}`,
+      ],
+    },
+    translations: { ko: q.ko },
+    tags: [
+      'type:quiz-verb',
+      `verb:${q.verb.toLowerCase()}`,
+      `day:${q.day}`,
+      q.sense ? `sense:${q.sense}` : '',
+    ].filter(Boolean),
+    form: 'statement' as const,
+    level: q.level ?? (q.day <= 21 ? 1 : q.day <= 60 ? 2 : 3),
+    packId: 'quiz-verbs',
+    practiceBand:
+      q.day <= 21 ? 'L1' : q.day <= 45 ? 'L2' : q.day <= 75 ? 'L3' : 'L4',
+  }));
+  cache.set('quiz-verbs-items', items);
+  return items;
+}
+
 /**
  * 그래머 유닛의 items 중 type='sentence'인 것을 ContentItem[]으로 변환 (세션 학습용).
  * skillAxes를 스킬 태그로 부여.

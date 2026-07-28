@@ -662,3 +662,12 @@ describe('10. comfort adapt', () => {
     expect(d?.to).toBe('L2');
   });
 });
+
+describe('11. quiz verbs pack', () => {
+  it('catalog has 500 unique day sentences', async () => {
+    const catalog = await import('../../data/canon/quiz-verbs/catalog.json');
+    const items = (catalog as { default?: { items: unknown[] }; items?: unknown[] }).default?.items
+      ?? (catalog as { items: unknown[] }).items;
+    expect(items).toHaveLength(500);
+  });
+});

@@ -1,0 +1,4508 @@
+{
+  "version": 1,
+  "description": "퀴즈 잉글리시 기본동사 100 — Day 1~100, 일 5문장",
+  "source": "Quiz English Basic Verbs 100",
+  "itemCount": 500,
+  "items": [
+    {
+      "id": "qv-d01-01",
+      "day": 1,
+      "verb": "HAVE",
+      "sense": "소유/관계",
+      "ko": "내 조카는 거북이를 키운다.",
+      "en": "My nephew has a turtle.",
+      "level": 1
+    },
+    {
+      "id": "qv-d01-02",
+      "day": 1,
+      "verb": "HAVE",
+      "sense": "소유/관계",
+      "ko": "나는 시카고에 사는 친구들이 있다.",
+      "en": "I have some friends living in Chicago.",
+      "level": 1
+    },
+    {
+      "id": "qv-d01-03",
+      "day": 1,
+      "verb": "HAVE",
+      "sense": "소유/관계",
+      "ko": "남동생과 나는 우애가 돈독하다.",
+      "en": "My brother and I have a strong bond.",
+      "level": 1
+    },
+    {
+      "id": "qv-d01-04",
+      "day": 1,
+      "verb": "HAVE",
+      "sense": "소유/관계",
+      "ko": "내 생각은 달랐다.",
+      "en": "I had a different idea.",
+      "level": 1
+    },
+    {
+      "id": "qv-d01-05",
+      "day": 1,
+      "verb": "HAVE",
+      "sense": "소유/관계",
+      "ko": "친구들과 숨바꼭질하면서 놀던 즐거운 추억이 있다.",
+      "en": "I have fond memories of playing hide-and-seek with my friends.",
+      "level": 1
+    },
+    {
+      "id": "qv-d02-01",
+      "day": 2,
+      "verb": "HAVE",
+      "sense": "식사",
+      "ko": "나는 아침으로 주로 시리얼을 먹는다.",
+      "en": "I usually have cereal for breakfast.",
+      "level": 1
+    },
+    {
+      "id": "qv-d02-02",
+      "day": 2,
+      "verb": "HAVE",
+      "sense": "식사",
+      "ko": "저는 스테이크 먹을게요.",
+      "en": "I'll have the steak, please.",
+      "level": 1
+    },
+    {
+      "id": "qv-d02-03",
+      "day": 2,
+      "verb": "HAVE",
+      "sense": "식사",
+      "ko": "오늘 점심으로 아무것도 안 먹었어요.",
+      "en": "I didn't have anything for lunch today.",
+      "level": 1
+    },
+    {
+      "id": "qv-d02-04",
+      "day": 2,
+      "verb": "HAVE",
+      "sense": "식사",
+      "ko": "출발하기 전에 뭐라도 먹어야 해.",
+      "en": "You should have something before you leave.",
+      "level": 1
+    },
+    {
+      "id": "qv-d02-05",
+      "day": 2,
+      "verb": "HAVE",
+      "sense": "식사",
+      "ko": "피자 먹으면서 영화 보자.",
+      "en": "Let's have some pizza and watch a movie.",
+      "level": 1
+    },
+    {
+      "id": "qv-d03-01",
+      "day": 3,
+      "verb": "HAVE",
+      "sense": "경험/상태",
+      "ko": "우리는 지난주 일본에서 정말 좋은 시간을 보냈어요.",
+      "en": "We had a great time in Japan last week.",
+      "level": 1
+    },
+    {
+      "id": "qv-d03-02",
+      "day": 3,
+      "verb": "HAVE",
+      "sense": "경험/상태",
+      "ko": "힘들게 유년 시절을 보냈다.",
+      "en": "I had a rough childhood.",
+      "level": 1
+    },
+    {
+      "id": "qv-d03-03",
+      "day": 3,
+      "verb": "HAVE",
+      "sense": "경험/상태",
+      "ko": "제가 접속 상태가 안 좋은 것 같습니다.",
+      "en": "I think I have a bad connection.",
+      "level": 1
+    },
+    {
+      "id": "qv-d03-04",
+      "day": 3,
+      "verb": "HAVE",
+      "sense": "경험/상태",
+      "ko": "저희는 만나면 늘 대화가 즐겁습니다.",
+      "en": "We always have such good conversations.",
+      "level": 1
+    },
+    {
+      "id": "qv-d03-05",
+      "day": 3,
+      "verb": "HAVE",
+      "sense": "경험/상태",
+      "ko": "그는 비행기를 오래 타서 잠을 좀 더 자야 해요.",
+      "en": "He had a long flight, so he needs some extra sleep.",
+      "level": 1
+    },
+    {
+      "id": "qv-d04-01",
+      "day": 4,
+      "verb": "HAVE",
+      "sense": "개최/행사",
+      "ko": "제가 이번 주말에 집들이를 합니다.",
+      "en": "I'm having a housewarming party this weekend.",
+      "level": 1
+    },
+    {
+      "id": "qv-d04-02",
+      "day": 4,
+      "verb": "HAVE",
+      "sense": "개최/행사",
+      "ko": "백화점들이 이번 주에 일제히 세일을 한다.",
+      "en": "The department stores are all having sales this week.",
+      "level": 1
+    },
+    {
+      "id": "qv-d04-03",
+      "day": 4,
+      "verb": "HAVE",
+      "sense": "개최/행사",
+      "ko": "우리는 6월에 코엑스에서 채용 박람회를 열었다.",
+      "en": "We had a job fair at COEX in June.",
+      "level": 1
+    },
+    {
+      "id": "qv-d04-04",
+      "day": 4,
+      "verb": "HAVE",
+      "sense": "개최/행사",
+      "ko": "이번 주말에 모임이 있으니 오고 싶으면 오렴.",
+      "en": "I'm having a get-together this weekend, so join if you want.",
+      "level": 1
+    },
+    {
+      "id": "qv-d04-05",
+      "day": 4,
+      "verb": "HAVE",
+      "sense": "개최/행사",
+      "ko": "그 편의점에서 오늘 원플러스원 행사를 한다.",
+      "en": "That convenience store is having a buy-one-get-one deal today.",
+      "level": 1
+    },
+    {
+      "id": "qv-d05-01",
+      "day": 5,
+      "verb": "HAVE",
+      "sense": "할 일",
+      "ko": "할 일이 산더미같이 쌓여 있다.",
+      "en": "I have tons of work to do.",
+      "level": 1
+    },
+    {
+      "id": "qv-d05-02",
+      "day": 5,
+      "verb": "HAVE",
+      "sense": "할 일",
+      "ko": "답장해야 할 이메일이 몇 개 있다.",
+      "en": "I have a few emails to reply to.",
+      "level": 1
+    },
+    {
+      "id": "qv-d05-03",
+      "day": 5,
+      "verb": "HAVE",
+      "sense": "할 일",
+      "ko": "오늘 오후에 몇 가지 볼 일이 좀 있다.",
+      "en": "I have some errands to run this afternoon.",
+      "level": 1
+    },
+    {
+      "id": "qv-d05-04",
+      "day": 5,
+      "verb": "HAVE",
+      "sense": "할 일",
+      "ko": "금요일까지 프로젝트 하나를 마무리해야 한다.",
+      "en": "We have a project to finish by Friday.",
+      "level": 1
+    },
+    {
+      "id": "qv-d05-05",
+      "day": 5,
+      "verb": "HAVE",
+      "sense": "할 일",
+      "ko": "크리스마스 쇼핑을 좀 해야 한다.",
+      "en": "I have some Christmas shopping to do.",
+      "level": 1
+    },
+    {
+      "id": "qv-d06-01",
+      "day": 6,
+      "verb": "HAVE",
+      "sense": "특징/속성",
+      "ko": "이 컵은 손잡이가 독특하다.",
+      "en": "This cup has a unique handle.",
+      "level": 1
+    },
+    {
+      "id": "qv-d06-02",
+      "day": 6,
+      "verb": "HAVE",
+      "sense": "특징/속성",
+      "ko": "내가 새로 산 차는 시트가 가죽이다.",
+      "en": "My new car has leather seats.",
+      "level": 1
+    },
+    {
+      "id": "qv-d06-03",
+      "day": 6,
+      "verb": "HAVE",
+      "sense": "특징/속성",
+      "ko": "이 바지는 주머니가 없다.",
+      "en": "These pants don't have pockets.",
+      "level": 1
+    },
+    {
+      "id": "qv-d06-04",
+      "day": 6,
+      "verb": "HAVE",
+      "sense": "특징/속성",
+      "ko": "신모델은 디자인이 아주 잘 빠졌다.",
+      "en": "The new model has a sleek design.",
+      "level": 1
+    },
+    {
+      "id": "qv-d06-05",
+      "day": 6,
+      "verb": "HAVE",
+      "sense": "특징/속성",
+      "ko": "그 사람은 성격이 참 좋아요.",
+      "en": "He has a great personality.",
+      "level": 1
+    },
+    {
+      "id": "qv-d07-01",
+      "day": 7,
+      "verb": "HAVE",
+      "sense": "초대/곁에 둠",
+      "ko": "나는 간단한 메모를 위해 항상 펜을 곁에 둔다.",
+      "en": "I always have a pen nearby to take quick notes.",
+      "level": 1
+    },
+    {
+      "id": "qv-d07-02",
+      "day": 7,
+      "verb": "HAVE",
+      "sense": "초대/곁에 둠",
+      "ko": "식사에 누구를 부를 거니?",
+      "en": "Who are you having over for your birthday dinner?",
+      "level": 1
+    },
+    {
+      "id": "qv-d07-03",
+      "day": 7,
+      "verb": "HAVE",
+      "sense": "초대/곁에 둠",
+      "ko": "당신이 돌아오니 정말 좋네요.",
+      "en": "It’s great to have you back.",
+      "level": 1
+    },
+    {
+      "id": "qv-d07-04",
+      "day": 7,
+      "verb": "HAVE",
+      "sense": "초대/곁에 둠",
+      "ko": "현금 좀 있니?",
+      "en": "Do you have any cash on you?",
+      "level": 1
+    },
+    {
+      "id": "qv-d07-05",
+      "day": 7,
+      "verb": "HAVE",
+      "sense": "초대/곁에 둠",
+      "ko": "나는 차 안에 있을 때 라디오를 켜두는 편이다.",
+      "en": "I like to have the radio on when I'm in the car.",
+      "level": 1
+    },
+    {
+      "id": "qv-d08-01",
+      "day": 8,
+      "verb": "HAVE",
+      "sense": "지시/요청",
+      "ko": "남편한테 역 근처에서 만나라고 할게요.",
+      "en": "I'll have my husband meet you at the station.",
+      "level": 1
+    },
+    {
+      "id": "qv-d08-02",
+      "day": 8,
+      "verb": "HAVE",
+      "sense": "지시/요청",
+      "ko": "제프한테 운동 조언을 좀 부탁하면 어떨까?",
+      "en": "Maybe you could have Jeff give you some exercise tips.",
+      "level": 1
+    },
+    {
+      "id": "qv-d08-03",
+      "day": 8,
+      "verb": "HAVE",
+      "sense": "지시/요청",
+      "ko": "저희 비서한테 다시 전화드리라고 해 둘게요.",
+      "en": "I will have my secretary get back to you.",
+      "level": 1
+    },
+    {
+      "id": "qv-d08-04",
+      "day": 8,
+      "verb": "HAVE",
+      "sense": "지시/요청",
+      "ko": "그분한테 내 사무실로 들르라고 해요.",
+      "en": "Have him stop by my office.",
+      "level": 1
+    },
+    {
+      "id": "qv-d08-05",
+      "day": 8,
+      "verb": "HAVE",
+      "sense": "지시/요청",
+      "ko": "앤드루한테 초안 감수 부탁할까 싶어요.",
+      "en": "I was thinking of having Andrew proofread my draft.",
+      "level": 1
+    },
+    {
+      "id": "qv-d09-01",
+      "day": 9,
+      "verb": "GET",
+      "sense": "획득/구매",
+      "ko": "지난주에 이 핸드폰 샀어.",
+      "en": "I got this phone last week.",
+      "level": 1
+    },
+    {
+      "id": "qv-d09-02",
+      "day": 9,
+      "verb": "GET",
+      "sense": "획득/구매",
+      "ko": "이 신발 이탈리아에서 구했어.",
+      "en": "I got these shoes from Italy.",
+      "level": 1
+    },
+    {
+      "id": "qv-d09-03",
+      "day": 9,
+      "verb": "GET",
+      "sense": "획득/구매",
+      "ko": "이 그림 벼룩시장에서 샀어.",
+      "en": "I got this painting at a flea market.",
+      "level": 1
+    },
+    {
+      "id": "qv-d09-04",
+      "day": 9,
+      "verb": "GET",
+      "sense": "획득/구매",
+      "ko": "이 가죽 재킷은 어디서 산 거야?",
+      "en": "Where did you get this leather jacket?",
+      "level": 1
+    },
+    {
+      "id": "qv-d09-05",
+      "day": 9,
+      "verb": "GET",
+      "sense": "획득/구매",
+      "ko": "이 주변에서 커피 살 수 있는 곳이 어딘가요?",
+      "en": "Where can I get a coffee around here?",
+      "level": 1
+    },
+    {
+      "id": "qv-d10-01",
+      "day": 10,
+      "verb": "GET",
+      "sense": "확보/자격",
+      "ko": "드디어 서울 마라톤 대회 참가 자격을 얻었다.",
+      "en": "I finally got a spot in the Seoul Marathon.",
+      "level": 1
+    },
+    {
+      "id": "qv-d10-02",
+      "day": 10,
+      "verb": "GET",
+      "sense": "확보/자격",
+      "ko": "이번 여름에 샌프란시스코에서 인턴을 하고 싶습니다.",
+      "en": "I want to get an internship in San Francisco this summer.",
+      "level": 1
+    },
+    {
+      "id": "qv-d10-03",
+      "day": 10,
+      "verb": "GET",
+      "sense": "확보/자격",
+      "ko": "장학금을 못 받으면 이번 학기를 못 다닐 것 같아.",
+      "en": "If I don't get a scholarship, I won't be able to go to school this semester.",
+      "level": 1
+    },
+    {
+      "id": "qv-d10-04",
+      "day": 10,
+      "verb": "GET",
+      "sense": "확보/자격",
+      "ko": "우리는 강남에는 집 못 얻을 듯해.",
+      "en": "I don't think we can get a place in Gangnam.",
+      "level": 1
+    },
+    {
+      "id": "qv-d10-05",
+      "day": 10,
+      "verb": "GET",
+      "sense": "확보/자격",
+      "ko": "무대 가까운 자리를 못 구했어.",
+      "en": "We couldn't get a spot near the stage.",
+      "level": 1
+    },
+    {
+      "id": "qv-d11-01",
+      "day": 11,
+      "verb": "GET",
+      "sense": "식사/한잔",
+      "ko": "혹시 많이 안 바쁘시면 언제 술이나 한 잔 해도 좋고요.",
+      "en": "If you're not too busy, maybe we could get a drink sometime.",
+      "level": 1
+    },
+    {
+      "id": "qv-d11-02",
+      "day": 11,
+      "verb": "GET",
+      "sense": "식사/한잔",
+      "ko": "오늘 퇴근하고 폴 만나서 맥주 한잔하려고.",
+      "en": "I'm going to get a beer with Paul after work today.",
+      "level": 1
+    },
+    {
+      "id": "qv-d11-03",
+      "day": 11,
+      "verb": "GET",
+      "sense": "식사/한잔",
+      "ko": "회의 끝나고 점심하자. 내가 살게.",
+      "en": "After the meeting, let's get lunch. My treat.",
+      "level": 1
+    },
+    {
+      "id": "qv-d11-04",
+      "day": 11,
+      "verb": "GET",
+      "sense": "식사/한잔",
+      "ko": "밤에 저녁 먹으면서 와인 한 병 하자.",
+      "en": "Let's get a bottle of wine with dinner tonight.",
+      "level": 1
+    },
+    {
+      "id": "qv-d11-05",
+      "day": 11,
+      "verb": "GET",
+      "sense": "식사/한잔",
+      "ko": "내일 바빠요? 커피 한잔해요.",
+      "en": "Are you busy tomorrow? Let's get coffee.",
+      "level": 1
+    },
+    {
+      "id": "qv-d12-01",
+      "day": 12,
+      "verb": "GET",
+      "sense": "주문/요청",
+      "ko": "레몬차 주시겠어요?",
+      "en": "Can I get a lemon tea, please?",
+      "level": 1
+    },
+    {
+      "id": "qv-d12-02",
+      "day": 12,
+      "verb": "GET",
+      "sense": "주문/요청",
+      "ko": "커피 테이크아웃으로 한 잔 부탁해요.",
+      "en": "Can I get a coffee to go, please?",
+      "level": 1
+    },
+    {
+      "id": "qv-d12-03",
+      "day": 12,
+      "verb": "GET",
+      "sense": "주문/요청",
+      "ko": "햄버거에 치즈 한 장 더 얹어 주시겠어요?",
+      "en": "Can I get extra cheese on my burger?",
+      "level": 1
+    },
+    {
+      "id": "qv-d12-04",
+      "day": 12,
+      "verb": "GET",
+      "sense": "주문/요청",
+      "ko": "물티슈 한 장 주시겠어요?",
+      "en": "Can I get a wet wipe, please?",
+      "level": 1
+    },
+    {
+      "id": "qv-d12-05",
+      "day": 12,
+      "verb": "GET",
+      "sense": "주문/요청",
+      "ko": "감자튀김 대신 샐러드로 주실 수 있을까요?",
+      "en": "Can we get salad instead of fries?",
+      "level": 1
+    },
+    {
+      "id": "qv-d13-01",
+      "day": 13,
+      "verb": "GET",
+      "sense": "도착",
+      "ko": "나 방금 도착했어.",
+      "en": "I just got here.",
+      "level": 1
+    },
+    {
+      "id": "qv-d13-02",
+      "day": 13,
+      "verb": "GET",
+      "sense": "도착",
+      "ko": "언제 도착한 거야?",
+      "en": "When did you get here?",
+      "level": 1
+    },
+    {
+      "id": "qv-d13-03",
+      "day": 13,
+      "verb": "GET",
+      "sense": "도착",
+      "ko": "역에 도착하면 문자 줘.",
+      "en": "Text me when you get to the station.",
+      "level": 1
+    },
+    {
+      "id": "qv-d13-04",
+      "day": 13,
+      "verb": "GET",
+      "sense": "도착",
+      "ko": "회의에 늦지 않게 간 거야?",
+      "en": "Did you get to the meeting on time?",
+      "level": 1
+    },
+    {
+      "id": "qv-d13-05",
+      "day": 13,
+      "verb": "GET",
+      "sense": "도착",
+      "ko": "이 업계에서 성공하고 싶으면 골프를 배워야 해요.",
+      "en": "If you want to get anywhere in this business, you need to learn how to golf.",
+      "level": 1
+    },
+    {
+      "id": "qv-d14-01",
+      "day": 14,
+      "verb": "GET",
+      "sense": "이해",
+      "ko": "이 수학 문제 이해가 안 돼요.",
+      "en": "I don't get this math problem.",
+      "level": 1
+    },
+    {
+      "id": "qv-d14-02",
+      "day": 14,
+      "verb": "GET",
+      "sense": "이해",
+      "ko": "이해가 안 됩니다. 다시 한번 설명해 주시겠어요?",
+      "en": "I don't get it. Can you explain it again?",
+      "level": 1
+    },
+    {
+      "id": "qv-d14-03",
+      "day": 14,
+      "verb": "GET",
+      "sense": "이해",
+      "ko": "무슨 말인지 완전히 알겠습니다.",
+      "en": "I totally get what you're saying.",
+      "level": 1
+    },
+    {
+      "id": "qv-d14-04",
+      "day": 14,
+      "verb": "GET",
+      "sense": "이해",
+      "ko": "시간이 좀 걸렸지만 결국 개념을 이해했다.",
+      "en": "It took me a while, but I finally got the concept.",
+      "level": 1
+    },
+    {
+      "id": "qv-d14-05",
+      "day": 14,
+      "verb": "GET",
+      "sense": "이해",
+      "ko": "그는 누구보다 나를 잘 안다.",
+      "en": "He gets me like no one else does.",
+      "level": 1
+    },
+    {
+      "id": "qv-d15-01",
+      "day": 15,
+      "verb": "GET",
+      "sense": "상태 변화",
+      "ko": "요즘 날씨가 더 추워지고 있다.",
+      "en": "It's getting colder these days.",
+      "level": 1
+    },
+    {
+      "id": "qv-d15-02",
+      "day": 15,
+      "verb": "GET",
+      "sense": "상태 변화",
+      "ko": "중요한 시험 전에는 항상 긴장한다.",
+      "en": "I always get nervous before a big exam.",
+      "level": 1
+    },
+    {
+      "id": "qv-d15-03",
+      "day": 15,
+      "verb": "GET",
+      "sense": "상태 변화",
+      "ko": "한동안 목을 좀 쉬게 했더니 나아졌다.",
+      "en": "My throat got better after resting my voice for a while.",
+      "level": 1
+    },
+    {
+      "id": "qv-d15-04",
+      "day": 15,
+      "verb": "GET",
+      "sense": "상태 변화",
+      "ko": "두 남자가 싸우기 시작하면서 파티가 난장판이 되었다.",
+      "en": "The party got wild after two guys started fighting.",
+      "level": 1
+    },
+    {
+      "id": "qv-d15-05",
+      "day": 15,
+      "verb": "GET",
+      "sense": "상태 변화",
+      "ko": "넷플릭스 드라마 촬영 이후로 그 지역이 정말 인기가 많아졌다.",
+      "en": "That area got really popular after the Netflix show filmed there.",
+      "level": 1
+    },
+    {
+      "id": "qv-d16-01",
+      "day": 16,
+      "verb": "GET",
+      "sense": "질병/통증",
+      "ko": "열대 지역으로 여행 가서 말라리아에 걸리는 사람들이 있다.",
+      "en": "Some people get malaria when traveling to tropical areas.",
+      "level": 1
+    },
+    {
+      "id": "qv-d16-02",
+      "day": 16,
+      "verb": "GET",
+      "sense": "질병/통증",
+      "ko": "요즘 심장병에 걸리는 젊은 사람들이 점점 늘고 있다.",
+      "en": "More and more young people are getting heart disease these days.",
+      "level": 1
+    },
+    {
+      "id": "qv-d16-03",
+      "day": 16,
+      "verb": "GET",
+      "sense": "질병/통증",
+      "ko": "설탕 안 줄이면 당뇨병에 걸릴 거야.",
+      "en": "If you don't cut down on sugar, you're going to get diabetes.",
+      "level": 1
+    },
+    {
+      "id": "qv-d16-04",
+      "day": 16,
+      "verb": "GET",
+      "sense": "질병/통증",
+      "ko": "내가 중학교에 다닐 때 엄마가 암에 걸리셨다.",
+      "en": "My mom got cancer when I was in middle school.",
+      "level": 1
+    },
+    {
+      "id": "qv-d16-05",
+      "day": 16,
+      "verb": "GET",
+      "sense": "질병/통증",
+      "ko": "나이 들어서 치매에 안 걸리려고 책을 많이 읽으려고 한다.",
+      "en": "I try to read a lot so I won't get dementia when I'm older.",
+      "level": 1
+    },
+    {
+      "id": "qv-d17-01",
+      "day": 17,
+      "verb": "GET",
+      "sense": "이동시키다",
+      "ko": "여권이 만료되기 직전에 서류를 대사관에 보냈어요.",
+      "en": "I got the papers to the embassy right before my passport expired.",
+      "level": 1
+    },
+    {
+      "id": "qv-d17-02",
+      "day": 17,
+      "verb": "GET",
+      "sense": "이동시키다",
+      "ko": "이 양식을 오늘 인사과로 보내야 해요.",
+      "en": "I need to get this form to HR today.",
+      "level": 1
+    },
+    {
+      "id": "qv-d17-03",
+      "day": 17,
+      "verb": "GET",
+      "sense": "이동시키다",
+      "ko": "이 소파 어떻게 위층으로 옮기지?",
+      "en": "How are we going to get this couch upstairs?",
+      "level": 1
+    },
+    {
+      "id": "qv-d17-04",
+      "day": 17,
+      "verb": "GET",
+      "sense": "이동시키다",
+      "ko": "플라자 호텔까지 좀 가 주실 수 있나요?",
+      "en": "Can you get me to the Plaza Hotel?",
+      "level": 1
+    },
+    {
+      "id": "qv-d17-05",
+      "day": 17,
+      "verb": "GET",
+      "sense": "이동시키다",
+      "ko": "집까지 안전하게 데려다 주실 수 있을까요?",
+      "en": "Could you make sure to get her home safely?",
+      "level": 1
+    },
+    {
+      "id": "qv-d18-01",
+      "day": 18,
+      "verb": "GET",
+      "sense": "받다/경험하다",
+      "ko": "여름에는 관광객들이 이곳을 많이 찾아요.",
+      "en": "We get a lot of tourists here in the summer.",
+      "level": 1
+    },
+    {
+      "id": "qv-d18-02",
+      "day": 18,
+      "verb": "GET",
+      "sense": "받다/경험하다",
+      "ko": "그녀는 밤낮 할 것 없이 이메일, 문자, 전화를 받습니다.",
+      "en": "She gets emails, texts, and phone calls all day and night.",
+      "level": 1
+    },
+    {
+      "id": "qv-d18-03",
+      "day": 18,
+      "verb": "GET",
+      "sense": "받다/경험하다",
+      "ko": "샌디에이고는 겨울에도 눈이 거의 안 온다고 하더라.",
+      "en": "San Diego hardly gets any snow even in winter.",
+      "level": 1
+    },
+    {
+      "id": "qv-d18-04",
+      "day": 18,
+      "verb": "GET",
+      "sense": "받다/경험하다",
+      "ko": "요즘은 주말에도 찾는 사람이 많지 않아요.",
+      "en": "Even on the weekend, we don't get much foot traffic these days.",
+      "level": 1
+    },
+    {
+      "id": "qv-d18-05",
+      "day": 18,
+      "verb": "GET",
+      "sense": "받다/경험하다",
+      "ko": "거의 매일 시원한 바닷바람이 불어온다.",
+      "en": "Our apartment gets a nice ocean breeze almost every day.",
+      "level": 1
+    },
+    {
+      "id": "qv-d19-01",
+      "day": 19,
+      "verb": "GET",
+      "sense": "사다 주다/마련해 주다",
+      "ko": "강아지 생일이라 케이크를 사 줬어.",
+      "en": "I got my dog a cake for his birthday.",
+      "level": 1
+    },
+    {
+      "id": "qv-d19-02",
+      "day": 19,
+      "verb": "GET",
+      "sense": "사다 주다/마련해 주다",
+      "ko": "커피 한 잔 드릴까요?",
+      "en": "Can I get you a cup of coffee?",
+      "level": 1
+    },
+    {
+      "id": "qv-d19-03",
+      "day": 19,
+      "verb": "GET",
+      "sense": "사다 주다/마련해 주다",
+      "ko": "내가 담요 가져다 줄게요.",
+      "en": "I will get you a blanket.",
+      "level": 1
+    },
+    {
+      "id": "qv-d19-04",
+      "day": 19,
+      "verb": "GET",
+      "sense": "사다 주다/마련해 주다",
+      "ko": "참치김밥 사 왔어.",
+      "en": "I got you a tuna kimbap.",
+      "level": 1
+    },
+    {
+      "id": "qv-d19-05",
+      "day": 19,
+      "verb": "GET",
+      "sense": "사다 주다/마련해 주다",
+      "ko": "학장님에게서 추천서를 받아다 주었다.",
+      "en": "Gabriel got me a recommendation letter from the dean.",
+      "level": 1
+    },
+    {
+      "id": "qv-d20-01",
+      "day": 20,
+      "verb": "GET",
+      "sense": "사물+과거분사",
+      "ko": "내 차의 앞유리를 교체해야 한다.",
+      "en": "I need to get my windshield replaced on my car.",
+      "level": 1
+    },
+    {
+      "id": "qv-d20-02",
+      "day": 20,
+      "verb": "GET",
+      "sense": "사물+과거분사",
+      "ko": "내 컴퓨터를 고쳐야 한다.",
+      "en": "I have to get my computer fixed.",
+      "level": 1
+    },
+    {
+      "id": "qv-d20-03",
+      "day": 20,
+      "verb": "GET",
+      "sense": "사물+과거분사",
+      "ko": "이 서류에 사인을 받아야 한다.",
+      "en": "I need to get this document signed.",
+      "level": 1
+    },
+    {
+      "id": "qv-d20-04",
+      "day": 20,
+      "verb": "GET",
+      "sense": "사물+과거분사",
+      "ko": "다음 주에 사랑니를 뽑아야 한다.",
+      "en": "I need to get my wisdom teeth removed next week.",
+      "level": 1
+    },
+    {
+      "id": "qv-d20-05",
+      "day": 20,
+      "verb": "GET",
+      "sense": "사물+과거분사",
+      "ko": "회계사한테 맡겨서 세금 신고를 했다.",
+      "en": "I got my taxes done by an accountant.",
+      "level": 1
+    },
+    {
+      "id": "qv-d21-01",
+      "day": 21,
+      "verb": "GET",
+      "sense": "사람+to부정사",
+      "ko": "어떻게 남편을 금연하게 만든 거야?",
+      "en": "How did you get your husband to quit smoking?",
+      "level": 1
+    },
+    {
+      "id": "qv-d21-02",
+      "day": 21,
+      "verb": "GET",
+      "sense": "사람+to부정사",
+      "ko": "아무리 제시간에 일어나려고 해도 잘 안 돼요.",
+      "en": "I can't get myself to wake up at a decent time.",
+      "level": 1
+    },
+    {
+      "id": "qv-d21-03",
+      "day": 21,
+      "verb": "GET",
+      "sense": "사람+to부정사",
+      "ko": "이 책상 옮기려고 해도 안 움직여요.",
+      "en": "I can't get this desk to move.",
+      "level": 1
+    },
+    {
+      "id": "qv-d21-04",
+      "day": 21,
+      "verb": "GET",
+      "sense": "사람+to부정사",
+      "ko": "이 기름때가 도무지 안 지워져요.",
+      "en": "I can't get this grease stain to come out.",
+      "level": 1
+    },
+    {
+      "id": "qv-d21-05",
+      "day": 21,
+      "verb": "GET",
+      "sense": "사람+to부정사",
+      "ko": "프린터 작동시키는 데 한참 걸렸어요.",
+      "en": "It took me forever to get the printer to work.",
+      "level": 1
+    },
+    {
+      "id": "qv-d22-01",
+      "day": 22,
+      "verb": "MAKE",
+      "sense": "만들어 주다",
+      "ko": "아내가 이 목도리를 만들어 줬어요.",
+      "en": "My wife made me this scarf.",
+      "level": 2
+    },
+    {
+      "id": "qv-d22-02",
+      "day": 22,
+      "verb": "MAKE",
+      "sense": "만들어 주다",
+      "ko": "친구가 끈을 이용해서 팔찌를 만들어 줬어요.",
+      "en": "My boyfriend made me a bracelet from string.",
+      "level": 2
+    },
+    {
+      "id": "qv-d22-03",
+      "day": 22,
+      "verb": "MAKE",
+      "sense": "만들어 주다",
+      "ko": "원하시면 차 한 잔 타 드릴게요.",
+      "en": "I can make you some tea if you'd like.",
+      "level": 2
+    },
+    {
+      "id": "qv-d22-04",
+      "day": 22,
+      "verb": "MAKE",
+      "sense": "만들어 주다",
+      "ko": "선생님은 크리스마스 때 쿠키를 만들어 주시곤 했다.",
+      "en": "My school teacher would make us cookies for Christmas.",
+      "level": 2
+    },
+    {
+      "id": "qv-d22-05",
+      "day": 22,
+      "verb": "MAKE",
+      "sense": "만들어 주다",
+      "ko": "뭐 먹을 것 좀 만들어 줄게.",
+      "en": "Let me make you something to eat.",
+      "level": 2
+    },
+    {
+      "id": "qv-d23-01",
+      "day": 23,
+      "verb": "MAKE",
+      "sense": "상태/결과",
+      "ko": "팬데믹으로 온라인 학습이 새로운 표준이 되었다.",
+      "en": "The pandemic made online learning the new norm.",
+      "level": 2
+    },
+    {
+      "id": "qv-d23-02",
+      "day": 23,
+      "verb": "MAKE",
+      "sense": "상태/결과",
+      "ko": "이 작가의 통찰력 때문에 이 책은 필독서이다.",
+      "en": "The author's insight makes this book a must-read.",
+      "level": 2
+    },
+    {
+      "id": "qv-d23-03",
+      "day": 23,
+      "verb": "MAKE",
+      "sense": "상태/결과",
+      "ko": "사업에 실패하고 나서 그는 더 강한 사람이 되었다.",
+      "en": "Losing his business made him a stronger person.",
+      "level": 2
+    },
+    {
+      "id": "qv-d23-04",
+      "day": 23,
+      "verb": "MAKE",
+      "sense": "상태/결과",
+      "ko": "형과의 경쟁이 저를 더 좋은 선수가 되게 했습니다.",
+      "en": "Competing with my older brother made me a better athlete.",
+      "level": 2
+    },
+    {
+      "id": "qv-d23-05",
+      "day": 23,
+      "verb": "MAKE",
+      "sense": "상태/결과",
+      "ko": "식당만으로도 관광객들에게 가장 인기 있는 도시이다.",
+      "en": "The restaurants alone make New York the most popular city for tourists.",
+      "level": 2
+    },
+    {
+      "id": "qv-d24-01",
+      "day": 24,
+      "verb": "MAKE",
+      "sense": "강제/사역",
+      "ko": "엄마가 저를 강제로 보낼 순 없어요.",
+      "en": "You can't make me go.",
+      "level": 2
+    },
+    {
+      "id": "qv-d24-02",
+      "day": 24,
+      "verb": "MAKE",
+      "sense": "강제/사역",
+      "ko": "회사가 너를 밤 11시까지 붙잡아둘 수는 없어.",
+      "en": "They can't make you stay at the office until 11 p.m.",
+      "level": 2
+    },
+    {
+      "id": "qv-d24-03",
+      "day": 24,
+      "verb": "MAKE",
+      "sense": "강제/사역",
+      "ko": "부모님이 저를 너무 공부시키셔서 저는 제 아이들에게 아무것도 시키지 않아요.",
+      "en": "My parents made me study too much, so I don't make my children do anything.",
+      "level": 2
+    },
+    {
+      "id": "qv-d24-04",
+      "day": 24,
+      "verb": "MAKE",
+      "sense": "강제/사역",
+      "ko": "남편이 저 혼자 그 많은 가방을 들고 가게 했어요.",
+      "en": "My husband made me carry all the bags by myself.",
+      "level": 2
+    },
+    {
+      "id": "qv-d24-05",
+      "day": 24,
+      "verb": "MAKE",
+      "sense": "강제/사역",
+      "ko": "오, 엄마가 채소를 다 먹게 했어요.",
+      "en": "Oh, mom made me finish my vegetables.",
+      "level": 2
+    },
+    {
+      "id": "qv-d25-01",
+      "day": 25,
+      "verb": "MAKE",
+      "sense": "감정/반응",
+      "ko": "달리기를 하면 기분 전환이 된다.",
+      "en": "Running usually makes me feel better.",
+      "level": 2
+    },
+    {
+      "id": "qv-d25-02",
+      "day": 25,
+      "verb": "MAKE",
+      "sense": "감정/반응",
+      "ko": "너 때문에 내가 기분이 너무 안 좋거든.",
+      "en": "You're making me feel terrible.",
+      "level": 2
+    },
+    {
+      "id": "qv-d25-03",
+      "day": 25,
+      "verb": "MAKE",
+      "sense": "감정/반응",
+      "ko": "나를 웃게 만들 수 있는 사람은 여자친구뿐이다.",
+      "en": "My girlfriend is the only one who can make me laugh.",
+      "level": 2
+    },
+    {
+      "id": "qv-d25-04",
+      "day": 25,
+      "verb": "MAKE",
+      "sense": "감정/반응",
+      "ko": "공포 영화를 보면 웃게 된다.",
+      "en": "Horror movies make me laugh.",
+      "level": 2
+    },
+    {
+      "id": "qv-d25-05",
+      "day": 25,
+      "verb": "MAKE",
+      "sense": "감정/반응",
+      "ko": "수술을 받아보니 건강이 얼마나 중요한지 알겠더라.",
+      "en": "My surgery made me realize how important health is.",
+      "level": 2
+    },
+    {
+      "id": "qv-d26-01",
+      "day": 26,
+      "verb": "MAKE",
+      "sense": "도착/참석/진출",
+      "ko": "얘들아 미안, 점심 식사에 못 갈 것 같아.",
+      "en": "Hey guys, I don't think I can make it to lunch.",
+      "level": 2
+    },
+    {
+      "id": "qv-d26-02",
+      "day": 26,
+      "verb": "MAKE",
+      "sense": "도착/참석/진출",
+      "ko": "우리 내일 파티하는 데 올 수 있겠니?",
+      "en": "We're having a party tomorrow, do you think you can make it?",
+      "level": 2
+    },
+    {
+      "id": "qv-d26-03",
+      "day": 26,
+      "verb": "MAKE",
+      "sense": "도착/참석/진출",
+      "ko": "공항에 간신히 제시간에 도착했더니 비행기가 지연되었다.",
+      "en": "I barely made it to the airport on time, only to have my flight delayed.",
+      "level": 2
+    },
+    {
+      "id": "qv-d26-04",
+      "day": 26,
+      "verb": "MAKE",
+      "sense": "도착/참석/진출",
+      "ko": "헬스장에 못 가는 날이면 예민해진다.",
+      "en": "I get irritable on days when I don't make it to the gym.",
+      "level": 2
+    },
+    {
+      "id": "qv-d26-05",
+      "day": 26,
+      "verb": "MAKE",
+      "sense": "도착/참석/진출",
+      "ko": "우리 팀이 다음 라운드 진출에 실패했다.",
+      "en": "Our team couldn't make it to the next round.",
+      "level": 2
+    },
+    {
+      "id": "qv-d27-01",
+      "day": 27,
+      "verb": "MAKE",
+      "sense": "자격/적합",
+      "ko": "당연히 당신은 좋은 선생님이 될 거예요.",
+      "en": "Of course, you will make a good teacher.",
+      "level": 2
+    },
+    {
+      "id": "qv-d27-02",
+      "day": 27,
+      "verb": "MAKE",
+      "sense": "자격/적합",
+      "ko": "그는 훌륭한 배우가 될 자질이 있어요.",
+      "en": "He would make a great actor.",
+      "level": 2
+    },
+    {
+      "id": "qv-d27-03",
+      "day": 27,
+      "verb": "MAKE",
+      "sense": "자격/적합",
+      "ko": "당신은 훌륭한 코치가 될 거예요.",
+      "en": "You would make a great coach.",
+      "level": 2
+    },
+    {
+      "id": "qv-d27-04",
+      "day": 27,
+      "verb": "MAKE",
+      "sense": "자격/적합",
+      "ko": "이 부지는 훌륭한 정유소가 될 것이다.",
+      "en": "This site will make an excellent refinery.",
+      "level": 2
+    },
+    {
+      "id": "qv-d27-05",
+      "day": 27,
+      "verb": "MAKE",
+      "sense": "자격/적합",
+      "ko": "요리를 배우라고 하셨어요. 안 그러면 좋은 아내가 되지 못할 거라고요.",
+      "en": "She told me to learn to cook, otherwise, I wouldn't make a good wife.",
+      "level": 2
+    },
+    {
+      "id": "qv-d28-01",
+      "day": 28,
+      "verb": "TAKE",
+      "sense": "가져가다/데려가다",
+      "ko": "나 대신 이 재킷 세탁소에 좀 가져다 줄래?",
+      "en": "Could you take this jacket to the dry cleaners for me?",
+      "level": 2
+    },
+    {
+      "id": "qv-d28-02",
+      "day": 28,
+      "verb": "TAKE",
+      "sense": "가져가다/데려가다",
+      "ko": "오늘 아침에 아들을 학교에 데려다줬어요.",
+      "en": "I took my son to school this morning.",
+      "level": 2
+    },
+    {
+      "id": "qv-d28-03",
+      "day": 28,
+      "verb": "TAKE",
+      "sense": "가져가다/데려가다",
+      "ko": "바구니에서 원하는 거 아무거나 가져가도 돼.",
+      "en": "You can take anything from the basket.",
+      "level": 2
+    },
+    {
+      "id": "qv-d28-04",
+      "day": 28,
+      "verb": "TAKE",
+      "sense": "가져가다/데려가다",
+      "ko": "제가 케이크 두 조각 가져갔어요.",
+      "en": "I took two pieces of cake.",
+      "level": 2
+    },
+    {
+      "id": "qv-d28-05",
+      "day": 28,
+      "verb": "TAKE",
+      "sense": "가져가다/데려가다",
+      "ko": "음악 업로드는 무료인데 앱에서 매출의 20%를 가져갑니다.",
+      "en": "Uploading music is free, but the app takes 20% of sales.",
+      "level": 2
+    },
+    {
+      "id": "qv-d29-01",
+      "day": 29,
+      "verb": "TAKE",
+      "sense": "수용/받아들이다",
+      "ko": "저희는 예약을 하지 않은 손님은 받지 않습니다.",
+      "en": "Sorry, we don't take walk-ins.",
+      "level": 2
+    },
+    {
+      "id": "qv-d29-02",
+      "day": 29,
+      "verb": "TAKE",
+      "sense": "수용/받아들이다",
+      "ko": "이 클리닉은 더 이상 신규 고객을 받지 않습니다.",
+      "en": "This clinic is no longer taking new clients.",
+      "level": 2
+    },
+    {
+      "id": "qv-d29-03",
+      "day": 29,
+      "verb": "TAKE",
+      "sense": "수용/받아들이다",
+      "ko": "그 식당은 전화 주문은 더 이상 받지 않는다.",
+      "en": "That restaurant doesn't take phone orders anymore.",
+      "level": 2
+    },
+    {
+      "id": "qv-d29-04",
+      "day": 29,
+      "verb": "TAKE",
+      "sense": "수용/받아들이다",
+      "ko": "일부 병원은 네가 가입한 보험은 안 받아.",
+      "en": "Some hospitals don't take your insurance.",
+      "level": 2
+    },
+    {
+      "id": "qv-d29-05",
+      "day": 29,
+      "verb": "TAKE",
+      "sense": "수용/받아들이다",
+      "ko": "영수증이 없어도 교환이 가능한가요?",
+      "en": "Do you take returns without a receipt?",
+      "level": 2
+    },
+    {
+      "id": "qv-d30-01",
+      "day": 30,
+      "verb": "TAKE",
+      "sense": "충고/제안을 수용",
+      "ko": "그녀에게 차를 태워 주겠다고 했더니 좋다고 했다.",
+      "en": "I offered her a ride, and she took it.",
+      "level": 2
+    },
+    {
+      "id": "qv-d30-02",
+      "day": 30,
+      "verb": "TAKE",
+      "sense": "충고/제안을 수용",
+      "ko": "그쪽에서 우리 제안을 수용해서 일정을 변경했습니다.",
+      "en": "They took our suggestion and changed the schedule.",
+      "level": 2
+    },
+    {
+      "id": "qv-d30-03",
+      "day": 30,
+      "verb": "TAKE",
+      "sense": "충고/제안을 수용",
+      "ko": "상사가 진짜로 내 조언을 들을 줄은 몰랐는데 받아들이더라고.",
+      "en": "I didn't think my boss would take my advice, but he did.",
+      "level": 2
+    },
+    {
+      "id": "qv-d30-04",
+      "day": 30,
+      "verb": "TAKE",
+      "sense": "충고/제안을 수용",
+      "ko": "이번 기회를 그냥 보낼 수가 없어서요.",
+      "en": "I couldn't just not take this opportunity.",
+      "level": 2
+    },
+    {
+      "id": "qv-d30-05",
+      "day": 30,
+      "verb": "TAKE",
+      "sense": "충고/제안을 수용",
+      "ko": "지금 모험을 하지 않으면 너무 늦을 것 같아서요.",
+      "en": "If I don't take a chance now, it might be too late.",
+      "level": 2
+    },
+    {
+      "id": "qv-d31-01",
+      "day": 31,
+      "verb": "TAKE",
+      "sense": "필요/요구",
+      "ko": "다이어트를 꾸준히 하려면 많은 절제가 필요하다.",
+      "en": "It takes a lot of discipline to stick to a diet.",
+      "level": 2
+    },
+    {
+      "id": "qv-d31-02",
+      "day": 31,
+      "verb": "TAKE",
+      "sense": "필요/요구",
+      "ko": "물속에서 편안함을 느끼려면 많은 경험이 있어야 한다.",
+      "en": "It takes a lot of experience to feel comfortable in the water.",
+      "level": 2
+    },
+    {
+      "id": "qv-d31-03",
+      "day": 31,
+      "verb": "TAKE",
+      "sense": "필요/요구",
+      "ko": "장거리 연애를 지속하려면 많은 믿음이 필요하다.",
+      "en": "It takes a lot of trust to maintain a long-distance relationship.",
+      "level": 2
+    },
+    {
+      "id": "qv-d31-04",
+      "day": 31,
+      "verb": "TAKE",
+      "sense": "필요/요구",
+      "ko": "첫인상을 망치는 건 정말 순식간이다.",
+      "en": "It doesn't take much to make a bad first impression.",
+      "level": 2
+    },
+    {
+      "id": "qv-d31-05",
+      "day": 31,
+      "verb": "TAKE",
+      "sense": "필요/요구",
+      "ko": "내 책을 마무리하기 위해서 정말 많은 노력을 했다.",
+      "en": "It took a lot of effort to finish my book.",
+      "level": 2
+    },
+    {
+      "id": "qv-d32-01",
+      "day": 32,
+      "verb": "TAKE",
+      "sense": "시간",
+      "ko": "이 책을 쓰는 데 몇 달이 걸렸다.",
+      "en": "It took me months to write this book.",
+      "level": 2
+    },
+    {
+      "id": "qv-d32-02",
+      "day": 32,
+      "verb": "TAKE",
+      "sense": "시간",
+      "ko": "이 음식 준비하는 데 서너 시간이 걸렸다.",
+      "en": "It took a few hours to prepare this meal.",
+      "level": 2
+    },
+    {
+      "id": "qv-d32-03",
+      "day": 32,
+      "verb": "TAKE",
+      "sense": "시간",
+      "ko": "우리 집에서 강까지 걸어서 가는 데 겨우 30분이 걸린다.",
+      "en": "It only takes 30 minutes to walk to the river from my house.",
+      "level": 2
+    },
+    {
+      "id": "qv-d32-04",
+      "day": 32,
+      "verb": "TAKE",
+      "sense": "시간",
+      "ko": "돈을 모으는 데 얼마나 걸릴까?",
+      "en": "How long would it take you to save the money?",
+      "level": 2
+    },
+    {
+      "id": "qv-d32-05",
+      "day": 32,
+      "verb": "TAKE",
+      "sense": "시간",
+      "ko": "7년이 걸렸지만 나는 결국 대학을 졸업했다.",
+      "en": "It took me seven years, but I eventually graduated from college.",
+      "level": 2
+    },
+    {
+      "id": "qv-d33-01",
+      "day": 33,
+      "verb": "TAKE",
+      "sense": "반응/태도",
+      "ko": "칭찬으로 받아들일게.",
+      "en": "I'll take that as a compliment.",
+      "level": 2
+    },
+    {
+      "id": "qv-d33-02",
+      "day": 33,
+      "verb": "TAKE",
+      "sense": "반응/태도",
+      "ko": "아들이 시험에 떨어졌는데 그 일로 몹시 힘들어하고 있어요.",
+      "en": "My son failed his test, and he's taking it really hard.",
+      "level": 2
+    },
+    {
+      "id": "qv-d33-03",
+      "day": 33,
+      "verb": "TAKE",
+      "sense": "반응/태도",
+      "ko": "타라는 수술 소식을 꽤 담담하게 받아들였어요.",
+      "en": "Tara took the news about the surgery pretty well.",
+      "level": 2
+    },
+    {
+      "id": "qv-d33-04",
+      "day": 33,
+      "verb": "TAKE",
+      "sense": "반응/태도",
+      "ko": "우울증은 가볍게 볼 것이 아니다.",
+      "en": "Depression is not something to be taken lightly.",
+      "level": 2
+    },
+    {
+      "id": "qv-d33-05",
+      "day": 33,
+      "verb": "TAKE",
+      "sense": "반응/태도",
+      "ko": "당신은 자신의 건강을 대수롭지 않게 생각하시는 듯하네요.",
+      "en": "You don't seem to take your health very seriously.",
+      "level": 2
+    },
+    {
+      "id": "qv-d34-01",
+      "day": 34,
+      "verb": "DO",
+      "sense": "업무/활동",
+      "ko": "나는 주말에 플라잉 요가를 한다.",
+      "en": "I do flying yoga on weekends.",
+      "level": 2
+    },
+    {
+      "id": "qv-d34-02",
+      "day": 34,
+      "verb": "DO",
+      "sense": "업무/활동",
+      "ko": "제 아내는 아침에 한 시간씩 머리를 손질해요.",
+      "en": "My wife spends an hour doing her hair in the morning.",
+      "level": 2
+    },
+    {
+      "id": "qv-d34-03",
+      "day": 34,
+      "verb": "DO",
+      "sense": "업무/활동",
+      "ko": "빨리 검색해 보고 찾은 것을 이메일로 보내 드릴게요.",
+      "en": "Let me do a quick search and email you what I find.",
+      "level": 2
+    },
+    {
+      "id": "qv-d34-04",
+      "day": 34,
+      "verb": "DO",
+      "sense": "업무/활동",
+      "ko": "남편이 출장 갈 때는 내가 장을 본다.",
+      "en": "I do the grocery shopping when my husband is away on business.",
+      "level": 2
+    },
+    {
+      "id": "qv-d34-05",
+      "day": 34,
+      "verb": "DO",
+      "sense": "업무/활동",
+      "ko": "서류 작업이 산더미입니다.",
+      "en": "There's a ton of paperwork to do.",
+      "level": 2
+    },
+    {
+      "id": "qv-d35-01",
+      "day": 35,
+      "verb": "LIKE",
+      "sense": "습관/성향",
+      "ko": "나는 TV 보면서 뭘 자주 먹곤 한다.",
+      "en": "I like to eat something while I watch TV.",
+      "level": 2
+    },
+    {
+      "id": "qv-d35-02",
+      "day": 35,
+      "verb": "LIKE",
+      "sense": "습관/성향",
+      "ko": "우리 아들은 진흙탕에서 노는 걸 좋아해요.",
+      "en": "My son likes to play in the mud.",
+      "level": 2
+    },
+    {
+      "id": "qv-d35-03",
+      "day": 35,
+      "verb": "LIKE",
+      "sense": "습관/성향",
+      "ko": "우리 고양이는 테이블에 있는 물건을 툭 쳐서 떨어뜨리는 버릇이 있다.",
+      "en": "My cat likes to knock things off the table.",
+      "level": 2
+    },
+    {
+      "id": "qv-d35-04",
+      "day": 35,
+      "verb": "LIKE",
+      "sense": "습관/성향",
+      "ko": "의료 분야는 내 적성이 안 맞는다.",
+      "en": "I'm not cut out for the medical field.",
+      "level": 2
+    },
+    {
+      "id": "qv-d35-05",
+      "day": 35,
+      "verb": "LIKE",
+      "sense": "습관/성향",
+      "ko": "그녀는 저녁 식사 중에 정치 이야기를 자주 꺼낸다.",
+      "en": "She likes to bring up politics during dinner.",
+      "level": 2
+    },
+    {
+      "id": "qv-d36-01",
+      "day": 36,
+      "verb": "SEE",
+      "sense": "인지/확인",
+      "ko": "저 새 봤어?",
+      "en": "Did you see that bird?",
+      "level": 2
+    },
+    {
+      "id": "qv-d36-02",
+      "day": 36,
+      "verb": "SEE",
+      "sense": "인지/확인",
+      "ko": "지하철역이 보이는 거 같은데.",
+      "en": "I think I see a subway station.",
+      "level": 2
+    },
+    {
+      "id": "qv-d36-03",
+      "day": 36,
+      "verb": "SEE",
+      "sense": "인지/확인",
+      "ko": "최근에 닉 만난 적 있어?",
+      "en": "Have you seen Nick lately?",
+      "level": 2
+    },
+    {
+      "id": "qv-d36-04",
+      "day": 36,
+      "verb": "SEE",
+      "sense": "인지/확인",
+      "ko": "비 오는지 확인 좀 해 줄래?",
+      "en": "Can you see if it's raining?",
+      "level": 2
+    },
+    {
+      "id": "qv-d36-05",
+      "day": 36,
+      "verb": "SEE",
+      "sense": "인지/확인",
+      "ko": "토요일에 시간 되는지 한번 볼게요.",
+      "en": "Let me see if I'm free on Saturday.",
+      "level": 2
+    },
+    {
+      "id": "qv-d37-01",
+      "day": 37,
+      "verb": "KNOW",
+      "sense": "알고 있다",
+      "ko": "여기서 멀지 않은 괜찮은 곳을 알아.",
+      "en": "I know of a good place not far from here.",
+      "level": 2
+    },
+    {
+      "id": "qv-d37-02",
+      "day": 37,
+      "verb": "KNOW",
+      "sense": "알고 있다",
+      "ko": "괜찮은 식당 아는 데 있어.",
+      "en": "I know of a good restaurant.",
+      "level": 2
+    },
+    {
+      "id": "qv-d37-03",
+      "day": 37,
+      "verb": "KNOW",
+      "sense": "알고 있다",
+      "ko": "난 텍사스 출신 사람들을 많이 알아.",
+      "en": "I know many people from Texas.",
+      "level": 2
+    },
+    {
+      "id": "qv-d37-04",
+      "day": 37,
+      "verb": "KNOW",
+      "sense": "알고 있다",
+      "ko": "텍사스 출신 유명한 사람들 몇 명 알고는 있지.",
+      "en": "I know of some famous people from Texas.",
+      "level": 2
+    },
+    {
+      "id": "qv-d37-05",
+      "day": 37,
+      "verb": "KNOW",
+      "sense": "알고 있다",
+      "ko": "고등학교 때는 너를 잘 몰랐지만 너의 존재는 알고 있었지.",
+      "en": "I didn't know you in high school, but I knew of you.",
+      "level": 2
+    },
+    {
+      "id": "qv-d38-01",
+      "day": 38,
+      "verb": "WORK",
+      "sense": "효과/적합",
+      "ko": "이 학습 방법은 아이들에게 너무 잘 맞는다.",
+      "en": "This method works really well with kids.",
+      "level": 2
+    },
+    {
+      "id": "qv-d38-02",
+      "day": 38,
+      "verb": "WORK",
+      "sense": "효과/적합",
+      "ko": "화요일 시간 가능하세요?",
+      "en": "Does Tuesday work for you?",
+      "level": 2
+    },
+    {
+      "id": "qv-d38-03",
+      "day": 38,
+      "verb": "WORK",
+      "sense": "효과/적합",
+      "ko": "침이 나한테는 정말 잘 맞아.",
+      "en": "Acupuncture really works for me.",
+      "level": 2
+    },
+    {
+      "id": "qv-d38-04",
+      "day": 38,
+      "verb": "WORK",
+      "sense": "효과/적합",
+      "ko": "강남이나 용산에서 봐도 돼. 너 편한 대로 해.",
+      "en": "Whatever works best for you.",
+      "level": 2
+    },
+    {
+      "id": "qv-d38-05",
+      "day": 38,
+      "verb": "WORK",
+      "sense": "효과/적합",
+      "ko": "간헐적 단식을 해봤는데 나한테는 별로였어.",
+      "en": "I tried intermittent fasting, but it didn't work for me.",
+      "level": 2
+    },
+    {
+      "id": "qv-d39-01",
+      "day": 39,
+      "verb": "WORK",
+      "sense": "방식/운영",
+      "ko": "누군가가 너를 억지로 사랑하게 만들 수는 없어.",
+      "en": "It doesn't work that way.",
+      "level": 2
+    },
+    {
+      "id": "qv-d39-02",
+      "day": 39,
+      "verb": "WORK",
+      "sense": "방식/운영",
+      "ko": "반바지를 입고 사무실에 간다? 여기서는 안 됩니다.",
+      "en": "That won't work around here.",
+      "level": 2
+    },
+    {
+      "id": "qv-d39-03",
+      "day": 39,
+      "verb": "WORK",
+      "sense": "방식/운영",
+      "ko": "죄송한데 저희 앱은 그렇게 운영되지 않습니다.",
+      "en": "Sorry, but the app doesn't work that way.",
+      "level": 2
+    },
+    {
+      "id": "qv-d39-04",
+      "day": 39,
+      "verb": "WORK",
+      "sense": "방식/운영",
+      "ko": "무료 환승이 택시에는 적용이 안 되는구나.",
+      "en": "Free transfers don't work for taxis.",
+      "level": 2
+    },
+    {
+      "id": "qv-d39-05",
+      "day": 39,
+      "verb": "WORK",
+      "sense": "방식/운영",
+      "ko": "교통카드를 그렇게는 쓸 수 없어.",
+      "en": "Transportation cards don't work that way.",
+      "level": 2
+    },
+    {
+      "id": "qv-d40-01",
+      "day": 40,
+      "verb": "GO",
+      "sense": "진행되다",
+      "ko": "데이트는 정말 좋았어요.",
+      "en": "The date went really well.",
+      "level": 2
+    },
+    {
+      "id": "qv-d40-02",
+      "day": 40,
+      "verb": "GO",
+      "sense": "진행되다",
+      "ko": "내일 회의가 잘되기를 바랍니다.",
+      "en": "I hope the meeting goes well tomorrow.",
+      "level": 2
+    },
+    {
+      "id": "qv-d40-03",
+      "day": 40,
+      "verb": "GO",
+      "sense": "진행되다",
+      "ko": "면접이 거의 완벽하게 잘된 것 같다.",
+      "en": "I think the interview went almost perfectly.",
+      "level": 2
+    },
+    {
+      "id": "qv-d40-04",
+      "day": 40,
+      "verb": "GO",
+      "sense": "진행되다",
+      "ko": "수술이 잘됐다고 들었어요.",
+      "en": "I heard the surgery went well.",
+      "level": 2
+    },
+    {
+      "id": "qv-d40-05",
+      "day": 40,
+      "verb": "GO",
+      "sense": "진행되다",
+      "ko": "런던에서의 생활이 지금까지는 순조롭다.",
+      "en": "Life in London is going well so far.",
+      "level": 2
+    },
+    {
+      "id": "qv-d41-01",
+      "day": 41,
+      "verb": "GO",
+      "sense": "상태 변화",
+      "ko": "빵은 냉장 보관하면 오히려 더 빨리 굳어져요.",
+      "en": "Bread goes stale faster in the fridge.",
+      "level": 2
+    },
+    {
+      "id": "qv-d41-02",
+      "day": 41,
+      "verb": "GO",
+      "sense": "상태 변화",
+      "ko": "발에 감각이 없어졌어요.",
+      "en": "My feet went numb.",
+      "level": 2
+    },
+    {
+      "id": "qv-d41-03",
+      "day": 41,
+      "verb": "GO",
+      "sense": "상태 변화",
+      "ko": "핸드폰 배터리가 나갔어.",
+      "en": "My phone went dead.",
+      "level": 2
+    },
+    {
+      "id": "qv-d41-04",
+      "day": 41,
+      "verb": "GO",
+      "sense": "상태 변화",
+      "ko": "다저스가 우승했을 때 그는 이성을 잃었다.",
+      "en": "He went crazy when the Dodgers won.",
+      "level": 2
+    },
+    {
+      "id": "qv-d41-05",
+      "day": 41,
+      "verb": "GO",
+      "sense": "상태 변화",
+      "ko": "우리 아버지는 30대에 대머리가 되셨다.",
+      "en": "My father went bald in his 30s.",
+      "level": 2
+    },
+    {
+      "id": "qv-d42-01",
+      "day": 42,
+      "verb": "GO",
+      "sense": "배치/위치",
+      "ko": "이 꽃들은 여기에 두면 되나요?",
+      "en": "Do these flowers go here?",
+      "level": 2
+    },
+    {
+      "id": "qv-d42-02",
+      "day": 42,
+      "verb": "GO",
+      "sense": "배치/위치",
+      "ko": "한국 국적인 분들은 이 줄에 서세요.",
+      "en": "Korean citizens go in this line.",
+      "level": 2
+    },
+    {
+      "id": "qv-d42-03",
+      "day": 42,
+      "verb": "GO",
+      "sense": "배치/위치",
+      "ko": "이 보고서들을 어디에 두면 되나요?",
+      "en": "Where do these reports go?",
+      "level": 2
+    },
+    {
+      "id": "qv-d42-04",
+      "day": 42,
+      "verb": "GO",
+      "sense": "배치/위치",
+      "ko": "보험 서류들은 파란색 폴더에 넣으면 됩니다.",
+      "en": "Insurance papers go in the blue folder.",
+      "level": 2
+    },
+    {
+      "id": "qv-d42-05",
+      "day": 42,
+      "verb": "GO",
+      "sense": "배치/위치",
+      "ko": "포크는 접시 왼쪽에 놓습니다.",
+      "en": "The forks go to the left of the plates.",
+      "level": 2
+    },
+    {
+      "id": "qv-d43-01",
+      "day": 43,
+      "verb": "WANT",
+      "sense": "욕구",
+      "ko": "저녁으로 피자 먹고 싶어요.",
+      "en": "I want pizza for dinner.",
+      "level": 2
+    },
+    {
+      "id": "qv-d43-02",
+      "day": 43,
+      "verb": "WANT",
+      "sense": "욕구",
+      "ko": "이 케이크 한 조각 먹을래?",
+      "en": "Do you want a piece of cake?",
+      "level": 2
+    },
+    {
+      "id": "qv-d43-03",
+      "day": 43,
+      "verb": "WANT",
+      "sense": "욕구",
+      "ko": "애들이 아이스크림 먹고 싶다네.",
+      "en": "The kids want ice cream.",
+      "level": 2
+    },
+    {
+      "id": "qv-d43-04",
+      "day": 43,
+      "verb": "WANT",
+      "sense": "욕구",
+      "ko": "새 차를 사야 해서.",
+      "en": "We want a new car.",
+      "level": 2
+    },
+    {
+      "id": "qv-d43-05",
+      "day": 43,
+      "verb": "WANT",
+      "sense": "욕구",
+      "ko": "로봇 청소기 사고 싶어.",
+      "en": "I want that robotic vacuum.",
+      "level": 2
+    },
+    {
+      "id": "qv-d44-01",
+      "day": 44,
+      "verb": "SAY",
+      "sense": "쓰여 있다",
+      "ko": "건강검진 결과를 보니 운동을 좀 더 해야 한다고 나와 있군.",
+      "en": "My health check results say I need to exercise more.",
+      "level": 2
+    },
+    {
+      "id": "qv-d44-02",
+      "day": 44,
+      "verb": "SAY",
+      "sense": "쓰여 있다",
+      "ko": "앱에 비밀번호를 바꿔야 한다고 나와 있네.",
+      "en": "The app says I need to update my password.",
+      "level": 2
+    },
+    {
+      "id": "qv-d44-03",
+      "day": 44,
+      "verb": "SAY",
+      "sense": "쓰여 있다",
+      "ko": "메시지 보니까 결제가 승인되지 않았다고 나와.",
+      "en": "The message says your payment didn't go through.",
+      "level": 2
+    },
+    {
+      "id": "qv-d44-04",
+      "day": 44,
+      "verb": "SAY",
+      "sense": "쓰여 있다",
+      "ko": "포장에 이탈리아산이라고 적혀 있어.",
+      "en": "The package says it was made in Italy.",
+      "level": 2
+    },
+    {
+      "id": "qv-d44-05",
+      "day": 44,
+      "verb": "SAY",
+      "sense": "쓰여 있다",
+      "ko": "책 뒷면에 뭐라고 적혀 있어?",
+      "en": "What does it say on the back of the book?",
+      "level": 2
+    },
+    {
+      "id": "qv-d45-01",
+      "day": 45,
+      "verb": "LET",
+      "sense": "제안/도움",
+      "ko": "제가 한 잔 살게요.",
+      "en": "Let me buy you a drink.",
+      "level": 2
+    },
+    {
+      "id": "qv-d45-02",
+      "day": 45,
+      "verb": "LET",
+      "sense": "제안/도움",
+      "ko": "같이 가 줄게.",
+      "en": "Let me go with you.",
+      "level": 2
+    },
+    {
+      "id": "qv-d45-03",
+      "day": 45,
+      "verb": "LET",
+      "sense": "제안/도움",
+      "ko": "한번 볼게요.",
+      "en": "Let me take a look.",
+      "level": 2
+    },
+    {
+      "id": "qv-d45-04",
+      "day": 45,
+      "verb": "LET",
+      "sense": "제안/도움",
+      "ko": "내가 대신 그 박스 옮겨 줄게.",
+      "en": "Let me carry that box for you.",
+      "level": 2
+    },
+    {
+      "id": "qv-d45-05",
+      "day": 45,
+      "verb": "LET",
+      "sense": "제안/도움",
+      "ko": "제가 와인 한 잔 더 따를게요.",
+      "en": "Let me pour you another glass of wine.",
+      "level": 2
+    },
+    {
+      "id": "qv-d46-01",
+      "day": 46,
+      "verb": "LET",
+      "sense": "허락",
+      "ko": "상사가 재택 근무를 못 하게 해요.",
+      "en": "My boss refuses to let me work from home.",
+      "level": 2
+    },
+    {
+      "id": "qv-d46-02",
+      "day": 46,
+      "verb": "LET",
+      "sense": "허락",
+      "ko": "저는 학생들이 실수를 해도 중간에 끊지 않습니다.",
+      "en": "I let them go on even when they make mistakes.",
+      "level": 2
+    },
+    {
+      "id": "qv-d46-03",
+      "day": 46,
+      "verb": "LET",
+      "sense": "허락",
+      "ko": "아내가 내 친구들을 집에 못 오게 해.",
+      "en": "My wife doesn't let my friends come over.",
+      "level": 2
+    },
+    {
+      "id": "qv-d46-04",
+      "day": 46,
+      "verb": "LET",
+      "sense": "허락",
+      "ko": "그냥 그녀가 하고 싶은 대로 하도록 놔둬.",
+      "en": "Just let her do what she wants.",
+      "level": 2
+    },
+    {
+      "id": "qv-d46-05",
+      "day": 46,
+      "verb": "LET",
+      "sense": "허락",
+      "ko": "키 줘봐, 내가 운전할게.",
+      "en": "Give me the keys, let me drive.",
+      "level": 2
+    },
+    {
+      "id": "qv-d47-01",
+      "day": 47,
+      "verb": "LET",
+      "sense": "영향/방치",
+      "ko": "일 때문에 너무 스트레스받지 마.",
+      "en": "Don't let work get to you.",
+      "level": 2
+    },
+    {
+      "id": "qv-d47-02",
+      "day": 47,
+      "verb": "LET",
+      "sense": "영향/방치",
+      "ko": "그런 산불이 다시는 일어나게 해서는 안 됩니다.",
+      "en": "We can't let another wildfire like that happen again.",
+      "level": 2
+    },
+    {
+      "id": "qv-d47-03",
+      "day": 47,
+      "verb": "LET",
+      "sense": "영향/방치",
+      "ko": "헤어졌다고 공부까지 망치면 안 되지.",
+      "en": "Don't let the breakup mess with your studies.",
+      "level": 2
+    },
+    {
+      "id": "qv-d47-04",
+      "day": 47,
+      "verb": "LET",
+      "sense": "영향/방치",
+      "ko": "낙담하지 마.",
+      "en": "Don't let it get you down.",
+      "level": 2
+    },
+    {
+      "id": "qv-d47-05",
+      "day": 47,
+      "verb": "LET",
+      "sense": "영향/방치",
+      "ko": "결정을 할 때 감정에 휘둘려서는 안 된다.",
+      "en": "You shouldn't let your emotions influence your decisions.",
+      "level": 2
+    },
+    {
+      "id": "qv-d48-01",
+      "day": 48,
+      "verb": "GIVE",
+      "sense": "주다/영향",
+      "ko": "네가 응원을 해주어서 자신감이 생겼어.",
+      "en": "Your support gave me confidence.",
+      "level": 2
+    },
+    {
+      "id": "qv-d48-02",
+      "day": 48,
+      "verb": "GIVE",
+      "sense": "주다/영향",
+      "ko": "아침 커피는 하루를 버틸 힘을 준다.",
+      "en": "Morning coffee gives me the energy to get through my day.",
+      "level": 2
+    },
+    {
+      "id": "qv-d48-03",
+      "day": 48,
+      "verb": "GIVE",
+      "sense": "주다/영향",
+      "ko": "삶에 대한 새로운 시각을 갖게 되었다.",
+      "en": "It gave me a new perspective on life.",
+      "level": 2
+    },
+    {
+      "id": "qv-d48-04",
+      "day": 48,
+      "verb": "GIVE",
+      "sense": "주다/영향",
+      "ko": "그 친구가 사과를 해서 마음이 풀렸다.",
+      "en": "His apology gave me closure.",
+      "level": 2
+    },
+    {
+      "id": "qv-d48-05",
+      "day": 48,
+      "verb": "GIVE",
+      "sense": "주다/영향",
+      "ko": "비 오는 날에는 늘 기분이 꿀꿀해진다.",
+      "en": "Rainy days always give me the blues.",
+      "level": 2
+    },
+    {
+      "id": "qv-d49-01",
+      "day": 49,
+      "verb": "GIVE",
+      "sense": "전달",
+      "ko": "제 번호 드릴게요.",
+      "en": "Let me give you my number.",
+      "level": 2
+    },
+    {
+      "id": "qv-d49-02",
+      "day": 49,
+      "verb": "GIVE",
+      "sense": "전달",
+      "ko": "집에 도착하면 전화 줘.",
+      "en": "Give me a call when you get home.",
+      "level": 2
+    },
+    {
+      "id": "qv-d49-03",
+      "day": 49,
+      "verb": "GIVE",
+      "sense": "전달",
+      "ko": "나 대신 그에게 뽀뽀해 줘.",
+      "en": "Give him a kiss for me.",
+      "level": 2
+    },
+    {
+      "id": "qv-d49-04",
+      "day": 49,
+      "verb": "GIVE",
+      "sense": "전달",
+      "ko": "어서 네 자신을 칭찬해 주렴.",
+      "en": "Go ahead and give yourself a pat on the back.",
+      "level": 2
+    },
+    {
+      "id": "qv-d49-05",
+      "day": 49,
+      "verb": "GIVE",
+      "sense": "전달",
+      "ko": "며칠만 더 주세요.",
+      "en": "Just give me a few more days.",
+      "level": 2
+    },
+    {
+      "id": "qv-d50-01",
+      "day": 50,
+      "verb": "KEEP",
+      "sense": "소유/보관",
+      "ko": "그 셔츠 그냥 너 가져.",
+      "en": "You can keep the shirt.",
+      "level": 2
+    },
+    {
+      "id": "qv-d50-02",
+      "day": 50,
+      "verb": "KEEP",
+      "sense": "소유/보관",
+      "ko": "책상에 항상 간식을 넣어둔다.",
+      "en": "I always keep some snacks in my desk.",
+      "level": 2
+    },
+    {
+      "id": "qv-d50-03",
+      "day": 50,
+      "verb": "KEEP",
+      "sense": "소유/보관",
+      "ko": "라이터는 늘 지니고 다닌다.",
+      "en": "I always keep a lighter on me.",
+      "level": 2
+    },
+    {
+      "id": "qv-d50-04",
+      "day": 50,
+      "verb": "KEEP",
+      "sense": "소유/보관",
+      "ko": "숟가락은 어디에 있어?",
+      "en": "Where do you keep your spoons?",
+      "level": 2
+    },
+    {
+      "id": "qv-d50-05",
+      "day": 50,
+      "verb": "KEEP",
+      "sense": "소유/보관",
+      "ko": "나는 1년 넘은 이메일은 보관하지 않는다.",
+      "en": "I don't keep emails that are more than a year old.",
+      "level": 2
+    },
+    {
+      "id": "qv-d51-01",
+      "day": 51,
+      "verb": "KEEP",
+      "sense": "계속하다",
+      "ko": "내가 계속 너를 브라이언이라고 하네.",
+      "en": "I keep calling you Brian.",
+      "level": 2
+    },
+    {
+      "id": "qv-d51-02",
+      "day": 51,
+      "verb": "KEEP",
+      "sense": "계속하다",
+      "ko": "여자친구가 계속 캠핑 데려가 달라고 조르네요.",
+      "en": "My girlfriend keeps asking me to take her camping.",
+      "level": 2
+    },
+    {
+      "id": "qv-d51-03",
+      "day": 51,
+      "verb": "KEEP",
+      "sense": "계속하다",
+      "ko": "이 웹사이트가 계속 다운돼요.",
+      "en": "This website keeps crashing.",
+      "level": 2
+    },
+    {
+      "id": "qv-d51-04",
+      "day": 51,
+      "verb": "KEEP",
+      "sense": "계속하다",
+      "ko": "당신의 개가 저희 집 정원을 계속 엉망으로 만들어요.",
+      "en": "Your dog keeps messing up my garden.",
+      "level": 2
+    },
+    {
+      "id": "qv-d51-05",
+      "day": 51,
+      "verb": "KEEP",
+      "sense": "계속하다",
+      "ko": "이 고객분이 같은 불만을 계속 제기하고 있습니다.",
+      "en": "This client keeps making the same complaint.",
+      "level": 2
+    },
+    {
+      "id": "qv-d52-01",
+      "day": 52,
+      "verb": "KEEP",
+      "sense": "유지/상태",
+      "ko": "머리 짧게 깎을까요?",
+      "en": "Should I keep my hair short?",
+      "level": 2
+    },
+    {
+      "id": "qv-d52-02",
+      "day": 52,
+      "verb": "KEEP",
+      "sense": "유지/상태",
+      "ko": "제가 통화하는 동안 조용히 해 주세요.",
+      "en": "Please keep it quiet while I'm on the phone.",
+      "level": 2
+    },
+    {
+      "id": "qv-d52-03",
+      "day": 52,
+      "verb": "KEEP",
+      "sense": "유지/상태",
+      "ko": "이번엔 제발 깨끗하게 써 줘.",
+      "en": "Please keep it clean this time.",
+      "level": 2
+    },
+    {
+      "id": "qv-d52-04",
+      "day": 52,
+      "verb": "KEEP",
+      "sense": "유지/상태",
+      "ko": "새로운 소식 계속 알려 드리겠습니다.",
+      "en": "I'll keep you updated.",
+      "level": 2
+    },
+    {
+      "id": "qv-d52-05",
+      "day": 52,
+      "verb": "KEEP",
+      "sense": "유지/상태",
+      "ko": "간단하게 말할게.",
+      "en": "I'll keep it short.",
+      "level": 2
+    },
+    {
+      "id": "qv-d53-01",
+      "day": 53,
+      "verb": "LEAVE",
+      "sense": "떠나다",
+      "ko": "방금 버스 타고 출발했으니까 곧 집에 도착할 거야.",
+      "en": "I just left on the bus, so I'll be home soon.",
+      "level": 2
+    },
+    {
+      "id": "qv-d53-02",
+      "day": 53,
+      "verb": "LEAVE",
+      "sense": "떠나다",
+      "ko": "아까 친구들과 웃으면서 가던데요.",
+      "en": "I saw him leaving with his friends earlier.",
+      "level": 2
+    },
+    {
+      "id": "qv-d53-03",
+      "day": 53,
+      "verb": "LEAVE",
+      "sense": "떠나다",
+      "ko": "기차가 곧 출발하려고 해.",
+      "en": "The train is about to leave.",
+      "level": 2
+    },
+    {
+      "id": "qv-d53-04",
+      "day": 53,
+      "verb": "LEAVE",
+      "sense": "떠나다",
+      "ko": "벌써 일어나려고?",
+      "en": "Are you leaving already?",
+      "level": 2
+    },
+    {
+      "id": "qv-d53-05",
+      "day": 53,
+      "verb": "LEAVE",
+      "sense": "떠나다",
+      "ko": "아버지가 가족을 떠나버렸다.",
+      "en": "My dad left the family.",
+      "level": 2
+    },
+    {
+      "id": "qv-d54-01",
+      "day": 54,
+      "verb": "LEAVE",
+      "sense": "남기다/두고 오다",
+      "ko": "너를 위해 여분의 키를 문 아래에 두었어.",
+      "en": "I left an extra key under the door for you.",
+      "level": 2
+    },
+    {
+      "id": "qv-d54-02",
+      "day": 54,
+      "verb": "LEAVE",
+      "sense": "남기다/두고 오다",
+      "ko": "부정적인 의견을 남기면 정말 거슬린다.",
+      "en": "It's annoying when people leave negative comments.",
+      "level": 2
+    },
+    {
+      "id": "qv-d54-03",
+      "day": 54,
+      "verb": "LEAVE",
+      "sense": "남기다/두고 오다",
+      "ko": "택시에 지갑을 두고 내렸다.",
+      "en": "I left my wallet in the taxi.",
+      "level": 2
+    },
+    {
+      "id": "qv-d54-04",
+      "day": 54,
+      "verb": "LEAVE",
+      "sense": "남기다/두고 오다",
+      "ko": "문에 무례한 쪽지를 붙여두었다.",
+      "en": "Someone left a rude note on the door.",
+      "level": 2
+    },
+    {
+      "id": "qv-d54-05",
+      "day": 54,
+      "verb": "LEAVE",
+      "sense": "남기다/두고 오다",
+      "ko": "택시 기사님에게 별 다섯 개짜리 후기를 남겼어.",
+      "en": "I left my taxi driver a five-star review.",
+      "level": 2
+    },
+    {
+      "id": "qv-d55-01",
+      "day": 55,
+      "verb": "LEAVE",
+      "sense": "상태로 두다",
+      "ko": "남편이 설거지 안 한 그릇들을 쌓아둔 채로 그냥 뒀더라고요.",
+      "en": "My husband left the dirty dishes in the sink.",
+      "level": 2
+    },
+    {
+      "id": "qv-d55-02",
+      "day": 55,
+      "verb": "LEAVE",
+      "sense": "상태로 두다",
+      "ko": "아내가 시동을 안 켠 채로 차를 뒀어요.",
+      "en": "My wife left the car running.",
+      "level": 2
+    },
+    {
+      "id": "qv-d55-03",
+      "day": 55,
+      "verb": "LEAVE",
+      "sense": "상태로 두다",
+      "ko": "우리는 냉장고를 비워둔 채로 휴가를 떠났어요.",
+      "en": "We left the fridge empty.",
+      "level": 2
+    },
+    {
+      "id": "qv-d55-04",
+      "day": 55,
+      "verb": "LEAVE",
+      "sense": "상태로 두다",
+      "ko": "그 회의 때문에 모두가 낙담했다.",
+      "en": "The meeting left everyone feeling discouraged.",
+      "level": 2
+    },
+    {
+      "id": "qv-d55-05",
+      "day": 55,
+      "verb": "LEAVE",
+      "sense": "상태로 두다",
+      "ko": "그 경기로 관중들이 매우 들떴다.",
+      "en": "The game left the crowd thrilled.",
+      "level": 2
+    },
+    {
+      "id": "qv-d56-01",
+      "day": 56,
+      "verb": "BRING",
+      "sense": "가져오다/데려오다",
+      "ko": "지갑을 안 가져왔네요. 나중에 돈 드려도 되나요?",
+      "en": "I didn't bring my wallet. Can I pay you later?",
+      "level": 2
+    },
+    {
+      "id": "qv-d56-02",
+      "day": 56,
+      "verb": "BRING",
+      "sense": "가져오다/데려오다",
+      "ko": "이 쿠키 정말 맛있어. 사무실에 가져갈게.",
+      "en": "These cookies are great. I'll bring them to the office.",
+      "level": 2
+    },
+    {
+      "id": "qv-d56-03",
+      "day": 56,
+      "verb": "BRING",
+      "sense": "가져오다/데려오다",
+      "ko": "너 주려고 커피 가져왔어.",
+      "en": "I brought you a coffee.",
+      "level": 2
+    },
+    {
+      "id": "qv-d56-04",
+      "day": 56,
+      "verb": "BRING",
+      "sense": "가져오다/데려오다",
+      "ko": "담요 가져다줄게. 추워 보이네.",
+      "en": "Let me bring you a blanket. You look cold.",
+      "level": 2
+    },
+    {
+      "id": "qv-d56-05",
+      "day": 56,
+      "verb": "BRING",
+      "sense": "가져오다/데려오다",
+      "ko": "베트남에서 말린 망고 좀 사다 줄 수 있어?",
+      "en": "Could you bring me some dried mangoes from Vietnam?",
+      "level": 2
+    },
+    {
+      "id": "qv-d57-01",
+      "day": 57,
+      "verb": "HEAD",
+      "sense": "가다/향하다",
+      "ko": "우리 지금 공항으로 가.",
+      "en": "We are heading to the airport.",
+      "level": 2
+    },
+    {
+      "id": "qv-d57-02",
+      "day": 57,
+      "verb": "HEAD",
+      "sense": "가다/향하다",
+      "ko": "북쪽으로 이동해서 길이 어디로 이어져 있는지 봅시다.",
+      "en": "Let's head north and see where the road takes us.",
+      "level": 2
+    },
+    {
+      "id": "qv-d57-03",
+      "day": 57,
+      "verb": "HEAD",
+      "sense": "가다/향하다",
+      "ko": "나 지금 나가. 5분 늦을지도 몰라.",
+      "en": "I'm heading out now. I might be 5 minutes late.",
+      "level": 2
+    },
+    {
+      "id": "qv-d57-04",
+      "day": 57,
+      "verb": "HEAD",
+      "sense": "가다/향하다",
+      "ko": "퇴근하고 너희 집 쪽으로 데리러 갈게.",
+      "en": "I'll head over to your place and pick you up after work.",
+      "level": 2
+    },
+    {
+      "id": "qv-d57-05",
+      "day": 57,
+      "verb": "HEAD",
+      "sense": "가다/향하다",
+      "ko": "벤이랑 샐리가 퇴근하고 그쪽으로 이동할 거야.",
+      "en": "Benny and Sally are going to head up after work.",
+      "level": 2
+    },
+    {
+      "id": "qv-d58-01",
+      "day": 58,
+      "verb": "COME",
+      "sense": "오다/함께하다",
+      "ko": "내가 따라가도 되나요?",
+      "en": "Do you mind if I come along?",
+      "level": 2
+    },
+    {
+      "id": "qv-d58-02",
+      "day": 58,
+      "verb": "COME",
+      "sense": "오다/함께하다",
+      "ko": "마트에 내가 같이 가 줄까?",
+      "en": "Do you want me to come with you to the grocery store?",
+      "level": 2
+    },
+    {
+      "id": "qv-d58-03",
+      "day": 58,
+      "verb": "COME",
+      "sense": "오다/함께하다",
+      "ko": "내가 그 문제 한번 살펴봐 줄까요?",
+      "en": "Do you want me to come over and take a look at the problem?",
+      "level": 2
+    },
+    {
+      "id": "qv-d58-04",
+      "day": 58,
+      "verb": "COME",
+      "sense": "오다/함께하다",
+      "ko": "아내분도 워크숍에 가시나요?",
+      "en": "Is your wife coming to the workshop too?",
+      "level": 2
+    },
+    {
+      "id": "qv-d58-05",
+      "day": 58,
+      "verb": "COME",
+      "sense": "오다/함께하다",
+      "ko": "오늘 밤 친구들이 오기로 했다.",
+      "en": "My friends are coming over tonight.",
+      "level": 2
+    },
+    {
+      "id": "qv-d59-01",
+      "day": 59,
+      "verb": "PUT",
+      "sense": "놓다/기재하다",
+      "ko": "네 가방을 여기에다 두자.",
+      "en": "Let's put your bag over here.",
+      "level": 2
+    },
+    {
+      "id": "qv-d59-02",
+      "day": 59,
+      "verb": "PUT",
+      "sense": "놓다/기재하다",
+      "ko": "소파를 방 저쪽에 두자.",
+      "en": "Let's put the sofa on that side of the room.",
+      "level": 2
+    },
+    {
+      "id": "qv-d59-03",
+      "day": 59,
+      "verb": "PUT",
+      "sense": "놓다/기재하다",
+      "ko": "우유를 다시 냉장고에 넣는 거 잊지 마.",
+      "en": "Don't forget to put the milk back in the fridge.",
+      "level": 2
+    },
+    {
+      "id": "qv-d59-04",
+      "day": 59,
+      "verb": "PUT",
+      "sense": "놓다/기재하다",
+      "ko": "저녁 8시 이후에는 핸드폰을 방해 금지 모드로 설정한다.",
+      "en": "I always put my phone on \"do not disturb\" after 8 pm.",
+      "level": 2
+    },
+    {
+      "id": "qv-d59-05",
+      "day": 59,
+      "verb": "PUT",
+      "sense": "놓다/기재하다",
+      "ko": "신청서에 성함 기재하는 거 잊지 마세요.",
+      "en": "Don't forget to put your name on the sign-up sheet.",
+      "level": 2
+    },
+    {
+      "id": "qv-d60-01",
+      "day": 60,
+      "verb": "PUT",
+      "sense": "기분/상태",
+      "ko": "그 전화 덕분에 기분이 좋아졌다.",
+      "en": "That phone call put me in a good mood.",
+      "level": 2
+    },
+    {
+      "id": "qv-d60-02",
+      "day": 60,
+      "verb": "PUT",
+      "sense": "기분/상태",
+      "ko": "이 음악을 들으면 늘 잠이 온다.",
+      "en": "This music always puts me to sleep.",
+      "level": 2
+    },
+    {
+      "id": "qv-d60-03",
+      "day": 60,
+      "verb": "PUT",
+      "sense": "기분/상태",
+      "ko": "그는 나를 편안하게 해준다.",
+      "en": "He puts me at ease.",
+      "level": 2
+    },
+    {
+      "id": "qv-d60-04",
+      "day": 60,
+      "verb": "PUT",
+      "sense": "기분/상태",
+      "ko": "한국 여름은 기분을 안 좋게 만든다.",
+      "en": "Something about Korean summer puts me in a bad mood.",
+      "level": 2
+    },
+    {
+      "id": "qv-d60-05",
+      "day": 60,
+      "verb": "PUT",
+      "sense": "기분/상태",
+      "ko": "비 때문에 곤란한 상황에 처하게 되었다.",
+      "en": "The sudden rain put me in a difficult spot.",
+      "level": 2
+    },
+    {
+      "id": "qv-d61-01",
+      "day": 61,
+      "verb": "FEEL",
+      "sense": "느낌",
+      "ko": "그 방은 아늑하고 따뜻한 느낌이다.",
+      "en": "The room feels cozy and warm.",
+      "level": 3
+    },
+    {
+      "id": "qv-d61-02",
+      "day": 61,
+      "verb": "FEEL",
+      "sense": "느낌",
+      "ko": "다시 고향에 오니 기분이 이상하다.",
+      "en": "It feels weird to be back in my hometown.",
+      "level": 3
+    },
+    {
+      "id": "qv-d61-03",
+      "day": 61,
+      "verb": "FEEL",
+      "sense": "느낌",
+      "ko": "배가 더부룩해요.",
+      "en": "My stomach feels bloated.",
+      "level": 3
+    },
+    {
+      "id": "qv-d61-04",
+      "day": 61,
+      "verb": "FEEL",
+      "sense": "느낌",
+      "ko": "어제 전 여자친구를 우연히 마주쳤는데 면구스러웠어.",
+      "en": "Running into my ex yesterday felt awkward.",
+      "level": 3
+    },
+    {
+      "id": "qv-d61-05",
+      "day": 61,
+      "verb": "FEEL",
+      "sense": "느낌",
+      "ko": "목에 뭔가 걸린 것 같아.",
+      "en": "It feels like something's stuck in my throat.",
+      "level": 3
+    },
+    {
+      "id": "qv-d62-01",
+      "day": 62,
+      "verb": "TURN",
+      "sense": "변화하다",
+      "ko": "하늘이 갑자기 어두워졌다.",
+      "en": "The sky turned dark.",
+      "level": 3
+    },
+    {
+      "id": "qv-d62-02",
+      "day": 62,
+      "verb": "TURN",
+      "sense": "변화하다",
+      "ko": "그 소식을 듣자 그의 얼굴이 창백해졌다.",
+      "en": "His face turned pale when he heard the news.",
+      "level": 3
+    },
+    {
+      "id": "qv-d62-03",
+      "day": 62,
+      "verb": "TURN",
+      "sense": "변화하다",
+      "ko": "우유가 상해 버렸다.",
+      "en": "The milk has turned sour.",
+      "level": 3
+    },
+    {
+      "id": "qv-d62-04",
+      "day": 62,
+      "verb": "TURN",
+      "sense": "변화하다",
+      "ko": "대화 분위기가 갑자기 어색해졌다.",
+      "en": "The conversation suddenly turned awkward.",
+      "level": 3
+    },
+    {
+      "id": "qv-d62-05",
+      "day": 62,
+      "verb": "TURN",
+      "sense": "변화하다",
+      "ko": "발표 후 군중들이 폭력적으로 변했다.",
+      "en": "The crowd turned violent after the announcement.",
+      "level": 3
+    },
+    {
+      "id": "qv-d63-01",
+      "day": 63,
+      "verb": "MOVE",
+      "sense": "옮기다/비키다",
+      "ko": "우리는 앞쪽 무대 근처로 이동했다.",
+      "en": "We moved closer to the stage in front.",
+      "level": 3
+    },
+    {
+      "id": "qv-d63-02",
+      "day": 63,
+      "verb": "MOVE",
+      "sense": "옮기다/비키다",
+      "ko": "저 사람이 좀 비켜줘야 하는데.",
+      "en": "He needs to move out of the way.",
+      "level": 3
+    },
+    {
+      "id": "qv-d63-03",
+      "day": 63,
+      "verb": "MOVE",
+      "sense": "옮기다/비키다",
+      "ko": "유럽 사람들은 너무 천천히 다닌다.",
+      "en": "People move so slow in Europe.",
+      "level": 3
+    },
+    {
+      "id": "qv-d63-04",
+      "day": 63,
+      "verb": "MOVE",
+      "sense": "옮기다/비키다",
+      "ko": "구급차가 지나가자 차들이 옆으로 비켰다.",
+      "en": "The cars moved over as the ambulance came through.",
+      "level": 3
+    },
+    {
+      "id": "qv-d63-05",
+      "day": 63,
+      "verb": "MOVE",
+      "sense": "옮기다/비키다",
+      "ko": "내 책들을 이 방으로 옮겼다.",
+      "en": "I moved my books into this room.",
+      "level": 3
+    },
+    {
+      "id": "qv-d64-01",
+      "day": 64,
+      "verb": "RUN",
+      "sense": "운영/관통",
+      "ko": "한강은 도시 한복판을 관통한다.",
+      "en": "The Han River runs through the middle of the city.",
+      "level": 3
+    },
+    {
+      "id": "qv-d64-02",
+      "day": 64,
+      "verb": "RUN",
+      "sense": "운영/관통",
+      "ko": "신설 지하철 노선은 과천을 통과할 것이다.",
+      "en": "The new subway line will run through Gwacheon.",
+      "level": 3
+    },
+    {
+      "id": "qv-d64-03",
+      "day": 64,
+      "verb": "RUN",
+      "sense": "운영/관통",
+      "ko": "우리 학교는 일주일 내내 수업을 한다.",
+      "en": "My school runs classes seven days a week.",
+      "level": 3
+    },
+    {
+      "id": "qv-d64-04",
+      "day": 64,
+      "verb": "RUN",
+      "sense": "운영/관통",
+      "ko": "그 축제는 이달 말까지 계속된다.",
+      "en": "The festival runs through the end of the month.",
+      "level": 3
+    },
+    {
+      "id": "qv-d64-05",
+      "day": 64,
+      "verb": "RUN",
+      "sense": "운영/관통",
+      "ko": "내 동생은 치킨 가게를 운영한다.",
+      "en": "My brother runs a chicken restaurant.",
+      "level": 3
+    },
+    {
+      "id": "qv-d65-01",
+      "day": 65,
+      "verb": "TRY",
+      "sense": "시도/경험",
+      "ko": "새로 알게 된 닭고기 레시피를 시도해 봤는데 요리가 너무 잘 됐다.",
+      "en": "I tried a new chicken recipe last night and it turned out great.",
+      "level": 3
+    },
+    {
+      "id": "qv-d65-02",
+      "day": 65,
+      "verb": "TRY",
+      "sense": "시도/경험",
+      "ko": "여행할 때는 늘 현지 음식을 먹어 보려고 한다.",
+      "en": "I always try local food when I travel.",
+      "level": 3
+    },
+    {
+      "id": "qv-d65-03",
+      "day": 65,
+      "verb": "TRY",
+      "sense": "시도/경험",
+      "ko": "엄마가 처음으로 초밥을 드셔 보셨는데 정말 싫어하셨다.",
+      "en": "My mom tried sushi for the first time last night and hated it.",
+      "level": 3
+    },
+    {
+      "id": "qv-d65-04",
+      "day": 65,
+      "verb": "TRY",
+      "sense": "시도/경험",
+      "ko": "아무래도 다른 샴푸를 써 봐야 하나 싶다.",
+      "en": "Maybe I should try a different shampoo.",
+      "level": 3
+    },
+    {
+      "id": "qv-d65-05",
+      "day": 65,
+      "verb": "TRY",
+      "sense": "시도/경험",
+      "ko": "이번 주말에는 새로운 곳에 가보자.",
+      "en": "We should try somewhere new this weekend.",
+      "level": 3
+    },
+    {
+      "id": "qv-d66-01",
+      "day": 66,
+      "verb": "STAND",
+      "sense": "견디다/참다",
+      "ko": "줄 서서 기다리는 건 견디기 너무 힘들다.",
+      "en": "I can't stand waiting in line.",
+      "level": 3
+    },
+    {
+      "id": "qv-d66-02",
+      "day": 66,
+      "verb": "STAND",
+      "sense": "견디다/참다",
+      "ko": "그녀와 매일 일하는 걸 어떻게 참는지 모르겠어요.",
+      "en": "I don't know how you stand working with her every day.",
+      "level": 3
+    },
+    {
+      "id": "qv-d66-03",
+      "day": 66,
+      "verb": "STAND",
+      "sense": "견디다/참다",
+      "ko": "매일 출근하는 데 2시간이나 걸리는 걸 어떻게 견뎌?",
+      "en": "How do you stand a two-hour commute to work every day?",
+      "level": 3
+    },
+    {
+      "id": "qv-d66-04",
+      "day": 66,
+      "verb": "STAND",
+      "sense": "견디다/참다",
+      "ko": "차들이 끼어들면 정말 참을 수가 없다.",
+      "en": "I can't stand it when cars cut me off.",
+      "level": 3
+    },
+    {
+      "id": "qv-d66-05",
+      "day": 66,
+      "verb": "STAND",
+      "sense": "견디다/참다",
+      "ko": "생선회 냄새를 견디기가 힘들다.",
+      "en": "I can't stand the smell of raw fish.",
+      "level": 3
+    },
+    {
+      "id": "qv-d67-01",
+      "day": 67,
+      "verb": "BREAK",
+      "sense": "고장/파손",
+      "ko": "내 재킷의 지퍼가 고장 났다.",
+      "en": "The zipper on my jacket broke.",
+      "level": 3
+    },
+    {
+      "id": "qv-d67-02",
+      "day": 67,
+      "verb": "BREAK",
+      "sense": "고장/파손",
+      "ko": "내가 앉았을 때 의자가 부러졌다.",
+      "en": "The chair broke when I sat on it.",
+      "level": 3
+    },
+    {
+      "id": "qv-d67-03",
+      "day": 67,
+      "verb": "BREAK",
+      "sense": "고장/파손",
+      "ko": "차 문을 잠그는 바람에 유리창을 깨야만 했다.",
+      "en": "I had to break a window because I locked my keys in the car.",
+      "level": 3
+    },
+    {
+      "id": "qv-d67-04",
+      "day": 67,
+      "verb": "BREAK",
+      "sense": "고장/파손",
+      "ko": "손톱이 부러졌다.",
+      "en": "I broke my nail.",
+      "level": 3
+    },
+    {
+      "id": "qv-d67-05",
+      "day": 67,
+      "verb": "BREAK",
+      "sense": "고장/파손",
+      "ko": "설거지하다가 실수로 유리잔을 깨뜨렸다.",
+      "en": "I accidentally broke a glass while washing dishes.",
+      "level": 3
+    },
+    {
+      "id": "qv-d68-01",
+      "day": 68,
+      "verb": "HURT",
+      "sense": "아프다/손해",
+      "ko": "강아지가 고양이를 쫓다가 다리를 다쳤다.",
+      "en": "My dog hurt its leg yesterday chasing a cat.",
+      "level": 3
+    },
+    {
+      "id": "qv-d68-02",
+      "day": 68,
+      "verb": "HURT",
+      "sense": "아프다/손해",
+      "ko": "넘어지면서 팔꿈치를 다쳤다.",
+      "en": "I hurt my elbow when I fell down.",
+      "level": 3
+    },
+    {
+      "id": "qv-d68-03",
+      "day": 68,
+      "verb": "HURT",
+      "sense": "아프다/손해",
+      "ko": "그는 축구를 하다가 무릎을 다쳤다.",
+      "en": "He hurt his knee while playing soccer.",
+      "level": 3
+    },
+    {
+      "id": "qv-d68-04",
+      "day": 68,
+      "verb": "HURT",
+      "sense": "아프다/손해",
+      "ko": "팔꿈치 아직 아파요?",
+      "en": "Does your elbow still hurt?",
+      "level": 3
+    },
+    {
+      "id": "qv-d68-05",
+      "day": 68,
+      "verb": "HURT",
+      "sense": "아프다/손해",
+      "ko": "시도해서 손해 볼 건 없다.",
+      "en": "It won't hurt to try.",
+      "level": 3
+    },
+    {
+      "id": "qv-d69-01",
+      "day": 69,
+      "verb": "NOTICE",
+      "sense": "알아차리다",
+      "ko": "보니까 천장에 금이 있었다.",
+      "en": "I noticed a crack in the ceiling.",
+      "level": 3
+    },
+    {
+      "id": "qv-d69-02",
+      "day": 69,
+      "verb": "NOTICE",
+      "sense": "알아차리다",
+      "ko": "너 아는지 모르겠는데 셔츠 단추가 풀렸어.",
+      "en": "I don't know if you noticed, but your shirt is unbuttoned.",
+      "level": 3
+    },
+    {
+      "id": "qv-d69-03",
+      "day": 69,
+      "verb": "NOTICE",
+      "sense": "알아차리다",
+      "ko": "그 친구 행동이 바뀐 거 눈치챘어?",
+      "en": "Have you noticed any changes in his behavior?",
+      "level": 3
+    },
+    {
+      "id": "qv-d69-04",
+      "day": 69,
+      "verb": "NOTICE",
+      "sense": "알아차리다",
+      "ko": "그 사람이 나한테 마음이 있는 줄 전혀 몰랐다.",
+      "en": "I didn't notice he had feelings for me.",
+      "level": 3
+    },
+    {
+      "id": "qv-d69-05",
+      "day": 69,
+      "verb": "NOTICE",
+      "sense": "알아차리다",
+      "ko": "너 흰머리가 그렇게 많은 줄 몰랐네.",
+      "en": "I didn't notice how much gray hair you have.",
+      "level": 3
+    },
+    {
+      "id": "qv-d70-01",
+      "day": 70,
+      "verb": "EXPECT",
+      "sense": "예상/기다리다",
+      "ko": "회사에서 연봉을 인상해 줄 줄은 생각도 못 했다.",
+      "en": "I never expected a raise.",
+      "level": 3
+    },
+    {
+      "id": "qv-d70-02",
+      "day": 70,
+      "verb": "EXPECT",
+      "sense": "예상/기다리다",
+      "ko": "캘리포니아에 눈이 올 줄은 몰랐다.",
+      "en": "I didn't expect snow in California.",
+      "level": 3
+    },
+    {
+      "id": "qv-d70-03",
+      "day": 70,
+      "verb": "EXPECT",
+      "sense": "예상/기다리다",
+      "ko": "낯선 사람에게서 그런 호의는 예상하지 못했다.",
+      "en": "I didn't expect such kindness from a stranger.",
+      "level": 3
+    },
+    {
+      "id": "qv-d70-04",
+      "day": 70,
+      "verb": "EXPECT",
+      "sense": "예상/기다리다",
+      "ko": "베이비시터는 내가 밤 10시 전에 들어오는 것으로 알고 있다.",
+      "en": "My babysitter is expecting me home before 10 tonight.",
+      "level": 3
+    },
+    {
+      "id": "qv-d70-05",
+      "day": 70,
+      "verb": "EXPECT",
+      "sense": "예상/기다리다",
+      "ko": "가족과 친구가 엄청 많이 올 줄 알았어요.",
+      "en": "I expected a big crowd of family and friends.",
+      "level": 3
+    },
+    {
+      "id": "qv-d71-01",
+      "day": 71,
+      "verb": "LOSE",
+      "sense": "잃다/지다",
+      "ko": "주유소에서 카드를 잃어버린 것 같다.",
+      "en": "I think I lost my credit card at the gas station.",
+      "level": 3
+    },
+    {
+      "id": "qv-d71-02",
+      "day": 71,
+      "verb": "LOSE",
+      "sense": "잃다/지다",
+      "ko": "양키스가 경기를 지다니 믿을 수 없어.",
+      "en": "I can't believe the Yankees lost the game.",
+      "level": 3
+    },
+    {
+      "id": "qv-d71-03",
+      "day": 71,
+      "verb": "LOSE",
+      "sense": "잃다/지다",
+      "ko": "스트레스는 탈모를 일으킬 수 있다.",
+      "en": "Stress can cause people to lose their hair.",
+      "level": 3
+    },
+    {
+      "id": "qv-d71-04",
+      "day": 71,
+      "verb": "LOSE",
+      "sense": "잃다/지다",
+      "ko": "그는 지난달에 여동생을 잃고 직장도 잃었다.",
+      "en": "He lost his sister and his job last month.",
+      "level": 3
+    },
+    {
+      "id": "qv-d71-05",
+      "day": 71,
+      "verb": "LOSE",
+      "sense": "잃다/지다",
+      "ko": "첫 학기 때 전공에 대한 흥미를 잃었다.",
+      "en": "I lost interest in my major during the first semester.",
+      "level": 3
+    },
+    {
+      "id": "qv-d72-01",
+      "day": 72,
+      "verb": "CATCH",
+      "sense": "타다/붙잡다",
+      "ko": "석양을 볼 수 있도록 일찍 출발하자.",
+      "en": "Let's leave early so we can catch the sunset.",
+      "level": 3
+    },
+    {
+      "id": "qv-d72-02",
+      "day": 72,
+      "verb": "CATCH",
+      "sense": "타다/붙잡다",
+      "ko": "버스를 안 놓치고 타려고 하다가 발목을 삐끗했다.",
+      "en": "I twisted my ankle while trying to catch the bus.",
+      "level": 3
+    },
+    {
+      "id": "qv-d72-03",
+      "day": 72,
+      "verb": "CATCH",
+      "sense": "타다/붙잡다",
+      "ko": "이해 못한 부분 있을까요?",
+      "en": "Is there anything you weren't able to catch?",
+      "level": 3
+    },
+    {
+      "id": "qv-d72-04",
+      "day": 72,
+      "verb": "CATCH",
+      "sense": "타다/붙잡다",
+      "ko": "간단히 여쭤볼 것이 있어요. (당신을 붙잡아서 다행이다)",
+      "en": "I'm glad I could catch you; I have a quick question.",
+      "level": 3
+    },
+    {
+      "id": "qv-d72-05",
+      "day": 72,
+      "verb": "CATCH",
+      "sense": "타다/붙잡다",
+      "ko": "주말에 집에 가기 전에 잠깐 얼굴 보려고 했어.",
+      "en": "I was hoping to catch you before you went home for the weekend.",
+      "level": 3
+    },
+    {
+      "id": "qv-d73-01",
+      "day": 73,
+      "verb": "COST",
+      "sense": "비용이 들다",
+      "ko": "그 경기장에 주차하면 주차비가 40달러야.",
+      "en": "It costs 40 dollars to park at the stadium.",
+      "level": 3
+    },
+    {
+      "id": "qv-d73-02",
+      "day": 73,
+      "verb": "COST",
+      "sense": "비용이 들다",
+      "ko": "내 차에 기름을 넣는 데 일주일에 100달러 정도 든다.",
+      "en": "It costs me about 100 dollars a week to put gas in my car.",
+      "level": 3
+    },
+    {
+      "id": "qv-d73-03",
+      "day": 73,
+      "verb": "COST",
+      "sense": "비용이 들다",
+      "ko": "그거 정말 엄청 비싸더군.",
+      "en": "It cost me an arm and a leg.",
+      "level": 3
+    },
+    {
+      "id": "qv-d73-04",
+      "day": 73,
+      "verb": "COST",
+      "sense": "비용이 들다",
+      "ko": "수리하는 데 돈을 많이 썼다.",
+      "en": "The repairs cost me a lot of money.",
+      "level": 3
+    },
+    {
+      "id": "qv-d73-05",
+      "day": 73,
+      "verb": "COST",
+      "sense": "비용이 들다",
+      "ko": "앞유리 와이퍼를 교체하는 데 얼마나 들까?",
+      "en": "How much would it cost to replace the windshield wipers?",
+      "level": 3
+    },
+    {
+      "id": "qv-d74-01",
+      "day": 74,
+      "verb": "OFFER",
+      "sense": "제안/제공",
+      "ko": "비건 음식도 많다.",
+      "en": "They offer plenty of vegan options as well.",
+      "level": 3
+    },
+    {
+      "id": "qv-d74-02",
+      "day": 74,
+      "verb": "OFFER",
+      "sense": "제안/제공",
+      "ko": "이웃이 가구를 주겠다고 해.",
+      "en": "My neighbor is offering her furniture if you can pick it up.",
+      "level": 3
+    },
+    {
+      "id": "qv-d74-03",
+      "day": 74,
+      "verb": "OFFER",
+      "sense": "제안/제공",
+      "ko": "출판사에서 책 출간 계약을 제안했을 때 너무 기뻤다.",
+      "en": "I was so thrilled when the publisher offered me a book deal.",
+      "level": 3
+    },
+    {
+      "id": "qv-d74-04",
+      "day": 74,
+      "verb": "OFFER",
+      "sense": "제안/제공",
+      "ko": "도쿄 지사로 전근 제안을 하면 받아들일 거예요?",
+      "en": "If they offer you a transfer to the Tokyo office, will you take it?",
+      "level": 3
+    },
+    {
+      "id": "qv-d74-05",
+      "day": 74,
+      "verb": "OFFER",
+      "sense": "제안/제공",
+      "ko": "셰프가 수업을 해주겠다는 제안을 해서 그냥 넘길 수 없었다.",
+      "en": "The famous chef offered to teach a master class, and I couldn't pass that up.",
+      "level": 3
+    },
+    {
+      "id": "qv-d75-01",
+      "day": 75,
+      "verb": "REQUIRE",
+      "sense": "필요로 하다",
+      "ko": "미식축구를 하려면 비싼 장비가 필요하다.",
+      "en": "American football requires a lot of expensive equipment.",
+      "level": 3
+    },
+    {
+      "id": "qv-d75-02",
+      "day": 75,
+      "verb": "REQUIRE",
+      "sense": "필요로 하다",
+      "ko": "크루즈 여행은 유효한 여권이 있어야 한다.",
+      "en": "This Caribbean cruise requires a valid passport.",
+      "level": 3
+    },
+    {
+      "id": "qv-d75-03",
+      "day": 75,
+      "verb": "REQUIRE",
+      "sense": "필요로 하다",
+      "ko": "내가 하는 일은 많은 집중력과 주의력을 요구한다.",
+      "en": "My work requires a lot of concentration and focus.",
+      "level": 3
+    },
+    {
+      "id": "qv-d75-04",
+      "day": 75,
+      "verb": "REQUIRE",
+      "sense": "필요로 하다",
+      "ko": "베이킹을 하려면 재료를 정확히 측정해야 한다.",
+      "en": "Baking requires you to measure ingredients precisely.",
+      "level": 3
+    },
+    {
+      "id": "qv-d75-05",
+      "day": 75,
+      "verb": "REQUIRE",
+      "sense": "필요로 하다",
+      "ko": "미성년자가 보려면 성인을 동반해야 한다.",
+      "en": "This movie requires minors to be with an adult.",
+      "level": 3
+    },
+    {
+      "id": "qv-d76-01",
+      "day": 76,
+      "verb": "GAIN",
+      "sense": "얻다",
+      "ko": "겨울방학 동안 살이 많이 쪘다.",
+      "en": "I gained a lot of weight during winter break.",
+      "level": 3
+    },
+    {
+      "id": "qv-d76-02",
+      "day": 76,
+      "verb": "GAIN",
+      "sense": "얻다",
+      "ko": "경쟁사보다 우위를 점하는 데 5년 이상 걸렸다.",
+      "en": "It took over five years to gain an edge over our rivals.",
+      "level": 3
+    },
+    {
+      "id": "qv-d76-03",
+      "day": 76,
+      "verb": "GAIN",
+      "sense": "얻다",
+      "ko": "이 책을 읽고 난 후 많은 혜안을 얻었다.",
+      "en": "I gained a lot of insight after reading this book.",
+      "level": 3
+    },
+    {
+      "id": "qv-d76-04",
+      "day": 76,
+      "verb": "GAIN",
+      "sense": "얻다",
+      "ko": "그 회사는 첫 번째 제품 출시 후 인기를 끌기 시작했다.",
+      "en": "The company gained popularity after their first product launch.",
+      "level": 3
+    },
+    {
+      "id": "qv-d76-05",
+      "day": 76,
+      "verb": "GAIN",
+      "sense": "얻다",
+      "ko": "팟캐스트가 지식을 얻는 재미있는 수단이다.",
+      "en": "Podcasts are an interesting way for me to gain knowledge.",
+      "level": 3
+    },
+    {
+      "id": "qv-d77-01",
+      "day": 77,
+      "verb": "MENTION",
+      "sense": "언급하다",
+      "ko": "리사가 다음 주에 휴가 간다고 말했어.",
+      "en": "Lisa mentioned going on vacation next week.",
+      "level": 3
+    },
+    {
+      "id": "qv-d77-02",
+      "day": 77,
+      "verb": "MENTION",
+      "sense": "언급하다",
+      "ko": "이번 주는 시간이 안 될 것 같습니다. (말하는 걸 깜빡했네요)",
+      "en": "I forgot to mention it earlier, but I won't be available this week.",
+      "level": 3
+    },
+    {
+      "id": "qv-d77-03",
+      "day": 77,
+      "verb": "MENTION",
+      "sense": "언급하다",
+      "ko": "그 기사에는 암살이 음모론이라는 내용이 있었다.",
+      "en": "The article mentioned the assassination was a conspiracy.",
+      "level": 3
+    },
+    {
+      "id": "qv-d77-04",
+      "day": 77,
+      "verb": "MENTION",
+      "sense": "언급하다",
+      "ko": "계약서에 유급 병가에 대한 언급이 되어 있어?",
+      "en": "Does your contract mention anything about paid sick leave?",
+      "level": 3
+    },
+    {
+      "id": "qv-d77-05",
+      "day": 77,
+      "verb": "MENTION",
+      "sense": "언급하다",
+      "ko": "제가 여기를 얼마나 좋아하는지 말했었나요?",
+      "en": "Did I mention how much I love this place?",
+      "level": 3
+    },
+    {
+      "id": "qv-d78-01",
+      "day": 78,
+      "verb": "HANDLE",
+      "sense": "감당/처리",
+      "ko": "더 이상의 안 좋은 소식은 감당이 안 됩니다.",
+      "en": "I can't handle any more bad news.",
+      "level": 3
+    },
+    {
+      "id": "qv-d78-02",
+      "day": 78,
+      "verb": "HANDLE",
+      "sense": "감당/처리",
+      "ko": "우리 두 살짜리 아기는 정말 손이 많이 간다.",
+      "en": "My two-year-old is a lot to handle.",
+      "level": 3
+    },
+    {
+      "id": "qv-d78-03",
+      "day": 78,
+      "verb": "HANDLE",
+      "sense": "감당/처리",
+      "ko": "나는 반려동물을 키우기 힘들 것 같다.",
+      "en": "I don't think I can handle having a pet.",
+      "level": 3
+    },
+    {
+      "id": "qv-d78-04",
+      "day": 78,
+      "verb": "HANDLE",
+      "sense": "감당/처리",
+      "ko": "아이 한 명도 간신히 감당하고 있는데 두 명은 상상도 안 돼요.",
+      "en": "I can barely handle one kid; I can't imagine having two.",
+      "level": 3
+    },
+    {
+      "id": "qv-d78-05",
+      "day": 78,
+      "verb": "HANDLE",
+      "sense": "감당/처리",
+      "ko": "더워서 견디기 힘들어.",
+      "en": "I can't handle this heat.",
+      "level": 3
+    },
+    {
+      "id": "qv-d79-01",
+      "day": 79,
+      "verb": "SELL",
+      "sense": "팔리다",
+      "ko": "그 작가의 신작이 불티나게 팔리고 있다.",
+      "en": "The author's new book is selling like crazy.",
+      "level": 3
+    },
+    {
+      "id": "qv-d79-02",
+      "day": 79,
+      "verb": "SELL",
+      "sense": "팔리다",
+      "ko": "올해는 영화 티켓이 잘 팔리고 있다.",
+      "en": "Movie tickets are selling well this year.",
+      "level": 3
+    },
+    {
+      "id": "qv-d79-03",
+      "day": 79,
+      "verb": "SELL",
+      "sense": "팔리다",
+      "ko": "내 중고 아이폰이 겨우 7만 원에 팔렸다.",
+      "en": "My used iPhone only sold for 70,000 won.",
+      "level": 3
+    },
+    {
+      "id": "qv-d79-04",
+      "day": 79,
+      "verb": "SELL",
+      "sense": "팔리다",
+      "ko": "이 빈티지 청바지는 2~3일 안에 완판될 것 같다.",
+      "en": "I expect these vintage jeans to sell out in a couple of days.",
+      "level": 3
+    },
+    {
+      "id": "qv-d79-05",
+      "day": 79,
+      "verb": "SELL",
+      "sense": "팔리다",
+      "ko": "일부 브랜드는 경기 침체시에도 잘 팔린다.",
+      "en": "Some brands sell well even during a recession.",
+      "level": 3
+    },
+    {
+      "id": "qv-d80-01",
+      "day": 80,
+      "verb": "SUIT",
+      "sense": "어울리다/적합",
+      "ko": "가로 줄무늬는 나에게 어울리지 않는다.",
+      "en": "Horizontal stripes don't suit me.",
+      "level": 3
+    },
+    {
+      "id": "qv-d80-02",
+      "day": 80,
+      "verb": "SUIT",
+      "sense": "어울리다/적합",
+      "ko": "직장 생활은 나랑 안 맞는다.",
+      "en": "Working for a company doesn't suit me.",
+      "level": 3
+    },
+    {
+      "id": "qv-d80-03",
+      "day": 80,
+      "verb": "SUIT",
+      "sense": "어울리다/적합",
+      "ko": "아이들을 가르치는 건 그 사람 성격에 안 맞는다.",
+      "en": "Teaching kids doesn't suit his personality.",
+      "level": 3
+    },
+    {
+      "id": "qv-d80-04",
+      "day": 80,
+      "verb": "SUIT",
+      "sense": "어울리다/적합",
+      "ko": "이 일자리 기회는 너한테 더 딱일지도 몰라.",
+      "en": "This opportunity may suit you more than me.",
+      "level": 3
+    },
+    {
+      "id": "qv-d80-05",
+      "day": 80,
+      "verb": "SUIT",
+      "sense": "어울리다/적합",
+      "ko": "몇 시가 가장 좋으신가요?",
+      "en": "What time suits you best?",
+      "level": 3
+    },
+    {
+      "id": "qv-d81-01",
+      "day": 81,
+      "verb": "MISS",
+      "sense": "놓치다/그리워하다",
+      "ko": "오늘 벚꽃 볼 기회를 놓치지 마.",
+      "en": "Don't miss the chance to see the cherry blossoms today.",
+      "level": 3
+    },
+    {
+      "id": "qv-d81-02",
+      "day": 81,
+      "verb": "MISS",
+      "sense": "놓치다/그리워하다",
+      "ko": "경기를 볼 기회를 놓치지 않을 거야.",
+      "en": "I'm not going to miss my chance to see the game.",
+      "level": 3
+    },
+    {
+      "id": "qv-d81-03",
+      "day": 81,
+      "verb": "MISS",
+      "sense": "놓치다/그리워하다",
+      "ko": "전화 못 받아서 미안해.",
+      "en": "Sorry I missed your call.",
+      "level": 3
+    },
+    {
+      "id": "qv-d81-04",
+      "day": 81,
+      "verb": "MISS",
+      "sense": "놓치다/그리워하다",
+      "ko": "정류장을 지나치는 바람에 되돌아가야 했어.",
+      "en": "I missed my stop and had to backtrack.",
+      "level": 3
+    },
+    {
+      "id": "qv-d81-05",
+      "day": 81,
+      "verb": "MISS",
+      "sense": "놓치다/그리워하다",
+      "ko": "네 결혼식은 무슨 일이 있어도 갈게.",
+      "en": "I'm not going to miss your wedding for anything.",
+      "level": 3
+    },
+    {
+      "id": "qv-d82-01",
+      "day": 82,
+      "verb": "FINISH",
+      "sense": "마치다/졸업",
+      "ko": "지금 수업 중이야. 마치고 전화할게.",
+      "en": "I'm in class now; I'll call you after I finish.",
+      "level": 3
+    },
+    {
+      "id": "qv-d82-02",
+      "day": 82,
+      "verb": "FINISH",
+      "sense": "마치다/졸업",
+      "ko": "내일은 오후 5시에 마치니까 그 이후는 괜찮습니다.",
+      "en": "I finish at 5 pm tomorrow, so anytime after that works for me.",
+      "level": 3
+    },
+    {
+      "id": "qv-d82-03",
+      "day": 82,
+      "verb": "FINISH",
+      "sense": "마치다/졸업",
+      "ko": "토요일에 일하긴 하는데 일찍 마쳐요.",
+      "en": "I have to work on Saturdays, but at least I finish early.",
+      "level": 3
+    },
+    {
+      "id": "qv-d82-04",
+      "day": 82,
+      "verb": "FINISH",
+      "sense": "마치다/졸업",
+      "ko": "언제 졸업할지는 모르겠어요.",
+      "en": "I don't know when she'll finish.",
+      "level": 3
+    },
+    {
+      "id": "qv-d82-05",
+      "day": 82,
+      "verb": "FINISH",
+      "sense": "마치다/졸업",
+      "ko": "그는 시합에서 2위로 마쳤다.",
+      "en": "He finished second in the competition.",
+      "level": 3
+    },
+    {
+      "id": "qv-d83-01",
+      "day": 83,
+      "verb": "FINISH",
+      "sense": "다 먹다/읽다",
+      "ko": "우선 집안일부터 마무리하고 전화할게.",
+      "en": "I need to finish my chores first and then call you.",
+      "level": 3
+    },
+    {
+      "id": "qv-d83-02",
+      "day": 83,
+      "verb": "FINISH",
+      "sense": "다 먹다/읽다",
+      "ko": "진심 피자 한 판을 혼자 다 먹었어?",
+      "en": "Did you seriously finish that whole pizza by yourself?",
+      "level": 3
+    },
+    {
+      "id": "qv-d83-03",
+      "day": 83,
+      "verb": "FINISH",
+      "sense": "다 먹다/읽다",
+      "ko": "소설 한 권을 앉은 자리에서 다 읽었다.",
+      "en": "I finished the whole novel in one sitting.",
+      "level": 3
+    },
+    {
+      "id": "qv-d83-04",
+      "day": 83,
+      "verb": "FINISH",
+      "sense": "다 먹다/읽다",
+      "ko": "추천해 준 책 얼마 전에 다 읽었어.",
+      "en": "I just finished the book you recommended.",
+      "level": 3
+    },
+    {
+      "id": "qv-d83-05",
+      "day": 83,
+      "verb": "FINISH",
+      "sense": "다 먹다/읽다",
+      "ko": "스티브 잡스는 대학을 졸업하지 못했다.",
+      "en": "Steve Jobs never finished college.",
+      "level": 3
+    },
+    {
+      "id": "qv-d84-01",
+      "day": 84,
+      "verb": "BELONG",
+      "sense": "속하다/위치",
+      "ko": "이 책들은 어디에 둬야 하는 거야?",
+      "en": "Where do these books belong?",
+      "level": 3
+    },
+    {
+      "id": "qv-d84-02",
+      "day": 84,
+      "verb": "BELONG",
+      "sense": "속하다/위치",
+      "ko": "이 차 당신 건가요?",
+      "en": "Does this car belong to you?",
+      "level": 3
+    },
+    {
+      "id": "qv-d84-03",
+      "day": 84,
+      "verb": "BELONG",
+      "sense": "속하다/위치",
+      "ko": "이 사물함 누가 쓰고 있는 건가요?",
+      "en": "Who does this locker belong to?",
+      "level": 3
+    },
+    {
+      "id": "qv-d84-04",
+      "day": 84,
+      "verb": "BELONG",
+      "sense": "속하다/위치",
+      "ko": "그 팀은 저랑 잘 안 맞았어요.",
+      "en": "I just didn't belong on that team.",
+      "level": 3
+    },
+    {
+      "id": "qv-d84-05",
+      "day": 84,
+      "verb": "BELONG",
+      "sense": "속하다/위치",
+      "ko": "진정 내가 있을 곳이라는 생각이 드는 곳을 찾았다.",
+      "en": "I found a place where I truly belong.",
+      "level": 3
+    },
+    {
+      "id": "qv-d85-01",
+      "day": 85,
+      "verb": "AFFORD",
+      "sense": "형편이 되다",
+      "ko": "그건 내게 좀 부담스러운 금액이었다.",
+      "en": "I couldn't afford it.",
+      "level": 3
+    },
+    {
+      "id": "qv-d85-02",
+      "day": 85,
+      "verb": "AFFORD",
+      "sense": "형편이 되다",
+      "ko": "그 차를 살 여유가 없다는 건 알았지만 시승해 보았다.",
+      "en": "I knew I couldn't afford that car, but I test-drove it anyway.",
+      "level": 3
+    },
+    {
+      "id": "qv-d85-03",
+      "day": 85,
+      "verb": "AFFORD",
+      "sense": "형편이 되다",
+      "ko": "부모님이 더 이상 학비를 감당할 형편이 안 되었습니다.",
+      "en": "My parents could no longer afford my tuition.",
+      "level": 3
+    },
+    {
+      "id": "qv-d85-04",
+      "day": 85,
+      "verb": "AFFORD",
+      "sense": "형편이 되다",
+      "ko": "이곳은 서울에서 내 형편에 맞는 유일한 동네이다.",
+      "en": "This is the only neighborhood in Seoul I can afford.",
+      "level": 3
+    },
+    {
+      "id": "qv-d85-05",
+      "day": 85,
+      "verb": "AFFORD",
+      "sense": "형편이 되다",
+      "ko": "프로젝트 마칠 때까지는 쉴 형편이 안 된다.",
+      "en": "I can't afford to take a break until this project is done.",
+      "level": 3
+    },
+    {
+      "id": "qv-d86-01",
+      "day": 86,
+      "verb": "GRAB",
+      "sense": "잡다/먹다",
+      "ko": "잠시만, 재킷 좀 챙겨야 해.",
+      "en": "Hold on, I need to grab my jacket.",
+      "level": 3
+    },
+    {
+      "id": "qv-d86-02",
+      "day": 86,
+      "verb": "GRAB",
+      "sense": "잡다/먹다",
+      "ko": "오는 길에 커피 좀 사다 줄래?",
+      "en": "Can you grab me a coffee on your way back?",
+      "level": 3
+    },
+    {
+      "id": "qv-d86-03",
+      "day": 86,
+      "verb": "GRAB",
+      "sense": "잡다/먹다",
+      "ko": "내일 밤에 간단히 한잔하자.",
+      "en": "Let's grab a drink tomorrow night.",
+      "level": 3
+    },
+    {
+      "id": "qv-d86-04",
+      "day": 86,
+      "verb": "GRAB",
+      "sense": "잡다/먹다",
+      "ko": "창가에 자리 잡자.",
+      "en": "Let's grab a table near the window.",
+      "level": 3
+    },
+    {
+      "id": "qv-d86-05",
+      "day": 86,
+      "verb": "GRAB",
+      "sense": "잡다/먹다",
+      "ko": "오는 길에 눈길을 끄는 버스킹 공연이 있었어.",
+      "en": "Some buskers grabbed my attention on the way here.",
+      "level": 3
+    },
+    {
+      "id": "qv-d87-01",
+      "day": 87,
+      "verb": "FIX",
+      "sense": "고치다/해결",
+      "ko": "난 뭐든 다 고칠 수 있어.",
+      "en": "I can fix anything.",
+      "level": 3
+    },
+    {
+      "id": "qv-d87-02",
+      "day": 87,
+      "verb": "FIX",
+      "sense": "고치다/해결",
+      "ko": "컴퓨터를 고쳐보려 했지만 부품을 더 이상 팔지 않는다.",
+      "en": "I tried to fix my computer, but they don't sell the parts anymore.",
+      "level": 3
+    },
+    {
+      "id": "qv-d87-03",
+      "day": 87,
+      "verb": "FIX",
+      "sense": "고치다/해결",
+      "ko": "앞유리에 난 이 금은 수리할 수 없습니다.",
+      "en": "This crack in the windshield can't be fixed.",
+      "level": 3
+    },
+    {
+      "id": "qv-d87-04",
+      "day": 87,
+      "verb": "FIX",
+      "sense": "고치다/해결",
+      "ko": "신임 대표는 수익을 회복시킬 수 있다고 말합니다.",
+      "en": "The new CEO says he can fix our declining profits.",
+      "level": 3
+    },
+    {
+      "id": "qv-d87-05",
+      "day": 87,
+      "verb": "FIX",
+      "sense": "고치다/해결",
+      "ko": "의료 시스템이 붕괴되었습니다. 바로잡아야 합니다.",
+      "en": "The healthcare system is broken; we need to fix it.",
+      "level": 3
+    },
+    {
+      "id": "qv-d88-01",
+      "day": 88,
+      "verb": "DESERVE",
+      "sense": "자격이 있다",
+      "ko": "밤낮없이 일을 해왔으니 좀 쉴 자격이 있어요.",
+      "en": "You've been working day and night; you deserve a break.",
+      "level": 3
+    },
+    {
+      "id": "qv-d88-02",
+      "day": 88,
+      "verb": "DESERVE",
+      "sense": "자격이 있다",
+      "ko": "그 사람 그 정도 취급받을 사람은 아니잖아.",
+      "en": "He deserves better than that.",
+      "level": 3
+    },
+    {
+      "id": "qv-d88-03",
+      "day": 88,
+      "verb": "DESERVE",
+      "sense": "자격이 있다",
+      "ko": "당신이 급여를 더 받아야 한다고 생각하는 이유는 뭔가요?",
+      "en": "What makes you think you deserve a higher salary?",
+      "level": 3
+    },
+    {
+      "id": "qv-d88-04",
+      "day": 88,
+      "verb": "DESERVE",
+      "sense": "자격이 있다",
+      "ko": "내가 무슨 잘못을 했길래 이런 일을 당하나?",
+      "en": "What did I do to deserve this?",
+      "level": 3
+    },
+    {
+      "id": "qv-d88-05",
+      "day": 88,
+      "verb": "DESERVE",
+      "sense": "자격이 있다",
+      "ko": "이 영화 상 받을 만해.",
+      "en": "This movie deserves to win an award.",
+      "level": 3
+    },
+    {
+      "id": "qv-d89-01",
+      "day": 89,
+      "verb": "MIND",
+      "sense": "상관하다/꺼리다",
+      "ko": "난 두 곳 중 어디서 봐도 괜찮아.",
+      "en": "I don't mind either place.",
+      "level": 3
+    },
+    {
+      "id": "qv-d89-02",
+      "day": 89,
+      "verb": "MIND",
+      "sense": "상관하다/꺼리다",
+      "ko": "마지막 남은 도넛 내가 먹어도 괜찮겠지?",
+      "en": "I hope you don't mind if I take the last donut.",
+      "level": 3
+    },
+    {
+      "id": "qv-d89-03",
+      "day": 89,
+      "verb": "MIND",
+      "sense": "상관하다/꺼리다",
+      "ko": "친구 데려가도 괜찮을까?",
+      "en": "Do you mind if I bring a friend?",
+      "level": 3
+    },
+    {
+      "id": "qv-d89-04",
+      "day": 89,
+      "verb": "MIND",
+      "sense": "상관하다/꺼리다",
+      "ko": "주문한 거 나오면 좀 가져다주시겠어요?",
+      "en": "Do you mind grabbing our order when it's ready?",
+      "level": 3
+    },
+    {
+      "id": "qv-d89-05",
+      "day": 89,
+      "verb": "MIND",
+      "sense": "상관하다/꺼리다",
+      "ko": "미안한데 이사 좀 도와주실 수 있을까요?",
+      "en": "Would you mind giving me a hand with my move?",
+      "level": 3
+    },
+    {
+      "id": "qv-d90-01",
+      "day": 90,
+      "verb": "BOOK",
+      "sense": "예약하다",
+      "ko": "시내의 새로 생긴 호텔에 방을 예약하고 싶어요.",
+      "en": "I'd like to book a room at the new hotel downtown.",
+      "level": 3
+    },
+    {
+      "id": "qv-d90-02",
+      "day": 90,
+      "verb": "BOOK",
+      "sense": "예약하다",
+      "ko": "식당을 예약하려고 했는데 자리가 없어요.",
+      "en": "I tried to book a table, but there were none available.",
+      "level": 3
+    },
+    {
+      "id": "qv-d90-03",
+      "day": 90,
+      "verb": "BOOK",
+      "sense": "예약하다",
+      "ko": "귀국하는 비행기는 예약했어요.",
+      "en": "I've booked a flight to go back.",
+      "level": 3
+    },
+    {
+      "id": "qv-d90-04",
+      "day": 90,
+      "verb": "BOOK",
+      "sense": "예약하다",
+      "ko": "가능하다면 저녁 비행기로 예약해 줄 수 있어요?",
+      "en": "Could you book me on an evening flight if possible?",
+      "level": 3
+    },
+    {
+      "id": "qv-d90-05",
+      "day": 90,
+      "verb": "BOOK",
+      "sense": "예약하다",
+      "ko": "오늘 밤 우리 둘 저녁 식사 예약했어.",
+      "en": "I booked us dinner reservations for tonight.",
+      "level": 3
+    },
+    {
+      "id": "qv-d91-01",
+      "day": 91,
+      "verb": "SEEM",
+      "sense": "~처럼 보이다",
+      "ko": "너 굉장히 속편해 보인다.",
+      "en": "You seem so carefree.",
+      "level": 3
+    },
+    {
+      "id": "qv-d91-02",
+      "day": 91,
+      "verb": "SEEM",
+      "sense": "~처럼 보이다",
+      "ko": "이 동네 안전해 보이네요.",
+      "en": "This neighborhood seems safe.",
+      "level": 3
+    },
+    {
+      "id": "qv-d91-03",
+      "day": 91,
+      "verb": "SEEM",
+      "sense": "~처럼 보이다",
+      "ko": "그곳 딸기가 정말 신선해 보이더라고요.",
+      "en": "The strawberries there seemed really fresh.",
+      "level": 3
+    },
+    {
+      "id": "qv-d91-04",
+      "day": 91,
+      "verb": "SEEM",
+      "sense": "~처럼 보이다",
+      "ko": "아내가 차를 사고 싶어 하는 눈치예요.",
+      "en": "My wife seems interested in buying a car.",
+      "level": 3
+    },
+    {
+      "id": "qv-d91-05",
+      "day": 91,
+      "verb": "SEEM",
+      "sense": "~처럼 보이다",
+      "ko": "그렇게 오래 안 된 느낌인데.",
+      "en": "It doesn't seem that long ago.",
+      "level": 3
+    },
+    {
+      "id": "qv-d92-01",
+      "day": 92,
+      "verb": "BOTHER",
+      "sense": "신경 쓰이다/괴롭히다",
+      "ko": "길에서 담배 피우는 사람들이 정말 거슬린다.",
+      "en": "It bothers me when people smoke while walking.",
+      "level": 3
+    },
+    {
+      "id": "qv-d92-02",
+      "day": 92,
+      "verb": "BOTHER",
+      "sense": "신경 쓰이다/괴롭히다",
+      "ko": "아내가 양치하며 집안을 걸어 다니면 거슬린다.",
+      "en": "It bothers me when my wife walks around while brushing her teeth.",
+      "level": 3
+    },
+    {
+      "id": "qv-d92-03",
+      "day": 92,
+      "verb": "BOTHER",
+      "sense": "신경 쓰이다/괴롭히다",
+      "ko": "그 일로 너무 신경 쓰지 마.",
+      "en": "Don't let it bother you.",
+      "level": 3
+    },
+    {
+      "id": "qv-d92-04",
+      "day": 92,
+      "verb": "BOTHER",
+      "sense": "신경 쓰이다/괴롭히다",
+      "ko": "조명에 뭔가 마음에 걸리는 게 있어요.",
+      "en": "Something is bothering me about this lighting.",
+      "level": 3
+    },
+    {
+      "id": "qv-d92-05",
+      "day": 92,
+      "verb": "BOTHER",
+      "sense": "신경 쓰이다/괴롭히다",
+      "ko": "서울에 살면서 불편한 점이 있을까요?",
+      "en": "Is there anything that bothers you about living in Seoul?",
+      "level": 3
+    },
+    {
+      "id": "qv-d93-01",
+      "day": 93,
+      "verb": "BOTHER",
+      "sense": "일부러 ~하다",
+      "ko": "굳이 나를 집에 데려다주지 않아도 돼.",
+      "en": "Don't bother taking me home.",
+      "level": 3
+    },
+    {
+      "id": "qv-d93-02",
+      "day": 93,
+      "verb": "BOTHER",
+      "sense": "일부러 ~하다",
+      "ko": "일부러 내게 저녁 차려 줄 필요 없어.",
+      "en": "Don't bother making me dinner.",
+      "level": 3
+    },
+    {
+      "id": "qv-d93-03",
+      "day": 93,
+      "verb": "BOTHER",
+      "sense": "일부러 ~하다",
+      "ko": "TV 고치려고 애쓰지 마. 완전히 고장 났어.",
+      "en": "Don't bother trying to fix that old TV; it's dead.",
+      "level": 3
+    },
+    {
+      "id": "qv-d93-04",
+      "day": 93,
+      "verb": "BOTHER",
+      "sense": "일부러 ~하다",
+      "ko": "그녀는 작별 인사조차 하지 않았다.",
+      "en": "She didn't even bother saying goodbye.",
+      "level": 3
+    },
+    {
+      "id": "qv-d93-05",
+      "day": 93,
+      "verb": "BOTHER",
+      "sense": "일부러 ~하다",
+      "ko": "유효 기간은 확인한 거니?",
+      "en": "Did you bother checking the expiration date?",
+      "level": 3
+    },
+    {
+      "id": "qv-d94-01",
+      "day": 94,
+      "verb": "SPARE",
+      "sense": "할애하다/남는",
+      "ko": "펜 남는 것 있으면 하나 빌려 줄래?",
+      "en": "Can you spare a pen? I lost mine.",
+      "level": 3
+    },
+    {
+      "id": "qv-d94-02",
+      "day": 94,
+      "verb": "SPARE",
+      "sense": "할애하다/남는",
+      "ko": "취미에 좀 더 많은 시간을 할애할 수 있으면 좋으련만.",
+      "en": "I wish I could spare more time for my hobbies.",
+      "level": 3
+    },
+    {
+      "id": "qv-d94-03",
+      "day": 94,
+      "verb": "SPARE",
+      "sense": "할애하다/남는",
+      "ko": "우리에게 남는 시간이 5분밖에 없어.",
+      "en": "We only have five minutes to spare.",
+      "level": 3
+    },
+    {
+      "id": "qv-d94-04",
+      "day": 94,
+      "verb": "SPARE",
+      "sense": "할애하다/남는",
+      "ko": "내일은 한 시간 정도는 시간 낼 수 있어.",
+      "en": "I can spare an hour tomorrow.",
+      "level": 3
+    },
+    {
+      "id": "qv-d94-05",
+      "day": 94,
+      "verb": "SPARE",
+      "sense": "할애하다/남는",
+      "ko": "우리는 프로젝트를 2주 여유 있게 마무리했다.",
+      "en": "We finished the project with two weeks to spare.",
+      "level": 3
+    },
+    {
+      "id": "qv-d95-01",
+      "day": 95,
+      "verb": "RUIN",
+      "sense": "망치다",
+      "ko": "비 때문에 우리 계획이 엉망이 되었다.",
+      "en": "The rain ruined our plans.",
+      "level": 3
+    },
+    {
+      "id": "qv-d95-02",
+      "day": 95,
+      "verb": "RUIN",
+      "sense": "망치다",
+      "ko": "그 친구의 못된 태도 때문에 여행 전체를 망쳤다.",
+      "en": "Her bad attitude ruined the whole trip.",
+      "level": 3
+    },
+    {
+      "id": "qv-d95-03",
+      "day": 95,
+      "verb": "RUIN",
+      "sense": "망치다",
+      "ko": "무례한 사람 때문에 하루를 망치면 안 되지.",
+      "en": "Don't let one rude person ruin your whole day.",
+      "level": 3
+    },
+    {
+      "id": "qv-d95-04",
+      "day": 95,
+      "verb": "RUIN",
+      "sense": "망치다",
+      "ko": "웰던으로 시켜서 스테이크를 망치다니!",
+      "en": "I can't believe you ruined a good steak by ordering it well-done.",
+      "level": 3
+    },
+    {
+      "id": "qv-d95-05",
+      "day": 95,
+      "verb": "RUIN",
+      "sense": "망치다",
+      "ko": "사소한 일로 말다툼을 해서 분위기를 망친다.",
+      "en": "She ruins the mood by arguing about little things.",
+      "level": 3
+    },
+    {
+      "id": "qv-d96-01",
+      "day": 96,
+      "verb": "OWE",
+      "sense": "빚지다/덕분이다",
+      "ko": "저녁값 내가 얼마 주면 돼?",
+      "en": "How much do I owe you for dinner?",
+      "level": 3
+    },
+    {
+      "id": "qv-d96-02",
+      "day": 96,
+      "verb": "OWE",
+      "sense": "빚지다/덕분이다",
+      "ko": "아직 부모님께 차 때문에 돈을 갚아야 한다.",
+      "en": "I still owe my parents money for my car.",
+      "level": 3
+    },
+    {
+      "id": "qv-d96-03",
+      "day": 96,
+      "verb": "OWE",
+      "sense": "빚지다/덕분이다",
+      "ko": "그 회사는 우리 회사에 줄 돈이 많다.",
+      "en": "That company owes us a lot of money.",
+      "level": 3
+    },
+    {
+      "id": "qv-d96-04",
+      "day": 96,
+      "verb": "OWE",
+      "sense": "빚지다/덕분이다",
+      "ko": "학교에서 아직 환불을 안 해줬다.",
+      "en": "The school still owes me a refund.",
+      "level": 3
+    },
+    {
+      "id": "qv-d96-05",
+      "day": 96,
+      "verb": "OWE",
+      "sense": "빚지다/덕분이다",
+      "ko": "다들 나에게 22,000원 보내주면 돼.",
+      "en": "You each owe me 22,000 won.",
+      "level": 3
+    },
+    {
+      "id": "qv-d97-01",
+      "day": 97,
+      "verb": "QUIT",
+      "sense": "그만두다/끊다",
+      "ko": "영어 공부는 절대 포기하지 않을 거야.",
+      "en": "I will never quit learning English.",
+      "level": 3
+    },
+    {
+      "id": "qv-d97-02",
+      "day": 97,
+      "verb": "QUIT",
+      "sense": "그만두다/끊다",
+      "ko": "그녀는 하루 일하고 그만뒀다.",
+      "en": "She quit her job after one day.",
+      "level": 3
+    },
+    {
+      "id": "qv-d97-03",
+      "day": 97,
+      "verb": "QUIT",
+      "sense": "그만두다/끊다",
+      "ko": "어깨를 다치는 바람에 야구를 그만뒀다.",
+      "en": "I quit playing baseball after I hurt my shoulder.",
+      "level": 3
+    },
+    {
+      "id": "qv-d97-04",
+      "day": 97,
+      "verb": "QUIT",
+      "sense": "그만두다/끊다",
+      "ko": "어릴 때 피아노 그만두지 말걸.",
+      "en": "I wish I didn't quit piano as a kid.",
+      "level": 3
+    },
+    {
+      "id": "qv-d97-05",
+      "day": 97,
+      "verb": "QUIT",
+      "sense": "그만두다/끊다",
+      "ko": "그가 불평 좀 그만했으면 좋겠어.",
+      "en": "I wish he would quit complaining.",
+      "level": 3
+    },
+    {
+      "id": "qv-d98-01",
+      "day": 98,
+      "verb": "ARRANGE",
+      "sense": "정리/준비",
+      "ko": "새로 이사 간 집 가구를 정리했다.",
+      "en": "We arranged the furniture in our new house.",
+      "level": 3
+    },
+    {
+      "id": "qv-d98-02",
+      "day": 98,
+      "verb": "ARRANGE",
+      "sense": "정리/준비",
+      "ko": "나는 은행과 대출 상환 계획을 협의했다.",
+      "en": "I arranged a payment plan with the bank.",
+      "level": 3
+    },
+    {
+      "id": "qv-d98-03",
+      "day": 98,
+      "verb": "ARRANGE",
+      "sense": "정리/준비",
+      "ko": "존과의 미팅을 잡겠습니다.",
+      "en": "I will arrange a meeting with John.",
+      "level": 3
+    },
+    {
+      "id": "qv-d98-04",
+      "day": 98,
+      "verb": "ARRANGE",
+      "sense": "정리/준비",
+      "ko": "당신을 위해 숙박도 준비해 두겠습니다.",
+      "en": "I'll arrange accommodations for you.",
+      "level": 3
+    },
+    {
+      "id": "qv-d98-05",
+      "day": 98,
+      "verb": "ARRANGE",
+      "sense": "정리/준비",
+      "ko": "한국어 통역사가 준비되었습니다.",
+      "en": "A Korean interpreter has been arranged.",
+      "level": 3
+    },
+    {
+      "id": "qv-d99-01",
+      "day": 99,
+      "verb": "SKIP",
+      "sense": "거르다/건너뛰다",
+      "ko": "난 디저트를 꼭 먹는다.",
+      "en": "I never skip dessert.",
+      "level": 3
+    },
+    {
+      "id": "qv-d99-02",
+      "day": 99,
+      "verb": "SKIP",
+      "sense": "거르다/건너뛰다",
+      "ko": "오늘은 헬스장에 안 가기로 했다.",
+      "en": "I decided to skip the gym today.",
+      "level": 3
+    },
+    {
+      "id": "qv-d99-03",
+      "day": 99,
+      "verb": "SKIP",
+      "sense": "거르다/건너뛰다",
+      "ko": "저녁은 건너뛰어야 할 듯해.",
+      "en": "I think I'll skip dinner.",
+      "level": 3
+    },
+    {
+      "id": "qv-d99-04",
+      "day": 99,
+      "verb": "SKIP",
+      "sense": "거르다/건너뛰다",
+      "ko": "몸이 안 좋아서 파티에 빠질 수밖에 없었다.",
+      "en": "I had to skip the party.",
+      "level": 3
+    },
+    {
+      "id": "qv-d99-05",
+      "day": 99,
+      "verb": "SKIP",
+      "sense": "거르다/건너뛰다",
+      "ko": "너무 궁금해서 중간을 건너뛰고 결말부터 봤다.",
+      "en": "I skipped to the end because I was curious.",
+      "level": 3
+    },
+    {
+      "id": "qv-d100-01",
+      "day": 100,
+      "verb": "SPOIL",
+      "sense": "망치다/오냐오냐하다",
+      "ko": "비가 와서 소풍 계획이 엉망이 되었다.",
+      "en": "The rain spoiled our picnic plans.",
+      "level": 3
+    },
+    {
+      "id": "qv-d100-02",
+      "day": 100,
+      "verb": "SPOIL",
+      "sense": "망치다/오냐오냐하다",
+      "ko": "나는 음식에 관해서는 입이 매우 까다롭다.",
+      "en": "I am really spoiled when it comes to food.",
+      "level": 3
+    },
+    {
+      "id": "qv-d100-03",
+      "day": 100,
+      "verb": "SPOIL",
+      "sense": "망치다/오냐오냐하다",
+      "ko": "남은 음식을 냉장고에 넣지 않으면 금방 상할 거야.",
+      "en": "Leftovers will spoil quickly if you don't refrigerate them.",
+      "level": 3
+    },
+    {
+      "id": "qv-d100-04",
+      "day": 100,
+      "verb": "SPOIL",
+      "sense": "망치다/오냐오냐하다",
+      "ko": "결말을 미리 말하고 싶지 않아. 네가 직접 봐.",
+      "en": "I don't want to spoil the ending; watch it yourself.",
+      "level": 3
+    },
+    {
+      "id": "qv-d100-05",
+      "day": 100,
+      "verb": "SPOIL",
+      "sense": "망치다/오냐오냐하다",
+      "ko": "깜짝 파티에 초를 치고 싶지는 않아서 가만히 있었다.",
+      "en": "I didn't want to spoil the surprise, so I kept quiet.",
+      "level": 3
+    }
+  ]
+}
