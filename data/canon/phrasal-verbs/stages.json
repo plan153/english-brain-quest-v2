@@ -543,7 +543,7 @@
       "verb": "go",
       "particle": "out",
       "en": "Let's go out tonight.",
-      "ko": "오늘 밤 외출해요."
+      "ko": "오늘 밤 외출해요. (같이)"
     },
     {
       "id": "pv_put_on",
@@ -795,7 +795,7 @@
       "verb": "run",
       "particle": "out",
       "en": "We ran out of milk.",
-      "ko": "우유가 떨어졌어요."
+      "ko": "우유가 떨어졌어요. (우리)"
     },
     {
       "id": "pv_work_out",
@@ -921,7 +921,7 @@
       "verb": "hang",
       "particle": "out",
       "en": "Let's hang out.",
-      "ko": "놀러 가요."
+      "ko": "놀러 가요. (같이)"
     },
     {
       "id": "pv_hang_up",
@@ -1166,7 +1166,7 @@
       "verb": "go",
       "particle": "over",
       "en": "Let's go over the plan.",
-      "ko": "계획을 다시 살펴봐요."
+      "ko": "계획을 다시 살펴봐요. (같이)"
     },
     {
       "id": "pv_put_together",

@@ -5,13 +5,78 @@
   "title": "Present Perfect",
   "concept": "과거-현재 연결: 경험, 결과, 계속",
   "stage": 7,
-  "skillAxes": ["tense", "form"],
-  "prerequisites": ["unit-01-present-simple"],
+  "skillAxes": [
+    "tense",
+    "form"
+  ],
+  "prerequisites": [
+    "unit-01-present-simple"
+  ],
   "items": [
-    { "id": "pp-01", "type": "sentence", "en": "I have lived here for ten years.", "translations": { "ko": "여기 10년째 살고 있어요." }, "form": "statement", "tags": ["tense:present-perfect", "function:continuity"] },
-    { "id": "pp-02", "type": "sentence", "en": "She has finished her homework.", "translations": { "ko": "그녀는 숙제를 끝냈어요." }, "form": "statement", "tags": ["tense:present-perfect", "function:result"] },
-    { "id": "pp-03", "type": "sentence", "en": "Have you ever been to Japan?", "translations": { "ko": "일본 가본 적 있어요?" }, "form": "question", "tags": ["tense:present-perfect", "function:experience"] },
-    { "id": "pp-04", "type": "sentence", "en": "We have not decided yet.", "translations": { "ko": "아직 결정 못 했어요." }, "form": "negative", "tags": ["tense:present-perfect", "form:negative"] },
-    { "id": "pp-05", "type": "sentence", "en": "He has just left.", "translations": { "ko": "그가 막 떠났어요." }, "form": "statement", "tags": ["tense:present-perfect", "function:recent"] }
+    {
+      "id": "pp-01",
+      "type": "sentence",
+      "en": "I have lived here for ten years.",
+      "translations": {
+        "ko": "여기 10년째 살고 있어요."
+      },
+      "form": "statement",
+      "tags": [
+        "tense:present-perfect",
+        "function:continuity"
+      ]
+    },
+    {
+      "id": "pp-02",
+      "type": "sentence",
+      "en": "She has finished her homework.",
+      "translations": {
+        "ko": "그녀는 숙제를 끝냈어요."
+      },
+      "form": "statement",
+      "tags": [
+        "tense:present-perfect",
+        "function:result"
+      ]
+    },
+    {
+      "id": "pp-03",
+      "type": "sentence",
+      "en": "Have you ever been to Japan?",
+      "translations": {
+        "ko": "일본 가본 적 있어요?"
+      },
+      "form": "question",
+      "tags": [
+        "tense:present-perfect",
+        "function:experience"
+      ]
+    },
+    {
+      "id": "pp-04",
+      "type": "sentence",
+      "en": "We have not decided yet.",
+      "translations": {
+        "ko": "아직 결정 못 했어요. (우리)"
+      },
+      "form": "negative",
+      "tags": [
+        "tense:present-perfect",
+        "form:negative"
+      ]
+    },
+    {
+      "id": "pp-05",
+      "type": "sentence",
+      "en": "He has just left.",
+      "translations": {
+        "ko": "그가 막 떠났어요."
+      },
+      "form": "statement",
+      "tags": [
+        "tense:present-perfect",
+        "function:recent"
+      ]
+    }
   ]
 }

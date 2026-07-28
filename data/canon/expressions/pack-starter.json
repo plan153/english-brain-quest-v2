@@ -1082,7 +1082,7 @@
   {
     "id": "e023",
     "english": "We have a problem.",
-    "naturalKorean": "문제가 있어요.",
+    "naturalKorean": "문제가 있어요. (우리)",
     "literalMeaning": "우리는 문제 하나를 가지고 있어요.",
     "coreVerbId": "v_have",
     "patternId": "p_have_problem",
@@ -3033,7 +3033,7 @@
   {
     "id": "e058",
     "english": "We’ll find a way.",
-    "naturalKorean": "방법을 찾을 거예요.",
+    "naturalKorean": "방법을 찾을 거예요. (우리)",
     "literalMeaning": "우리는 길 하나를 찾을 거예요.",
     "coreVerbId": "v_find",
     "patternId": "p_find_way",
@@ -4501,7 +4501,7 @@
   {
     "id": "e093",
     "english": "We have a meeting.",
-    "naturalKorean": "회의가 있어요.",
+    "naturalKorean": "회의가 있어요. (우리 / 팀)",
     "literalMeaning": "우리는 회의 하나를 가지고 있어요.",
     "coreVerbId": "v_have",
     "patternId": "p_have_thing",
@@ -5026,7 +5026,7 @@
   {
     "id": "e104",
     "english": "We’re having lunch tomorrow.",
-    "naturalKorean": "내일 점심 먹어요.",
+    "naturalKorean": "내일 점심 먹어요. (우리 / 같이)",
     "literalMeaning": "우리는 내일 점심을 먹는 중이에요.",
     "coreVerbId": "v_be",
     "patternId": "p_be_ing_future",
