@@ -80,7 +80,13 @@ function createFuzzyMatch() {
     return expandContractions(String(text || ''))
       .toLowerCase()
       .replace(/[.!?,;:]/g, ' ')
-      .replace(/["“”]/g, '')
+      .replace(/["“”']/g, '')
+      .replace(
+        /\b(?:take|have)\s+a(?:n)?\s+(?:(closer|quick|proper|good|careful|brief|long)\s+)?look\b/g,
+        function (_m, adj) {
+          return adj ? 'have a ' + String(adj).trim() + ' look' : 'have a look';
+        }
+      )
       .replace(/\s+/g, ' ')
       .trim();
   }
@@ -208,6 +214,21 @@ function createFuzzyMatch() {
           level: 'exact',
           score: 1,
           feedback: '정답!',
+          canonicalTTS: expected,
+        };
+      }
+    }
+
+    // have/take a look 동이디엄 — at this 등만 빠지면 fuzzy
+    const lookCore = /\bhave a (?:(?:closer|quick|proper|good|careful|brief|long) )?look\b/;
+    const userLook = userNorm.match(lookCore);
+    const expectedLook = expectedNorm.match(lookCore);
+    if (userLook && expectedLook && userLook[0] === expectedLook[0]) {
+      if (userNorm === expectedLook[0] || expectedNorm.indexOf(userNorm) === 0) {
+        return {
+          level: 'fuzzy',
+          score: 0.85,
+          feedback: '표현은 맞아요! 목적어·전치사까지 이어서 말해 보세요.',
           canonicalTTS: expected,
         };
       }

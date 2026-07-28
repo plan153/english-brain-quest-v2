@@ -348,7 +348,10 @@ describe('6b. gap-reason + projectGap', () => {
       en: 'I have a question.',
       guess: 'I have',
     });
-    expect(noun.some((f) => f.role === 'noun' && f.status === 'missing')).toBe(true);
+    // have a question 을 동사구로 보므로 목적어 대신 동사 슬롯이 비거나 다름
+    expect(
+      noun.some((f) => f.role === 'verb' && (f.status === 'missing' || f.status === 'wrong'))
+    ).toBe(true);
 
     const tense = analyzeGapSlots({
       en: 'I went home.',
@@ -371,6 +374,32 @@ describe('6b. gap-reason + projectGap', () => {
     });
     expect(text).toContain('주어');
     expect(text).toMatch(/3인칭|동사/);
+  });
+
+  it('treats imperatives and have/take a look as a unit', () => {
+    const slots = analyzeGapSlots({
+      en: 'Have a look at this.',
+      guess: 'take a look',
+    });
+    expect(slots.some((f) => f.role === 'subject' && f.status === 'wrong')).toBe(false);
+    expect(slots.some((f) => f.role === 'verb' && f.status === 'ok')).toBe(true);
+    expect(slots.some((f) => f.role === 'noun' && f.status === 'missing')).toBe(true);
+
+    const reason = inferGapReason({
+      en: 'Have a look at this.',
+      ko: '이거 한번 봐요.',
+      guess: 'take a look',
+      match: 'wrong',
+      cueMode: 'blind',
+    });
+    expect(reason).toContain('목적어');
+    expect(reason).not.toContain('주어: 잘못');
+    expect(reason).not.toMatch(/have at/);
+
+    const fuzzy = FuzzyMatch.matchAnswer('take a look', 'Have a look at this.', {
+      leniency: 1,
+    });
+    expect(['exact', 'fuzzy']).toContain(fuzzy.level);
   });
 
   it('writes reason into gap markdown', () => {

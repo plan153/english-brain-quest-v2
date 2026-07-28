@@ -316,6 +316,79 @@ interface PhraseSlots {
   noun: string;
   tokens: string[];
   isQuestion: boolean;
+  isImperative: boolean;
+}
+
+const LIGHT_VERBS = new Set(['have', 'take', 'make', 'give', 'do', 'get', 'pay', 'keep']);
+const LOOK_ADJECTIVES = new Set([
+  'closer',
+  'quick',
+  'proper',
+  'good',
+  'careful',
+  'brief',
+  'long',
+]);
+const IMPERATIVE_STARTERS = new Set([
+  ...LIGHT_VERBS,
+  'look',
+  'go',
+  'come',
+  'put',
+  'let',
+  'feel',
+  'find',
+  'try',
+  'wait',
+  'stop',
+  'start',
+  'open',
+  'close',
+  'tell',
+  'ask',
+  'call',
+  'help',
+  'listen',
+  'watch',
+  'read',
+  'write',
+  'speak',
+  'say',
+]);
+
+/** have/take a (adj)? look → 비교용 정규화 */
+export function normalizeLookIdiom(text: string): string {
+  return String(text || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9'\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(
+      /\b(?:take|have)\s+a(?:n)?\s+(?:(closer|quick|proper|good|careful|brief|long)\s+)?look\b/g,
+      (_m, adj?: string) => (adj ? `have a ${adj.trim()} look` : 'have a look')
+    );
+}
+
+function lookIdiomKey(text: string): string | null {
+  const n = normalizeLookIdiom(text);
+  const m = n.match(/\bhave a(?: (closer|quick|proper|good|careful|brief|long))? look\b/);
+  if (!m) return null;
+  return `look:${m[1] || ''}`;
+}
+
+function verbsEquivalent(a: string, b: string): boolean {
+  if (!a || !b) return false;
+  const al = a.toLowerCase().trim();
+  const bl = b.toLowerCase().trim();
+  if (al === bl || baseForm(al) === baseForm(bl)) return true;
+  const ka = lookIdiomKey(al);
+  const kb = lookIdiomKey(bl);
+  if (ka && kb && ka === kb) return true;
+  if (normalizeLookIdiom(al) === normalizeLookIdiom(bl)) return true;
+  // "take a look" ⊂ "have a look at this"
+  if (ka && normalizeLookIdiom(bl).includes(normalizeLookIdiom(al))) return true;
+  if (kb && normalizeLookIdiom(al).includes(normalizeLookIdiom(bl))) return true;
+  return false;
 }
 
 function takeNounPhrase(tokens: string[], start: number): { text: string; end: number } {
@@ -327,10 +400,15 @@ function takeNounPhrase(tokens: string[], start: number): { text: string; end: n
   if (DETERMINERS.has(t0)) {
     const parts = [t0];
     let i = start + 1;
-    while (i < tokens.length && !AUX.has(tokens[i]!) && !PREPS.has(tokens[i]!) && !SUBJECT_PRONOUNS.has(tokens[i]!)) {
+    while (
+      i < tokens.length &&
+      !AUX.has(tokens[i]!) &&
+      !PREPS.has(tokens[i]!) &&
+      !SUBJECT_PRONOUNS.has(tokens[i]!)
+    ) {
       parts.push(tokens[i]!);
       i += 1;
-      if (parts.length >= 3) break;
+      if (parts.length >= 4) break;
     }
     return { text: parts.join(' '), end: i };
   }
@@ -340,73 +418,146 @@ function takeNounPhrase(tokens: string[], start: number): { text: string; end: n
   return { text: '', end: start };
 }
 
+/** have/take/make + a + (adj)? + noun */
+function takeLightVerbPhrase(
+  tokens: string[],
+  start: number
+): { text: string; end: number } | null {
+  if (start >= tokens.length) return null;
+  const v0 = tokens[start]!;
+  if (!LIGHT_VERBS.has(v0)) return null;
+  if (start + 1 >= tokens.length || !DETERMINERS.has(tokens[start + 1]!)) return null;
+  const parts = [v0, tokens[start + 1]!];
+  let i = start + 2;
+  while (i < tokens.length && LOOK_ADJECTIVES.has(tokens[i]!)) {
+    parts.push(tokens[i]!);
+    i += 1;
+  }
+  if (i >= tokens.length || FUNCTION.has(tokens[i]!) || PREPS.has(tokens[i]!)) {
+    // "have a" alone — not enough
+    if (parts.length < 3) return null;
+  } else {
+    parts.push(tokens[i]!); // noun head: look, rest, break…
+    i += 1;
+  }
+  if (parts.length < 3) return null;
+  return { text: parts.join(' '), end: i };
+}
+
 function extractSlots(tokens: string[]): PhraseSlots {
   if (tokens.length === 0) {
-    return { subject: '', verb: '', noun: '', tokens, isQuestion: false };
+    return {
+      subject: '',
+      verb: '',
+      noun: '',
+      tokens,
+      isQuestion: false,
+      isImperative: false,
+    };
   }
 
   let i = 0;
   let isQuestion = false;
+  let isImperative = false;
   let subject = '';
   let verb = '';
   let noun = '';
 
   // Do/Does/Did/Can... you need help?
-  if (AUX.has(tokens[0]!) && tokens.length >= 2) {
-    isQuestion = true;
-    const aux = tokens[0]!;
-    i = 1;
-    const subj = takeNounPhrase(tokens, i);
-    subject = subj.text;
-    i = subj.end;
-    if (i < tokens.length && !AUX.has(tokens[i]!)) {
-      verb = `${aux} ${tokens[i]}`;
-      i += 1;
-    } else {
-      verb = aux;
-    }
-  } else {
-    const subj = takeNounPhrase(tokens, 0);
-    subject = subj.text;
-    i = subj.end;
-    // be / have / do + rest
-    if (i < tokens.length && AUX.has(tokens[i]!)) {
-      const aux = tokens[i]!;
-      i += 1;
-      if (i < tokens.length && tokens[i] === 'not') i += 1;
-      if (i < tokens.length && !PREPS.has(tokens[i]!) && !DETERMINERS.has(tokens[i]!)) {
-        // "is going", "has finished", "can go"
-        if (
-          tokens[i]!.endsWith('ing') ||
-          tokens[i]!.endsWith('ed') ||
-          PAST_TO_BASE[tokens[i]!] ||
-          !FUNCTION.has(tokens[i]!)
-        ) {
-          verb = `${aux} ${tokens[i]}`;
-          i += 1;
-        } else {
-          verb = aux;
-        }
+  if (AUX.has(tokens[0]!) && tokens.length >= 2 && tokens[0] !== 'have') {
+    // "have a look" is light verb, not question aux when followed by determiner
+    if (!(tokens[0] === 'have' && DETERMINERS.has(tokens[1]!))) {
+      isQuestion = true;
+      const aux = tokens[0]!;
+      i = 1;
+      const subj = takeNounPhrase(tokens, i);
+      subject = subj.text;
+      i = subj.end;
+      if (i < tokens.length && !AUX.has(tokens[i]!)) {
+        verb = `${aux} ${tokens[i]}`;
+        i += 1;
       } else {
         verb = aux;
       }
-    } else if (i < tokens.length) {
-      verb = tokens[i]!;
-      i += 1;
     }
   }
 
-  while (i < tokens.length && (PREPS.has(tokens[i]!) || tokens[i] === 'to')) {
-    // "to the store" / "for help" — keep prep for noun phrase
-    break;
+  if (!isQuestion) {
+    const startsWithSubject = SUBJECT_PRONOUNS.has(tokens[0]!);
+    const light = takeLightVerbPhrase(tokens, 0);
+    const imperativeStart =
+      !startsWithSubject &&
+      (IMPERATIVE_STARTERS.has(tokens[0]!) || !!light);
+
+    if (imperativeStart) {
+      isImperative = true;
+      subject = ''; // you 생략
+      if (light) {
+        verb = light.text;
+        i = light.end;
+      } else {
+        verb = tokens[0]!;
+        i = 1;
+      }
+    } else {
+      const subj = takeNounPhrase(tokens, 0);
+      // Don't treat "a look" as subject when followed by nothing useful from light verb at 0
+      // Normal SVO
+      if (
+        startsWithSubject ||
+        (!DETERMINERS.has(tokens[0]!) && !LIGHT_VERBS.has(tokens[0]!))
+      ) {
+        subject = subj.text;
+        i = subj.end;
+      } else if (light) {
+        // rare: "have a look" as statement fragment
+        isImperative = true;
+        verb = light.text;
+        i = light.end;
+      } else {
+        subject = subj.text;
+        i = subj.end;
+      }
+
+      if (!verb) {
+        const light2 = takeLightVerbPhrase(tokens, i);
+        if (light2) {
+          verb = light2.text;
+          i = light2.end;
+        } else if (i < tokens.length && AUX.has(tokens[i]!)) {
+          const aux = tokens[i]!;
+          i += 1;
+          if (i < tokens.length && tokens[i] === 'not') i += 1;
+          if (i < tokens.length && !PREPS.has(tokens[i]!) && !DETERMINERS.has(tokens[i]!)) {
+            if (
+              tokens[i]!.endsWith('ing') ||
+              tokens[i]!.endsWith('ed') ||
+              PAST_TO_BASE[tokens[i]!] ||
+              !FUNCTION.has(tokens[i]!)
+            ) {
+              verb = `${aux} ${tokens[i]}`;
+              i += 1;
+            } else {
+              verb = aux;
+            }
+          } else {
+            verb = aux;
+          }
+        } else if (i < tokens.length) {
+          verb = tokens[i]!;
+          i += 1;
+        }
+      }
+    }
   }
+
   if (i < tokens.length && PREPS.has(tokens[i]!)) {
     i += 1;
   }
   const obj = takeNounPhrase(tokens, i);
   noun = obj.text;
 
-  return { subject, verb, noun, tokens, isQuestion };
+  return { subject, verb, noun, tokens, isQuestion, isImperative };
 }
 
 function findTokenMatch(haystack: string[], needle: string): boolean {
@@ -450,21 +601,27 @@ function subjectWhy(expected: string, actual: string): string {
 }
 
 function verbWhy(expected: string, actual: string): string {
-  if (!actual) return '동사 자리가 비어 있어요. 무슨 동작/상태인지 먼저 정해 보세요.';
+  if (!actual) return '동사(또는 have/take a look 같은 동사구)가 비어 있어요.';
+  if (verbsEquivalent(expected, actual)) {
+    return '동사구 뜻은 같아요.';
+  }
   const eb = baseForm(expected.split(/\s+/).pop()!);
   const ab = baseForm(actual.split(/\s+/).pop()!);
   if (eb === ab) {
     return '동사 원형은 맞는데 시제·인칭 형태가 달라요.';
   }
+  if (lookIdiomKey(expected) && lookIdiomKey(actual) && lookIdiomKey(expected) !== lookIdiomKey(actual)) {
+    return `같은 look 표현이지만 형용사가 달라요. 정답「${expected}」, 말한 것「${actual}」.`;
+  }
   return `정답 동사「${expected}」대신「${actual}」을(를) 썼어요.`;
 }
 
 function nounWhy(expected: string, actual: string): string {
-  if (!actual) return '목적어·명사 자리가 비어 있어요. 무엇을/누구를 말하는지 떠올려 보세요.';
+  if (!actual) return '목적어 자리가 비어 있어요. 무엇을/누구를 말하는지 떠올려 보세요.';
   if (baseForm(expected.split(/\s+/).pop()!) === baseForm(actual.split(/\s+/).pop()!)) {
-    return '명사 핵은 비슷한데 관사·한정어가 달라요.';
+    return '목적어 핵은 비슷한데 관사·한정어가 달라요.';
   }
-  return `정답 명사「${expected}」대신「${actual}」을(를) 골랐어요.`;
+  return `정답 목적어「${expected}」대신「${actual}」을(를) 골랐어요.`;
 }
 
 function tenseLabel(slots: PhraseSlots): 'past' | 'present' | 'future' | 'unknown' {
@@ -485,7 +642,7 @@ function roleLabel(role: GapSlotRole): string {
     case 'verb':
       return '동사';
     case 'noun':
-      return '명사';
+      return '목적어';
     case 'tense':
       return '시제';
     case 'agreement':
@@ -527,8 +684,10 @@ export function analyzeGapSlots(args: {
   const saidTokens = tokenize(args.guess);
   const findings: GapSlotFinding[] = [];
 
-  // 주어
-  if (target.subject) {
+  // 주어 — 명령문은 you 생략이므로 주어 슬롯을 문제로 잡지 않음
+  if (target.isImperative) {
+    // 사용자가 불필요하게 주어를 넣었을 때만 가벼운 안내 (문제 목록엔 보통 안 넣음)
+  } else if (target.subject) {
     const has = findTokenMatch(saidTokens, target.subject);
     const actual = said.subject;
     if (!has && !actual) {
@@ -558,14 +717,11 @@ export function analyzeGapSlots(args: {
     }
   }
 
-  // 동사
+  // 동사 (have/take a look 동의 포함)
   if (target.verb) {
-    const targetVerbParts = target.verb.split(/\s+/);
-    const mainExpected = targetVerbParts[targetVerbParts.length - 1]!;
-    const hasExact = findTokenMatch(saidTokens, target.verb);
-    const hasBase = saidTokens.some((t) => baseForm(t) === baseForm(mainExpected));
     const actual = said.verb;
-    if (!hasExact && !hasBase && !actual) {
+    const equivalent = verbsEquivalent(target.verb, actual) || verbsEquivalent(target.verb, args.guess);
+    if (!actual && !lookIdiomKey(args.guess)) {
       findings.push({
         role: 'verb',
         status: 'missing',
@@ -573,15 +729,7 @@ export function analyzeGapSlots(args: {
         actual: '',
         why: verbWhy(target.verb, ''),
       });
-    } else if (!hasExact) {
-      findings.push({
-        role: 'verb',
-        status: 'wrong',
-        expected: target.verb,
-        actual: actual || saidTokens.find((t) => !SUBJECT_PRONOUNS.has(t)) || '(다름)',
-        why: verbWhy(target.verb, actual || ''),
-      });
-    } else {
+    } else if (equivalent) {
       findings.push({
         role: 'verb',
         status: 'ok',
@@ -589,13 +737,22 @@ export function analyzeGapSlots(args: {
         actual: actual || target.verb,
         why: '',
       });
+    } else {
+      findings.push({
+        role: 'verb',
+        status: 'wrong',
+        expected: target.verb,
+        actual: actual || '(다름)',
+        why: verbWhy(target.verb, actual || args.guess),
+      });
     }
   }
 
-  // 명사(목적어)
+  // 목적어
   if (target.noun) {
     const has = findTokenMatch(saidTokens, target.noun);
     const actual = said.noun;
+    // take/have a look만 말하고 at this를 뺀 경우 → 목적어 못 찾음
     if (!has && !actual) {
       findings.push({
         role: 'noun',

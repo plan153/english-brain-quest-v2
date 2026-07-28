@@ -51,7 +51,7 @@ const PACK_SOURCES: PackSource[] = [
   {
     id: 'pattern',
     name: '패턴 약점',
-    description: '주어·동사·시제·3sg 등 슬롯',
+    description: '주어·동사·목적어·시제·3sg 등 슬롯',
     load: async () => [],
   },
   {
