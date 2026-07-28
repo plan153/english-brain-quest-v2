@@ -1,0 +1,4509 @@
+{
+  "version": 1,
+  "description": "김재우의 영어회화 100 미니북 — Day 1~100, 일 5문장",
+  "source": "Project_English/Library/Patterns/영어회화 100.md",
+  "itemCount": 500,
+  "items": [
+    {
+      "id": "jc-d01-01",
+      "day": 1,
+      "topic": "전치사 for를 이용해 취향 표현하기",
+      "en": "Working from home is not for me.",
+      "ko": "재택근무는 저랑 안 맞아요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d01-02",
+      "day": 1,
+      "topic": "전치사 for를 이용해 취향 표현하기",
+      "en": "Blind dates are not for me.",
+      "ko": "소개팅은 저랑 안 맞아요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d01-03",
+      "day": 1,
+      "topic": "전치사 for를 이용해 취향 표현하기",
+      "en": "Laptops are not really for me.",
+      "ko": "노트북은 저랑 좀 안 맞아요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d01-04",
+      "day": 1,
+      "topic": "전치사 for를 이용해 취향 표현하기",
+      "en": "Electric cars are not my thing.",
+      "ko": "전기차는 좀 별로예요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d01-05",
+      "day": 1,
+      "topic": "전치사 for를 이용해 취향 표현하기",
+      "en": "That kind of guy is not my type.",
+      "ko": "그런 남자는 나는 별로야",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d02-01",
+      "day": 2,
+      "topic": "동사 wait를 이용해 기대감 표현하기",
+      "en": "I want to move into a new house.",
+      "ko": "새집으로 이사가고 싶어요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d02-02",
+      "day": 2,
+      "topic": "동사 wait를 이용해 기대감 표현하기",
+      "en": "I can't wait to see what happens in the next episode.",
+      "ko": "다음 에피소드는 어떤 내용일지 궁금해 미치겠어",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d02-03",
+      "day": 2,
+      "topic": "동사 wait를 이용해 기대감 표현하기",
+      "en": "I can't wait to see the look on my wife's face when she opens my gift.",
+      "ko": "아내가 제 선물을 개봉할 때 어떤 표정일지 궁금해 죽겠습니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d02-04",
+      "day": 2,
+      "topic": "동사 wait를 이용해 기대감 표현하기",
+      "en": "I can't wait for this project to finish.",
+      "ko": "이 프로젝트가 빨리 끝났으면 좋겠어요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d02-05",
+      "day": 2,
+      "topic": "동사 wait를 이용해 기대감 표현하기",
+      "en": "I can't wait to eat dinner; it smells so good.",
+      "ko": "저녁식사 맛있는 냄새가 나네, 어서 먹고 싶어",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d03-01",
+      "day": 3,
+      "topic": "동사 mind를 이용해 조심스럽게 양해 구하기",
+      "en": "Could you make it a bit shorter, please?",
+      "ko": "죄송한데 조금 짧게 해주시겠어요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d03-02",
+      "day": 3,
+      "topic": "동사 mind를 이용해 조심스럽게 양해 구하기",
+      "en": "Would you mind if I have the last piece of pizza?",
+      "ko": "마지막 남은 피자 한 조각 먹어도 될까요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d03-03",
+      "day": 3,
+      "topic": "동사 mind를 이용해 조심스럽게 양해 구하기",
+      "en": "Would you mind picking up some coffee on your way?",
+      "ko": "미안한데 오는 길에 커피 좀 사다 줄 수 있나요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d03-04",
+      "day": 3,
+      "topic": "동사 mind를 이용해 조심스럽게 양해 구하기",
+      "en": "Would you mind turning down the AC?",
+      "ko": "에어컨 온도를 좀 낮추면 안 될까요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d03-05",
+      "day": 3,
+      "topic": "동사 mind를 이용해 조심스럽게 양해 구하기",
+      "en": "Would you mind if I ask you a personal question?",
+      "ko": "개인적인 질문 하나 해도 될까요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d04-01",
+      "day": 4,
+      "topic": "부사 super를 이용해 강조 표현하기",
+      "en": "Prices are going up way too much.",
+      "ko": "물가가 올라도 너무 올라요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d04-02",
+      "day": 4,
+      "topic": "부사 super를 이용해 강조 표현하기",
+      "en": "That woman is super tall.",
+      "ko": "그 여자분 키 엄청 커요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d04-03",
+      "day": 4,
+      "topic": "부사 super를 이용해 강조 표현하기",
+      "en": "He is super busy, or maybe he's losing interest in me.",
+      "ko": "그 사람이 무지 바쁘거나 저에 대한 관심이 식고 있는 거겠죠",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d04-04",
+      "day": 4,
+      "topic": "부사 super를 이용해 강조 표현하기",
+      "en": "I've been super busy preparing for the move.",
+      "ko": "제가 요즘 이사 준비 때문에 엄청 바빴어요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d04-05",
+      "day": 4,
+      "topic": "부사 super를 이용해 강조 표현하기",
+      "en": "She looks super great for her age.",
+      "ko": "연세 있으신 분 치고는 몸매가 너무 좋으시네요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d05-01",
+      "day": 5,
+      "topic": "동사 feel을 이용해 감정이나 생각 물어보기",
+      "en": "How do you feel about buying used items?",
+      "ko": "중고물품 사는 거 어떻게 생각하세요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d05-02",
+      "day": 5,
+      "topic": "동사 feel을 이용해 감정이나 생각 물어보기",
+      "en": "How do you feel about getting plastic surgery?",
+      "ko": "성형수술 하는 거 어떻게 생각하세요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d05-03",
+      "day": 5,
+      "topic": "동사 feel을 이용해 감정이나 생각 물어보기",
+      "en": "How do you feel about changing the schedule?",
+      "ko": "일정을 바꾸는 거 어떻게 생각하세요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d05-04",
+      "day": 5,
+      "topic": "동사 feel을 이용해 감정이나 생각 물어보기",
+      "en": "How do you feel about moving to a new office?",
+      "ko": "새 사무실로 이사하는 거 어떻게 생각하세요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d05-05",
+      "day": 5,
+      "topic": "동사 feel을 이용해 감정이나 생각 물어보기",
+      "en": "How do you feel about working overtime today?",
+      "ko": "오늘 야근하는 거 어떻게 생각하세요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d06-01",
+      "day": 6,
+      "topic": "모든 것 중 최고라고 강조하기",
+      "en": "There is nothing like camping to recharge.",
+      "ko": "재충전에는 캠핑만 한 게 없죠",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d06-02",
+      "day": 6,
+      "topic": "모든 것 중 최고라고 강조하기",
+      "en": "There is nothing like a nice meal with friends to shake off a bad week.",
+      "ko": "안 좋았던 한 주를 날려버리려면 친구들과 맛있는 식사를 하는 게 최고지",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d06-03",
+      "day": 6,
+      "topic": "모든 것 중 최고라고 강조하기",
+      "en": "There is nothing like watching Netflix all weekend.",
+      "ko": "주말 내내 넷플릭스 드라마 보는 게 최고야",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d06-04",
+      "day": 6,
+      "topic": "모든 것 중 최고라고 강조하기",
+      "en": "There is nothing like turkey and fine wine for Christmas.",
+      "ko": "크리스마스에는 칠면조와 풍미 좋은 와인만 한 게 없지",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d06-05",
+      "day": 6,
+      "topic": "모든 것 중 최고라고 강조하기",
+      "en": "There is nothing like real maple syrup on pancakes.",
+      "ko": "팬케이크에는 진짜 메이플 시럽을 얹어 먹어야 제맛이야",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d07-01",
+      "day": 7,
+      "topic": "I'm down for를 이용해 제안에 동의하기",
+      "en": "I'm down for anything as long as it's not too spicy.",
+      "ko": "너무 매운 것만 아니면 뭐든 다 좋아요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d07-02",
+      "day": 7,
+      "topic": "I'm down for를 이용해 제안에 동의하기",
+      "en": "I'm down for anything with a Michelin star.",
+      "ko": "미슐랭 스타를 받은 음식이라면 뭐든 좋아",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d07-03",
+      "day": 7,
+      "topic": "I'm down for를 이용해 제안에 동의하기",
+      "en": "I'm down for whatever you want to do.",
+      "ko": "하고 싶어? 난 뭐든 다 좋아",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d07-04",
+      "day": 7,
+      "topic": "I'm down for를 이용해 제안에 동의하기",
+      "en": "I'm looking for a beer pong partner. Are you down?",
+      "ko": "비어퐁 파트너 찾고 있는데 관심 있어?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d07-05",
+      "day": 7,
+      "topic": "I'm down for를 이용해 제안에 동의하기",
+      "en": "I'm craving fried chicken. Who's down for tonight?",
+      "ko": "프라이드 치킨이 무지 먹고 싶어, 오늘 밤에 같이 먹을 사람?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d08-01",
+      "day": 8,
+      "topic": "동사 feel을 이용해 몸 상태 표현하기",
+      "en": "I'm not feeling well today.",
+      "ko": "오늘 몸이 좀 안 좋아요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d08-02",
+      "day": 8,
+      "topic": "동사 feel을 이용해 몸 상태 표현하기",
+      "en": "I'd love to go, but I'm not feeling well today.",
+      "ko": "나도 가고는 싶은데 오늘 몸이 좀 안 좋아",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d08-03",
+      "day": 8,
+      "topic": "동사 feel을 이용해 몸 상태 표현하기",
+      "en": "Honey, I'm not feeling well. Can you pick up Sujin from school?",
+      "ko": "여보 나 오늘 몸이 좀 안 좋아, 수진이 학교에서 좀 데려와 줄래",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d08-04",
+      "day": 8,
+      "topic": "동사 feel을 이용해 몸 상태 표현하기",
+      "en": "I don't think I'll eat dinner because I'm not feeling well.",
+      "ko": "오늘은 저녁 안 먹을래, 몸이 좀 안 좋아서",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d08-05",
+      "day": 8,
+      "topic": "동사 feel을 이용해 몸 상태 표현하기",
+      "en": "I don't think I should go to your daughter's party; I'm not feeling well.",
+      "ko": "너희 딸 파티에 나는 안 가는 게 좋을 것 같아, 오늘 몸이 좀 안 좋네",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d09-01",
+      "day": 9,
+      "topic": "공손하게 제안하기",
+      "en": "Shall I get you some coffee? I'm at Starbucks right now.",
+      "ko": "저 지금 스타벅스인데 커피 사다 드릴까요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d09-02",
+      "day": 9,
+      "topic": "공손하게 제안하기",
+      "en": "Shall I read the first sentence?",
+      "ko": "제가 첫 번째 문장을 읽을까요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d09-03",
+      "day": 9,
+      "topic": "공손하게 제안하기",
+      "en": "Shall I bring you some water since I'm getting up?",
+      "ko": "일어난 김에 물 좀 가져다 드릴까요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d09-04",
+      "day": 9,
+      "topic": "공손하게 제안하기",
+      "en": "Shall I send you the revised version?",
+      "ko": "수정본 보내 드릴까요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d09-05",
+      "day": 9,
+      "topic": "공손하게 제안하기",
+      "en": "Shall I come along?",
+      "ko": "내가 따라가 줄까?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d10-01",
+      "day": 10,
+      "topic": "생각이나 의견 묻거나 답하기",
+      "en": "What price range are you thinking of?",
+      "ko": "가격대는 어느 정도 생각하세요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d10-02",
+      "day": 10,
+      "topic": "생각이나 의견 묻거나 답하기",
+      "en": "Are you thinking of anyone specific for the lead role?",
+      "ko": "주연배우로 생각하고 있는 분 있으신가요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d10-03",
+      "day": 10,
+      "topic": "생각이나 의견 묻거나 답하기",
+      "en": "I am thinking of applying to a translation graduate school.",
+      "ko": "통번역 대학원 진학을 고민하고 있어요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d10-04",
+      "day": 10,
+      "topic": "생각이나 의견 묻거나 답하기",
+      "en": "I am thinking of going to Australia for the holidays.",
+      "ko": "연휴 때 호주로 여행을 갈까 생각 중입니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d10-05",
+      "day": 10,
+      "topic": "생각이나 의견 묻거나 답하기",
+      "en": "I was thinking of Mongolia for my next trip, but I decided not to.",
+      "ko": "다음 여행은 몽골을 생각 중이었는데 안 가기로 했습니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d11-01",
+      "day": 11,
+      "topic": "소망 및 부러움 표현하기",
+      "en": "I wish I had that much money, too.",
+      "ko": "나도 그렇게 돈이 많으면 좋으련만",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d11-02",
+      "day": 11,
+      "topic": "소망 및 부러움 표현하기",
+      "en": "I wish I had your confidence.",
+      "ko": "너의 자신감이 참 부럽다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d11-03",
+      "day": 11,
+      "topic": "소망 및 부러움 표현하기",
+      "en": "I wish I could go with you, but I don't have time.",
+      "ko": "저도 같이 가고 싶긴 한데 시간이 안 나네요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d11-04",
+      "day": 11,
+      "topic": "소망 및 부러움 표현하기",
+      "en": "I wish I could eat seafood.",
+      "ko": "제가 해산물을 못 먹어서 너무 아쉽네요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d11-05",
+      "day": 11,
+      "topic": "소망 및 부러움 표현하기",
+      "en": "I wish I could spend more time with my family.",
+      "ko": "항상 가족들이랑 시간을 좀 더 보내고 싶은데 그러질 못하네요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d12-01",
+      "day": 12,
+      "topic": "동사 sound를 이용해 생각이나 의견 묻기",
+      "en": "How does 2:30 sound?",
+      "ko": "2시 30분 어때요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d12-02",
+      "day": 12,
+      "topic": "동사 sound를 이용해 생각이나 의견 묻기",
+      "en": "I don't feel like cooking. How does fried chicken sound?",
+      "ko": "요리하고 싶지 않아, 프라이드 치킨 먹는 건 어때?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d12-03",
+      "day": 12,
+      "topic": "동사 sound를 이용해 생각이나 의견 묻기",
+      "en": "How does Indian food sound for dinner tonight?",
+      "ko": "오늘 저녁에는 인도 음식 먹을까 싶은데 어때?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d12-04",
+      "day": 12,
+      "topic": "동사 sound를 이용해 생각이나 의견 묻기",
+      "en": "How does going to Gyeonggi-do sound if we can't take Monday off?",
+      "ko": "월요일 월차 못 내면 그냥 경기도 가서 휴가 보내야 할 듯해, 어때?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d12-05",
+      "day": 12,
+      "topic": "동사 sound를 이용해 생각이나 의견 묻기",
+      "en": "How does meeting on Zoom next week sound?",
+      "ko": "다음 주는 줌에서 만나면 어떨까 하는데 어떠세요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d13-01",
+      "day": 13,
+      "topic": "There is something을 이용해 무언가가 있다고 말하기",
+      "en": "There is something different about BTS.",
+      "ko": "방탄소년단은 뭔가 좀 달라",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d13-02",
+      "day": 13,
+      "topic": "There is something을 이용해 무언가가 있다고 말하기",
+      "en": "There is something weird about this interview.",
+      "ko": "이번에 면접 봤는데 뭔가 이상했어요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d13-03",
+      "day": 13,
+      "topic": "There is something을 이용해 무언가가 있다고 말하기",
+      "en": "There is something about this brand that people love.",
+      "ko": "이 브랜드에 사람들이 열광하는 이유가 있지",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d13-04",
+      "day": 13,
+      "topic": "There is something을 이용해 무언가가 있다고 말하기",
+      "en": "There is something about him that draws you in.",
+      "ko": "그 사람에게는 뭔가 끌리는 점이 있어요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d13-05",
+      "day": 13,
+      "topic": "There is something을 이용해 무언가가 있다고 말하기",
+      "en": "There is something about Yoo Jae-seok that makes people comfortable.",
+      "ko": "유재석은 뭔가 사람을 편하게 해주는 게 있어",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d14-01",
+      "day": 14,
+      "topic": "완료 여부에 대해 묻고 답하기",
+      "en": "Are you finished eating?",
+      "ko": "다 먹은 거니?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d14-02",
+      "day": 14,
+      "topic": "완료 여부에 대해 묻고 답하기",
+      "en": "Are you finished using this? May I use it?",
+      "ko": "다 쓰신 거죠, 제가 써도 될까요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d14-03",
+      "day": 14,
+      "topic": "완료 여부에 대해 묻고 답하기",
+      "en": "Are you finished reading the book I lent you?",
+      "ko": "제가 빌려준 책 다 읽은 거죠?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d14-04",
+      "day": 14,
+      "topic": "완료 여부에 대해 묻고 답하기",
+      "en": "I have finished checking the car.",
+      "ko": "차량 점검 마쳤습니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d14-05",
+      "day": 14,
+      "topic": "완료 여부에 대해 묻고 답하기",
+      "en": "Don't come in yet. I'm not finished changing clothes.",
+      "ko": "들어오지 마, 나 아직 옷 덜 갈아입었다고",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d15-01",
+      "day": 15,
+      "topic": "잘 어울린다고 말하기",
+      "en": "This T-shirt looks good on you.",
+      "ko": "이 티셔츠 너한테 잘 어울려",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d15-02",
+      "day": 15,
+      "topic": "잘 어울린다고 말하기",
+      "en": "This outfit looks good on you.",
+      "ko": "이 옷 너한테 잘 어울린다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d15-03",
+      "day": 15,
+      "topic": "잘 어울린다고 말하기",
+      "en": "Turtlenecks don't look good on me because I have a short neck.",
+      "ko": "제가 목이 짧아서 터틀넥은 저한테 안 어울려요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d15-04",
+      "day": 15,
+      "topic": "잘 어울린다고 말하기",
+      "en": "Just because glasses are expensive doesn't mean they look good on you.",
+      "ko": "안경이 비싸다고 잘 어울리는 건 아닙니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d15-05",
+      "day": 15,
+      "topic": "잘 어울린다고 말하기",
+      "en": "When I first saw this hat, I thought it would look great on my boyfriend.",
+      "ko": "이 모자를 봤을 때 남자친구가 쓰면 잘 어울리겠다고 생각했어요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d16-01",
+      "day": 16,
+      "topic": "동사 work를 이용해 일정 논의하기",
+      "en": "Does Tuesday work for you?",
+      "ko": "화요일 시간 괜찮으세요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d16-02",
+      "day": 16,
+      "topic": "동사 work를 이용해 일정 논의하기",
+      "en": "Actually, Tuesday works better for me.",
+      "ko": "사실 화요일이 더 좋습니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d16-03",
+      "day": 16,
+      "topic": "동사 work를 이용해 일정 논의하기",
+      "en": "Does Wednesday work for you?",
+      "ko": "수요일 괜찮은가요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d16-04",
+      "day": 16,
+      "topic": "동사 work를 이용해 일정 논의하기",
+      "en": "The dates you suggested don't work for us at all.",
+      "ko": "제안주신 날짜가 저희랑은 하나도 안 맞습니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d16-05",
+      "day": 16,
+      "topic": "동사 work를 이용해 일정 논의하기",
+      "en": "Anytime after 1:00 works for me.",
+      "ko": "1시 이후에는 다 좋습니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d17-01",
+      "day": 17,
+      "topic": "화제의 전환하기 (Speaking of which)",
+      "en": "Speaking of which, what happened between you and Nicole last night?",
+      "ko": "말이 나왔으니 말인데, 어젯밤에 너랑 니콜 사이에 무슨 일이 있었던 거야?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d17-02",
+      "day": 17,
+      "topic": "화제의 전환하기 (Speaking of which)",
+      "en": "Speaking of money, I owe you 100,000 won.",
+      "ko": "돈 이야기가 나왔으니 말인데, 너한테 10만 원 갚을 거 있어",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d17-03",
+      "day": 17,
+      "topic": "화제의 전환하기 (Speaking of which)",
+      "en": "Speaking of weather, this autumn has been unusually warm, hasn't it?",
+      "ko": "날씨 이야기가 나왔으니 말인데, 이번 가을은 유난히 따뜻했어",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d17-04",
+      "day": 17,
+      "topic": "화제의 전환하기 (Speaking of which)",
+      "en": "Speaking of grocery shopping, did you hear a new hypermarket opened near Shinchon Station?",
+      "ko": "장보는 이야기가 나왔으니 말인데, 신촌역 부근에 대형마트가 생겼다는 거 들었어요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d17-05",
+      "day": 17,
+      "topic": "화제의 전환하기 (Speaking of which)",
+      "en": "Speaking of Terry, how is he doing? Did he find a new apartment?",
+      "ko": "테리 이야기가 나왔으니 말인데, 어떻게 지냈대?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d18-01",
+      "day": 18,
+      "topic": "추가 일정 및 휴가 말하기",
+      "en": "I'm taking tomorrow off.",
+      "ko": "나 내일 쉬어",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d18-02",
+      "day": 18,
+      "topic": "추가 일정 및 휴가 말하기",
+      "en": "You really need to take some time off for a while.",
+      "ko": "너 진짜 당분간 일 좀 쉬어야 해",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d18-03",
+      "day": 18,
+      "topic": "추가 일정 및 휴가 말하기",
+      "en": "Can I take the afternoon off? I think I'm getting a migraine.",
+      "ko": "오후 반차를 좀 내도 될까요? 편두통이 오는 것 같아서요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d18-04",
+      "day": 18,
+      "topic": "추가 일정 및 휴가 말하기",
+      "en": "You haven't taken a single day off this year.",
+      "ko": "너 올해는 단 하루도 안 쉬었구나",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d18-05",
+      "day": 18,
+      "topic": "추가 일정 및 휴가 말하기",
+      "en": "Shana is not coming in early next week; she's taking a 3-day leave after a minor surgery.",
+      "ko": "샤나는 다음 주 초에 출근 안 합니다. 간단한 수술 후 3일 휴가 예정이라서요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d19-01",
+      "day": 19,
+      "topic": "바쁜 상황 표현하기",
+      "en": "I am busy writing my thesis.",
+      "ko": "제가 논문 쓰느라 바쁩니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d19-02",
+      "day": 19,
+      "topic": "바쁜 상황 표현하기",
+      "en": "I am busy preparing for the workshop.",
+      "ko": "워크숍 준비하느라 바쁩니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d19-03",
+      "day": 19,
+      "topic": "바쁜 상황 표현하기",
+      "en": "I am super busy studying these days.",
+      "ko": "공부하느라 요새 무척 바쁩니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d19-04",
+      "day": 19,
+      "topic": "바쁜 상황 표현하기",
+      "en": "I am super busy because I'm moving soon.",
+      "ko": "제가 곧 이사해서 요즘 엄청 바쁩니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d19-05",
+      "day": 19,
+      "topic": "바쁜 상황 표현하기",
+      "en": "I am busy handling administrative work.",
+      "ko": "나 행정업무 하느라 무지 바빠",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d20-01",
+      "day": 20,
+      "topic": "동사 see를 이용해 반대 의사 표현하기",
+      "en": "I don't see it that way.",
+      "ko": "제 생각은 좀 다릅니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d20-02",
+      "day": 20,
+      "topic": "동사 see를 이용해 반대 의사 표현하기",
+      "en": "He thinks we're in a serious relationship, but I don't see it that way.",
+      "ko": "그 친구는 우리가 진지한 관계인 줄 아는데 저는 안 그렇거든요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d20-03",
+      "day": 20,
+      "topic": "동사 see를 이용해 반대 의사 표현하기",
+      "en": "You said this cake is too sweet? I don't see it that way.",
+      "ko": "이 케이크 너무 달다고? 난 안 그런 것 같은데",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d20-04",
+      "day": 20,
+      "topic": "동사 see를 이용해 반대 의사 표현하기",
+      "en": "Many people think housing prices will keep falling, but I don't see it that way.",
+      "ko": "많은 사람들이 부동산 가격이 계속 하락할 거라 생각하지만 제 생각은 다릅니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d20-05",
+      "day": 20,
+      "topic": "동사 see를 이용해 반대 의사 표현하기",
+      "en": "Some media say Elon Musk is ruining Twitter, but I don't see it that way.",
+      "ko": "일부 언론에서는 일론 머스크가 트위터를 망치고 있다지만 제 생각은 다릅니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d21-01",
+      "day": 21,
+      "topic": "동사 afford를 통해 금액에 대한 부담 표현하기",
+      "en": "That was a bit out of my budget.",
+      "ko": "저한테는 좀 부담스러운 금액이었어요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d21-02",
+      "day": 21,
+      "topic": "동사 afford를 통해 금액에 대한 부담 표현하기",
+      "en": "I wonder if I can afford that car with my salary.",
+      "ko": "제 월급으로 그 차를 살 수 있을지 모르겠네요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d21-03",
+      "day": 21,
+      "topic": "동사 afford를 통해 금액에 대한 부담 표현하기",
+      "en": "Let's get a big TV. Can we afford it?",
+      "ko": "TV 큰 걸로 하자, 감당할 수 있어?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d21-04",
+      "day": 21,
+      "topic": "동사 afford를 통해 금액에 대한 부담 표현하기",
+      "en": "We can't afford to eat out.",
+      "ko": "외식할 형편이 안 됩니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d21-05",
+      "day": 21,
+      "topic": "동사 afford를 통해 금액에 대한 부담 표현하기",
+      "en": "We can't afford to live in Gangnam.",
+      "ko": "강남에 살 형편이 안 됩니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d22-01",
+      "day": 22,
+      "topic": "비싸다고 말하기",
+      "en": "This is more expensive than I thought.",
+      "ko": "제가 생각했던 것보다 비싸네요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d22-02",
+      "day": 22,
+      "topic": "비싸다고 말하기",
+      "en": "Everything is out of my price range. Is there anything under 200,000 won?",
+      "ko": "전부 제가 생각한 예산 밖이군요. 20만 원 미만은 없을까요?",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d22-03",
+      "day": 22,
+      "topic": "비싸다고 말하기",
+      "en": "Even the cheapest one was out of my budget.",
+      "ko": "제일 저렴한 것도 제 예산 밖이더라고요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d22-04",
+      "day": 22,
+      "topic": "비싸다고 말하기",
+      "en": "The wooden table you recommended way exceeds my budget.",
+      "ko": "추천해주신 나무 테이블이 제 예산을 훨씬 초과하네요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d22-05",
+      "day": 22,
+      "topic": "비싸다고 말하기",
+      "en": "Fruits and vegetables are always way too expensive.",
+      "ko": "과일이나 채소는 늘 너무 비싸요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d23-01",
+      "day": 23,
+      "topic": "싸다고 말하기 (You get what you pay for)",
+      "en": "You get what you pay for.",
+      "ko": "싼 게 비지떡이지 뭐",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d23-02",
+      "day": 23,
+      "topic": "싸다고 말하기 (You get what you pay for)",
+      "en": "The sofa is only a year old, but it's falling apart. You get what you pay for.",
+      "ko": "소파가 1년밖에 안 됐는데 너덜너덜하네. 싼 게 비지떡이지 뭐",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d23-03",
+      "day": 23,
+      "topic": "싸다고 말하기 (You get what you pay for)",
+      "en": "I didn't expect much for the price, but it's edible. You get what you pay for.",
+      "ko": "가격은 기대 안 했는데 먹을만해. 딱 그 가격인 듯",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d23-04",
+      "day": 23,
+      "topic": "싸다고 말하기 (You get what you pay for)",
+      "en": "I figured it was too cheap for a reason. You get what you pay for.",
+      "ko": "왠지 너무 싸다 싶었어요. 싼 게 비지떡이죠",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d23-05",
+      "day": 23,
+      "topic": "싸다고 말하기 (You get what you pay for)",
+      "en": "Always remember: you get what you pay for.",
+      "ko": "싼 게 비지떡이라는 점 꼭 기억하렴",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d24-01",
+      "day": 24,
+      "topic": "다행이라는 의견 자연스럽게 전달하기",
+      "en": "I'm glad you found a babysitter.",
+      "ko": "베이비시터 구했다니 다행입니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d24-02",
+      "day": 24,
+      "topic": "다행이라는 의견 자연스럽게 전달하기",
+      "en": "I'm glad you liked it.",
+      "ko": "마음에 들었다니 다행이네요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d24-03",
+      "day": 24,
+      "topic": "다행이라는 의견 자연스럽게 전달하기",
+      "en": "I'm glad you enjoyed it.",
+      "ko": "재미있다니 다행이네",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d24-04",
+      "day": 24,
+      "topic": "다행이라는 의견 자연스럽게 전달하기",
+      "en": "I'm glad you did a good job on this morning's presentation.",
+      "ko": "오늘 아침 발표를 잘했다니 다행입니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d24-05",
+      "day": 24,
+      "topic": "다행이라는 의견 자연스럽게 전달하기",
+      "en": "I'm so glad I don't have to wake up early tomorrow.",
+      "ko": "내일 일찍 안 일어나도 돼서 얼마나 다행인지",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d25-01",
+      "day": 25,
+      "topic": "부담 주지 않으면서 요청하기",
+      "en": "Please feel free to contact me anytime between 9 and 6 on weekdays.",
+      "ko": "평일 오전 9시에서 오후 6시 사이에 언제라도 편하게 연락 주시기 바랍니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d25-02",
+      "day": 25,
+      "topic": "부담 주지 않으면서 요청하기",
+      "en": "Let me know if you can't make it—no pressure.",
+      "ko": "안 되면 부담 없이 알려주세요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d25-03",
+      "day": 25,
+      "topic": "부담 주지 않으면서 요청하기",
+      "en": "I heard your parents are visiting this week. Feel free to take Friday off if needed.",
+      "ko": "부모님 오신다면서요, 필요하면 부담 갖지 말고 금요일은 쉬세요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d25-04",
+      "day": 25,
+      "topic": "부담 주지 않으면서 요청하기",
+      "en": "Could you take a look at my essay and give me feedback? No pressure if you're busy.",
+      "ko": "SA 보시고 피드백 주실 수 있을까요? 바쁘시면 부담 갖지 말고 안 된다고 하세요",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d25-05",
+      "day": 25,
+      "topic": "부담 주지 않으면서 요청하기",
+      "en": "Feel free to contact my assistant to set up a meeting.",
+      "ko": "편하게 제 비서에게 연락해서 회의 잡으시면 됩니다",
+      "level": 1,
+      "practiceBand": "L1"
+    },
+    {
+      "id": "jc-d26-01",
+      "day": 26,
+      "topic": "시간에 대해 강조해서 말하기",
+      "en": "What time is it, and you're drinking coffee?",
+      "ko": "시간이 몇 신데 커피를 마셔?",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d26-02",
+      "day": 26,
+      "topic": "시간에 대해 강조해서 말하기",
+      "en": "What time is it, and you're still awake?",
+      "ko": "시간이 몇 신데 아직도 안 자고 뭐 해?",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d26-03",
+      "day": 26,
+      "topic": "시간에 대해 강조해서 말하기",
+      "en": "Who on earth is knocking on the door at this hour?",
+      "ko": "이 늦은 시간에 누가 문을 두드리는 거지?",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d26-04",
+      "day": 26,
+      "topic": "시간에 대해 강조해서 말하기",
+      "en": "Is it really possible to get food delivery at this time in a big city?",
+      "ko": "대도시에서 지금 이 시간에 음식 배달이 된다는 게 말이 돼?",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d26-05",
+      "day": 26,
+      "topic": "시간에 대해 강조해서 말하기",
+      "en": "I want to get it delivered tomorrow. Can I still order at this time?",
+      "ko": "내일 배송받고 싶은데 지금 이 시간에 주문해도 가능할까요?",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d27-01",
+      "day": 27,
+      "topic": "쓰임새가 다양한 grab 활용하기",
+      "en": "Would you like to grab some breakfast?",
+      "ko": "아침 식사 하실래요?",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d27-02",
+      "day": 27,
+      "topic": "쓰임새가 다양한 grab 활용하기",
+      "en": "Can you grab some flour on your way home? We're out of flour.",
+      "ko": "집에 오는 길에 밀가루 좀 사올 수 있어?",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d27-03",
+      "day": 27,
+      "topic": "쓰임새가 다양한 grab 활용하기",
+      "en": "I was going to grab a cup of coffee before heading back to the office, but look at that line.",
+      "ko": "사무실 들어가기 전에 커피 한 잔 사서 들어갈까 했더니 안 되겠다, 저기 사람들 줄 좀 봐",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d27-04",
+      "day": 27,
+      "topic": "쓰임새가 다양한 grab 활용하기",
+      "en": "A few of us are going to grab a drink after the workshop. Want to join?",
+      "ko": "우리 워크숍 마치고 한잔하려고 하는데 너도 같이 갈래?",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d27-05",
+      "day": 27,
+      "topic": "쓰임새가 다양한 grab 활용하기",
+      "en": "Can you grab some bungeoppang on your way home?",
+      "ko": "집에 오는 길에 붕어빵 좀 사다 줘",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d28-01",
+      "day": 28,
+      "topic": "적응 및 익숙함에 대해 말하기",
+      "en": "I can't get used to this smell.",
+      "ko": "냄새가 적응이 안 되네요",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d28-02",
+      "day": 28,
+      "topic": "적응 및 익숙함에 대해 말하기",
+      "en": "I feel uncomfortable around people I meet for the first time.",
+      "ko": "저는 처음 보는 사람들 옆에 있으면 불편해요",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d28-03",
+      "day": 28,
+      "topic": "적응 및 익숙함에 대해 말하기",
+      "en": "I'm not a fan of samhap; I can't get used to the smell.",
+      "ko": "저는 삼합은 별로예요, 냄새가 적응이 안 됩니다",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d28-04",
+      "day": 28,
+      "topic": "적응 및 익숙함에 대해 말하기",
+      "en": "I can't get used to working from home; I keep getting distracted.",
+      "ko": "재택근무에 적응이 안 되네요, 계속 딴짓을 하게 됩니다",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d28-05",
+      "day": 28,
+      "topic": "적응 및 익숙함에 대해 말하기",
+      "en": "It took me a while to get used to this Galaxy phone.",
+      "ko": "이 갤럭시 폰에 적응하는 데 한참 걸렸어요",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d29-01",
+      "day": 29,
+      "topic": "무엇을 하고 나서야 비로소 ~하다라고 말하기",
+      "en": "I thought it would come tomorrow, but it won't until then.",
+      "ko": "내일이나 올 줄 알았더니...",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d29-02",
+      "day": 29,
+      "topic": "무엇을 하고 나서야 비로소 ~하다라고 말하기",
+      "en": "They don't open until 11. Let's meet at 11:20.",
+      "ko": "그곳은 11시나 돼야 열어, 11시 20분에 보자",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d29-03",
+      "day": 29,
+      "topic": "무엇을 하고 나서야 비로소 ~하다라고 말하기",
+      "en": "It was not until I turned 12 that I took a plane for the first time.",
+      "ko": "저는 12살이 되어서야 처음 비행기를 타봤어요",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d29-04",
+      "day": 29,
+      "topic": "무엇을 하고 나서야 비로소 ~하다라고 말하기",
+      "en": "I'm a heavy smoker now, but I didn't start smoking until I was 25.",
+      "ko": "지금은 골초지만 25살이 되어서야 처음 담배를 피워봤답니다",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d29-05",
+      "day": 29,
+      "topic": "무엇을 하고 나서야 비로소 ~하다라고 말하기",
+      "en": "I didn't travel abroad for the first time until I was 38.",
+      "ko": "전 38이 되어서야 처음으로 해외여행을 했답니다",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d30-01",
+      "day": 30,
+      "topic": "think of A as B로 비유 나타내기",
+      "en": "Think of it as a compliment.",
+      "ko": "칭찬으로 생각하렴",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d30-02",
+      "day": 30,
+      "topic": "think of A as B로 비유 나타내기",
+      "en": "Samantha regards me as a nuisance.",
+      "ko": "사만다는 저를 성가신 존재로 여깁니다",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d30-03",
+      "day": 30,
+      "topic": "think of A as B로 비유 나타내기",
+      "en": "I always buy coffee for clients; I think of it as an investment.",
+      "ko": "저는 늘 고객들에게 커피를 삽니다. 투자라고 생각하기 때문이지요",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d30-04",
+      "day": 30,
+      "topic": "think of A as B로 비유 나타내기",
+      "en": "We failed to advance to the next round, but I hope you think of this defeat as a chance to grow.",
+      "ko": "다음 라운드 진출은 실패했지만 이번 패배를 성장할 수 있는 기회로 생각하길 바랍니다",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d30-05",
+      "day": 30,
+      "topic": "think of A as B로 비유 나타내기",
+      "en": "Don't think of working out as a chore; think of it as a daily routine.",
+      "ko": "운동을 귀찮은 일로 생각하지 말고 하루 일과로 생각해",
+      "level": 1,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d31-01",
+      "day": 31,
+      "topic": "상대에 대한 이해 표현하기 (No wonder)",
+      "en": "No wonder you have so much energy.",
+      "ko": "그래서 네가 늘 힘이 넘치는구나",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d31-02",
+      "day": 31,
+      "topic": "상대에 대한 이해 표현하기 (No wonder)",
+      "en": "No wonder you are always late for work.",
+      "ko": "그래서 자네가 항상 회사에 지각을 하는 거군",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d31-03",
+      "day": 31,
+      "topic": "상대에 대한 이해 표현하기 (No wonder)",
+      "en": "No wonder the design was changed at the last minute.",
+      "ko": "그래서 마지막 순간에 디자인이 바뀐 거군요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d31-04",
+      "day": 31,
+      "topic": "상대에 대한 이해 표현하기 (No wonder)",
+      "en": "No wonder the weather in San Diego is so nice.",
+      "ko": "그래서 샌디에이고 날씨가 그렇게 좋은 거구나",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d31-05",
+      "day": 31,
+      "topic": "상대에 대한 이해 표현하기 (No wonder)",
+      "en": "No wonder you couldn't make it to the team dinner last night.",
+      "ko": "그래서 네가 어젯밤에 팀 회식에 못 온 거구나",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d32-01",
+      "day": 32,
+      "topic": "용건 및 목적 말하기",
+      "en": "I'm calling to check if tonight's plan is still on.",
+      "ko": "오늘 밤 약속 유효한지 확인차 연락드려요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d32-02",
+      "day": 32,
+      "topic": "용건 및 목적 말하기",
+      "en": "I'm calling to thank you for helping me pack before moving.",
+      "ko": "이사하기 전에 이삿짐 싸는 거 도와줘서 고맙다는 말 하려고 연락했어요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d32-03",
+      "day": 32,
+      "topic": "용건 및 목적 말하기",
+      "en": "I'm calling to see if we're still meeting on Friday.",
+      "ko": "우리가 금요일에 보는 거 유효한지 확인차 연락드려요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d32-04",
+      "day": 32,
+      "topic": "용건 및 목적 말하기",
+      "en": "I'm calling to let you know your tire is flat.",
+      "ko": "타이어에 바람이 빠졌다는 거 알려드리려고요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d32-05",
+      "day": 32,
+      "topic": "용건 및 목적 말하기",
+      "en": "Are you the owner of the blue Chevy Bolt? I'm calling to ask if you could move your car.",
+      "ko": "파란색 쉐보레 볼트 차주 되시죠? 혹시 차 좀 빼주실 수 있는지 여쭤보려고 연락드립니다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d33-01",
+      "day": 33,
+      "topic": "기대 또는 고대하는 일 말하기",
+      "en": "I look forward to hearing from you.",
+      "ko": "연락 기다리겠습니다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d33-02",
+      "day": 33,
+      "topic": "기대 또는 고대하는 일 말하기",
+      "en": "I look forward to your feedback.",
+      "ko": "피드백 기다리겠습니다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d33-03",
+      "day": 33,
+      "topic": "기대 또는 고대하는 일 말하기",
+      "en": "I look forward to the opportunity to work at your company.",
+      "ko": "귀사에서 일할 수 있는 기회가 꼭 주어졌으면 합니다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d33-04",
+      "day": 33,
+      "topic": "기대 또는 고대하는 일 말하기",
+      "en": "The weather is finally getting cooler. I look forward to autumn.",
+      "ko": "드디어 날씨가 조금 선선해지고 있네, 어서 가을이 왔으면",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d33-05",
+      "day": 33,
+      "topic": "기대 또는 고대하는 일 말하기",
+      "en": "I look forward to seeing you soon.",
+      "ko": "곧 얼굴 뵙기를 기대합니다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d34-01",
+      "day": 34,
+      "topic": "기분이나 느낌 자연스럽게 묻기",
+      "en": "What is it like working as an analytics expert at Google?",
+      "ko": "구글에서 분석 전문가로 일해보니 어때요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d34-02",
+      "day": 34,
+      "topic": "기분이나 느낌 자연스럽게 묻기",
+      "en": "What is it like living as a working mom?",
+      "ko": "워킹맘으로 살아간다는 건 어떤 느낌인가요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d34-03",
+      "day": 34,
+      "topic": "기분이나 느낌 자연스럽게 묻기",
+      "en": "What is it like working as an English teacher at a kindergarten?",
+      "ko": "유치원에서 영어 선생님으로 일하니 어떤가요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d34-04",
+      "day": 34,
+      "topic": "기분이나 느낌 자연스럽게 묻기",
+      "en": "What is it like working in a high-pressure field?",
+      "ko": "압박감이 심한 분야에서 근무하시는 게 어떤 느낌인가요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d34-05",
+      "day": 34,
+      "topic": "기분이나 느낌 자연스럽게 묻기",
+      "en": "I know what it's like to lose someone you love.",
+      "ko": "사랑하는 사람을 잃는다는 게 어떤 건지 잘 압니다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d35-01",
+      "day": 35,
+      "topic": "오형식 문형으로 부탁하거나 의뢰하기",
+      "en": "Please cook it a little more.",
+      "ko": "조금만 더 익혀 주세요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d35-02",
+      "day": 35,
+      "topic": "오형식 문형으로 부탁하거나 의뢰하기",
+      "en": "Could you cook the steak a little more? It looks undercooked; I wanted medium.",
+      "ko": "스테이크 조금 더 익혀 주실 수 있을까요? 덜 익은 걸로 보이는데 미디엄으로 원했거든요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d35-03",
+      "day": 35,
+      "topic": "오형식 문형으로 부탁하거나 의뢰하기",
+      "en": "Could you pack the leftovers for me?",
+      "ko": "남은 음식은 싸주시겠어요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d35-04",
+      "day": 35,
+      "topic": "오형식 문형으로 부탁하거나 의뢰하기",
+      "en": "Do you know anywhere I can get a coat altered around here?",
+      "ko": "이 근처에 코트 수선할 곳 있을까요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d35-05",
+      "day": 35,
+      "topic": "오형식 문형으로 부탁하거나 의뢰하기",
+      "en": "Could you cut the top hair just 1cm shorter?",
+      "ko": "윗머리를 1cm만 더 잘라 주실 수 있을까요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d36-01",
+      "day": 36,
+      "topic": "무엇을 할 것인지 물어보기",
+      "en": "What are you doing tomorrow night?",
+      "ko": "내일 밤에 뭐 해요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d36-02",
+      "day": 36,
+      "topic": "무엇을 할 것인지 물어보기",
+      "en": "What are you doing after work today?",
+      "ko": "오늘 퇴근하고 뭐 하세요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d36-03",
+      "day": 36,
+      "topic": "무엇을 할 것인지 물어보기",
+      "en": "What are you guys doing this weekend?",
+      "ko": "얘들아 이번 주말에 뭐 해?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d36-04",
+      "day": 36,
+      "topic": "무엇을 할 것인지 물어보기",
+      "en": "What are you doing this Friday? I was thinking we could grab dinner.",
+      "ko": "이번 주 금요일에 뭐 하니? 나가서 저녁이나 할까 싶어서",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d36-05",
+      "day": 36,
+      "topic": "무엇을 할 것인지 물어보기",
+      "en": "What are you doing tonight? Want to catch a movie?",
+      "ko": "오늘 밤에 뭐 해? 영화나 볼까?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d37-01",
+      "day": 37,
+      "topic": "타이밍에 대해 말하기",
+      "en": "You called right on time.",
+      "ko": "딱 맞게 전화했네",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d37-02",
+      "day": 37,
+      "topic": "타이밍에 대해 말하기",
+      "en": "You called right before I went to bed.",
+      "ko": "너 자기 전에 내가 딱 맞게 전화를 잘했네",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d37-03",
+      "day": 37,
+      "topic": "타이밍에 대해 말하기",
+      "en": "Hi Andy, I was just about to head out. You called right on time. Keep it short.",
+      "ko": "안녕 앤디, 나가려던 참인데 딱 맞게 전화했네. 짧게 부탁해",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d37-04",
+      "day": 37,
+      "topic": "타이밍에 대해 말하기",
+      "en": "The plane was about to take off. You called just in the nick of time.",
+      "ko": "비행기가 막 이륙하려는 참인데 아슬아슬하게 전화했구나",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d37-05",
+      "day": 37,
+      "topic": "타이밍에 대해 말하기",
+      "en": "Alex, I was just about to take a shower and you called. What's up?",
+      "ko": "알렉스, 샤워하려던 참인데 네가 딱 전화를 했네. 무슨 일이야?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d38-01",
+      "day": 38,
+      "topic": "카페나 식당에서 쓸 수 있는 표현",
+      "en": "Is this for here or to go?",
+      "ko": "매장 내에서 드실 거예요, 아님 가져가세요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d38-02",
+      "day": 38,
+      "topic": "카페나 식당에서 쓸 수 있는 표현",
+      "en": "Let's get this coffee to go.",
+      "ko": "이 커피 테이크아웃해서 가자",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d38-03",
+      "day": 38,
+      "topic": "카페나 식당에서 쓸 수 있는 표현",
+      "en": "After 9 PM, you can't dine in, but takeout is available.",
+      "ko": "저녁 9시가 넘으면 식당 안에서는 드실 수 없지만 포장은 가능합니다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d38-04",
+      "day": 38,
+      "topic": "카페나 식당에서 쓸 수 있는 표현",
+      "en": "I don't think I can eat my dessert now. Could you box it to go?",
+      "ko": "지금은 디저트를 못 먹을 것 같아서요, 포장해 주실 수 있을까요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d38-05",
+      "day": 38,
+      "topic": "카페나 식당에서 쓸 수 있는 표현",
+      "en": "If you bring your own container, they give you more jajangmyeon.",
+      "ko": "포장용 그릇을 가져가면 짜장면을 더 줘",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d39-01",
+      "day": 39,
+      "topic": "How about을 이용해 의견 묻기",
+      "en": "How about meeting at Sookmyung Women's Univ. Station?",
+      "ko": "숙대입구역에서 만나는 게 어떨까요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d39-02",
+      "day": 39,
+      "topic": "How about을 이용해 의견 묻기",
+      "en": "How about we meet at 6 on Tuesday?",
+      "ko": "우리 화요일 6시에 만나는 거 어때요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d39-03",
+      "day": 39,
+      "topic": "How about을 이용해 의견 묻기",
+      "en": "How about having a simple lunch at the pizza place across the street?",
+      "ko": "길 건너 피자 가게에서 간단하게 점심 먹으면 어떨까요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d39-04",
+      "day": 39,
+      "topic": "How about을 이용해 의견 묻기",
+      "en": "How about turning it off and turning it on again?",
+      "ko": "전원을 껐다가 다시 켜면 어떨까?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d39-05",
+      "day": 39,
+      "topic": "How about을 이용해 의견 묻기",
+      "en": "How about setting her up with Melinda?",
+      "ko": "그 친구 멜린다랑 자리 마련해주면 어떨까?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d40-01",
+      "day": 40,
+      "topic": "동사 get을 이용해 무언가를 가져다주는 표현 말하기",
+      "en": "I got some coffee.",
+      "ko": "커피 사왔어요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d40-02",
+      "day": 40,
+      "topic": "동사 get을 이용해 무언가를 가져다주는 표현 말하기",
+      "en": "Can you get me a glass of water since you're getting up?",
+      "ko": "일어난 김에 물 한 잔 가져다줄래요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d40-03",
+      "day": 40,
+      "topic": "동사 get을 이용해 무언가를 가져다주는 표현 말하기",
+      "en": "Thank you for the wonderful hand cream. You shouldn't have gotten it for me.",
+      "ko": "멋진 핸드크림 선물로 주셔서 감사해요. 그러지 않으셔도 되는데",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d40-04",
+      "day": 40,
+      "topic": "동사 get을 이용해 무언가를 가져다주는 표현 말하기",
+      "en": "I'm thinking of getting skin lotion for the students as a Christmas gift.",
+      "ko": "학생들에게 크리스마스 선물로 스킨 로션을 해줄까 생각 중입니다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d40-05",
+      "day": 40,
+      "topic": "동사 get을 이용해 무언가를 가져다주는 표현 말하기",
+      "en": "What did you get your wife for her birthday?",
+      "ko": "아내분 생일 선물을 뭐 해주셨어요?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d41-01",
+      "day": 41,
+      "topic": "정중하게 거절하기",
+      "en": "I'm good, thanks.",
+      "ko": "고맙지만 저는 괜찮아요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d41-02",
+      "day": 41,
+      "topic": "정중하게 거절하기",
+      "en": "Would you like another slice of cake? No, I'm really good.",
+      "ko": "케이크 한 조각 더 드실래요? 아니요, 정말 괜찮아요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d41-03",
+      "day": 41,
+      "topic": "정중하게 거절하기",
+      "en": "Want some more, Kelly? No, I'm good.",
+      "ko": "켈리 더 줄까요? 아니요, 괜찮아요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d41-04",
+      "day": 41,
+      "topic": "정중하게 거절하기",
+      "en": "I'm good with just this for now.",
+      "ko": "지금 이것만으로도 충분해요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d41-05",
+      "day": 41,
+      "topic": "정중하게 거절하기",
+      "en": "Do you want me to get something from the convenience store, or are you good?",
+      "ko": "편의점에서 뭐 사다 줄까, 아님 괜찮아?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d42-01",
+      "day": 42,
+      "topic": "여러모로 쓸모가 많은 figure out 활용하기",
+      "en": "You are quick to figure things out.",
+      "ko": "눈치가 빠르시네요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d42-02",
+      "day": 42,
+      "topic": "여러모로 쓸모가 많은 figure out 활용하기",
+      "en": "I can't figure out the AC. We need to call a technician.",
+      "ko": "나는 에어컨 도저히 못 고치겠다, 기술자 불러야겠어",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d42-03",
+      "day": 42,
+      "topic": "여러모로 쓸모가 많은 figure out 활용하기",
+      "en": "Seoul's subway system might be a bit confusing for foreigners to figure out.",
+      "ko": "외국인들한테는 서울 지하철이 좀 헷갈릴 수도 있을 거예요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d42-04",
+      "day": 42,
+      "topic": "여러모로 쓸모가 많은 figure out 활용하기",
+      "en": "I've been taking a break for 5 months now. I have no idea what to figure out next.",
+      "ko": "지금 5달째 쉬고 있습니다. 다음에 뭘 해야 할지 막막합니다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d42-05",
+      "day": 42,
+      "topic": "여러모로 쓸모가 많은 figure out 활용하기",
+      "en": "I looked through my whole closet, but I can't figure out what to wear.",
+      "ko": "옷장을 다 뒤져봤는데도 뭘 입어야 할지 모르겠네",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d43-01",
+      "day": 43,
+      "topic": "동사 use를 이용해 넌지시 필요성 말하기",
+      "en": "I could use a cup of coffee.",
+      "ko": "커피 한 잔 마시면 좋겠네요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d43-02",
+      "day": 43,
+      "topic": "동사 use를 이용해 넌지시 필요성 말하기",
+      "en": "I could use some help moving this desk.",
+      "ko": "이 책상 옮기는 것 좀 도와줬으면 좋겠는데",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d43-03",
+      "day": 43,
+      "topic": "동사 use를 이용해 넌지시 필요성 말하기",
+      "en": "You could use some rest for a while.",
+      "ko": "너 당분간 좀 쉬어야겠다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d43-04",
+      "day": 43,
+      "topic": "동사 use를 이용해 넌지시 필요성 말하기",
+      "en": "We could use a new marketing strategy.",
+      "ko": "지금 마케팅 전략으로는 안 됩니다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d43-05",
+      "day": 43,
+      "topic": "동사 use를 이용해 넌지시 필요성 말하기",
+      "en": "I'm sorry, but I'm short 50 dollars for rent. I could really use your help.",
+      "ko": "미안한데 월세 낼 돈이 50달러 부족해. 네가 좀 도와주면 좋을 텐데",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d44-01",
+      "day": 44,
+      "topic": "칭찬에 대해 감사 표현하기",
+      "en": "I really appreciate you saying that.",
+      "ko": "그렇게 말씀해 주셔서 너무 고맙습니다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d44-02",
+      "day": 44,
+      "topic": "칭찬에 대해 감사 표현하기",
+      "en": "Do you really think so? I really appreciate it.",
+      "ko": "정말 그렇게 생각하세요? 말씀 너무 고맙습니다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d44-03",
+      "day": 44,
+      "topic": "칭찬에 대해 감사 표현하기",
+      "en": "I really appreciate your kind words.",
+      "ko": "말씀 정말 고마워요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d44-04",
+      "day": 44,
+      "topic": "칭찬에 대해 감사 표현하기",
+      "en": "I really appreciate you saying that.",
+      "ko": "그렇게 말씀해 주시다니 너무 고맙네요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d44-05",
+      "day": 44,
+      "topic": "칭찬에 대해 감사 표현하기",
+      "en": "I appreciate the offer, but I don't need any more help right now.",
+      "ko": "제안은 너무 고맙지만 지금은 더 이상의 도움은 필요 없어서 말이야",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d45-01",
+      "day": 45,
+      "topic": "동사 complain을 이용해 의견 말하기",
+      "en": "It's not bad.",
+      "ko": "나쁘지 않아요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d45-02",
+      "day": 45,
+      "topic": "동사 complain을 이용해 의견 말하기",
+      "en": "I can't complain; things are going well.",
+      "ko": "나쁘지 않아요, 일이 잘 풀리고 있어요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d45-03",
+      "day": 45,
+      "topic": "동사 complain을 이용해 의견 말하기",
+      "en": "I've been feeling a bit under the weather lately, but I can't complain.",
+      "ko": "최근에 몸이 살짝 불편하긴 한데 그래도 나쁘지 않습니다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d45-04",
+      "day": 45,
+      "topic": "동사 complain을 이용해 의견 말하기",
+      "en": "I can't complain; she's easy to work with.",
+      "ko": "나쁘지 않아요, 같이 일하기 편해요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d45-05",
+      "day": 45,
+      "topic": "동사 complain을 이용해 의견 말하기",
+      "en": "The Korean tacos are a bit less spicy, but I can't complain.",
+      "ko": "한국 타코가 좀 덜 맵긴 해요, 그래도 나쁘진 않아요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d46-01",
+      "day": 46,
+      "topic": "동사 owe를 이용해 갚아야 할 돈이나 신세에 대해 말하기",
+      "en": "You owe me 5 bucks.",
+      "ko": "너 나한테 5달러 줄 거 있어",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d46-02",
+      "day": 46,
+      "topic": "동사 owe를 이용해 갚아야 할 돈이나 신세에 대해 말하기",
+      "en": "You owe me 100,000 won.",
+      "ko": "너 나한테 10만 원 갚을 거 있잖아",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d46-03",
+      "day": 46,
+      "topic": "동사 owe를 이용해 갚아야 할 돈이나 신세에 대해 말하기",
+      "en": "Let me get something from the cafe; I owe you lunch anyway.",
+      "ko": "카페에서 뭐 좀 사갈까? 나 어차피 너한테 점심 사야 돼",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d46-04",
+      "day": 46,
+      "topic": "동사 owe를 이용해 갚아야 할 돈이나 신세에 대해 말하기",
+      "en": "I owe you one for helping me move.",
+      "ko": "이사하는 거 도와주셔서 제가 신세를 졌네요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d46-05",
+      "day": 46,
+      "topic": "동사 owe를 이용해 갚아야 할 돈이나 신세에 대해 말하기",
+      "en": "You treat me like I owe you something.",
+      "ko": "무슨 빚이라도 진 사람 같아",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d47-01",
+      "day": 47,
+      "topic": "동감 나타내기",
+      "en": "I feel the same way.",
+      "ko": "저도 같은 생각이에요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d47-02",
+      "day": 47,
+      "topic": "동감 나타내기",
+      "en": "I'm glad you felt the same way.",
+      "ko": "당신도 그렇게 느꼈다니 다행이군",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d47-03",
+      "day": 47,
+      "topic": "동감 나타내기",
+      "en": "I loved their service. I don't feel the same way.",
+      "ko": "그곳 서비스가 진짜 마음에 들었어 - 난 전혀 아닌데",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d47-04",
+      "day": 47,
+      "topic": "동감 나타내기",
+      "en": "I hate working with him, and I'm sure he feels the same way about me.",
+      "ko": "그 사람이랑 일하기 싫고 그 사람도 나에 대해 마찬가지일 거야",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d47-05",
+      "day": 47,
+      "topic": "동감 나타내기",
+      "en": "I'm glad you brought that up. I felt the same way.",
+      "ko": "그 이야기를 꺼내 주셔서 다행이네요, 저도 그렇게 느꼈어요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d48-01",
+      "day": 48,
+      "topic": "명사 hassle을 통해 번거로움 표현하기",
+      "en": "It feels like such a hassle.",
+      "ko": "너무 귀찮게 느껴져요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d48-02",
+      "day": 48,
+      "topic": "명사 hassle을 통해 번거로움 표현하기",
+      "en": "That feels like a huge hassle to me.",
+      "ko": "그건 저한테 엄청 귀찮게 느껴져요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d48-03",
+      "day": 48,
+      "topic": "명사 hassle을 통해 번거로움 표현하기",
+      "en": "Cooking just for yourself feels like such a hassle, right?",
+      "ko": "혼자 먹으려고 요리하는 게 엄청 귀찮게 느껴지시죠?",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d48-04",
+      "day": 48,
+      "topic": "명사 hassle을 통해 번거로움 표현하기",
+      "en": "Cleaning up after spilling coffee beans is such a hassle.",
+      "ko": "커피 원두를 쏟으면 주워 담는 게 일이지",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d48-05",
+      "day": 48,
+      "topic": "명사 hassle을 통해 번거로움 표현하기",
+      "en": "Short hair saves me time and hassle in the morning.",
+      "ko": "머리를 짧게 하면 아침에 시간도 아끼고 번거롭지도 않아요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d49-01",
+      "day": 49,
+      "topic": "관행에 대해 자연스럽게 말하기",
+      "en": "Things are just like that here.",
+      "ko": "여기는 원래 그래요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d49-02",
+      "day": 49,
+      "topic": "관행에 대해 자연스럽게 말하기",
+      "en": "You'll often hear the excuse, \"Things are just like that here.\"",
+      "ko": "그렇지만 \"여기는 원래 그래요\"라는 변명을 자주 듣게 될 겁니다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d49-03",
+      "day": 49,
+      "topic": "관행에 대해 자연스럽게 말하기",
+      "en": "Things are just like that in a capitalist society.",
+      "ko": "자본주의 사회에서는 원래 그런 거죠",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d49-04",
+      "day": 49,
+      "topic": "관행에 대해 자연스럽게 말하기",
+      "en": "At first I was mad the CEO's daughter got promoted before me, but I learned things are just like that in a family-run company.",
+      "ko": "처음엔 CEO 딸이 먼저 승진해서 화났지만, 가족 운영 기업에서는 원래 그렇다는 걸 알게 되었죠",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d49-05",
+      "day": 49,
+      "topic": "관행에 대해 자연스럽게 말하기",
+      "en": "That's just how things work here.",
+      "ko": "여기 시스템은 원래 그래요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d50-01",
+      "day": 50,
+      "topic": "잘하고 싶은 마음 표현하기",
+      "en": "I want to get better at golf.",
+      "ko": "골프를 더 잘 치고 싶어요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d50-02",
+      "day": 50,
+      "topic": "잘하고 싶은 마음 표현하기",
+      "en": "If you really want to get better at anything, you have to go all in.",
+      "ko": "뭐든 정말 더 잘하고 싶으면 올인을 해야 해",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d50-03",
+      "day": 50,
+      "topic": "잘하고 싶은 마음 표현하기",
+      "en": "Hang in there. Once you hit the intermediate level, it takes much longer to get better.",
+      "ko": "조금만 견디세요, 중급 레벨에 도달하면 실력이 느는 데 훨씬 더 오래 걸리거든요",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d50-04",
+      "day": 50,
+      "topic": "잘하고 싶은 마음 표현하기",
+      "en": "Practice is the only way to get better at something.",
+      "ko": "무언가를 더 잘하려면 연습만이 답이다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d50-05",
+      "day": 50,
+      "topic": "잘하고 싶은 마음 표현하기",
+      "en": "I've been cooking for myself since college, but I still want to get better.",
+      "ko": "대학 때부터 직접 요리해오고 있어요, 여전히 더 잘하고 싶답니다",
+      "level": 2,
+      "practiceBand": "L2"
+    },
+    {
+      "id": "jc-d51-01",
+      "day": 51,
+      "topic": "시간 여유에 대해 말하기",
+      "en": "I'm too busy to work out.",
+      "ko": "바빠서 운동할 시간이 안 나네요",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d51-02",
+      "day": 51,
+      "topic": "시간 여유에 대해 말하기",
+      "en": "The company got so busy I haven't even had time to go to the gym lately.",
+      "ko": "회사가 너무 바빠져서 요즘 헬스장 갈 시간도 없었어요",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d51-03",
+      "day": 51,
+      "topic": "시간 여유에 대해 말하기",
+      "en": "When it comes to relationships, you have to make time for each other.",
+      "ko": "관계에 있어서는 서로를 위해 시간을 내야 한다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d51-04",
+      "day": 51,
+      "topic": "시간 여유에 대해 말하기",
+      "en": "Writing a book keeps me so busy I sometimes don't have time to eat properly.",
+      "ko": "책을 쓰다 보니 너무 바쁘네요, 제대로 밥 챙겨 먹을 시간이 없을 때도 있습니다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d51-05",
+      "day": 51,
+      "topic": "시간 여유에 대해 말하기",
+      "en": "I usually go grocery shopping once every two weeks, but I haven't been able to make time for the last two months.",
+      "ko": "보통 2주에 한 번은 장 보러 가는데 최근엔 두 달 동안 시간을 못 냈어요",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d52-01",
+      "day": 52,
+      "topic": "전치사 for 다양하게 활용하기",
+      "en": "Considering the price, Daiso sells pretty good stuff.",
+      "ko": "다이소는 가격을 생각하면 꽤 좋은 물건들을 판다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d52-02",
+      "day": 52,
+      "topic": "전치사 for 다양하게 활용하기",
+      "en": "He is a bit short for a basketball player.",
+      "ko": "그 사람은 농구선수 치고는 키가 좀 작다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d52-03",
+      "day": 52,
+      "topic": "전치사 for 다양하게 활용하기",
+      "en": "It's pretty cold for a sunny place, isn't it?",
+      "ko": "해가 쨍쨍한 곳 치고는 상당히 춥다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d52-04",
+      "day": 52,
+      "topic": "전치사 for 다양하게 활용하기",
+      "en": "She is quite tall for an Asian.",
+      "ko": "그 여자분은 아시아인 치고는 키가 상당히 크다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d52-05",
+      "day": 52,
+      "topic": "전치사 for 다양하게 활용하기",
+      "en": "Considering the size of the apartment, my rent is really cheap.",
+      "ko": "집 크기를 생각하면 내 월세가 정말 싼 편이다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d53-01",
+      "day": 53,
+      "topic": "전치사 over 다양하게 활용하기",
+      "en": "Let's catch up over lunch.",
+      "ko": "점심 먹으면서 그동안 못했던 이야기 하자",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d53-02",
+      "day": 53,
+      "topic": "전치사 over 다양하게 활용하기",
+      "en": "How about discussing that over dinner?",
+      "ko": "그 이야기는 저녁 먹으면서 하면 어떨까요?",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d53-03",
+      "day": 53,
+      "topic": "전치사 over 다양하게 활용하기",
+      "en": "Sorry, I have to go now. Let's talk again later over a cup of coffee.",
+      "ko": "미안한데 지금 가봐야 해, 나중에 커피 한잔하면서 다시 이야기하자",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d53-04",
+      "day": 53,
+      "topic": "전치사 over 다양하게 활용하기",
+      "en": "My girlfriend went out with her friends. They must be gossiping over drinks.",
+      "ko": "제 여자친구가 친구들이랑 놀러 나갔어요, 술 마시면서 가십을 나누고 있는 게 틀림없어요",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d53-05",
+      "day": 53,
+      "topic": "전치사 over 다양하게 활용하기",
+      "en": "In Korea, people like to break the ice over samgyeopsal and soju.",
+      "ko": "한국에는 삼겹살과 소주를 하면서 친해지는 것을 좋아하는 것 같아",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d54-01",
+      "day": 54,
+      "topic": "동사 swing을 이용해 잠시 들르는 상황 표현하기",
+      "en": "Swing by my place for coffee before work.",
+      "ko": "출근 전에 잠깐 우리 집 들러서 커피한잔하고 가",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d54-02",
+      "day": 54,
+      "topic": "동사 swing을 이용해 잠시 들르는 상황 표현하기",
+      "en": "I forgot to buy Terry a present. Is there a bakery on the way to the party so we can swing by?",
+      "ko": "태리 선물 사는 걸 깜빡했다, 파티 가는 길에 빵집 있어 잠깐 들러서 케이크 사 갈까 싶은데",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d54-03",
+      "day": 54,
+      "topic": "동사 swing을 이용해 잠시 들르는 상황 표현하기",
+      "en": "Can I swing by your office this afternoon?",
+      "ko": "이따 오후에 네 사무실에 잠깐 들러도 될까?",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d54-04",
+      "day": 54,
+      "topic": "동사 swing을 이용해 잠시 들르는 상황 표현하기",
+      "en": "Can we swing by that bar on the way home?",
+      "ko": "집에 오는 길에 그 술집 들르면 안 돼?",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d54-05",
+      "day": 54,
+      "topic": "동사 swing을 이용해 잠시 들르는 상황 표현하기",
+      "en": "Let's swing by for one more drink. It's on me.",
+      "ko": "잠깐만 들러서 술 한잔만 더 하고 가자, 내가 살게",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d55-01",
+      "day": 55,
+      "topic": "약속 일정이 있다고 말하기",
+      "en": "I have a prior engagement.",
+      "ko": "죄송한데 선약이 있습니다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d55-02",
+      "day": 55,
+      "topic": "약속 일정이 있다고 말하기",
+      "en": "Sorry, I can't. I already have plans.",
+      "ko": "미안한데 안 돼, 나 이미 약속이 있거든",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d55-03",
+      "day": 55,
+      "topic": "약속 일정이 있다고 말하기",
+      "en": "How about going hiking this week? I have plans this Sunday.",
+      "ko": "이번 주에 등산이나 하면 어떨까 하는데, 이번 일요일에 약속 있어",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d55-04",
+      "day": 55,
+      "topic": "약속 일정이 있다고 말하기",
+      "en": "Do you want to come with me to an art exhibition on Friday if you don't have plans?",
+      "ko": "금요일에 나랑 전시회 갈래, 선약이 없으면 말이야",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d55-05",
+      "day": 55,
+      "topic": "약속 일정이 있다고 말하기",
+      "en": "Actually, I have an appointment with a real estate agent in Daechi-dong to look into moving.",
+      "ko": "실은 대치동에서 부동산 중개업자 분과 약속이 있어요, 거기로 이사를 할까 해서요",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d56-01",
+      "day": 56,
+      "topic": "돈이 부족한 상황 표현하기",
+      "en": "Money is a bit tight these days.",
+      "ko": "요새 돈이 좀 궁해",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d56-02",
+      "day": 56,
+      "topic": "돈이 부족한 상황 표현하기",
+      "en": "We should probably cook at home more often; things are a bit tight lately.",
+      "ko": "웬만하면 집에서 밥을 더 자주 해 먹어야 할 것 같아, 요즘 좀 빠듯해",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d56-03",
+      "day": 56,
+      "topic": "돈이 부족한 상황 표현하기",
+      "en": "If things are financially tight for you right now, I can pay.",
+      "ko": "너 요새 금전적으로 어려우면 계산은 내가 해도 돼",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d56-04",
+      "day": 56,
+      "topic": "돈이 부족한 상황 표현하기",
+      "en": "Is there any way to buy this on installment? My budget is a bit tight this month.",
+      "ko": "혹시 할부로 구매할 방법이 있을까요? 이 컴퓨터 너무 마음에 드는데 이번 달에 사정이 좀 안 좋아서요",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d56-05",
+      "day": 56,
+      "topic": "돈이 부족한 상황 표현하기",
+      "en": "This website has a lot of recipes you can make on a tight budget.",
+      "ko": "이 웹사이트에는 적은 돈으로 요리할 수 있는 레시피가 굉장히 많아요",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d57-01",
+      "day": 57,
+      "topic": "근무 시간에 대해 말하기",
+      "en": "How are the working hours?",
+      "ko": "근무 시간은 어때?",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d57-02",
+      "day": 57,
+      "topic": "근무 시간에 대해 말하기",
+      "en": "The working hours are long, but the pay is above average.",
+      "ko": "근무시간은 긴데 그래도 급여는 평균 이상이야",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d57-03",
+      "day": 57,
+      "topic": "근무 시간에 대해 말하기",
+      "en": "The working hours aren't bad, but the commute is too long.",
+      "ko": "근무시간은 나쁘지 않은데 출퇴근이 너무 오래 걸려",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d57-04",
+      "day": 57,
+      "topic": "근무 시간에 대해 말하기",
+      "en": "The hours are great—I can spend time with the kids tomorrow evening—but the pay is a little low.",
+      "ko": "근무 시간은 너무 좋아, 내일 저녁 애들이랑 시간을 보낼 수도 있고 근데 급여가 조금 낮아",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d57-05",
+      "day": 57,
+      "topic": "근무 시간에 대해 말하기",
+      "en": "I'd like to check what the working hours are and if overtime is mandatory.",
+      "ko": "근무 시간이 어떻게 되는지와 초과근무가 의무인지 확인하고 싶습니다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d58-01",
+      "day": 58,
+      "topic": "동사 handle을 이용해 감당하다의 의미 전달하기",
+      "en": "I have a lot of work, but it's manageable.",
+      "ko": "회사에 일이 너무 많긴 한데 그래도 감당하기 힘든 수준은 아닙니다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d58-02",
+      "day": 58,
+      "topic": "동사 handle을 이용해 감당하다의 의미 전달하기",
+      "en": "I just can't handle spicy Korean food.",
+      "ko": "매운 한국 음식은 도저히 감당이 안 돼요",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d58-03",
+      "day": 58,
+      "topic": "동사 handle을 이용해 감당하다의 의미 전달하기",
+      "en": "Korean summers are brutal. I get hot easily, so I can't handle the heat.",
+      "ko": "한국 여름은 살인적이에요. 제가 열이 많아서 더운 걸 못 견디거든요",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d58-04",
+      "day": 58,
+      "topic": "동사 handle을 이용해 감당하다의 의미 전달하기",
+      "en": "If anyone else is coming, let's cater the food. I can't handle cooking for ten people.",
+      "ko": "추가로 더 온다는 사람 있으면 파티 음식은 외부에 맡기자, 10인분 요리하는 건 힘들어",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d58-05",
+      "day": 58,
+      "topic": "동사 handle을 이용해 감당하다의 의미 전달하기",
+      "en": "I can't handle this stress anymore.",
+      "ko": "이 스트레스는 더 이상 못 견디겠어",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d59-01",
+      "day": 59,
+      "topic": "동사 call을 이용해 당위성 전달하기",
+      "en": "This calls for a party.",
+      "ko": "이건 파티해야 돼",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d59-02",
+      "day": 59,
+      "topic": "동사 call을 이용해 당위성 전달하기",
+      "en": "This calls for a celebration.",
+      "ko": "이건 축하해야 할 일이네",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d59-03",
+      "day": 59,
+      "topic": "동사 call을 이용해 당위성 전달하기",
+      "en": "This calls for another round.",
+      "ko": "한 잔 더 하러 가야 하겠어",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d59-04",
+      "day": 59,
+      "topic": "동사 call을 이용해 당위성 전달하기",
+      "en": "This calls for olive oil. Can I substitute it with corn oil?",
+      "ko": "이건 올리브기름이 있어야 하거든, 옥수수기름으로 대체해도 될까?",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d59-05",
+      "day": 59,
+      "topic": "동사 call을 이용해 당위성 전달하기",
+      "en": "This calls for vanilla extract. Do we have any left?",
+      "ko": "이건 바닐라 추출물이 있어야 해, 아직 좀 남았나?",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d60-01",
+      "day": 60,
+      "topic": "못 알아들었다를 다양하게 표현하기",
+      "en": "I'm sorry, I didn't catch that.",
+      "ko": "죄송해요, 잘 못 들었어요",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d60-02",
+      "day": 60,
+      "topic": "못 알아들었다를 다양하게 표현하기",
+      "en": "I'm sorry, I didn't catch that. Could you say it one more time?",
+      "ko": "미안한데 잘 못 들었어요, 한 번만 더 이야기해 주시겠어요?",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d60-03",
+      "day": 60,
+      "topic": "못 알아들었다를 다양하게 표현하기",
+      "en": "I didn't catch your name.",
+      "ko": "성함을 못 들은 것 같습니다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d60-04",
+      "day": 60,
+      "topic": "못 알아들었다를 다양하게 표현하기",
+      "en": "I didn't catch the date. When are you moving again?",
+      "ko": "날짜를 잘 못 들었어, 언제 다시 이사간다고?",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d60-05",
+      "day": 60,
+      "topic": "못 알아들었다를 다양하게 표현하기",
+      "en": "Did I miss anything?",
+      "ko": "혹시 놓친 부분이 있을까요?",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d61-01",
+      "day": 61,
+      "topic": "어쩐지 ~하더라 표현하기",
+      "en": "No wonder you look refreshed.",
+      "ko": "어쩐지 기분이 상쾌해 보이더라",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d61-02",
+      "day": 61,
+      "topic": "어쩐지 ~하더라 표현하기",
+      "en": "You came home at 3 AM last night and reeked of alcohol. No wonder you're sick today.",
+      "ko": "너 어제 새벽 3시나 돼서 집에 들어온 데다 술 냄새가 진동하더군, 오늘 아픈 게 당연한 거야",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d61-03",
+      "day": 61,
+      "topic": "어쩐지 ~하더라 표현하기",
+      "en": "I heard on the news there was a protest in your neighborhood. No wonder you were late.",
+      "ko": "너희 동네에서 시위가 있었다고 뉴스에서 들었어, 그래서 늦었구나",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d61-04",
+      "day": 61,
+      "topic": "어쩐지 ~하더라 표현하기",
+      "en": "He has zero fashion sense. No wonder he doesn't have a girlfriend.",
+      "ko": "그 사람은 패션 감각이 전혀 없어요, 그러니까 여자친구가 안 생기죠",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d61-05",
+      "day": 61,
+      "topic": "어쩐지 ~하더라 표현하기",
+      "en": "There are supply chain issues, so of course prices are going up.",
+      "ko": "공급망 문제가 있으니 가격이 올라가는 건 당연하죠",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d62-01",
+      "day": 62,
+      "topic": "적절한 무엇이 생각나지 않을 때 자연스럽게 말 이어가기",
+      "en": "I can't think of the right way to say this.",
+      "ko": "이 말을 어떻게 꺼내야 할지...",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d62-02",
+      "day": 62,
+      "topic": "적절한 무엇이 생각나지 않을 때 자연스럽게 말 이어가기",
+      "en": "I can't think of the exact word for my situation.",
+      "ko": "제 상황에 해당하는 딱 맞는 단어가 생각이 안 납니다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d62-03",
+      "day": 62,
+      "topic": "적절한 무엇이 생각나지 않을 때 자연스럽게 말 이어가기",
+      "en": "I can't think of a better word to express my anger.",
+      "ko": "화가 난다는 내 감정을 더 잘 표현할 수 있는 단어는 없는 듯해",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d62-04",
+      "day": 62,
+      "topic": "적절한 무엇이 생각나지 않을 때 자연스럽게 말 이어가기",
+      "en": "The exhibition was amazing. I can't think of a better way to spend the afternoon.",
+      "ko": "전시회 너무 멋졌어, 오후 시간을 이보다 더 잘 보낼 수가 있을까",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d62-05",
+      "day": 62,
+      "topic": "적절한 무엇이 생각나지 않을 때 자연스럽게 말 이어가기",
+      "en": "I can't think of what to do with the leftover cheese.",
+      "ko": "남은 치즈를 어디에다 써야 할지 모르겠네",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d63-01",
+      "day": 63,
+      "topic": "제대로 활용하기 (Just around the corner / By the way)",
+      "en": "The New Year is just around the corner.",
+      "ko": "새해가 코앞이네",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d63-02",
+      "day": 63,
+      "topic": "제대로 활용하기 (Just around the corner / By the way)",
+      "en": "That's why I'm not going to other jazz festivals. By the way, do you like jazz?",
+      "ko": "그래서 내가 다른 재즈 페스티벌에 안 가는 거야, 그나저나 넌 재즈 좋아해?",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d63-03",
+      "day": 63,
+      "topic": "제대로 활용하기 (Just around the corner / By the way)",
+      "en": "This room has two twin beds. By the way, you can see the ocean really well.",
+      "ko": "이 방에는 두 개의 트윈 침대가 구비되어 있습니다, 참고로 해변도 너무 잘 보입니다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d63-04",
+      "day": 63,
+      "topic": "제대로 활용하기 (Just around the corner / By the way)",
+      "en": "My friend is looking for a trainer. By the way, she's single.",
+      "ko": "제 친구가 트레이너를 구하고 있어요, 참고로 제 친구는 싱글이에요",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d63-05",
+      "day": 63,
+      "topic": "제대로 활용하기 (Just around the corner / By the way)",
+      "en": "We need to order food for Mark and Mindy. By the way, when do they arrive?",
+      "ko": "마크랑 민디 먹을 음식도 주문해야 해, 그나저나 그 친구들은 언제 도착한대?",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d64-01",
+      "day": 64,
+      "topic": "미묘한 의미 차이 이해하기",
+      "en": "I lost track of time.",
+      "ko": "시간 가는 줄도 몰랐네",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d64-02",
+      "day": 64,
+      "topic": "미묘한 의미 차이 이해하기",
+      "en": "Your fly is open.",
+      "ko": "너 남대문 열린 거 아니에요?",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d64-03",
+      "day": 64,
+      "topic": "미묘한 의미 차이 이해하기",
+      "en": "I know you don't get it.",
+      "ko": "너 이해 못 한 거 알아",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d64-04",
+      "day": 64,
+      "topic": "미묘한 의미 차이 이해하기",
+      "en": "I didn't know this seat was reserved.",
+      "ko": "이 좌석이 예약석인 줄을 몰랐습니다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d64-05",
+      "day": 64,
+      "topic": "미묘한 의미 차이 이해하기",
+      "en": "I don't know if you know this, but the bathroom sink is clogged.",
+      "ko": "너 아는지 모르겠는데 화장실 세면대 막혔어",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d65-01",
+      "day": 65,
+      "topic": "전화 통화 자연스럽게 마무리하기",
+      "en": "You should head inside now.",
+      "ko": "이제 그만 들어가 보렴",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d65-02",
+      "day": 65,
+      "topic": "전화 통화 자연스럽게 마무리하기",
+      "en": "I think I need to hang up now.",
+      "ko": "이제 전화를 끊어야 할 듯하네요",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d65-03",
+      "day": 65,
+      "topic": "전화 통화 자연스럽게 마무리하기",
+      "en": "It's already 11 PM. I need to hang up.",
+      "ko": "벌써 밤 11시네, 전화 끊어야겠다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d65-04",
+      "day": 65,
+      "topic": "전화 통화 자연스럽게 마무리하기",
+      "en": "I need to hang up; I'm getting on the bus.",
+      "ko": "전화 끊어야 할 듯해, 나 버스 타거든",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d65-05",
+      "day": 65,
+      "topic": "전화 통화 자연스럽게 마무리하기",
+      "en": "I need to hang up because another call is coming in.",
+      "ko": "전화 끊어야겠다, 다른 전화가 들어와서",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d66-01",
+      "day": 66,
+      "topic": "~밖에 안 남았다 (less than a week away)",
+      "en": "Lunar New Year is less than a week away.",
+      "ko": "설이 일주일도 채 안 남았네",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d66-02",
+      "day": 66,
+      "topic": "~밖에 안 남았다 (less than a week away)",
+      "en": "One more stop and we're there. We're almost arriving.",
+      "ko": "한 정거장만 더 가면 돼, 곧 도착해",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d66-03",
+      "day": 66,
+      "topic": "~밖에 안 남았다 (less than a week away)",
+      "en": "The weekend is only two days away and we have no plans. Want to do something around Seoul Forest?",
+      "ko": "주말이 이틀밖에 안 남았는데 아직 계획이 없어, 나랑 서울숲 근처에서 뭐 할래?",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d66-04",
+      "day": 66,
+      "topic": "~밖에 안 남았다 (less than a week away)",
+      "en": "My girlfriend's birthday is less than a week away. I don't know what to get her.",
+      "ko": "여자친구 생일이 일주일밖에 안 남았다니 뭘 해줘야 할지 모르겠어",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d66-05",
+      "day": 66,
+      "topic": "~밖에 안 남았다 (less than a week away)",
+      "en": "Valentine's Day is just around the corner. I want to surprise my wife, and I'm wondering what would be best.",
+      "ko": "밸런타인데이가 며칠 안 남았네, 아내를 놀라게 해주고 싶은데 뭐가 제일 좋을지 고민이야",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d67-01",
+      "day": 67,
+      "topic": "지연되는 상황에 대해 말하기",
+      "en": "I have so much backlog that I have no time for lunch.",
+      "ko": "일이 밀려서 점심 먹을 시간도 없어",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d67-02",
+      "day": 67,
+      "topic": "지연되는 상황에 대해 말하기",
+      "en": "It has been delayed for three months.",
+      "ko": "3개월 지연되고 있는 상태입니다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d67-03",
+      "day": 67,
+      "topic": "지연되는 상황에 대해 말하기",
+      "en": "I'm watching Extraordinary Attorney Woo, but I'm like 3 or 4 episodes behind, so don't spoil it for me.",
+      "ko": "이상한 변호사 우영우 보고 있는데 한 3~4화 정도 밀렸거든, 그러니까 줄거리 미리 말해서 초 치지 마",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d67-04",
+      "day": 67,
+      "topic": "지연되는 상황에 대해 말하기",
+      "en": "Once utility bills start falling behind, they keep piling up.",
+      "ko": "공과금이 한 번 밀리기 시작하면 계속 밀리게 돼",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d67-05",
+      "day": 67,
+      "topic": "지연되는 상황에 대해 말하기",
+      "en": "I have some homework backed up. I have to do all the homework I missed over the weekend.",
+      "ko": "나 숙제가 좀 밀렸어, 주말 내내 못한 숙제를 해야 해",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d68-01",
+      "day": 68,
+      "topic": "적극적으로 공감 표현하기",
+      "en": "Tell me about it.",
+      "ko": "누가 아니래 / 내 말이 그야",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d68-02",
+      "day": 68,
+      "topic": "적극적으로 공감 표현하기",
+      "en": "Sales are bouncing back. You can say that again.",
+      "ko": "매출이 살아나고 있습니다. 확실히 말이죠",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d68-03",
+      "day": 68,
+      "topic": "적극적으로 공감 표현하기",
+      "en": "Politicians are all liars. You can say that again.",
+      "ko": "정치인들은 다 거짓말쟁이야. 그건 확실해",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d68-04",
+      "day": 68,
+      "topic": "적극적으로 공감 표현하기",
+      "en": "We cannot continue this trade war. That's for sure.",
+      "ko": "우리는 이와 같은 무역 전쟁을 계속해서는 안 됩니다. 그 점은 분명합니다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d68-05",
+      "day": 68,
+      "topic": "적극적으로 공감 표현하기",
+      "en": "My husband wouldn't cheat. That's for sure.",
+      "ko": "제 남편이 바람을 피울 사람은 아니에요. 그건 확실해요",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d69-01",
+      "day": 69,
+      "topic": "언제나 옳지 (You can never go wrong with)",
+      "en": "You can never go wrong with black.",
+      "ko": "검은색은 절대 질리지 않아",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d69-02",
+      "day": 69,
+      "topic": "언제나 옳지 (You can never go wrong with)",
+      "en": "You can never go wrong with black and white.",
+      "ko": "블랙과 화이트의 컬러 조합은 잘못될 수가 없습니다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d69-03",
+      "day": 69,
+      "topic": "언제나 옳지 (You can never go wrong with)",
+      "en": "A dark gray suit is always a safe bet.",
+      "ko": "어두운 회색 슈트는 언제나 옳지",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d69-04",
+      "day": 69,
+      "topic": "언제나 옳지 (You can never go wrong with)",
+      "en": "If you want good weather, San Diego is the way to go.",
+      "ko": "날씨 좋은 곳 원하면 무조건 샌디에이고가 답이다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d69-05",
+      "day": 69,
+      "topic": "언제나 옳지 (You can never go wrong with)",
+      "en": "Potatoes and cheese are always a good choice.",
+      "ko": "감자와 치즈는 언제나 옳다",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d70-01",
+      "day": 70,
+      "topic": "전치사 for로 목적 나타내기",
+      "en": "Let's go out and get some fresh air.",
+      "ko": "나가서 바람이나 좀 쐬고 오자",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d70-02",
+      "day": 70,
+      "topic": "전치사 for로 목적 나타내기",
+      "en": "Do you want to stay for dinner?",
+      "ko": "저녁 먹고 갈래?",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d70-03",
+      "day": 70,
+      "topic": "전치사 for로 목적 나타내기",
+      "en": "I actually went to IKEA to look at furniture.",
+      "ko": "저 사실 이케아에 가구 보러 다녀왔어요",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d70-04",
+      "day": 70,
+      "topic": "전치사 for로 목적 나타내기",
+      "en": "Can I go outside to get some fresh air?",
+      "ko": "나가서 잠시 바람 좀 쐬어도 될까요?",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d70-05",
+      "day": 70,
+      "topic": "전치사 for로 목적 나타내기",
+      "en": "I have to head out early because I have an interview.",
+      "ko": "나 면접이 있어서 먼저 일어나 봐야 할 것 같아",
+      "level": 2,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d71-01",
+      "day": 71,
+      "topic": "전치사 about을 이용해 이웃 또는 용건 묶기",
+      "en": "What is this about? Is it about my test results?",
+      "ko": "무슨 일이신가요? 제 검사 결과 관련된 건가요?",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d71-02",
+      "day": 71,
+      "topic": "전치사 about을 이용해 이웃 또는 용건 묶기",
+      "en": "It's great to have dinner with you, but you called so suddenly. What is this about?",
+      "ko": "너 만나서 저녁 먹으니 좋긴 한데 너무 갑작스럽게 연락했네, 어떤 일 때문에 보자고 한 거니?",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d71-03",
+      "day": 71,
+      "topic": "전치사 about을 이용해 이웃 또는 용건 묶기",
+      "en": "Sally's not replying to my texts. Do you know what this is about with her?",
+      "ko": "셀리 문자에 답이 없네, 너 혹시 샐리가 왜 그러는지 아니?",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d71-04",
+      "day": 71,
+      "topic": "전치사 about을 이용해 이웃 또는 용건 묶기",
+      "en": "I see we have another meeting scheduled later. What is this about?",
+      "ko": "보니까 우리 이따가 회의가 하나 더 잡혀 있군요, 어떤 내용일까요?",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d71-05",
+      "day": 71,
+      "topic": "전치사 about을 이용해 이웃 또는 용건 묶기",
+      "en": "May I ask what this is about?",
+      "ko": "혹시 어떤 일 때문에 그러시는지 여쭤봐도 될까요?",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d72-01",
+      "day": 72,
+      "topic": "동사 sound 다양하게 활용하기",
+      "en": "That sounds much better.",
+      "ko": "그게 훨씬 더 낫겠다",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d72-02",
+      "day": 72,
+      "topic": "동사 sound 다양하게 활용하기",
+      "en": "She sounded like she was from Texas.",
+      "ko": "그 여자분 텍사스 사람 같더라",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d72-03",
+      "day": 72,
+      "topic": "동사 sound 다양하게 활용하기",
+      "en": "From what you say, he sounds like the best boyfriend.",
+      "ko": "들어보니까 그 사람 최고의 남자친구네",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d72-04",
+      "day": 72,
+      "topic": "동사 sound 다양하게 활용하기",
+      "en": "These reviews make it sound like a great place to spend time after work.",
+      "ko": "이 후기들 보니까 퇴근 후에 가서 시간 보내기 좋은 곳인데",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d72-05",
+      "day": 72,
+      "topic": "동사 sound 다양하게 활용하기",
+      "en": "From the sound of it, you don't seem very interested in camping with us.",
+      "ko": "말하는 거 들어보니 우리랑 캠핑 갈 생각이 별로 없는 것 같군",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d73-01",
+      "day": 73,
+      "topic": "It's not like을 이용해 '그런 게 아니고'라고 말하기",
+      "en": "It's not like we're dating seriously.",
+      "ko": "우리가 뭐 진지하게 사귀고 그런 건 아니에요",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d73-02",
+      "day": 73,
+      "topic": "It's not like을 이용해 '그런 게 아니고'라고 말하기",
+      "en": "It's not like I'm bad at driving.",
+      "ko": "제가 뭐 운전을 잘 못하는 것도 아닌데요",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d73-03",
+      "day": 73,
+      "topic": "It's not like을 이용해 '그런 게 아니고'라고 말하기",
+      "en": "It's not like I eat fast food all the time.",
+      "ko": "내가 늘 패스트푸드를 먹는 것도 아닌데",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d73-04",
+      "day": 73,
+      "topic": "It's not like을 이용해 '그런 게 아니고'라고 말하기",
+      "en": "Our gas bill came out really high, but it's fine. It's not like we can't afford it.",
+      "ko": "우리 가스 요금이 너무 많이 나왔더라, 근데 괜찮아 감당하기 힘든 수준까지는 아니니",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d73-05",
+      "day": 73,
+      "topic": "It's not like을 이용해 '그런 게 아니고'라고 말하기",
+      "en": "It's not like you're losing your job; you're just transferring.",
+      "ko": "직장을 잃는 게 아니잖아, 그냥 전근 가는 거잖아",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d74-01",
+      "day": 74,
+      "topic": "sure를 이용해 상대방의 의사 재확인하기",
+      "en": "Are you really not going to try my sushi?",
+      "ko": "정말로 내 초밥 안 먹어볼 거야?",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d74-02",
+      "day": 74,
+      "topic": "sure를 이용해 상대방의 의사 재확인하기",
+      "en": "Thanks for dinner, but are you really not going to come in for coffee?",
+      "ko": "저녁 사줘서 고마워, 근데 진짜 우리 집 가서 커피 안 하려고?",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d74-03",
+      "day": 74,
+      "topic": "sure를 이용해 상대방의 의사 재확인하기",
+      "en": "Are you really not going to have dinner with us? You turned down the boss's offer last time too.",
+      "ko": "진짜 우리랑 같이 저녁 안 하려고? 지난번에도 사장님 제안 거절했잖아",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d74-04",
+      "day": 74,
+      "topic": "sure를 이용해 상대방의 의사 재확인하기",
+      "en": "Are you really not going to go on a blind date with my girlfriend's friend?",
+      "ko": "내 여자친구의 친구랑 진짜 소개팅 안 할 거야?",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d74-05",
+      "day": 74,
+      "topic": "sure를 이용해 상대방의 의사 재확인하기",
+      "en": "Are you really not going to open a savings account? Our interest rate is the highest among commercial banks.",
+      "ko": "진짜 적금계좌 안 만드실 거예요? 시중은행 중에 저희 금리가 제일 세거든요",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d75-01",
+      "day": 75,
+      "topic": "미안한 점에 대해 간결하게 설명하기",
+      "en": "Sorry about earlier; my phone died.",
+      "ko": "아까는 미안, 휴대폰 배터리가 나가서",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d75-02",
+      "day": 75,
+      "topic": "미안한 점에 대해 간결하게 설명하기",
+      "en": "Sorry about last night; I'll pay you back as soon as I find my wallet.",
+      "ko": "어젯밤 일은 미안해, 내가 지갑 찾으면 바로 갚을게",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d75-03",
+      "day": 75,
+      "topic": "미안한 점에 대해 간결하게 설명하기",
+      "en": "Sorry about yesterday. Don't worry, my insurance company will cover all expenses.",
+      "ko": "어제 일은 미안합니다, 걱정 마세요 제 보험회사에서 모든 비용을 지불해 줄 겁니다",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d75-04",
+      "day": 75,
+      "topic": "미안한 점에 대해 간결하게 설명하기",
+      "en": "Sorry about this morning; I need to be more careful with my coffee.",
+      "ko": "오늘 아침 일은 미안해, 앞으로는 커피 좀 조심해야겠어",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d75-05",
+      "day": 75,
+      "topic": "미안한 점에 대해 간결하게 설명하기",
+      "en": "Sorry about this morning. I forgot to set my alarm.",
+      "ko": "오늘 아침엔 죄송했어요, 알람 맞춰 놓는 걸 깜빡했어요",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d76-01",
+      "day": 76,
+      "topic": "아직 그 정도는 아니다라고 말하기",
+      "en": "We are not there yet.",
+      "ko": "도착하려면 아직 좀 남았어요",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d76-02",
+      "day": 76,
+      "topic": "아직 그 정도는 아니다라고 말하기",
+      "en": "We still have a ways to go. We're 10 minutes late.",
+      "ko": "아직 좀 더 가야 해, 10분 늦어",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d76-03",
+      "day": 76,
+      "topic": "아직 그 정도는 아니다라고 말하기",
+      "en": "There should be a rest stop, but we still have a ways to go.",
+      "ko": "휴게소에 화장실이 있을 거야, 근데 아직 더 가야 해",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d76-04",
+      "day": 76,
+      "topic": "아직 그 정도는 아니다라고 말하기",
+      "en": "To lift the mask mandate, daily infections need to drop below 5,000. We're not there yet.",
+      "ko": "마스크 의무화를 해제하려면 1일 확진자 수가 5천 명 아래로 떨어져야 합니다, 아직은 그 정도가 아닙니다",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d76-05",
+      "day": 76,
+      "topic": "아직 그 정도는 아니다라고 말하기",
+      "en": "She's nice, but we're not ready to get married yet. Maybe in a year.",
+      "ko": "그 여자 좋긴 한데 아직 결혼할 정도는 아니야, 한 1년쯤 후에나 결혼할 듯",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d77-01",
+      "day": 77,
+      "topic": "동사 forget으로 원어민처럼 자연스럽게 말하기",
+      "en": "I left my phone charger at the office.",
+      "ko": "휴대폰 충전기를 회사에 놔두고 왔네",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d77-02",
+      "day": 77,
+      "topic": "동사 forget으로 원어민처럼 자연스럽게 말하기",
+      "en": "I think I left my wallet at home. Can I ask you to pay?",
+      "ko": "내가 지갑을 안 가지고 온 듯, 계산 좀 부탁해도 될까?",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d77-03",
+      "day": 77,
+      "topic": "동사 forget으로 원어민처럼 자연스럽게 말하기",
+      "en": "I left my keys at home.",
+      "ko": "집에 열쇠를 두고 왔어",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d77-04",
+      "day": 77,
+      "topic": "동사 forget으로 원어민처럼 자연스럽게 말하기",
+      "en": "I forgot my phone. Do I have time to go back and get it?",
+      "ko": "휴대폰을 안 가지고 왔네, 다시 가서 가져올 시간 될까?",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d77-05",
+      "day": 77,
+      "topic": "동사 forget으로 원어민처럼 자연스럽게 말하기",
+      "en": "I left Kevin at home.",
+      "ko": "케빈을 집에 두고 왔어요",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d78-01",
+      "day": 78,
+      "topic": "처음 겪는 상황에 대해 표현하기",
+      "en": "This is a first for me.",
+      "ko": "이런 경우는 또 처음 보네요",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d78-02",
+      "day": 78,
+      "topic": "처음 겪는 상황에 대해 표현하기",
+      "en": "It's so cold. This is a first for this kind of weather.",
+      "ko": "너무 춥다, 이런 날씨는 또 처음이군",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d78-03",
+      "day": 78,
+      "topic": "처음 겪는 상황에 대해 표현하기",
+      "en": "I've never seen such a sleek design. This car looks like it came straight out of a sci-fi movie.",
+      "ko": "이 정도로 유려한 디자인은 본 적이 없습니다, 공상 과학 영화에서 바로 나온 것 같은 차네요",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d78-04",
+      "day": 78,
+      "topic": "처음 겪는 상황에 대해 표현하기",
+      "en": "Things have never been like this before.",
+      "ko": "상황이 이런 적은 처음입니다",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d78-05",
+      "day": 78,
+      "topic": "처음 겪는 상황에 대해 표현하기",
+      "en": "This is the best dessert I've ever had. What's it called?",
+      "ko": "이렇게 맛있는 디저트는 처음이야, 이게 이름이 뭐라고?",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d79-01",
+      "day": 79,
+      "topic": "어디에서 무엇을 하는지에 대해 정확하게 전달하기",
+      "en": "I am buying coffee at Starbucks right now.",
+      "ko": "나 지금 스타벅스에서 커피 사고 있어",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d79-02",
+      "day": 79,
+      "topic": "어디에서 무엇을 하는지에 대해 정확하게 전달하기",
+      "en": "My boss is out picking up the VP at the airport.",
+      "ko": "제 상사께서 공항에 부사장님 마중 나가고 안 계십니다",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d79-03",
+      "day": 79,
+      "topic": "어디에서 무엇을 하는지에 대해 정확하게 전달하기",
+      "en": "When you called, I was watching Emily in Paris in the living room.",
+      "ko": "네가 전화했을 때 거실에서 에밀리 파리에 가다를 보고 있었어",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d79-04",
+      "day": 79,
+      "topic": "어디에서 무엇을 하는지에 대해 정확하게 전달하기",
+      "en": "We were drinking whiskey at a bar when a fight broke out.",
+      "ko": "저희가 술집에서 위스키를 마시고 있는데 싸움이 벌어졌어요",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d79-05",
+      "day": 79,
+      "topic": "어디에서 무엇을 하는지에 대해 정확하게 전달하기",
+      "en": "I was looking at the new SUV at the BMW showroom in Cheongdam.",
+      "ko": "저는 청담에 있는 BMW 전시장에서 SUV 신차를 보고 있었습니다",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d80-01",
+      "day": 80,
+      "topic": "조심스럽게 의도 전달하기",
+      "en": "How about we just cancel the restaurant reservation and stay home?",
+      "ko": "그냥 식당 예약한 거 취소하고 집에 있으면 어떨까 하는데",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d80-02",
+      "day": 80,
+      "topic": "조심스럽게 의도 전달하기",
+      "en": "How about getting these vitamins for the teacher's birthday gift?",
+      "ko": "선생님 선물로 이 비타민을 해드리면 어떨까 하는데",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d80-03",
+      "day": 80,
+      "topic": "조심스럽게 의도 전달하기",
+      "en": "How about we meet on Zoom instead of meeting in person?",
+      "ko": "직접 만나지 말고 줌으로 회의하면 어떨까 싶습니다",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d80-04",
+      "day": 80,
+      "topic": "조심스럽게 의도 전달하기",
+      "en": "How about chartering a bus instead of buying train tickets in bulk for this trip?",
+      "ko": "이번 여행 때 기차표를 대량 구매하지 말고 버스 전세를 내면 어떨까 하는데요",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d80-05",
+      "day": 80,
+      "topic": "조심스럽게 의도 전달하기",
+      "en": "How about you introduce a new recruit from a key client?",
+      "ko": "혹시 당신이 주요 고객사의 신입사원을 소개해주면 어떨까요?",
+      "level": 3,
+      "practiceBand": "L3"
+    },
+    {
+      "id": "jc-d81-01",
+      "day": 81,
+      "topic": "지시대명사를 주어로 활용하기",
+      "en": "Even after taking painkillers, my headache won't go away.",
+      "ko": "진통제를 먹었는데도 두통이 가시질 않아",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d81-02",
+      "day": 81,
+      "topic": "지시대명사를 주어로 활용하기",
+      "en": "Even though we changed all the interior, it still feels the same.",
+      "ko": "저희가 인테리어를 다 바꾸었는데도 분위기가 그대로네요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d81-03",
+      "day": 81,
+      "topic": "지시대명사를 주어로 활용하기",
+      "en": "Do I look slimmer if I tuck my shirt in?",
+      "ko": "셔츠를 안에 넣어 입으면 내가 좀 날씬해 보이니?",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d81-04",
+      "day": 81,
+      "topic": "지시대명사를 주어로 활용하기",
+      "en": "It hurts me so much when you lie to me.",
+      "ko": "당신이 나한테 거짓말하면 나 너무 속상해",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d81-05",
+      "day": 81,
+      "topic": "지시대명사를 주어로 활용하기",
+      "en": "In Zoom meetings, whoever speaks appears on the big screen.",
+      "ko": "줌 회의에서는 누군가 말을 하면 그 사람이 큰 화면에 뜹니다",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d82-01",
+      "day": 82,
+      "topic": "~할 생각은 없습니다 (I'm not looking to)",
+      "en": "I'm not looking to sign up for another insurance policy.",
+      "ko": "추가로 보험 하나 더 가입할 생각은 없습니다",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d82-02",
+      "day": 82,
+      "topic": "~할 생각은 없습니다 (I'm not looking to)",
+      "en": "I thought you might want to see our winter collection.",
+      "ko": "저희 겨울 컬렉션 제품 보고 싶어 하실 듯해서요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d82-03",
+      "day": 82,
+      "topic": "~할 생각은 없습니다 (I'm not looking to)",
+      "en": "I'm not looking to get another credit card.",
+      "ko": "저 신용카드 하나 더 안 만들어도 되거든요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d82-04",
+      "day": 82,
+      "topic": "~할 생각은 없습니다 (I'm not looking to)",
+      "en": "You always talk about AI, so I thought you'd be interested in this article.",
+      "ko": "너 항상 AI 이야기 하던데이 기사 관심 있을 것 같아서",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d82-05",
+      "day": 82,
+      "topic": "~할 생각은 없습니다 (I'm not looking to)",
+      "en": "If you're interested in the open position, feel free to contact me.",
+      "ko": "공석에 관심 있으시면 언제든 제게 연락 주세요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d83-01",
+      "day": 83,
+      "topic": "잠깐 시간 되세요? (Do you have a minute?)",
+      "en": "Do you have a minute? I wanted to show you the logo I'm working on.",
+      "ko": "너 잠깐 시간 되니? 내가 작업 중인 로고를 보여주고 싶어서",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d83-02",
+      "day": 83,
+      "topic": "잠깐 시간 되세요? (Do you have a minute?)",
+      "en": "Do you have a minute? I want to talk about the upcoming workshop.",
+      "ko": "잠깐 시간 되세요? 곧 있을 워크숍 관련해서 이야기 좀 하려고요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d83-03",
+      "day": 83,
+      "topic": "잠깐 시간 되세요? (Do you have a minute?)",
+      "en": "Do you have a minute? I have a quick question about my cover letter.",
+      "ko": "잠깐 시간 되세요? 제 자기소개서 관련해서 간단한 질문이 하나 있어서요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d83-04",
+      "day": 83,
+      "topic": "잠깐 시간 되세요? (Do you have a minute?)",
+      "en": "Do you have a minute? The heater is broken and I don't know how to fix it.",
+      "ko": "잠깐 시간 되세요? 히터가 고장이 났는데 고치는 방법을 모르겠어요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d83-05",
+      "day": 83,
+      "topic": "잠깐 시간 되세요? (Do you have a minute?)",
+      "en": "Do you have a minute? I can't find the file you mentioned.",
+      "ko": "잠깐 시간 되세요? 네가 말한 파일을 못 찾겠어",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d84-01",
+      "day": 84,
+      "topic": "~라고 들어봤니 (Have you heard of)",
+      "en": "Have you ever heard of Myeongrang Hotdog?",
+      "ko": "명랑핫도그라고 들어봤니?",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d84-02",
+      "day": 84,
+      "topic": "~라고 들어봤니 (Have you heard of)",
+      "en": "You seem to know this neighborhood very well.",
+      "ko": "너 이 동네 잘 아는 듯하네",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d84-03",
+      "day": 84,
+      "topic": "~라고 들어봤니 (Have you heard of)",
+      "en": "I know OPIc very well because I've taught prep classes for years.",
+      "ko": "저는 수년 동안 준비반을 가르쳤기 때문에 오픽에 대해 아주 잘 알고 있습니다",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d84-04",
+      "day": 84,
+      "topic": "~라고 들어봤니 (Have you heard of)",
+      "en": "The bar didn't look familiar from the outside, but once I went inside, I realized I'd been there before.",
+      "ko": "그 술집이 밖에서 볼 때는 낯익지 않았는데 안에 들어가 보니 예전에 한번 왔었다 싶더군요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d84-05",
+      "day": 84,
+      "topic": "~라고 들어봤니 (Have you heard of)",
+      "en": "I thought I hadn't hiked north of Namsan, but once I got there, I realized I'd been here before.",
+      "ko": "남산 북쪽으로는 등산을 안 해봤다고 생각했는데 막상 와보니 전에 와본 걸 알겠네요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d85-01",
+      "day": 85,
+      "topic": "부정문에서 either 적극적으로 활용하기",
+      "en": "I haven't tried Mala-tang, and neither has my girlfriend.",
+      "ko": "저는 마라탕 안 먹어봤고 제 여자친구도 마찬가지예요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d85-02",
+      "day": 85,
+      "topic": "부정문에서 either 적극적으로 활용하기",
+      "en": "I don't think I can go either.",
+      "ko": "저도 못 갈 거 같아요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d85-03",
+      "day": 85,
+      "topic": "부정문에서 either 적극적으로 활용하기",
+      "en": "I'm glad you don't want to go back to Mongolia. Neither do I.",
+      "ko": "당신이 다시는 몽골에 안 가고 싶다니 다행이다, 나도 가고 싶지 않거든",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d85-04",
+      "day": 85,
+      "topic": "부정문에서 either 적극적으로 활용하기",
+      "en": "Apple has no plans to release a new product either.",
+      "ko": "애플 역시 신제품 출시 계획이 없습니다",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d85-05",
+      "day": 85,
+      "topic": "부정문에서 either 적극적으로 활용하기",
+      "en": "That website won't open on my phone either.",
+      "ko": "내 전화기에서도 그 웹사이트가 안 열리네",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d86-01",
+      "day": 86,
+      "topic": "전치사 unlike를 이용해 대조 및 비교 나타내기",
+      "en": "Unlike other sales jobs, I have a base salary.",
+      "ko": "다른 영업직과는 달리 저는 기본급이 있습니다",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d86-02",
+      "day": 86,
+      "topic": "전치사 unlike를 이용해 대조 및 비교 나타내기",
+      "en": "Unlike other vacuum cleaners, the V4 can be charged in minutes.",
+      "ko": "다른 진공청소기와 달리 V4는 몇 분이면 충전할 수 있습니다",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d86-03",
+      "day": 86,
+      "topic": "전치사 unlike를 이용해 대조 및 비교 나타내기",
+      "en": "Unlike other big cities, Sejong City is very clean. I guess it's well-planned.",
+      "ko": "다른 대도시와는 달리 세종시는 매우 깨끗합니다. 잘 계획되어서 그런가 봅니다",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d86-04",
+      "day": 86,
+      "topic": "전치사 unlike를 이용해 대조 및 비교 나타내기",
+      "en": "Unlike other channels, this YouTube channel covers economy issues in depth.",
+      "ko": "이 유튜브 채널은 다른 채널들과 달리 경제에 관해 꽤 심도 있는 내용을 다뤄",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d86-05",
+      "day": 86,
+      "topic": "전치사 unlike를 이용해 대조 및 비교 나타내기",
+      "en": "Unlike previous teachers, James gives helpful feedback.",
+      "ko": "이전 선생님들과는 달리 제임스는 도움되는 피드백을 주십니다",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d87-01",
+      "day": 87,
+      "topic": "unusually를 사용해 일반적이지 않은 상황 표현하기",
+      "en": "It's unusually expensive.",
+      "ko": "가격이 너무 지나치게 비싸요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d87-02",
+      "day": 87,
+      "topic": "unusually를 사용해 일반적이지 않은 상황 표현하기",
+      "en": "It's unusually empty. Usually there are tons of people at the department store on weekends.",
+      "ko": "이상하게 사람이 그렇게 많지 않네, 보통 주말이면 백화점에 사람 엄청 많은데",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d87-03",
+      "day": 87,
+      "topic": "unusually를 사용해 일반적이지 않은 상황 표현하기",
+      "en": "There's no rule saying men shouldn't groom their nails.",
+      "ko": "남자라고 손톱 다듬지 말라는 법은 없지",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d87-04",
+      "day": 87,
+      "topic": "unusually를 사용해 일반적이지 않은 상황 표현하기",
+      "en": "Working overtime is unusually common for my job.",
+      "ko": "제가 하는 업무의 경우 야근이 일상입니다",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d87-05",
+      "day": 87,
+      "topic": "unusually를 사용해 일반적이지 않은 상황 표현하기",
+      "en": "It's unusually cold for October.",
+      "ko": "10월 치고는 너무 춥습니다",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d88-01",
+      "day": 88,
+      "topic": "동사 insist를 이용해 주장 나타내기",
+      "en": "I insist on driving you home.",
+      "ko": "제가 차로 집까지 모셔다 드린다니까요, 그렇게 하시죠",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d88-02",
+      "day": 88,
+      "topic": "동사 insist를 이용해 주장 나타내기",
+      "en": "I insist on paying for lunch.",
+      "ko": "점심 내가 살게, 그렇게 하자고",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d88-03",
+      "day": 88,
+      "topic": "동사 insist를 이용해 주장 나타내기",
+      "en": "I insist you take this money.",
+      "ko": "이 돈 받아, 그렇게 해",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d88-04",
+      "day": 88,
+      "topic": "동사 insist를 이용해 주장 나타내기",
+      "en": "My wife insisted on white for the wallpaper.",
+      "ko": "제 아내가 벽지 색상으로 흰색을 고집하더군요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d88-05",
+      "day": 88,
+      "topic": "동사 insist를 이용해 주장 나타내기",
+      "en": "When it comes to accommodation, my husband always insists on expensive places.",
+      "ko": "숙박에 있어서만큼은 저희 남편은 늘 비싼 곳만 고집해요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d89-01",
+      "day": 89,
+      "topic": "명사절을 이용해 자연스럽게 말하기",
+      "en": "I love what you've done with the living room here.",
+      "ko": "여기 거실에 해두신 것이 마음에 듭니다",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d89-02",
+      "day": 89,
+      "topic": "명사절을 이용해 자연스럽게 말하기",
+      "en": "The bakery you mentioned is actually near where I work.",
+      "ko": "네가 말한 빵집이 사실 나 일하는 곳 근처에 있어",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d89-03",
+      "day": 89,
+      "topic": "명사절을 이용해 자연스럽게 말하기",
+      "en": "I hope the audience appreciates how much effort went into this movie.",
+      "ko": "이 영화의 많은 노력이 들어갔다는 점을 관객들이 알아줬으면 좋겠네요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d89-04",
+      "day": 89,
+      "topic": "명사절을 이용해 자연스럽게 말하기",
+      "en": "Are you wondering what my salary is?",
+      "ko": "제 연봉이 궁금하세요?",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d89-05",
+      "day": 89,
+      "topic": "명사절을 이용해 자연스럽게 말하기",
+      "en": "This coffee is very different from what you commonly see in Seoul.",
+      "ko": "이 커피는 서울에서 흔히 볼 수 있는 것과는 많이 달라",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d90-01",
+      "day": 90,
+      "topic": "compared to를 이용해 비교 나타내기",
+      "en": "10 million won is cheap for a used car, but still expensive for me.",
+      "ko": "천만 원이면 중고차 치고는 그나마 저렴한 편이긴 한데 그래도 저한테는 비싸요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d90-02",
+      "day": 90,
+      "topic": "compared to를 이용해 비교 나타내기",
+      "en": "He has wide shoulders compared to his height.",
+      "ko": "그 사람은 키에 비해 어깨가 넓은 편이야",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d90-03",
+      "day": 90,
+      "topic": "compared to를 이용해 비교 나타내기",
+      "en": "Mantis has a 3-year lifespan, which is quite long compared to other insects.",
+      "ko": "사마귀는 수명이 3년인데 곤충 세계에서는 그나마 오래 사는 편이지",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d90-04",
+      "day": 90,
+      "topic": "compared to를 이용해 비교 나타내기",
+      "en": "Even though some people die from Omicron, symptoms are generally mild compared to before.",
+      "ko": "오미크론으로 사망하는 사람이 있기는 해도 대부분의 경우 증상이 그렇게 심하지는 않습니다",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d90-05",
+      "day": 90,
+      "topic": "compared to를 이용해 비교 나타내기",
+      "en": "200 dollars to fix the water heater is a bit pricey, but cheap compared to buying a new one.",
+      "ko": "온수기 고치는데 200달러는 좀 비싸다 싶어, 그래도 새것 사는 비용에 비하면 저렴한 편이지",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d91-01",
+      "day": 91,
+      "topic": "전치사 from을 이용해 원인 나타내기",
+      "en": "My back hurts from sitting at the desk all day.",
+      "ko": "하루 종일 책상에 앉아 있어서 허리 통증이 생긴 것 같아",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d91-02",
+      "day": 91,
+      "topic": "전치사 from을 이용해 원인 나타내기",
+      "en": "I have a terrible hangover from drinking too much last night.",
+      "ko": "어젯밤에 너무 마셨더니 숙취가 너무 심하네",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d91-03",
+      "day": 91,
+      "topic": "전치사 from을 이용해 원인 나타내기",
+      "en": "My muscles feel sore from working out every day last week.",
+      "ko": "지난주에 매일 운동을 해서 그런지 근육이 당기는 것 같아",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d91-04",
+      "day": 91,
+      "topic": "전치사 from을 이용해 원인 나타내기",
+      "en": "I didn't get hurt doing something major; I tripped over a TV cord.",
+      "ko": "뭐 대단한 거 하다가 상처가 생긴 게 아니고 TV 전선줄에 걸려 넘어졌어요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d91-05",
+      "day": 91,
+      "topic": "전치사 from을 이용해 원인 나타내기",
+      "en": "I think I got a bruise from playing soccer.",
+      "ko": "축구 하다가 멍이 들 것 같아요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d92-01",
+      "day": 92,
+      "topic": "접속사 when을 이용해 조건과 상황 나타내기",
+      "en": "My hair gets ruined when it rains.",
+      "ko": "비가 오면 머리가 엉망이 돼요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d92-02",
+      "day": 92,
+      "topic": "접속사 when을 이용해 조건과 상황 나타내기",
+      "en": "She gets sensitive when she's rushed for time.",
+      "ko": "그녀는 시간에 쫓기면 예민해져",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d92-03",
+      "day": 92,
+      "topic": "접속사 when을 이용해 조건과 상황 나타내기",
+      "en": "Parties get fun when Tommy arrives.",
+      "ko": "토미가 도착하면 파티가 재미있어져",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d92-04",
+      "day": 92,
+      "topic": "접속사 when을 이용해 조건과 상황 나타내기",
+      "en": "I want to make fewer mistakes, but it's hard when I feel pressured to speak fast.",
+      "ko": "저도 실수를 덜하고 싶은데 말을 빨리 해야 한다는 압박감이 들면 그게 어려워요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d92-05",
+      "day": 92,
+      "topic": "접속사 when을 이용해 조건과 상황 나타내기",
+      "en": "I try to listen to my friends, but no one seems to listen when I have a hard time.",
+      "ko": "저는 제 친구들의 말을 잘 들어주려고 노력해요. 근데 제가 어려움이 있을 때는 아무도 제 말을 귀담아 들으려 하는 것 같지가 않아요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d93-01",
+      "day": 93,
+      "topic": "현재진행형을 이용해 가까운 미래 계획 나타내기",
+      "en": "I'm planning to go to Busan this weekend for Christmas.",
+      "ko": "크리스마스를 맞아 이번 주말에 부산에 가려고 해요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d93-02",
+      "day": 93,
+      "topic": "현재진행형을 이용해 가까운 미래 계획 나타내기",
+      "en": "I'm planning to go hiking this weekend.",
+      "ko": "이번 주말에 등산 갈 생각이에요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d93-03",
+      "day": 93,
+      "topic": "현재진행형을 이용해 가까운 미래 계획 나타내기",
+      "en": "I'm thinking of going to Gyeongju for the holidays.",
+      "ko": "연휴 때 경주 갈까 해",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d93-04",
+      "day": 93,
+      "topic": "현재진행형을 이용해 가까운 미래 계획 나타내기",
+      "en": "Are you meeting your girlfriend tomorrow?",
+      "ko": "너 내일 여자친구 만날 거야?",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d93-05",
+      "day": 93,
+      "topic": "현재진행형을 이용해 가까운 미래 계획 나타내기",
+      "en": "I'm planning to practice backstroke at the pool today.",
+      "ko": "오늘 수영장에서 배영을 연습할 생각이야",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d94-01",
+      "day": 94,
+      "topic": "접속사 unless를 이용해 조건 나타내기",
+      "en": "I don't drive unless it's strictly necessary.",
+      "ko": "요즘은 꼭 필요한 경우가 아니면 차 안 가지고 다녀요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d94-02",
+      "day": 94,
+      "topic": "접속사 unless를 이용해 조건 나타내기",
+      "en": "I don't wash my car unless it's filthy.",
+      "ko": "저는 데이터가 없으면 새 차를 안 해요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d94-03",
+      "day": 94,
+      "topic": "접속사 unless를 이용해 조건 나타내기",
+      "en": "I procrastinate unless there's a deadline.",
+      "ko": "저는 마감 기한이 없으면 빈둥거리게 됩니다",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d94-04",
+      "day": 94,
+      "topic": "접속사 unless를 이용해 조건 나타내기",
+      "en": "I can't talk to strangers unless I have a little buzz from alcohol.",
+      "ko": "저는 술기운이 좀 알딸딸하게 올라와야 모르는 사람에게 말을 걸 수 있어요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d94-05",
+      "day": 94,
+      "topic": "접속사 unless를 이용해 조건 나타내기",
+      "en": "You can't enter the store unless you wear a mask.",
+      "ko": "마스크 안 쓰면 가게에 못 들어갑니다",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d95-01",
+      "day": 95,
+      "topic": "부사 though를 이용해 반대 의견 나타내기",
+      "en": "The price is great, though I already have a decent massage chair.",
+      "ko": "가격은 너무 좋네요. 근데 제가 이미 괜찮은 마사지 의자가 있거든요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d95-02",
+      "day": 95,
+      "topic": "부사 though를 이용해 반대 의견 나타내기",
+      "en": "I'm so tired today, though.",
+      "ko": "그런데 오늘 너무 피곤하네",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d95-03",
+      "day": 95,
+      "topic": "부사 though를 이용해 반대 의견 나타내기",
+      "en": "I'm not sure if I can go to the gym tonight, though.",
+      "ko": "그런데 오늘 밤엔 헬스장 갈 수 있을지 모르겠네요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d95-04",
+      "day": 95,
+      "topic": "부사 though를 이용해 반대 의견 나타내기",
+      "en": "I'm not that hungry, though.",
+      "ko": "근데 나 그렇게 배고프지는 않아",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d95-05",
+      "day": 95,
+      "topic": "부사 though를 이용해 반대 의견 나타내기",
+      "en": "I'm not feeling well, though.",
+      "ko": "그런데 몸이 좀 안 좋아요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d96-01",
+      "day": 96,
+      "topic": "구동사 make sense를 이용해 이해 나타내기",
+      "en": "Minsu is getting his hair cut for 33,000 won. That doesn't make sense to me.",
+      "ko": "민수는 머리를 3만 3천 원 주고 잔대, 난 도저히 이해가 안 가",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d96-02",
+      "day": 96,
+      "topic": "구동사 make sense를 이용해 이해 나타내기",
+      "en": "How can that be a hobby? It just doesn't make sense.",
+      "ko": "어떻게 취미가 되니? 도저히 이해가 안 돼",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d96-03",
+      "day": 96,
+      "topic": "구동사 make sense를 이용해 이해 나타내기",
+      "en": "Now the story makes sense. The main character was an assassin from the beginning.",
+      "ko": "이제야 스토리가 이해되네, 주인공이 처음부터 암살자였던 거네",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d96-04",
+      "day": 96,
+      "topic": "구동사 make sense를 이용해 이해 나타내기",
+      "en": "Since he's here on a 6-month contract, it makes sense to rent a car.",
+      "ko": "그 친구는 여기 6개월 계약으로 있는 거니까 차를 빌리는 게 더 낫겠다",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d96-05",
+      "day": 96,
+      "topic": "구동사 make sense를 이용해 이해 나타내기",
+      "en": "No matter how you explain the concept of inflation to me, it doesn't make sense at all.",
+      "ko": "네가 아무리 나한테 인플레이션의 개념을 설명하려고 해도 전혀 이해가 안 돼",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d97-01",
+      "day": 97,
+      "topic": "동사 think를 이용해 완곡하게 의견 전달하기",
+      "en": "I don't think those two will work out in the end.",
+      "ko": "그 둘은 결국 잘 안 될 거야",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d97-02",
+      "day": 97,
+      "topic": "동사 think를 이용해 완곡하게 의견 전달하기",
+      "en": "I don't think we'll have time to stop by the department store. The concert starts in 45 minutes.",
+      "ko": "백화점 들를 시간은 안 될 것 같아, 콘서트가 45분 후에 시작하잖아",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d97-03",
+      "day": 97,
+      "topic": "동사 think를 이용해 완곡하게 의견 전달하기",
+      "en": "I don't think those two go very well together.",
+      "ko": "그 둘은 썩 잘 어울리지는 않을 듯해",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d97-04",
+      "day": 97,
+      "topic": "동사 think를 이용해 완곡하게 의견 전달하기",
+      "en": "I don't think we can arrive on time even if we take a taxi.",
+      "ko": "택시를 타도 제시간에 도착하는 건 힘들 것 같아요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d97-05",
+      "day": 97,
+      "topic": "동사 think를 이용해 완곡하게 의견 전달하기",
+      "en": "I don't think that table will fit in our living room.",
+      "ko": "그 테이블이 우리 집 거실에는 안 맞지 싶은데",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d98-01",
+      "day": 98,
+      "topic": "w-word를 이용해 말에 강약 조절하기",
+      "en": "I'm not sure if I'm doing this right.",
+      "ko": "내가 제대로 하고 있는 건지 잘 모르겠어",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d98-02",
+      "day": 98,
+      "topic": "w-word를 이용해 말에 강약 조절하기",
+      "en": "I'm not sure if he's interested in me.",
+      "ko": "그 사람이 나한테 관심이 있는 건지 잘 모르겠어",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d98-03",
+      "day": 98,
+      "topic": "w-word를 이용해 말에 강약 조절하기",
+      "en": "I'm not sure if I can join you guys for dinner today.",
+      "ko": "오늘 너희들이랑 저녁 식사 같이 할 수 있을지 잘 모르겠어",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d98-04",
+      "day": 98,
+      "topic": "w-word를 이용해 말에 강약 조절하기",
+      "en": "I'm not sure how to express that in English.",
+      "ko": "그걸 영어로 어떻게 표현하는지 잘 모르겠어요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d98-05",
+      "day": 98,
+      "topic": "w-word를 이용해 말에 강약 조절하기",
+      "en": "I'm not sure why she's mad at me.",
+      "ko": "그녀가 왜 나한테 화가 난 건지 잘 모르겠어",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d99-01",
+      "day": 99,
+      "topic": "어감 잡기 (Day 99 추가 패턴)",
+      "en": "It's hard to believe how fast time flies.",
+      "ko": "시간이 이렇게 빨리 가다니 믿기지 않아",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d99-02",
+      "day": 99,
+      "topic": "어감 잡기 (Day 99 추가 패턴)",
+      "en": "I should have listened to your advice.",
+      "ko": "너 네 조언을 들었어야 했는데",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d99-03",
+      "day": 99,
+      "topic": "어감 잡기 (Day 99 추가 패턴)",
+      "en": "There is no point in arguing about this anymore.",
+      "ko": "이더 이상 이걸로 언쟁해 봤자 소용없어",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d99-04",
+      "day": 99,
+      "topic": "어감 잡기 (Day 99 추가 패턴)",
+      "en": "Let's call it a day and head home.",
+      "ko": "오늘은 여기까지 하고 집에 가자",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d99-05",
+      "day": 99,
+      "topic": "어감 잡기 (Day 99 추가 패턴)",
+      "en": "I'm keeping my fingers crossed for your interview.",
+      "ko": "면접 잘 보기를 빌게",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d100-01",
+      "day": 100,
+      "topic": "실생활 최종 마무리 스몰토크 (Day 100 완성 패턴)",
+      "en": "It was so nice catching up with you after all this time.",
+      "ko": "이렇게 오랜만에 만나서 회포를 푸니 정말 좋네요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d100-02",
+      "day": 100,
+      "topic": "실생활 최종 마무리 스몰토크 (Day 100 완성 패턴)",
+      "en": "Let's definitely get together again soon.",
+      "ko": "조만간 꼭 다시 모이자",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d100-03",
+      "day": 100,
+      "topic": "실생활 최종 마무리 스몰토크 (Day 100 완성 패턴)",
+      "en": "Drop me a line whenever you're in town.",
+      "ko": "이 근처 오시면 언제든 연락 주세요",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d100-04",
+      "day": 100,
+      "topic": "실생활 최종 마무리 스몰토크 (Day 100 완성 패턴)",
+      "en": "I wish you the best of luck with everything.",
+      "ko": "모든 일에 행운이 있기를 바랄게",
+      "level": 3,
+      "practiceBand": "L4"
+    },
+    {
+      "id": "jc-d100-05",
+      "day": 100,
+      "topic": "실생활 최종 마무리 스몰토크 (Day 100 완성 패턴)",
+      "en": "Take care and keep in touch.",
+      "ko": "몸 조심하고 연락하고 지내자",
+      "level": 3,
+      "practiceBand": "L4"
+    }
+  ],
+  "vaultSource": "Library/Patterns/영어회화 100.md"
+}

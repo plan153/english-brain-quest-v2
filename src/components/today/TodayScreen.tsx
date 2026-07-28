@@ -18,6 +18,7 @@ import {
   loadPhrasalVerbsAsItems,
   loadAllGrammarAsItems,
   loadQuizVerbsAsItems,
+  loadConversation100AsItems,
 } from '../../domain/content-loader';
 import type { ContentItem } from '../../interfaces/ContentItem';
 import type { MatchLevel } from '../../interfaces/Evaluator';
@@ -68,6 +69,12 @@ const PACK_SOURCES: PackSource[] = [
     name: '기본동사 100',
     description: '퀴즈 잉글리시 · Day 1–100 · 500문장',
     load: loadQuizVerbsAsItems,
+  },
+  {
+    id: 'conversation-100',
+    name: '영어회화 100',
+    description: '김재우 미니북 · Day 1–100 · 500문장',
+    load: loadConversation100AsItems,
   },
   {
     id: 'starter',

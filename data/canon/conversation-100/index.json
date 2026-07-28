@@ -1,0 +1,9 @@
+{
+  "id": "conversation-100",
+  "name": "영어회화 100",
+  "description": "김재우 미니북 · Day 1–100 · 500문장",
+  "catalog": "catalog.json",
+  "itemCount": 500,
+  "vaultSource": "Library/Patterns/영어회화 100.md",
+  "source": "Library/Patterns/영어회화 100.md"
+}

@@ -212,6 +212,46 @@ export async function loadQuizVerbsAsItems(): Promise<ContentItem[]> {
   return items;
 }
 
+export interface Conversation100Item {
+  id: string;
+  day: number;
+  topic: string;
+  en: string;
+  ko: string;
+  level?: number;
+  practiceBand?: 'L1' | 'L2' | 'L3' | 'L4';
+}
+
+/** 김재우 영어회화 100 미니북 (Day 1–100, 500문장) */
+export async function loadConversation100AsItems(): Promise<ContentItem[]> {
+  if (cache.has('conversation-100-items')) {
+    return cache.get('conversation-100-items') as ContentItem[];
+  }
+  const raw = await fetchJson<{ items: Conversation100Item[] }>(
+    '/conversation-100/catalog.json'
+  );
+  const items: ContentItem[] = raw.items.map((q) => ({
+    id: q.id,
+    type: 'sentence' as const,
+    data: {
+      en: q.en,
+      translations: { ko: q.ko },
+      chunks: [],
+      hints: [`Day ${q.day} · ${q.topic}`],
+    },
+    translations: { ko: q.ko },
+    tags: ['type:conversation-100', `day:${q.day}`, `topic:${q.topic}`],
+    form: 'statement' as const,
+    level: q.level ?? (q.day <= 30 ? 1 : q.day <= 70 ? 2 : 3),
+    packId: 'conversation-100',
+    practiceBand:
+      q.practiceBand ??
+      (q.day <= 25 ? 'L1' : q.day <= 50 ? 'L2' : q.day <= 80 ? 'L3' : 'L4'),
+  }));
+  cache.set('conversation-100-items', items);
+  return items;
+}
+
 /**
  * 그래머 유닛의 items 중 type='sentence'인 것을 ContentItem[]으로 변환 (세션 학습용).
  * skillAxes를 스킬 태그로 부여.

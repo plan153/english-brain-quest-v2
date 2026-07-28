@@ -12,6 +12,7 @@ import {
   type WeakLinkRow,
   type WeakLinkSummary,
 } from './srs-engine';
+import { vaultLibraryBrainSection } from './vault-library';
 import {
   PATTERN_NOTE_IDS,
   patternNoteTitle,
@@ -186,6 +187,7 @@ ${skillLines}
 ${badgeLines}
 
 ${formatWeakSections(weakLinks)}
+${vaultLibraryBrainSection()}
 ## 패턴 허브
 
 - [[Patterns/subject|주어]]
@@ -514,6 +516,11 @@ source: english-brain-quest-v2
 - [[Patterns/noun|목적어]]
 - [[Patterns/tense|시제]]
 - [[Patterns/agreement|3인칭 단수]]
+
+## Library 원문
+
+- [[Library/Patterns/기본동사 100|기본동사 100]] ← 앱 \`quiz-verbs\`
+- [[Library/Patterns/영어회화 100|영어회화 100]] ← 앱 \`conversation-100\`
 
 ## 요약
 

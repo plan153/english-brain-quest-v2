@@ -3,5 +3,7 @@
   "name": "퀴즈 잉글리시 기본동사 100",
   "description": "HAVE/GET/MAKE/TAKE 등 핵심 동사 Day 1–100 (500문장)",
   "catalog": "catalog.json",
-  "itemCount": 500
+  "itemCount": 500,
+  "vaultSource": "Library/Patterns/기본동사 100.md",
+  "source": "Library/Patterns/기본동사 100.md"
 }
