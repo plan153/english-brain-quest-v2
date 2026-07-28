@@ -116,7 +116,7 @@ export function TodayScreen() {
   const recordTrial = useStore((s) => s.recordTrial);
   const nextSentence = useStore((s) => s.nextSentence);
   const endSession = useStore((s) => s.endSession);
-  const getGapForSentence = useStore((s) => s.getGapForSentence);
+  const gapNotes = useStore((s) => s.gapNotes);
   const resolveGapReason = useStore((s) => s.resolveGapReason);
   const setActiveTab = useStore((s) => s.setActiveTab);
   const getDueReviewItems = useStore((s) => s.getDueReviewItems);
@@ -801,10 +801,17 @@ export function TodayScreen() {
           {(pendingEval.match === 'wrong' || pendingEval.match === 'skipped') &&
             currentSentence &&
             (() => {
-              const gap = getGapForSentence(currentSentence.id);
+              let gap = undefined as (typeof gapNotes)[number] | undefined;
+              for (let i = gapNotes.length - 1; i >= 0; i--) {
+                if (gapNotes[i].expressionId === currentSentence.id) {
+                  gap = gapNotes[i];
+                  break;
+                }
+              }
               if (!gap) return null;
               return (
                 <GapReasonCard
+                  key={`${gap.id}-${gap.updatedAt ?? gap.createdAt}-${gap.reasonStatus}`}
                   gap={gap}
                   onConfirm={(id) => resolveGapReason(id, { type: 'confirmed' })}
                   onSaveEdit={(id, reason) =>

@@ -231,6 +231,7 @@ export function BrainScreen() {
                 내 말: {gap.guess || '(없음)'}
               </div>
               <GapReasonCard
+                key={`${gap.id}-${gap.updatedAt ?? gap.createdAt}-${gap.reasonStatus}`}
                 gap={gap}
                 onConfirm={(id) => resolveGapReason(id, { type: 'confirmed' })}
                 onSaveEdit={(id, reason) =>

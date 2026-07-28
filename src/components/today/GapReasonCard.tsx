@@ -1,7 +1,7 @@
 /**
  * GapReasonCard — 오답/스킵 직후 간극 이유 확인·수정.
  */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import type { GapNote } from '../../domain/vault-projection';
@@ -13,10 +13,16 @@ interface GapReasonCardProps {
 }
 
 export function GapReasonCard({ gap, onConfirm, onSaveEdit }: GapReasonCardProps) {
+  const displayReason = (gap.reasonFinal || gap.reasonAuto || '').trim();
   const [editing, setEditing] = useState(false);
-  const [draft, setDraft] = useState(gap.reasonFinal || gap.reasonAuto || '');
+  const [draft, setDraft] = useState(displayReason);
   const status = gap.reasonStatus ?? 'pending';
   const done = status === 'confirmed' || status === 'edited';
+
+  useEffect(() => {
+    setDraft(displayReason);
+    if (done) setEditing(false);
+  }, [gap.id, gap.updatedAt, gap.reasonStatus, displayReason, done]);
 
   if (done && !editing) {
     return (
@@ -30,7 +36,7 @@ export function GapReasonCard({ gap, onConfirm, onSaveEdit }: GapReasonCardProps
             whiteSpace: 'pre-wrap',
           }}
         >
-          {gap.reasonFinal || gap.reasonAuto}
+          {displayReason}
         </div>
         <div style={{ fontSize: '11px', color: 'var(--ebq-primary)', marginTop: '6px' }}>
           {status === 'edited' ? '수정·저장됨' : '확인됨'}
@@ -39,7 +45,7 @@ export function GapReasonCard({ gap, onConfirm, onSaveEdit }: GapReasonCardProps
           className="toggle-btn"
           style={{ marginTop: '8px' }}
           onClick={() => {
-            setDraft(gap.reasonFinal || gap.reasonAuto || '');
+            setDraft(displayReason);
             setEditing(true);
           }}
         >
@@ -65,7 +71,7 @@ export function GapReasonCard({ gap, onConfirm, onSaveEdit }: GapReasonCardProps
               whiteSpace: 'pre-wrap',
             }}
           >
-            {gap.reasonAuto}
+            {displayReason || gap.reasonAuto}
           </div>
           <div style={{ display: 'flex', gap: '8px', marginTop: '12px', flexWrap: 'wrap' }}>
             <Button variant="primary" onClick={() => onConfirm(gap.id)}>
@@ -73,7 +79,7 @@ export function GapReasonCard({ gap, onConfirm, onSaveEdit }: GapReasonCardProps
             </Button>
             <Button
               onClick={() => {
-                setDraft(gap.reasonAuto || '');
+                setDraft(displayReason || gap.reasonAuto || '');
                 setEditing(true);
               }}
             >
