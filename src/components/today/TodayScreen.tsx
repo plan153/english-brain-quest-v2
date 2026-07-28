@@ -30,6 +30,8 @@ import {
 import { FeedbackBar } from './FeedbackBar';
 import { GapReasonCard } from './GapReasonCard';
 import { SessionComplete } from './SessionComplete';
+import { PlacementFlow } from './PlacementFlow';
+import { LEARNER_LEVEL_META, nudgeBand } from '../../domain/learner-level';
 
 const SESSION_SIZE = 10; // Phase 2 데모. 추후 50으로 확장.
 
@@ -102,6 +104,7 @@ export function TodayScreen() {
   } | null>(null);
   const [typeDraft, setTypeDraft] = useState('');
   const [showTypeInput, setShowTypeInput] = useState(false);
+  const typeInputRef = useRef<HTMLInputElement>(null);
 
   // store — session engine
   const isPlaying = useStore((s) => s.isPlaying);
@@ -111,6 +114,9 @@ export function TodayScreen() {
   const lastReward = useStore((s) => s.lastReward);
   const summary = useStore((s) => s.summary);
   const completionRewards = useStore((s) => s.completionRewards);
+  const lastComfortAdapt = useStore((s) => s.lastComfortAdapt);
+  const comfortStreak = useStore((s) => s.comfortStreak);
+  const respondComfortAdapt = useStore((s) => s.respondComfortAdapt);
 
   const startSessionFromItems = useStore((s) => s.startSessionFromItems);
   const recordTrial = useStore((s) => s.recordTrial);
@@ -129,6 +135,10 @@ export function TodayScreen() {
   const selectedPatternRole = useStore((s) => s.selectedPatternRole);
   const setSelectedPatternRole = useStore((s) => s.setSelectedPatternRole);
   const consumePendingStartPack = useStore((s) => s.consumePendingStartPack);
+  const practiceBand = useStore((s) => s.practiceBand);
+  const setPracticeBand = useStore((s) => s.setPracticeBand);
+  const clearPracticeBand = useStore((s) => s.clearPracticeBand);
+  const [placementKey, setPlacementKey] = useState(0);
 
   const currentSentenceRef = useRef(currentSentence);
   const pendingEvalRef = useRef(pendingEval);
@@ -136,6 +146,14 @@ export function TodayScreen() {
   const sawEnglishRef = useRef(false);
   currentSentenceRef.current = currentSentence;
   pendingEvalRef.current = pendingEval;
+
+  useEffect(() => {
+    if (!showTypeInput || pendingEval) return;
+    const id = window.setTimeout(() => {
+      typeInputRef.current?.focus({ preventScroll: true });
+    }, 0);
+    return () => window.clearTimeout(id);
+  }, [showTypeInput, pendingEval]);
 
   const resetCueFlags = useCallback(() => {
     heardAnswerRef.current = false;
@@ -401,7 +419,17 @@ export function TodayScreen() {
     openTodayLog();
   }, [openTodayLog]);
 
-  // 로딩 상태
+  // 로딩 상태 — 연습 난이도 미설정이면 콘텐츠 로드 기다리지 않고 진단
+  if (!isPlaying && !summary && !practiceBand) {
+    return (
+      <PlacementFlow
+        key={placementKey}
+        onComplete={(band, source) => setPracticeBand(band, source)}
+        onSkip={() => setPracticeBand('L2', 'manual')}
+      />
+    );
+  }
+
   if (loadError) {
     return (
       <Card>
@@ -418,14 +446,54 @@ export function TodayScreen() {
 
   // 세션 시작 전 — 팩 선택 + 시작
   if (!isPlaying && !summary) {
+    const bandMeta = practiceBand ? LEARNER_LEVEL_META[practiceBand] : null;
     return (
       <Card style={{ padding: '20px' }}>
         <h2 style={{ marginTop: 0, textAlign: 'center' }}>오늘의 영어 뇌 훈련</h2>
         <p style={{ color: 'var(--ebq-text-muted)', fontSize: '13px', textAlign: 'center', margin: '4px 0 16px' }}>
           한국어 문장을 보고 영어로 말해 보세요.
           <br />
-          {SESSION_SIZE}문장 세션 — 10% 도전, 80% 실력, 10% 쉬운 문장.
+          {SESSION_SIZE}문장 세션 — 적당 구간 위주, 가끔 쉬운/도전 문장.
         </p>
+        {bandMeta && practiceBand && (
+          <div
+            style={{
+              marginBottom: '14px',
+              padding: '10px 12px',
+              borderRadius: '12px',
+              border: '1px solid var(--ebq-border)',
+              background: 'var(--ebq-surface-alt)',
+            }}
+          >
+            <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)' }}>지금 연습 난이도</div>
+            <div style={{ fontWeight: 700, marginTop: '2px' }}>{bandMeta.name}</div>
+            <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)', marginTop: '2px' }}>
+              {bandMeta.oneLiner}
+            </div>
+            <div style={{ display: 'flex', gap: '6px', marginTop: '10px', flexWrap: 'wrap' }}>
+              <Button
+                disabled={practiceBand === 'L1'}
+                onClick={() => setPracticeBand(nudgeBand(practiceBand, -1), 'manual')}
+              >
+                조금 쉽게
+              </Button>
+              <Button
+                disabled={practiceBand === 'L4'}
+                onClick={() => setPracticeBand(nudgeBand(practiceBand, 1), 'manual')}
+              >
+                조금 어렵게
+              </Button>
+              <Button
+                onClick={() => {
+                  clearPracticeBand();
+                  setPlacementKey((k) => k + 1);
+                }}
+              >
+                다시 잡기
+              </Button>
+            </div>
+          </div>
+        )}
 
         <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)', marginBottom: '8px' }}>
           학습 팩 선택 ({items?.length ?? 0}문장)
@@ -591,13 +659,15 @@ export function TodayScreen() {
 
   // 세션 완료 요약
   if (summary && completionRewards) {
-    // 새 배지 — 이번 세션에서 획득한 것 (간이: 마지막 세션의 completionRewards.badges + 이전 대비 증가분은 store가 관리)
     const newBadges = completionRewards.badges;
     return (
       <SessionComplete
         summary={summary}
         rewards={completionRewards}
         newBadges={newBadges}
+        adapt={lastComfortAdapt}
+        comfortStreak={comfortStreak}
+        onRespondAdapt={respondComfortAdapt}
         onRestart={handleStart}
         onGoBrain={handleGoBrain}
         onGoTodayLog={handleGoTodayLog}
@@ -716,6 +786,7 @@ export function TodayScreen() {
             영어로 입력 후 제출 (말하기와 같은 채점)
           </div>
           <input
+            ref={typeInputRef}
             type="text"
             value={typeDraft}
             onChange={(e) => setTypeDraft(e.target.value)}
@@ -726,6 +797,7 @@ export function TodayScreen() {
               }
             }}
             placeholder="Type the English sentence…"
+            autoFocus
             autoCapitalize="off"
             autoCorrect="off"
             spellCheck={false}

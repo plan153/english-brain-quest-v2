@@ -24,12 +24,21 @@ const matchMeta: Record<
 
 export function FeedbackBar({ evaluation, reward, combo }: FeedbackBarProps) {
   const meta = matchMeta[evaluation.match];
+  const conquer =
+    evaluation.match === 'exact' || evaluation.match === 'fuzzy'
+      ? reward.feedback.includes('도전')
+      : false;
   return (
-    <Card className="feedback-bar" style={{ borderColor: meta.color }}>
+    <Card className="feedback-bar" style={{ borderColor: conquer ? '#FBBF24' : meta.color }}>
       <div className="feedback-row">
         <span className="feedback-match" style={{ color: meta.color }}>
           {meta.emoji} {meta.label}
         </span>
+        {conquer && (
+          <span className="feedback-combo" style={{ color: '#FBBF24' }}>
+            ⚔️ 정복
+          </span>
+        )}
         {combo >= 3 && (
           <span className="feedback-combo" aria-label="combo">
             🔥 {combo}콤보

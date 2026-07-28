@@ -39,6 +39,7 @@ import {
   computeTrialReward,
   computeSessionCompletionRewards,
   levelFromXp,
+  BADGES,
 } from '../domain/reward-engine';
 import type {
   TrialReward,
@@ -77,8 +78,20 @@ import {
   type WeakLinkSummary,
   type CueMode,
 } from '../domain/srs-engine';
+import {
+  filterItemsForPracticeBand,
+  mixRatiosForBand,
+  type LearnerLevel,
+  type PracticeBandSource,
+} from '../domain/learner-level';
+import {
+  applyManualNudge,
+  decideComfortAdapt,
+  type AdaptDecision,
+} from '../domain/comfort-adapt';
 
 export type { SentenceMemory, ReviewIntensity, WeakLinkSummary };
+export type { LearnerLevel, PracticeBandSource, AdaptDecision };
 export type TabId = 'today' | 'brain' | 'dictionary';
 export type TrainingPackId = 'review' | 'weak' | 'pattern';
 export type { GapSlotRole };
@@ -103,6 +116,14 @@ export interface ProgressState {
   attemptCount: number;
   level: number;
   totalSentences: number; // 누적 학습 문장 수 (100배지용)
+  /** 연습 난이도 밴드 (RPG level과 별개). null이면 진단 필요 */
+  practiceBand: LearnerLevel | null;
+  practiceBandSource: PracticeBandSource | null;
+  practiceBandSetAt: string | null;
+  /** 적당 구간 유지 연속 세션 */
+  comfortStreak: number;
+  /** 난이도 상승(정복) 횟수 */
+  bandConquestCount: number;
 }
 
 export interface SessionState {
@@ -115,6 +136,8 @@ export interface SessionState {
   lastReward: TrialReward | null;
   summary: SessionSummary | null;
   completionRewards: SessionCompletionRewards | null;
+  /** 직전 세션 난이도 적응 결과 */
+  lastComfortAdapt: import('../domain/comfort-adapt').AdaptDecision | null;
 }
 
 export interface RewardState {
@@ -185,6 +208,10 @@ interface AppStore
   markStudyToday: () => void;
   recordAnswer: (correct: boolean) => void;
   resetProgress: () => void;
+  setPracticeBand: (band: LearnerLevel, source: PracticeBandSource) => void;
+  clearPracticeBand: () => void;
+  /** 세션 종료 후 hold 상태에서 수동으로 올리기/내리기 */
+  respondComfortAdapt: (direction: 'raise' | 'lower' | 'keep') => void;
 
   // session (Phase 2)
   startSessionFromItems: (
@@ -229,7 +256,16 @@ const DEFAULT_PROGRESS: ProgressState = {
   attemptCount: 0,
   level: 1,
   totalSentences: 0,
+  practiceBand: null,
+  practiceBandSource: null,
+  practiceBandSetAt: null,
+  comfortStreak: 0,
+  bandConquestCount: 0,
 };
+
+function normalizePracticeBand(v: unknown): LearnerLevel | null {
+  return v === 'L1' || v === 'L2' || v === 'L3' || v === 'L4' ? v : null;
+}
 
 const DEFAULT_REWARD_STATE: RewardState = {
   badges: [],
@@ -299,7 +335,24 @@ function persistTheme(theme: 'dark' | 'light') {
 
 export const useStore = create<AppStore>((set, get) => {
   const savedProgress = loadProgress();
-  const initialProgress: ProgressState = { ...DEFAULT_PROGRESS, ...savedProgress };
+  const initialProgress: ProgressState = {
+    ...DEFAULT_PROGRESS,
+    ...savedProgress,
+    practiceBand: normalizePracticeBand(savedProgress.practiceBand),
+    practiceBandSource:
+      savedProgress.practiceBandSource === 'placement' ||
+      savedProgress.practiceBandSource === 'manual' ||
+      savedProgress.practiceBandSource === 'auto'
+        ? savedProgress.practiceBandSource
+        : null,
+    practiceBandSetAt: savedProgress.practiceBandSetAt ?? null,
+    comfortStreak:
+      typeof savedProgress.comfortStreak === 'number' ? savedProgress.comfortStreak : 0,
+    bandConquestCount:
+      typeof savedProgress.bandConquestCount === 'number'
+        ? savedProgress.bandConquestCount
+        : 0,
+  };
   if (initialProgress.lastStudyDate !== todayStr()) {
     initialProgress.todaySentenceCount = 0;
   }
@@ -323,11 +376,13 @@ export const useStore = create<AppStore>((set, get) => {
     lastReward: null,
     summary: null,
     completionRewards: null,
+    lastComfortAdapt: null,
+
     // settings
     lang: 'en',
     ttsEnabled: true,
     theme: loadTheme(),
-    activeTab: 'today',
+    activeTab: 'today' as TabId,
     brainFocusTodayLog: false,
     todayLog: loadTodayLog(),
     memories: loadMemories(),
@@ -545,13 +600,112 @@ export const useStore = create<AppStore>((set, get) => {
       });
     },
 
+    setPracticeBand: (band, source) => {
+      const next = {
+        practiceBand: band,
+        practiceBandSource: source,
+        practiceBandSetAt: new Date().toISOString(),
+      };
+      writeLocal('progress', { ...loadProgress(), ...next });
+      set(next);
+    },
+
+    clearPracticeBand: () => {
+      const next = {
+        practiceBand: null as LearnerLevel | null,
+        practiceBandSource: null as PracticeBandSource | null,
+        practiceBandSetAt: null as string | null,
+      };
+      writeLocal('progress', { ...loadProgress(), ...next });
+      set(next);
+    },
+
+    respondComfortAdapt: (direction) => {
+      const prev = get().lastComfortAdapt;
+      if (!prev) return;
+      if (direction === 'keep') {
+        set({ lastComfortAdapt: { ...prev, offerRaise: false, offerLower: false } });
+        return;
+      }
+      const nextDecision = applyManualNudge(prev, direction);
+      const earnedBadgeIds = new Set(get().earnedBadgeIds);
+      let badges = [...get().badges];
+      let comfortStreak = get().comfortStreak;
+      let bandConquestCount = get().bandConquestCount;
+      let xp = get().xp;
+
+      if (nextDecision.signal === 'raise') {
+        comfortStreak = 0;
+        bandConquestCount += 1;
+        if (!earnedBadgeIds.has('band_conquer') && BADGES.band_conquer) {
+          earnedBadgeIds.add('band_conquer');
+          badges = [
+            ...badges,
+            { ...BADGES.band_conquer, earnedAt: new Date().toISOString() },
+          ];
+        }
+      } else if (nextDecision.signal === 'lower') {
+        comfortStreak = 0;
+      }
+
+      xp += nextDecision.bonusXp;
+      const level = levelFromXp(xp).level;
+      const bandPatch = {
+        practiceBand: nextDecision.to,
+        practiceBandSource: 'manual' as const,
+        practiceBandSetAt: new Date().toISOString(),
+        comfortStreak,
+        bandConquestCount,
+        xp,
+        level,
+      };
+      writeLocal('progress', { ...loadProgress(), ...bandPatch });
+      writeLocal('reward', { badges, skill: get().skill });
+      set({
+        ...bandPatch,
+        badges,
+        earnedBadgeIds,
+        lastComfortAdapt: nextDecision,
+        completionRewards: get().completionRewards
+          ? {
+              ...get().completionRewards!,
+              totalXp: get().completionRewards!.totalXp + nextDecision.bonusXp,
+              badges: [
+                ...get().completionRewards!.badges,
+                ...badges.filter(
+                  (b) =>
+                    b.id === 'band_conquer' &&
+                    !get().completionRewards!.badges.some((x) => x.id === b.id)
+                ),
+              ],
+            }
+          : get().completionRewards,
+      });
+    },
+
     startSessionFromItems: (items, options = {}) => {
       if (items.length === 0) return;
       const size = options.size ?? 10; // Phase 2 데모는 10문장 (50은 너무 김)
-      // 난이도 믹서로 10/80/10 분배 후 SessionPlan 생성
-      const mixed: MixedItem[] = mixDifficulty(items, {
-        challengeRatio: 0.1,
-        easyRatio: 0.1,
+      const practiceBand = get().practiceBand;
+      const packId = items.find((it) => it.packId)?.packId;
+      const pool = filterItemsForPracticeBand(items, practiceBand, { packId });
+      const ratios = practiceBand
+        ? mixRatiosForBand(practiceBand)
+        : { challengeRatio: 0.1, easyRatio: 0.1 };
+      // 적당 구간 연속이면 도전 비율을 살짝 올려 정복감 유지
+      const streak = get().comfortStreak;
+      let challengeRatio = ratios.challengeRatio;
+      let easyRatio = ratios.easyRatio;
+      if (streak >= 3) {
+        challengeRatio = Math.min(0.28, challengeRatio + 0.05);
+        easyRatio = Math.max(0.05, easyRatio - 0.03);
+      }
+      if (streak >= 5) {
+        challengeRatio = Math.min(0.32, challengeRatio + 0.05);
+      }
+      const mixed: MixedItem[] = mixDifficulty(pool, {
+        challengeRatio,
+        easyRatio,
         skill: get().skill,
         shuffle: true,
       });
@@ -803,19 +957,80 @@ export const useStore = create<AppStore>((set, get) => {
     },
 
     endSession: () => {
-      const { plan, progress, xp, earnedBadgeIds } = get();
+      const { plan, progress, xp, earnedBadgeIds, practiceBand } = get();
       if (!plan) return null;
-      // 방어: 조기 호출돼도 요약/보상은 실제 응답 수 기준으로
       const summary = summarizeSession(progress, plan.total);
       const completion = computeSessionCompletionRewards(summary, earnedBadgeIds);
 
-      // completion XP 영구 저장
-      const newXp = xp + completion.totalXp;
-      const newLevel = levelFromXp(newXp).level;
-      writeLocal('progress', { ...loadProgress(), xp: newXp, level: newLevel });
+      let decision = decideComfortAdapt(summary, practiceBand);
+      let comfortStreak = get().comfortStreak;
+      let bandConquestCount = get().bandConquestCount;
+      let nextBand = practiceBand;
+      let adaptBonus = 0;
+      const sessionBadges: Badge[] = [...completion.badges];
 
-      // streak 배지 — 7일
-      const newBadges = [...get().badges, ...completion.badges];
+      if (decision) {
+        if (decision.autoApplied && decision.to !== practiceBand) {
+          nextBand = decision.to;
+          adaptBonus = decision.bonusXp;
+          if (decision.signal === 'raise') {
+            comfortStreak = 0;
+            bandConquestCount += 1;
+            if (!earnedBadgeIds.has('band_conquer') && BADGES.band_conquer) {
+              earnedBadgeIds.add('band_conquer');
+              sessionBadges.push({
+                ...BADGES.band_conquer,
+                earnedAt: new Date().toISOString(),
+              });
+            }
+          } else if (decision.signal === 'lower') {
+            comfortStreak = 0;
+          }
+        } else if (decision.signal === 'hold') {
+          comfortStreak += 1;
+          adaptBonus = decision.bonusXp;
+          if (
+            comfortStreak >= 3 &&
+            !earnedBadgeIds.has('comfort_streak_3') &&
+            BADGES.comfort_streak_3
+          ) {
+            earnedBadgeIds.add('comfort_streak_3');
+            sessionBadges.push({
+              ...BADGES.comfort_streak_3,
+              earnedAt: new Date().toISOString(),
+            });
+          }
+          if (
+            comfortStreak >= 5 &&
+            !earnedBadgeIds.has('comfort_flow_5') &&
+            BADGES.comfort_flow_5
+          ) {
+            earnedBadgeIds.add('comfort_flow_5');
+            sessionBadges.push({
+              ...BADGES.comfort_flow_5,
+              earnedAt: new Date().toISOString(),
+            });
+          }
+        }
+      }
+
+      const newXp = xp + completion.totalXp + adaptBonus;
+      const newLevel = levelFromXp(newXp).level;
+
+      const progressPatch: Partial<ProgressState> = {
+        xp: newXp,
+        level: newLevel,
+        comfortStreak,
+        bandConquestCount,
+      };
+      if (nextBand && nextBand !== practiceBand) {
+        progressPatch.practiceBand = nextBand;
+        progressPatch.practiceBandSource = 'auto';
+        progressPatch.practiceBandSetAt = new Date().toISOString();
+      }
+      writeLocal('progress', { ...loadProgress(), ...progressPatch });
+
+      const newBadges = [...get().badges, ...sessionBadges];
       const streakBadge =
         get().streakDays >= 7 && !earnedBadgeIds.has('streak_7')
           ? [
@@ -849,18 +1064,37 @@ export const useStore = create<AppStore>((set, get) => {
         const latest = get().gapNotes.find((n) => n.id === g.id);
         return latest ?? g;
       });
+
+      const completionWithAdapt: SessionCompletionRewards = {
+        ...completion,
+        totalXp: completion.totalXp + adaptBonus,
+        badges: sessionBadges,
+      };
+
       set({
         isPlaying: false,
         summary,
-        completionRewards: completion,
+        completionRewards: completionWithAdapt,
+        lastComfortAdapt: decision,
         xp: newXp,
         level: newLevel,
+        comfortStreak,
+        bandConquestCount,
+        practiceBand: nextBand ?? practiceBand,
+        practiceBandSource:
+          nextBand && nextBand !== practiceBand
+            ? 'auto'
+            : get().practiceBandSource,
+        practiceBandSetAt:
+          nextBand && nextBand !== practiceBand
+            ? new Date().toISOString()
+            : get().practiceBandSetAt,
         badges: allNewBadges,
+        earnedBadgeIds,
         currentSentence: null,
         pendingGaps: [],
       });
 
-      // Phase 4: Vault 동기화 (비동기, 실패해도 세션 완료는 유지)
       void (async () => {
         try {
           const s = get();
@@ -923,6 +1157,7 @@ export const useStore = create<AppStore>((set, get) => {
         lastReward: null,
         summary: null,
         completionRewards: null,
+        lastComfortAdapt: null,
       }),
 
     toggleTheme: () => {

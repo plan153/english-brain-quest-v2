@@ -98,6 +98,24 @@ export const BADGES: Record<string, Badge> = {
     description: '도전 문장 첫 정답',
     condition: 'challenge tier 첫 정답',
   },
+  band_conquer: {
+    id: 'band_conquer',
+    name: '구간 정복',
+    description: '연습 난이도를 한 단계 올렸어요',
+    condition: 'comfort raise',
+  },
+  comfort_streak_3: {
+    id: 'comfort_streak_3',
+    name: '흐름 3연속',
+    description: '적당 구간에서 3세션 연속 유지',
+    condition: 'comfort streak ≥ 3',
+  },
+  comfort_flow_5: {
+    id: 'comfort_flow_5',
+    name: '흐름의 달인',
+    description: '적당 구간 5세션 연속',
+    condition: 'comfort streak ≥ 5',
+  },
 };
 
 export const XP_PER_LEVEL = [0, 100, 250, 500, 1000, 1800, 3000, 4800, 7500, 11000, 16000];

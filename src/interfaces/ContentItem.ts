@@ -65,4 +65,6 @@ export interface ContentItem {
   form?: 'statement' | 'question' | 'negative' | 'shortAnswer' | 'command';
   level?: number;
   packId?: string;
+  /** 연습 난이도 밴드 (placement 문항 등) */
+  practiceBand?: 'L1' | 'L2' | 'L3' | 'L4';
 }

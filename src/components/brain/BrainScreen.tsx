@@ -2,11 +2,16 @@
  * BrainScreen — My English Brain.
  * XP/스킬/배지 + 약점 강화 + 복습 빈도 + 오늘 만난 문장.
  */
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { Card } from '../ui/Card';
+import { Button } from '../ui/Button';
 import { useStore } from '../../state/store';
 import { levelFromXp } from '../../domain/reward-engine';
 import type { SkillAxis } from '../../domain/difficulty-mixer';
+import {
+  LEARNER_LEVEL_META,
+  nudgeBand,
+} from '../../domain/learner-level';
 import {
   REVIEW_INTENSITY_LABEL,
   CUE_MODE_LABEL,
@@ -20,6 +25,7 @@ import { VaultSyncCard } from './VaultSyncCard';
 import { TodayLogCard } from './TodayLogCard';
 import { GapReasonCard } from '../today/GapReasonCard';
 import { summarizePatternGaps, countPatternTraining } from '../../domain/pattern-queue';
+import { PlacementFlow } from '../today/PlacementFlow';
 
 const SKILL_AXIS_META: { axis: SkillAxis; label: string }[] = [
   { axis: 'form', label: '형태 (form)' },
@@ -48,6 +54,12 @@ export function BrainScreen() {
   const requestStartPack = useStore((s) => s.requestStartPack);
   const gapNotes = useStore((s) => s.gapNotes);
   const resolveGapReason = useStore((s) => s.resolveGapReason);
+  const practiceBand = useStore((s) => s.practiceBand);
+  const setPracticeBand = useStore((s) => s.setPracticeBand);
+  const clearPracticeBand = useStore((s) => s.clearPracticeBand);
+  const comfortStreak = useStore((s) => s.comfortStreak);
+  const bandConquestCount = useStore((s) => s.bandConquestCount);
+  const [retakePlacement, setRetakePlacement] = useState(false);
 
   const memoryList = useMemo(() => Object.values(memories), [memories]);
   const dueCount = useMemo(() => countDue(memoryList), [memoryList]);
@@ -66,6 +78,24 @@ export function BrainScreen() {
   const accuracy = attemptCount > 0 ? Math.round((correctCount / attemptCount) * 100) : 0;
   const lvl = levelFromXp(xp);
   const memoryCount = memoryList.length;
+  const bandMeta = practiceBand ? LEARNER_LEVEL_META[practiceBand] : null;
+
+  if (retakePlacement || !practiceBand) {
+    return (
+      <div>
+        <PlacementFlow
+          onComplete={(band, source) => {
+            setPracticeBand(band, source);
+            setRetakePlacement(false);
+          }}
+          onSkip={() => {
+            setPracticeBand('L2', 'manual');
+            setRetakePlacement(false);
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -81,6 +111,49 @@ export function BrainScreen() {
         </div>
         <div style={{ fontSize: '11px', color: 'var(--ebq-text-muted)', marginTop: '4px' }}>
           다음 레벨까지 {lvl.nextLevelXp} XP
+        </div>
+      </Card>
+
+      <Card style={{ marginTop: '12px' }}>
+        <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)' }}>지금 연습 난이도</div>
+            <div style={{ fontWeight: 700, fontSize: '18px', marginTop: '4px' }}>{bandMeta?.name}</div>
+        <div style={{ fontSize: '13px', color: 'var(--ebq-text-muted)', marginTop: '4px' }}>
+          {bandMeta?.oneLiner}
+        </div>
+        <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)', marginTop: '6px' }}>
+          {bandMeta?.comfortHint}
+        </div>
+        {comfortStreak > 0 && (
+          <div style={{ fontSize: '12px', color: 'var(--ebq-accent)', marginTop: '8px', fontWeight: 700 }}>
+            적당 구간 {comfortStreak}연속 · 정복 준비 중
+          </div>
+        )}
+        {bandConquestCount > 0 && (
+          <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)', marginTop: '4px' }}>
+            구간 정복 {bandConquestCount}회
+          </div>
+        )}
+        <div style={{ display: 'flex', gap: '6px', marginTop: '12px', flexWrap: 'wrap' }}>
+          <Button
+            disabled={practiceBand === 'L1'}
+            onClick={() => setPracticeBand(nudgeBand(practiceBand, -1), 'manual')}
+          >
+            조금 쉽게
+          </Button>
+          <Button
+            disabled={practiceBand === 'L4'}
+            onClick={() => setPracticeBand(nudgeBand(practiceBand, 1), 'manual')}
+          >
+            조금 어렵게
+          </Button>
+          <Button
+            onClick={() => {
+              clearPracticeBand();
+              setRetakePlacement(true);
+            }}
+          >
+            다시 잡기
+          </Button>
         </div>
       </Card>
 

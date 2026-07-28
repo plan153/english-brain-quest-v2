@@ -562,3 +562,103 @@ Do you need help?
     expect(queue.some((m) => m.sentenceId === 'e130')).toBe(true);
   });
 });
+
+describe('9. practice band + placement', () => {
+  it('recommends band from ladder pass rates', async () => {
+    const { recommendPracticeBand } = await import('../domain/placement-engine');
+    const trials = [
+      { itemId: 'a', band: 'L1' as const, pass: true, match: 'exact' as const },
+      { itemId: 'b', band: 'L1' as const, pass: true, match: 'exact' as const },
+      { itemId: 'c', band: 'L2' as const, pass: true, match: 'fuzzy' as const },
+      { itemId: 'd', band: 'L2' as const, pass: true, match: 'exact' as const },
+      { itemId: 'e', band: 'L3' as const, pass: false, match: 'wrong' as const },
+      { itemId: 'f', band: 'L3' as const, pass: false, match: 'wrong' as const },
+    ];
+    expect(recommendPracticeBand(trials).recommended).toBe('L2');
+  });
+
+  it('filters content by practice band but keeps weak pack intact', async () => {
+    const {
+      filterItemsForPracticeBand,
+      mixRatiosForBand,
+    } = await import('../domain/learner-level');
+    const items: ContentItem[] = [
+      {
+        id: 's1',
+        type: 'sentence',
+        data: { en: 'I get it.', translations: { ko: '알겠어요.' } },
+        translations: { ko: '알겠어요.' },
+        tags: [],
+        level: 1,
+        packId: 'pack-starter',
+      },
+      {
+        id: 'p1',
+        type: 'sentence',
+        data: { en: 'Would you mind waiting a bit?', translations: { ko: '기다려 주시겠어요?' } },
+        translations: { ko: '기다려 주시겠어요?' },
+        tags: [],
+        level: 3,
+        packId: 'phrasal-verbs',
+      },
+    ];
+    const filtered = filterItemsForPracticeBand(items, 'L1', { packId: 'pack-starter' });
+    expect(filtered.some((i) => i.id === 's1')).toBe(true);
+    const weakKept = filterItemsForPracticeBand(items, 'L1', { packId: 'weak' });
+    expect(weakKept).toHaveLength(2);
+    expect(mixRatiosForBand('L1').easyRatio).toBeGreaterThan(mixRatiosForBand('L4').easyRatio);
+  });
+
+  it('accepts take a look on placement look item', async () => {
+    const { scorePlacementAnswer } = await import('../domain/placement-engine');
+    const r = scorePlacementAnswer('take a look at this', 'Have a look at this.');
+    expect(r.pass).toBe(true);
+  });
+});
+
+describe('10. comfort adapt', () => {
+  it('raises after strong session', async () => {
+    const { decideComfortAdapt } = await import('../domain/comfort-adapt');
+    const d = decideComfortAdapt(
+      {
+        total: 10,
+        answered: 10,
+        correct: 8,
+        fuzzy: 1,
+        wrong: 1,
+        skipped: 0,
+        accuracy: 90,
+        maxCombo: 6,
+        xpEarned: 200,
+        rank: 'A',
+        fullyComplete: true,
+      },
+      'L2'
+    );
+    expect(d?.signal).toBe('raise');
+    expect(d?.autoApplied).toBe(true);
+    expect(d?.to).toBe('L3');
+  });
+
+  it('lowers when overwhelmed', async () => {
+    const { decideComfortAdapt } = await import('../domain/comfort-adapt');
+    const d = decideComfortAdapt(
+      {
+        total: 10,
+        answered: 10,
+        correct: 2,
+        fuzzy: 1,
+        wrong: 5,
+        skipped: 2,
+        accuracy: 30,
+        maxCombo: 1,
+        xpEarned: 40,
+        rank: 'D',
+        fullyComplete: true,
+      },
+      'L3'
+    );
+    expect(d?.signal).toBe('lower');
+    expect(d?.to).toBe('L2');
+  });
+});
