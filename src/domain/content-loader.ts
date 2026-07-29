@@ -206,7 +206,7 @@ export async function loadQuizVerbsAsItems(): Promise<ContentItem[]> {
     level: q.level ?? (q.day <= 21 ? 1 : q.day <= 60 ? 2 : 3),
     packId: 'quiz-verbs',
     practiceBand:
-      q.day <= 21 ? 'L1' : q.day <= 45 ? 'L2' : q.day <= 75 ? 'L3' : 'L4',
+      q.day <= 12 ? 'L2' : q.day <= 35 ? 'L3' : 'L4',
   }));
   cache.set('quiz-verbs-items', items);
   return items;
@@ -244,9 +244,7 @@ export async function loadConversation100AsItems(): Promise<ContentItem[]> {
     form: 'statement' as const,
     level: q.level ?? (q.day <= 30 ? 1 : q.day <= 70 ? 2 : 3),
     packId: 'conversation-100',
-    practiceBand:
-      q.practiceBand ??
-      (q.day <= 25 ? 'L1' : q.day <= 50 ? 'L2' : q.day <= 80 ? 'L3' : 'L4'),
+    practiceBand: q.day <= 15 ? 'L2' : q.day <= 40 ? 'L3' : 'L4',
   }));
   cache.set('conversation-100-items', items);
   return items;

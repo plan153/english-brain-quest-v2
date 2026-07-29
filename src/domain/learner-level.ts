@@ -45,20 +45,20 @@ export const LEARNER_LEVEL_META: Record<LearnerLevel, LearnerLevelMeta> = {
   },
 };
 
-/** 세션 믹스 비율 — band별 easy/challenge (나머지는 normal) */
+/** 세션 믹스 비율 — band별 easy/challenge (나머지는 normal). 도전 비중을 조금 높임. */
 export function mixRatiosForBand(band: LearnerLevel): {
   easyRatio: number;
   challengeRatio: number;
 } {
   switch (band) {
     case 'L1':
-      return { easyRatio: 0.25, challengeRatio: 0.05 };
+      return { easyRatio: 0.12, challengeRatio: 0.14 };
     case 'L2':
-      return { easyRatio: 0.15, challengeRatio: 0.1 };
+      return { easyRatio: 0.08, challengeRatio: 0.2 };
     case 'L3':
-      return { easyRatio: 0.1, challengeRatio: 0.15 };
+      return { easyRatio: 0.05, challengeRatio: 0.25 };
     case 'L4':
-      return { easyRatio: 0.05, challengeRatio: 0.2 };
+      return { easyRatio: 0.03, challengeRatio: 0.3 };
   }
 }
 
@@ -108,12 +108,13 @@ export function inferItemBand(item: ContentItem): LearnerLevel {
   return 'L3';
 }
 
-/** 연습 밴드 ±1 허용 (완전 차단 없이 적당 구간 유지) */
+/** 연습 밴드 — 같은 구간 + 한 단계 위 위주 (아래 구간은 L4만 예외로 허용) */
 export function allowedBandsFor(practice: LearnerLevel): Set<LearnerLevel> {
   const i = bandIndex(practice);
-  return new Set(
-    LEARNER_LEVELS.filter((_, idx) => Math.abs(idx - i) <= 1)
-  );
+  if (i >= 3) {
+    return new Set(['L3', 'L4']);
+  }
+  return new Set([LEARNER_LEVELS[i]!, LEARNER_LEVELS[i + 1]!]);
 }
 
 /**
@@ -143,5 +144,5 @@ export function practiceBandLabel(band: LearnerLevel): string {
 
 export function recommendCopy(band: LearnerLevel): string {
   const m = LEARNER_LEVEL_META[band];
-  return `이 정도면 지루하지 않고 따라갈 수 있어요. 「${m.name}」구간으로 연습해 볼까요?`;
+  return `「${m.name}」구간으로 연습해 볼까요? 조금 도전적이어야 실력이 붙어요.`;
 }

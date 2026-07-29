@@ -89,7 +89,7 @@ export function BrainScreen() {
             setRetakePlacement(false);
           }}
           onSkip={() => {
-            setPracticeBand('L2', 'manual');
+            setPracticeBand('L3', 'manual');
             setRetakePlacement(false);
           }}
         />

@@ -439,7 +439,7 @@ export function TodayScreen() {
       <PlacementFlow
         key={placementKey}
         onComplete={(band, source) => setPracticeBand(band, source)}
-        onSkip={() => setPracticeBand('L2', 'manual')}
+        onSkip={() => setPracticeBand('L3', 'manual')}
       />
     );
   }

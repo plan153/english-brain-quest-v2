@@ -691,17 +691,17 @@ export const useStore = create<AppStore>((set, get) => {
       const pool = filterItemsForPracticeBand(items, practiceBand, { packId });
       const ratios = practiceBand
         ? mixRatiosForBand(practiceBand)
-        : { challengeRatio: 0.1, easyRatio: 0.1 };
-      // 적당 구간 연속이면 도전 비율을 살짝 올려 정복감 유지
+        : { challengeRatio: 0.2, easyRatio: 0.08 };
+      // 적당 구간 연속이면 도전 비율을 더 올려 정복감 유지
       const streak = get().comfortStreak;
       let challengeRatio = ratios.challengeRatio;
       let easyRatio = ratios.easyRatio;
       if (streak >= 3) {
-        challengeRatio = Math.min(0.28, challengeRatio + 0.05);
-        easyRatio = Math.max(0.05, easyRatio - 0.03);
+        challengeRatio = Math.min(0.35, challengeRatio + 0.06);
+        easyRatio = Math.max(0.02, easyRatio - 0.03);
       }
       if (streak >= 5) {
-        challengeRatio = Math.min(0.32, challengeRatio + 0.05);
+        challengeRatio = Math.min(0.4, challengeRatio + 0.05);
       }
       const mixed: MixedItem[] = mixDifficulty(pool, {
         challengeRatio,

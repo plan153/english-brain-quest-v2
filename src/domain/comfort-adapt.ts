@@ -50,18 +50,21 @@ export function decideComfortAdapt(
   const canRaise = bandIndex(from) < 3;
   const canLower = bandIndex(from) > 0;
 
-  // 너무 쉬움 → 정복 후 상승
+  // 너무 쉬움 → 정복 후 상승 (문턱을 낮춰 빨리 올려 줌)
   const crush =
-    accuracy >= 80 &&
-    summary.wrong <= 1 &&
-    hit >= Math.max(4, Math.floor(answered * 0.75)) &&
-    (summary.rank === 'S' || summary.rank === 'A' || summary.maxCombo >= 5);
+    accuracy >= 72 &&
+    summary.wrong <= 2 &&
+    hit >= Math.max(3, Math.floor(answered * 0.65)) &&
+    (summary.rank === 'S' ||
+      summary.rank === 'A' ||
+      summary.rank === 'B' ||
+      summary.maxCombo >= 4);
 
-  // 너무 어려움 → 페이스 조절
+  // 너무 어려움 → 페이스 조절 (문턱을 높여 쉽게 내리지 않음)
   const overwhelm =
-    accuracy < 45 ||
-    miss >= Math.ceil(answered * 0.5) ||
-    (summary.wrong >= 4 && accuracy < 60);
+    accuracy < 38 ||
+    miss >= Math.ceil(answered * 0.6) ||
+    (summary.wrong >= 5 && accuracy < 50);
 
   if (crush && canRaise) {
     const to = nudgeBand(from, 1);
