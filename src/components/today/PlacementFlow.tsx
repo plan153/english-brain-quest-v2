@@ -1,11 +1,12 @@
 /**
- * PlacementFlow — 연습 난이도 선택 + 선택적 짧은 진단.
- * 목적은 점수 과시가 아니라 적당~살짝 도전 구간으로 안내.
+ * PlacementFlow — 기본 난이도 선택 + 선택적 짧은 진단(타이핑·음성).
  */
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { KoPrompt } from '../ui/KoPrompt';
+import { useSpeech } from '../../hooks/useSpeech';
+import type { SpeechResult } from '../../interfaces/SpeechResult';
 import {
   finalizePlacement,
   getPlacementItems,
@@ -62,7 +63,14 @@ function LevelPickGrid({
               {LEARNER_LEVEL_META[b].name}
               {isRec ? ' · 추천' : ''}
             </div>
-            <div style={{ fontSize: '11px', color: 'var(--ebq-text-muted)', marginTop: '4px', lineHeight: 1.35 }}>
+            <div
+              style={{
+                fontSize: '11px',
+                color: 'var(--ebq-text-muted)',
+                marginTop: '4px',
+                lineHeight: 1.35,
+              }}
+            >
               {LEARNER_LEVEL_META[b].oneLiner}
             </div>
             <div style={{ fontSize: '10px', color: 'var(--ebq-text-muted)', marginTop: '4px' }}>
@@ -84,42 +92,86 @@ export function PlacementFlow({ onComplete, onSkip }: Props) {
   const [result, setResult] = useState<PlacementResult | null>(null);
   const [picked, setPicked] = useState<LearnerLevel | null>('L3');
   const [lastFeedback, setLastFeedback] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
 
   const current: PlacementItem | undefined = items[index];
+  const currentRef = useRef(current);
+  const trialsRef = useRef(trials);
+  const indexRef = useRef(index);
+  const itemsLenRef = useRef(items.length);
+  const busyRef = useRef(false);
+  currentRef.current = current;
+  trialsRef.current = trials;
+  indexRef.current = index;
+  itemsLenRef.current = items.length;
 
   const finishWith = useCallback((list: PlacementTrial[]) => {
     const r = finalizePlacement(list);
     setResult(r);
     setPicked(r.recommended);
     setPhase('result');
+    setBusy(false);
+    busyRef.current = false;
   }, []);
 
-  const submitGuess = useCallback(() => {
-    if (!current) return;
-    const trimmed = draft.trim();
-    if (!trimmed) return;
-    const scored = scorePlacementAnswer(trimmed, current.en);
-    const trial: PlacementTrial = {
-      itemId: current.id,
-      band: current.band,
-      pass: scored.pass,
-      match: scored.match,
-    };
-    const nextTrials = [...trials, trial];
-    setTrials(nextTrials);
-    setDraft('');
-    setLastFeedback(scored.pass ? '좋아요 — 다음으로' : `참고: ${current.en}`);
+  const submitText = useCallback(
+    (text: string) => {
+      const cur = currentRef.current;
+      if (!cur || busyRef.current) return;
+      const trimmed = text.trim();
+      if (!trimmed) return;
 
-    if (shouldStopClimbing(nextTrials)) {
-      finishWith(nextTrials);
-      return;
-    }
-    if (index + 1 >= items.length) {
-      finishWith(nextTrials);
-      return;
-    }
-    setIndex(index + 1);
-  }, [current, draft, trials, index, items.length, finishWith]);
+      busyRef.current = true;
+      setBusy(true);
+
+      const scored = scorePlacementAnswer(trimmed, cur.en);
+      const trial: PlacementTrial = {
+        itemId: cur.id,
+        band: cur.band,
+        pass: scored.pass,
+        match: scored.match,
+      };
+      const nextTrials = [...trialsRef.current, trial];
+      setTrials(nextTrials);
+      setDraft('');
+      setLastFeedback(scored.pass ? '좋아요 — 다음으로' : `참고: ${cur.en}`);
+
+      const stop = shouldStopClimbing(nextTrials);
+      const nextIndex = indexRef.current + 1;
+      if (stop || nextIndex >= itemsLenRef.current) {
+        finishWith(nextTrials);
+        return;
+      }
+      setIndex(nextIndex);
+      busyRef.current = false;
+      setBusy(false);
+    },
+    [finishWith]
+  );
+
+  const handleSpeechResult = useCallback(
+    (sr: SpeechResult) => {
+      submitText(sr.text);
+    },
+    [submitText]
+  );
+
+  const speech = useSpeech({
+    lang: 'en',
+    onResult: handleSpeechResult,
+    maxListenMs: 7000,
+  });
+
+  const startQuiz = useCallback(() => {
+    if (speech.listening) speech.stopListening();
+    setIndex(0);
+    setTrials([]);
+    setDraft('');
+    setLastFeedback(null);
+    setBusy(false);
+    busyRef.current = false;
+    setPhase('quiz');
+  }, [speech]);
 
   if (phase === 'pick') {
     return (
@@ -134,12 +186,12 @@ export function PlacementFlow({ onComplete, onSkip }: Props) {
             marginBottom: '14px',
           }}
         >
-          지금 연습할 구간을 고르세요.
+          먼저 기본 난이도를 고르세요.
           <br />
-          너무 쉽다면 한 단계 위가 정복감이 좋아요.
+          그다음 바로 시작하거나, 짧은 진단(말하기·타이핑)으로 추천받을 수 있어요.
         </p>
         <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)', marginBottom: '8px' }}>
-          레벨 선택
+          기본 난이도 선택
         </div>
         <LevelPickGrid selected={picked} onSelect={setPicked} />
         <Button
@@ -152,17 +204,8 @@ export function PlacementFlow({ onComplete, onSkip }: Props) {
             ? `「${LEARNER_LEVEL_META[picked].name}」으로 시작`
             : '레벨을 선택하세요'}
         </Button>
-        <Button
-          style={{ width: '100%', marginTop: '8px' }}
-          onClick={() => {
-            setIndex(0);
-            setTrials([]);
-            setDraft('');
-            setLastFeedback(null);
-            setPhase('quiz');
-          }}
-        >
-          짧은 진단으로 추천받기
+        <Button style={{ width: '100%', marginTop: '8px' }} disabled={!picked} onClick={startQuiz}>
+          이 난이도 기준으로 짧은 진단받기
         </Button>
         {onSkip && (
           <button
@@ -245,8 +288,60 @@ export function PlacementFlow({ onComplete, onSkip }: Props) {
       </div>
       <KoPrompt text={current.ko} />
       <p style={{ fontSize: '13px', color: 'var(--ebq-text-muted)', textAlign: 'center' }}>
-        영어로 타이핑해 보세요
+        영어로 말하거나 타이핑해 보세요
       </p>
+
+      <div style={{ display: 'flex', gap: '8px', marginBottom: '10px' }}>
+        <Button
+          variant={speech.listening ? 'recording' : 'primary'}
+          style={{ flex: 1 }}
+          disabled={!speech.supported || speech.listening || busy}
+          onClick={() => speech.startListening()}
+        >
+          {speech.listening ? '말하는 중…' : '🎤 말하기'}
+        </Button>
+        {speech.listening && (
+          <Button onClick={() => speech.stopListening()}>중지</Button>
+        )}
+      </div>
+
+      {!speech.supported && (
+        <div
+          style={{
+            fontSize: '12px',
+            color: 'var(--ebq-danger)',
+            textAlign: 'center',
+            marginBottom: '8px',
+          }}
+        >
+          이 브라우저는 음성 인식을 지원하지 않습니다. 타이핑으로 진행하세요.
+        </div>
+      )}
+      {speech.error && (
+        <div
+          style={{
+            fontSize: '12px',
+            color: 'var(--ebq-danger)',
+            textAlign: 'center',
+            marginBottom: '8px',
+          }}
+        >
+          {speech.error}
+        </div>
+      )}
+      {speech.listening && speech.interimText && (
+        <div
+          style={{
+            fontSize: '13px',
+            color: 'var(--ebq-text-muted)',
+            textAlign: 'center',
+            marginBottom: '8px',
+          }}
+        >
+          듣는 중: &quot;{speech.interimText}&quot;
+        </div>
+      )}
+
       <input
         type="text"
         value={draft}
@@ -254,14 +349,14 @@ export function PlacementFlow({ onComplete, onSkip }: Props) {
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
             e.preventDefault();
-            submitGuess();
+            submitText(draft);
           }
         }}
-        placeholder="Type in English…"
-        autoFocus
+        placeholder="또는 영어로 타이핑…"
         autoCapitalize="off"
         autoCorrect="off"
         spellCheck={false}
+        disabled={busy || speech.listening}
         style={{
           width: '100%',
           padding: '12px',
@@ -289,34 +384,43 @@ export function PlacementFlow({ onComplete, onSkip }: Props) {
       <Button
         variant="primary"
         style={{ width: '100%', marginTop: '12px' }}
-        disabled={!draft.trim()}
-        onClick={submitGuess}
+        disabled={!draft.trim() || busy || speech.listening}
+        onClick={() => submitText(draft)}
       >
-        다음
+        타이핑 제출
       </Button>
       <Button
         style={{ width: '100%', marginTop: '8px' }}
+        disabled={busy || speech.listening}
         onClick={() => {
+          const cur = currentRef.current;
+          if (!cur) return;
           const trial: PlacementTrial = {
-            itemId: current.id,
-            band: current.band,
+            itemId: cur.id,
+            band: cur.band,
             pass: false,
             match: 'wrong',
           };
-          const nextTrials = [...trials, trial];
+          const nextTrials = [...trialsRef.current, trial];
           setTrials(nextTrials);
           setDraft('');
-          setLastFeedback(`참고: ${current.en}`);
-          if (shouldStopClimbing(nextTrials) || index + 1 >= items.length) {
+          setLastFeedback(`참고: ${cur.en}`);
+          if (shouldStopClimbing(nextTrials) || indexRef.current + 1 >= itemsLenRef.current) {
             finishWith(nextTrials);
           } else {
-            setIndex(index + 1);
+            setIndex(indexRef.current + 1);
           }
         }}
       >
         모르겠음 · 건너뛰기
       </Button>
-      <Button style={{ width: '100%', marginTop: '8px' }} onClick={() => setPhase('pick')}>
+      <Button
+        style={{ width: '100%', marginTop: '8px' }}
+        onClick={() => {
+          if (speech.listening) speech.stopListening();
+          setPhase('pick');
+        }}
+      >
         레벨 직접 고르기
       </Button>
     </Card>
