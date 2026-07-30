@@ -348,10 +348,8 @@ describe('6b. gap-reason + projectGap', () => {
       en: 'I have a question.',
       guess: 'I have',
     });
-    // have a question 을 동사구로 보므로 목적어 대신 동사 슬롯이 비거나 다름
-    expect(
-      noun.some((f) => f.role === 'verb' && (f.status === 'missing' || f.status === 'wrong'))
-    ).toBe(true);
+    expect(noun.some((f) => f.role === 'verb' && f.status === 'ok')).toBe(true);
+    expect(noun.some((f) => f.role === 'noun' && f.status === 'missing')).toBe(true);
 
     const tense = analyzeGapSlots({
       en: 'I went home.',
@@ -374,6 +372,39 @@ describe('6b. gap-reason + projectGap', () => {
     });
     expect(text).toContain('주어');
     expect(text).toMatch(/3인칭|동사/);
+  });
+
+  it('separates have+NP object from verb; friends≠plant is noun gap', () => {
+    const slots = analyzeGapSlots({
+      en: 'I have some friends living in Chicago.',
+      guess: 'I have some plant in Chicago',
+    });
+    const problems = slots.filter((f) => f.status !== 'ok');
+    expect(problems.some((f) => f.role === 'verb')).toBe(false);
+    expect(problems.some((f) => f.role === 'noun' && f.status === 'wrong')).toBe(true);
+    expect(problems.find((f) => f.role === 'noun')?.expected).toMatch(/friends/);
+    expect(problems.find((f) => f.role === 'noun')?.actual).toMatch(/plant/);
+    // 목적어가 틀리면 living 수식 누락은 가리지 않음
+    expect(problems.some((f) => f.role === 'modifier')).toBe(false);
+
+    const reason = inferGapReason({
+      en: 'I have some friends living in Chicago.',
+      ko: '나는 시카고에 사는 친구들이 있다.',
+      guess: 'I have some plant in Chicago',
+      match: 'wrong',
+      cueMode: 'blind',
+    });
+    expect(reason).toContain('목적어');
+    expect(reason).toContain('friends');
+    expect(reason).not.toMatch(/정답 동사「have some friends」/);
+    expect(reason).not.toMatch(/정답「living」/);
+
+    const modOnly = analyzeGapSlots({
+      en: 'I have some friends living in Chicago.',
+      guess: 'I have some friends in Chicago',
+    });
+    expect(modOnly.some((f) => f.role === 'noun' && f.status === 'ok')).toBe(true);
+    expect(modOnly.some((f) => f.role === 'modifier' && f.status === 'missing')).toBe(true);
   });
 
   it('treats please / particle position flexibly for stand up', () => {

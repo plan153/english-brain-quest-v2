@@ -193,6 +193,7 @@ ${vaultLibraryBrainSection()}
 - [[Patterns/subject|주어]]
 - [[Patterns/verb|동사]]
 - [[Patterns/noun|목적어]]
+- [[Patterns/modifier|수식]]
 - [[Patterns/tense|시제]]
 - [[Patterns/agreement|3인칭 단수]]
 
@@ -398,6 +399,7 @@ LIMIT 15
 - [[Patterns/subject|주어]]
 - [[Patterns/verb|동사]]
 - [[Patterns/noun|목적어]]
+- [[Patterns/modifier|수식]]
 - [[Patterns/tense|시제]]
 - [[Patterns/agreement|3인칭 단수]]
 
@@ -463,6 +465,8 @@ function patternTip(role: GapSlotRole): string {
       return '- 동작·상태를 한 단어로 떠올린 다음 시제·인칭을 붙이세요.';
     case 'noun':
       return '- 무엇을/누구를(목적어) 말하는지 먼저 정하세요. 명령문의 주어 you는 보통 생략됩니다.';
+    case 'modifier':
+      return '- 명사 뒤 -ing 수식(living in …)이나 to부정사 부가가 빠지지 않았는지 보세요.';
     case 'tense':
       return '- 과거/현재/미래 중 어느 때인지 한국어 문장에서 표시를 찾으세요.';
     case 'agreement':
@@ -514,6 +518,7 @@ source: english-brain-quest-v2
 - [[Patterns/subject|주어]]
 - [[Patterns/verb|동사]]
 - [[Patterns/noun|목적어]]
+- [[Patterns/modifier|수식]]
 - [[Patterns/tense|시제]]
 - [[Patterns/agreement|3인칭 단수]]
 

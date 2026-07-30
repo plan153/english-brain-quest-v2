@@ -1,6 +1,7 @@
 /**
  * gap-reason.ts — 오답/스킵 간극의 구조적 추정 이유.
- * 주어·동사·명사·시제·3인칭 단수 슬롯을 휴리스틱으로 비교.
+ * 주어·동사·목적어(핵)·수식·시제·3인칭 단수 슬롯을 휴리스틱으로 비교.
+ * 기본동사100·회화100·구동사·코로케이션 문장 패턴을 반영.
  * 사용자는 앱에서 확인·수정할 수 있음.
  */
 import type { CueMode } from './srs-engine';
@@ -11,6 +12,7 @@ export type GapSlotRole =
   | 'subject'
   | 'verb'
   | 'noun'
+  | 'modifier'
   | 'tense'
   | 'agreement';
 
@@ -344,14 +346,45 @@ function looks3sgVerb(word: string): boolean {
 
 interface PhraseSlots {
   subject: string;
+  /** 순수 동사(+입자) 또는 관용 light-verb 단위(have a look) */
   verb: string;
+  /** 목적어 NP 전체 (some friends) */
   noun: string;
+  /** 목적어 핵 (friends) */
+  nounHead: string;
+  /** 후치 수식·to부정사 등 (living in Chicago / to run …) */
+  modifier: string;
   tokens: string[];
   isQuestion: boolean;
   isImperative: boolean;
 }
 
 const LIGHT_VERBS = new Set(['have', 'take', 'make', 'give', 'do', 'get', 'pay', 'keep']);
+/**
+ * light-verb 관용 핵만 동사 단위로 묶음.
+ * have some friends / have a question 은 제외 → 동사 have + 목적어 NP.
+ * (기본동사·코로케이션·회화 팩 관용 표현 기준)
+ */
+const LIGHT_VERB_NOUNS = new Set([
+  'look',
+  'peek',
+  'glance',
+  'break',
+  'rest',
+  'seat',
+  'walk',
+  'bath',
+  'shower',
+  'nap',
+  'try',
+  'go',
+  'shot',
+  'turn',
+  'bite',
+  'drink',
+  'sip',
+  'listen',
+]);
 const LOOK_ADJECTIVES = new Set([
   'closer',
   'quick',
@@ -507,7 +540,7 @@ function takeNounPhrase(tokens: string[], start: number): { text: string; end: n
   return { text: '', end: start };
 }
 
-/** have/take/make + a + (adj)? + noun */
+/** have/take/make + a/an + (adj)? + 관용 핵만 — have some friends 는 제외 */
 function takeLightVerbPhrase(
   tokens: string[],
   start: number
@@ -515,35 +548,117 @@ function takeLightVerbPhrase(
   if (start >= tokens.length) return null;
   const v0 = tokens[start]!;
   if (!LIGHT_VERBS.has(v0)) return null;
-  if (start + 1 >= tokens.length || !DETERMINERS.has(tokens[start + 1]!)) return null;
-  const parts = [v0, tokens[start + 1]!];
+  if (start + 1 >= tokens.length) return null;
+  const det = tokens[start + 1]!;
+  // 관용은 a/an 중심 (some friends 등 일반 NP 제외)
+  if (det !== 'a' && det !== 'an') return null;
+  const parts = [v0, det];
   let i = start + 2;
   while (i < tokens.length && LOOK_ADJECTIVES.has(tokens[i]!)) {
     parts.push(tokens[i]!);
     i += 1;
   }
-  if (i >= tokens.length || FUNCTION.has(tokens[i]!) || PREPS.has(tokens[i]!)) {
-    // "have a" alone — not enough
-    if (parts.length < 3) return null;
-  } else {
-    parts.push(tokens[i]!); // noun head: look, rest, break…
-    i += 1;
-  }
-  if (parts.length < 3) return null;
+  if (i >= tokens.length) return null;
+  const head = tokens[i]!;
+  if (!LIGHT_VERB_NOUNS.has(head)) return null;
+  parts.push(head);
+  i += 1;
   return { text: parts.join(' '), end: i };
 }
 
+function isIngForm(word: string): boolean {
+  const w = word.toLowerCase();
+  if (w.length <= 4) return false;
+  if (!w.endsWith('ing')) return false;
+  if (AUX.has(w) || w === 'being' || w === 'going' || w === 'having') return false;
+  return true;
+}
+
+/**
+ * 목적어 NP: (det) (adj)* HEAD — HEAD 뒤 V-ing / to부정사 / 전치사는 수식·부가로 남김.
+ */
+function takeObjectNp(
+  tokens: string[],
+  start: number
+): { text: string; head: string; end: number } {
+  if (start >= tokens.length) return { text: '', head: '', end: start };
+  const t0 = tokens[start]!;
+  if (OBJECT_PRONOUNS.has(t0) || t0 === 'it') {
+    return { text: t0, head: t0, end: start + 1 };
+  }
+
+  const parts: string[] = [];
+  let i = start;
+  let head = '';
+
+  if (DETERMINERS.has(tokens[i]!)) {
+    parts.push(tokens[i]!);
+    i += 1;
+  }
+
+  while (i < tokens.length) {
+    const w = tokens[i]!;
+    if (PREPS.has(w) || AUX.has(w) || SUBJECT_PRONOUNS.has(w)) break;
+    if (FLOATING_ADVERBS.has(w)) break;
+    if (w === 'to') break; // to-infinitive complement
+    if (head && isIngForm(w)) break; // friends living …
+    if (w === 'and' || w === 'or' || w === 'but') break;
+
+    parts.push(w);
+    if (!DETERMINERS.has(w) && !LOOK_ADJECTIVES.has(w) && !FUNCTION.has(w)) {
+      head = w;
+    } else if (!DETERMINERS.has(w) && LOOK_ADJECTIVES.has(w)) {
+      // keep scanning for noun head
+    } else if (!DETERMINERS.has(w) && !FUNCTION.has(w)) {
+      head = w;
+    } else if (!head && !DETERMINERS.has(w) && !PREPS.has(w)) {
+      // few / many as head-ish after "a"
+      if (w !== 'a' && w !== 'an' && w !== 'the') head = w;
+    }
+    i += 1;
+    if (parts.length >= 6) break;
+  }
+
+  if (!head && parts.length > 0) {
+    for (let j = parts.length - 1; j >= 0; j--) {
+      const p = parts[j]!;
+      if (!DETERMINERS.has(p)) {
+        head = p;
+        break;
+      }
+    }
+  }
+
+  return { text: parts.join(' '), head, end: i };
+}
+
+function takePostModifier(
+  tokens: string[],
+  start: number
+): { text: string; end: number } {
+  if (start >= tokens.length) return { text: '', end: start };
+  const w0 = tokens[start]!;
+  // living in Chicago / to run this afternoon
+  if (isIngForm(w0) || w0 === 'to') {
+    return { text: tokens.slice(start).join(' '), end: tokens.length };
+  }
+  return { text: '', end: start };
+}
+
 function extractSlots(tokens: string[]): PhraseSlots {
+  const empty: PhraseSlots = {
+    subject: '',
+    verb: '',
+    noun: '',
+    nounHead: '',
+    modifier: '',
+    tokens: [],
+    isQuestion: false,
+    isImperative: false,
+  };
   const { core } = stripFloatingAdverbs(tokens);
   if (core.length === 0) {
-    return {
-      subject: '',
-      verb: '',
-      noun: '',
-      tokens: core,
-      isQuestion: false,
-      isImperative: false,
-    };
+    return { ...empty, tokens: core };
   }
 
   let i = 0;
@@ -552,10 +667,11 @@ function extractSlots(tokens: string[]): PhraseSlots {
   let subject = '';
   let verb = '';
   let noun = '';
+  let nounHead = '';
+  let modifier = '';
 
   // Do/Does/Did/Can... you need help?
   if (AUX.has(core[0]!) && core.length >= 2 && core[0] !== 'have') {
-    // "have a look" is light verb, not question aux when followed by determiner
     if (!(core[0] === 'have' && DETERMINERS.has(core[1]!))) {
       isQuestion = true;
       const aux = core[0]!;
@@ -565,7 +681,6 @@ function extractSlots(tokens: string[]): PhraseSlots {
       i = subj.end;
       if (i < core.length && !AUX.has(core[i]!)) {
         const vp = takeVerbWithParticle(core, i);
-        // aux + main verb (+particle): "did stand up" rare; usually "do you stand"
         if (vp.text && !AUX.has(vp.text.split(/\s+/)[0]!)) {
           verb = `${aux} ${vp.text}`;
           i = vp.end;
@@ -589,7 +704,7 @@ function extractSlots(tokens: string[]): PhraseSlots {
 
     if (imperativeStart && !startsWithSubject) {
       isImperative = true;
-      subject = ''; // you 생략
+      subject = '';
       if (light) {
         verb = light.text;
         i = light.end;
@@ -648,17 +763,46 @@ function extractSlots(tokens: string[]): PhraseSlots {
     }
   }
 
-  // 전치사 목적어 (at this) — 입자는 이미 동사에 붙였으므로 남은 전치사만 skip
-  if (i < core.length && PREPS.has(core[i]!) && !PARTICLES.has(core[i]!)) {
-    i += 1;
-  } else if (i < core.length && PREPS.has(core[i]!) && core[i + 1] && DETERMINERS.has(core[i + 1]!)) {
-    // look at this — at is prep before determiner
-    i += 1;
+  // light-verb 관용 뒤 전치사 목적어 (look at this)
+  if (i < core.length && PREPS.has(core[i]!)) {
+    const afterPrep = i + 1;
+    if (afterPrep < core.length) {
+      const obj = takeObjectNp(core, afterPrep);
+      noun = obj.text;
+      nounHead = obj.head;
+      i = obj.end;
+      const mod = takePostModifier(core, i);
+      modifier = mod.text;
+      i = mod.end;
+    } else {
+      i += 1;
+    }
+  } else {
+    const obj = takeObjectNp(core, i);
+    noun = obj.text;
+    nounHead = obj.head;
+    i = obj.end;
+    const mod = takePostModifier(core, i);
+    if (mod.text) {
+      modifier = mod.text;
+      i = mod.end;
+    } else if (i < core.length && PREPS.has(core[i]!)) {
+      // in Chicago 등 — 수식에 포함해 목표 비교에 씀
+      modifier = core.slice(i).join(' ');
+      i = core.length;
+    }
   }
-  const obj = takeNounPhrase(core, i);
-  noun = obj.text;
 
-  return { subject, verb, noun, tokens: core, isQuestion, isImperative };
+  return {
+    subject,
+    verb,
+    noun,
+    nounHead,
+    modifier,
+    tokens: core,
+    isQuestion,
+    isImperative,
+  };
 }
 
 function findTokenMatch(haystack: string[], needle: string): boolean {
@@ -722,7 +866,19 @@ function nounWhy(expected: string, actual: string): string {
   if (baseForm(expected.split(/\s+/).pop()!) === baseForm(actual.split(/\s+/).pop()!)) {
     return '목적어 핵은 비슷한데 관사·한정어가 달라요.';
   }
+  const e = expected.toLowerCase();
+  const a = actual.toLowerCase();
+  if (e[0] === a[0] && Math.abs(e.length - a.length) <= 3) {
+    return `정답 목적어「${expected}」대신「${actual}」을(를) 골랐어요. 발음이 비슷한 다른 단어일 수 있어요.`;
+  }
   return `정답 목적어「${expected}」대신「${actual}」을(를) 골랐어요.`;
+}
+
+function modifierWhy(expected: string, actual: string): string {
+  if (!actual) {
+    return `수식·부가 표현「${expected}」이(가) 빠졌어요.`;
+  }
+  return `수식·부가가 달라요. 정답「${expected}」, 말한 것「${actual}」.`;
 }
 
 function tenseLabel(slots: PhraseSlots): 'past' | 'present' | 'future' | 'unknown' {
@@ -744,6 +900,8 @@ function roleLabel(role: GapSlotRole): string {
       return '동사';
     case 'noun':
       return '목적어';
+    case 'modifier':
+      return '수식';
     case 'tense':
       return '시제';
     case 'agreement':
@@ -859,35 +1017,67 @@ export function analyzeGapSlots(args: {
     }
   }
 
-  // 목적어
-  if (target.noun) {
-    const has = findTokenMatch(saidTokens, target.noun);
-    const actual = said.noun;
-    // take/have a look만 말하고 at this를 뺀 경우 → 목적어 못 찾음
-    if (!has && !actual) {
+  // 목적어 — 핵(nounHead) 기준. have some friends ≠ 동사구
+  let nounOk = true;
+  if (target.nounHead || target.noun) {
+    const expectHead = target.nounHead || target.noun.split(/\s+/).pop() || '';
+    const expectLabel = target.nounHead || target.noun;
+    const actualHead = said.nounHead || '';
+    const actualLabel = said.nounHead || said.noun || '';
+    const hasHead = expectHead ? findTokenMatch(saidTokens, expectHead) : false;
+    const headsMatch =
+      !!actualHead &&
+      (actualHead === expectHead || baseForm(actualHead) === baseForm(expectHead));
+
+    if (!hasHead && !actualHead) {
+      nounOk = false;
       findings.push({
         role: 'noun',
         status: 'missing',
-        expected: target.noun,
+        expected: expectLabel,
         actual: '',
-        why: nounWhy(target.noun, ''),
+        why: nounWhy(expectLabel, ''),
       });
-    } else if (!has) {
+    } else if (!hasHead || !headsMatch) {
+      nounOk = false;
       findings.push({
         role: 'noun',
         status: 'wrong',
-        expected: target.noun,
-        actual: actual || '(다름)',
-        why: nounWhy(target.noun, actual || ''),
+        expected: expectLabel,
+        actual: actualLabel || '(다름)',
+        why: nounWhy(expectLabel, actualLabel || ''),
       });
     } else {
       findings.push({
         role: 'noun',
         status: 'ok',
-        expected: target.noun,
-        actual: actual || target.noun,
+        expected: expectLabel,
+        actual: actualLabel || expectLabel,
         why: '',
       });
+    }
+  }
+
+  // 수식(V-ing / to-…) — 목적어가 맞을 때만 (핵심 오답을 가리지 않음)
+  if (nounOk && target.modifier) {
+    const modParts = target.modifier.split(/\s+/).filter(Boolean);
+    const focus =
+      modParts[0] && isIngForm(modParts[0])
+        ? modParts[0]
+        : modParts[0] === 'to'
+          ? modParts.slice(0, Math.min(3, modParts.length)).join(' ')
+          : '';
+    if (focus) {
+      const focusHead = focus.split(/\s+/)[0]!;
+      if (!findTokenMatch(saidTokens, focusHead)) {
+        findings.push({
+          role: 'modifier',
+          status: 'missing',
+          expected: focus,
+          actual: '',
+          why: modifierWhy(focus, ''),
+        });
+      }
     }
   }
 
@@ -960,6 +1150,7 @@ export const PATTERN_NOTE_IDS: GapSlotRole[] = [
   'subject',
   'verb',
   'noun',
+  'modifier',
   'tense',
   'agreement',
 ];
