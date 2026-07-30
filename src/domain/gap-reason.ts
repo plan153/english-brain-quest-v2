@@ -99,12 +99,46 @@ const PREPS = new Set([
   'under',
   'as',
 ]);
+/** 구동사 부사·전치사 입자 (stand up, sit down, wake up…) */
+const PARTICLES = new Set([
+  'up',
+  'down',
+  'out',
+  'off',
+  'away',
+  'back',
+  'along',
+  'around',
+  'over',
+  'through',
+  'apart',
+  'aside',
+  'ahead',
+  'together',
+  'in',
+  'on',
+]);
+/** 자리 이동이 자유로운 부사·공손 표지 */
+const FLOATING_ADVERBS = new Set([
+  'please',
+  'just',
+  'kindly',
+  'now',
+  'soon',
+  'then',
+  'carefully',
+  'quickly',
+  'quietly',
+  'slowly',
+  'politely',
+]);
 const FUNCTION = new Set([
   ...SUBJECT_PRONOUNS,
   ...OBJECT_PRONOUNS,
   ...AUX,
   ...DETERMINERS,
   ...PREPS,
+  ...FLOATING_ADVERBS,
   'not',
   'and',
   'or',
@@ -113,9 +147,7 @@ const FUNCTION = new Set([
   'so',
   'too',
   'very',
-  'just',
   'also',
-  'please',
 ]);
 
 /** 불규칙 과거 → 원형 (간단 맵) */
@@ -354,7 +386,55 @@ const IMPERATIVE_STARTERS = new Set([
   'write',
   'speak',
   'say',
+  'stand',
+  'sit',
+  'wake',
+  'turn',
+  'pick',
+  'hang',
+  'shut',
+  'hold',
+  'lie',
+  'lay',
+  'run',
+  'walk',
+  'move',
+  'bring',
+  'leave',
+  'stay',
+  'hurry',
+  'calm',
+  'be',
 ]);
+
+function stripFloatingAdverbs(tokens: string[]): {
+  core: string[];
+  floats: string[];
+} {
+  const core: string[] = [];
+  const floats: string[] = [];
+  for (const t of tokens) {
+    if (FLOATING_ADVERBS.has(t)) floats.push(t);
+    else core.push(t);
+  }
+  return { core, floats };
+}
+
+/** 동사(+입자) 한 덩어리 — stand up, sit down, wake up */
+function takeVerbWithParticle(
+  tokens: string[],
+  start: number
+): { text: string; end: number } {
+  if (start >= tokens.length) return { text: '', end: start };
+  const light = takeLightVerbPhrase(tokens, start);
+  if (light) return light;
+  const v = tokens[start]!;
+  const next = tokens[start + 1];
+  if (next && PARTICLES.has(next) && !DETERMINERS.has(next) && !SUBJECT_PRONOUNS.has(next)) {
+    return { text: `${v} ${next}`, end: start + 2 };
+  }
+  return { text: v, end: start + 1 };
+}
 
 /** have/take a (adj)? look → 비교용 정규화 */
 export function normalizeLookIdiom(text: string): string {
@@ -381,6 +461,15 @@ function verbsEquivalent(a: string, b: string): boolean {
   const al = a.toLowerCase().trim();
   const bl = b.toLowerCase().trim();
   if (al === bl || baseForm(al) === baseForm(bl)) return true;
+  const aParts = al.split(/\s+/);
+  const bParts = bl.split(/\s+/);
+  if (
+    aParts.length > 1 &&
+    aParts.length === bParts.length &&
+    aParts.every((p, i) => p === bParts[i] || baseForm(p) === baseForm(bParts[i]!))
+  ) {
+    return true;
+  }
   const ka = lookIdiomKey(al);
   const kb = lookIdiomKey(bl);
   if (ka && kb && ka === kb) return true;
@@ -445,12 +534,13 @@ function takeLightVerbPhrase(
 }
 
 function extractSlots(tokens: string[]): PhraseSlots {
-  if (tokens.length === 0) {
+  const { core } = stripFloatingAdverbs(tokens);
+  if (core.length === 0) {
     return {
       subject: '',
       verb: '',
       noun: '',
-      tokens,
+      tokens: core,
       isQuestion: false,
       isImperative: false,
     };
@@ -464,18 +554,25 @@ function extractSlots(tokens: string[]): PhraseSlots {
   let noun = '';
 
   // Do/Does/Did/Can... you need help?
-  if (AUX.has(tokens[0]!) && tokens.length >= 2 && tokens[0] !== 'have') {
+  if (AUX.has(core[0]!) && core.length >= 2 && core[0] !== 'have') {
     // "have a look" is light verb, not question aux when followed by determiner
-    if (!(tokens[0] === 'have' && DETERMINERS.has(tokens[1]!))) {
+    if (!(core[0] === 'have' && DETERMINERS.has(core[1]!))) {
       isQuestion = true;
-      const aux = tokens[0]!;
+      const aux = core[0]!;
       i = 1;
-      const subj = takeNounPhrase(tokens, i);
+      const subj = takeNounPhrase(core, i);
       subject = subj.text;
       i = subj.end;
-      if (i < tokens.length && !AUX.has(tokens[i]!)) {
-        verb = `${aux} ${tokens[i]}`;
-        i += 1;
+      if (i < core.length && !AUX.has(core[i]!)) {
+        const vp = takeVerbWithParticle(core, i);
+        // aux + main verb (+particle): "did stand up" rare; usually "do you stand"
+        if (vp.text && !AUX.has(vp.text.split(/\s+/)[0]!)) {
+          verb = `${aux} ${vp.text}`;
+          i = vp.end;
+        } else {
+          verb = `${aux} ${core[i]}`;
+          i += 1;
+        }
       } else {
         verb = aux;
       }
@@ -483,34 +580,32 @@ function extractSlots(tokens: string[]): PhraseSlots {
   }
 
   if (!isQuestion) {
-    const startsWithSubject = SUBJECT_PRONOUNS.has(tokens[0]!);
-    const light = takeLightVerbPhrase(tokens, 0);
+    const startsWithSubject = SUBJECT_PRONOUNS.has(core[0]!);
+    const light = takeLightVerbPhrase(core, 0);
+    const verbHead = takeVerbWithParticle(core, 0);
+    const headWord = verbHead.text.split(/\s+/)[0]!;
     const imperativeStart =
-      !startsWithSubject &&
-      (IMPERATIVE_STARTERS.has(tokens[0]!) || !!light);
+      !startsWithSubject && (IMPERATIVE_STARTERS.has(headWord) || !!light);
 
-    if (imperativeStart) {
+    if (imperativeStart && !startsWithSubject) {
       isImperative = true;
       subject = ''; // you 생략
       if (light) {
         verb = light.text;
         i = light.end;
       } else {
-        verb = tokens[0]!;
-        i = 1;
+        verb = verbHead.text;
+        i = verbHead.end;
       }
     } else {
-      const subj = takeNounPhrase(tokens, 0);
-      // Don't treat "a look" as subject when followed by nothing useful from light verb at 0
-      // Normal SVO
+      const subj = takeNounPhrase(core, 0);
       if (
         startsWithSubject ||
-        (!DETERMINERS.has(tokens[0]!) && !LIGHT_VERBS.has(tokens[0]!))
+        (!DETERMINERS.has(core[0]!) && !LIGHT_VERBS.has(core[0]!))
       ) {
         subject = subj.text;
         i = subj.end;
       } else if (light) {
-        // rare: "have a look" as statement fragment
         isImperative = true;
         verb = light.text;
         i = light.end;
@@ -520,44 +615,50 @@ function extractSlots(tokens: string[]): PhraseSlots {
       }
 
       if (!verb) {
-        const light2 = takeLightVerbPhrase(tokens, i);
+        const light2 = takeLightVerbPhrase(core, i);
         if (light2) {
           verb = light2.text;
           i = light2.end;
-        } else if (i < tokens.length && AUX.has(tokens[i]!)) {
-          const aux = tokens[i]!;
+        } else if (i < core.length && AUX.has(core[i]!)) {
+          const aux = core[i]!;
           i += 1;
-          if (i < tokens.length && tokens[i] === 'not') i += 1;
-          if (i < tokens.length && !PREPS.has(tokens[i]!) && !DETERMINERS.has(tokens[i]!)) {
+          if (i < core.length && core[i] === 'not') i += 1;
+          if (i < core.length && !PREPS.has(core[i]!) && !DETERMINERS.has(core[i]!)) {
             if (
-              tokens[i]!.endsWith('ing') ||
-              tokens[i]!.endsWith('ed') ||
-              PAST_TO_BASE[tokens[i]!] ||
-              !FUNCTION.has(tokens[i]!)
+              core[i]!.endsWith('ing') ||
+              core[i]!.endsWith('ed') ||
+              PAST_TO_BASE[core[i]!] ||
+              !FUNCTION.has(core[i]!)
             ) {
-              verb = `${aux} ${tokens[i]}`;
-              i += 1;
+              const vp = takeVerbWithParticle(core, i);
+              verb = `${aux} ${vp.text}`;
+              i = vp.end;
             } else {
               verb = aux;
             }
           } else {
             verb = aux;
           }
-        } else if (i < tokens.length) {
-          verb = tokens[i]!;
-          i += 1;
+        } else if (i < core.length) {
+          const vp = takeVerbWithParticle(core, i);
+          verb = vp.text;
+          i = vp.end;
         }
       }
     }
   }
 
-  if (i < tokens.length && PREPS.has(tokens[i]!)) {
+  // 전치사 목적어 (at this) — 입자는 이미 동사에 붙였으므로 남은 전치사만 skip
+  if (i < core.length && PREPS.has(core[i]!) && !PARTICLES.has(core[i]!)) {
+    i += 1;
+  } else if (i < core.length && PREPS.has(core[i]!) && core[i + 1] && DETERMINERS.has(core[i + 1]!)) {
+    // look at this — at is prep before determiner
     i += 1;
   }
-  const obj = takeNounPhrase(tokens, i);
+  const obj = takeNounPhrase(core, i);
   noun = obj.text;
 
-  return { subject, verb, noun, tokens, isQuestion, isImperative };
+  return { subject, verb, noun, tokens: core, isQuestion, isImperative };
 }
 
 function findTokenMatch(haystack: string[], needle: string): boolean {
@@ -679,9 +780,19 @@ export function analyzeGapSlots(args: {
   en: string;
   guess: string;
 }): GapSlotFinding[] {
-  const target = extractSlots(tokenize(args.en));
-  const said = extractSlots(tokenize(args.guess));
-  const saidTokens = tokenize(args.guess);
+  const enTokens = tokenize(args.en);
+  const guessTokens = tokenize(args.guess);
+  const enCore = stripFloatingAdverbs(enTokens).core;
+  const guessCore = stripFloatingAdverbs(guessTokens).core;
+
+  // 부사(please 등) 자리만 다르고 핵심이 같으면 구조 간극 없음
+  if (enCore.length > 0 && enCore.join(' ') === guessCore.join(' ')) {
+    return [];
+  }
+
+  const target = extractSlots(enTokens);
+  const said = extractSlots(guessTokens);
+  const saidTokens = guessCore;
   const findings: GapSlotFinding[] = [];
 
   // 주어 — 명령문은 you 생략이므로 주어 슬롯을 문제로 잡지 않음

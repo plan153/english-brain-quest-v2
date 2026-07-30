@@ -22,6 +22,11 @@ function createFuzzyMatch() {
     'about', 'into', 'onto', 'over', 'under', 'after', 'before',
     'through', 'between', 'among', 'against', 'without',
   ]);
+  // 자리 이동이 자유로운 부사·공손 표지 (please stand up ≈ stand up please)
+  const FLOATING_ADVERBS = new Set([
+    'please', 'just', 'kindly', 'now', 'soon', 'then',
+    'carefully', 'quickly', 'quietly', 'slowly', 'politely',
+  ]);
 
   /**
    * 축약형 전개 — STT는 you'll↔you will, don't↔do not 를 섞어 줌.
@@ -219,6 +224,22 @@ function createFuzzyMatch() {
       }
     }
 
+    // 부사(please 등) 자리만 다른 경우 — 핵심 어순은 같음
+    const userCore = userTokens.filter(function (t) {
+      return !FLOATING_ADVERBS.has(t);
+    });
+    const expectedCore = expectedTokens.filter(function (t) {
+      return !FLOATING_ADVERBS.has(t);
+    });
+    if (userCore.length > 0 && userCore.join(' ') === expectedCore.join(' ')) {
+      return {
+        level: 'exact',
+        score: 1,
+        feedback: '완벽합니다!',
+        canonicalTTS: expected,
+      };
+    }
+
     // have/take a look 동이디엄 — at this 등만 빠지면 fuzzy
     const lookCore = /\bhave a (?:(?:closer|quick|proper|good|careful|brief|long) )?look\b/;
     const userLook = userNorm.match(lookCore);
@@ -234,8 +255,8 @@ function createFuzzyMatch() {
       }
     }
 
-    // 차이 분석
-    const diff = analyzeDiff(userTokens, expectedTokens);
+    // 차이 분석 — 부사 제거 후 핵심만 비교 (자리 이동에 verbDiff 폭탄 방지)
+    const diff = analyzeDiff(userCore.length ? userCore : userTokens, expectedCore.length ? expectedCore : expectedTokens);
 
     // 레벨별 허용 임계치
     const maxArticle = leniency === 0 ? 0 : 3;

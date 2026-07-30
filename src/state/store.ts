@@ -688,6 +688,45 @@ export const useStore = create<AppStore>((set, get) => {
       const size = options.size ?? 10; // Phase 2 데모는 10문장 (50은 너무 김)
       const practiceBand = get().practiceBand;
       const packId = items.find((it) => it.packId)?.packId;
+      const sequentialDayPack =
+        packId === 'quiz-verbs' || packId === 'conversation-100';
+
+      // Day 커리큘럼 팩은 난이도 믹스·셔플 없이 day 순으로
+      if (sequentialDayPack) {
+        const dayOf = (it: ContentItem): number => {
+          const tag = it.tags?.find((t) => t.startsWith('day:'));
+          if (!tag) return 0;
+          const n = Number(tag.slice(4));
+          return Number.isFinite(n) ? n : 0;
+        };
+        const ordered = [...items].sort(
+          (a, b) => dayOf(a) - dayOf(b) || a.id.localeCompare(b.id)
+        );
+        const orderedItems = ordered.slice(0, size);
+        const plan = createSession(orderedItems, {
+          mode: options.mode ?? 'translate',
+          size,
+        });
+        plan.sentences = plan.sentences.map((s) => ({
+          ...s,
+          difficulty: 'normal' as const,
+        }));
+        const first = plan.sentences[0] ?? null;
+        get().markStudyToday();
+        set({
+          isPlaying: true,
+          plan,
+          progress: { ...INITIAL_PROGRESS },
+          currentSentence: first,
+          currentTier: 'normal',
+          lastTrial: null,
+          lastReward: null,
+          summary: null,
+          completionRewards: null,
+        });
+        return;
+      }
+
       const pool = filterItemsForPracticeBand(items, practiceBand, { packId });
       const ratios = practiceBand
         ? mixRatiosForBand(practiceBand)

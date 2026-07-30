@@ -13,7 +13,6 @@ import { KoPrompt } from '../ui/KoPrompt';
 import { useSpeech } from '../../hooks/useSpeech';
 import { useStore } from '../../state/store';
 import {
-  loadStarterPack,
   loadCollocationsAsItems,
   loadPhrasalVerbsAsItems,
   loadAllGrammarAsItems,
@@ -67,20 +66,14 @@ const PACK_SOURCES: PackSource[] = [
   {
     id: 'quiz-verbs',
     name: '기본동사 100',
-    description: '퀴즈 잉글리시 · Day 1–100 · 500문장',
+    description: 'Day 1→100 순서 · 500문장',
     load: loadQuizVerbsAsItems,
   },
   {
     id: 'conversation-100',
     name: '영어회화 100',
-    description: '김재우 미니북 · Day 1–100 · 500문장',
+    description: 'Day 1→100 순서 · 500문장',
     load: loadConversation100AsItems,
-  },
-  {
-    id: 'starter',
-    name: '표현 스타터',
-    description: '일상 표현 154개 — 기본',
-    load: loadStarterPack,
   },
   {
     id: 'collocations',
@@ -233,7 +226,7 @@ export function TodayScreen() {
 
   const speech = useSpeech({ lang: 'en', onResult: handleSpeechResult, maxListenMs: 7000 });
 
-  // 시작 시 약점 큐가 있으면 약점 팩, 없으면 스타터.
+  // 시작 시 약점 큐가 있으면 약점 팩, 없으면 기본동사 100.
   useEffect(() => {
     let cancelled = false;
     setPackLoading(true);
@@ -246,9 +239,9 @@ export function TodayScreen() {
           setPackLoading(false);
           return;
         }
-        const loaded = await loadStarterPack();
+        const loaded = await loadQuizVerbsAsItems();
         if (cancelled) return;
-        setSelectedPackId('starter');
+        setSelectedPackId('quiz-verbs');
         setItems(loaded);
         setPackLoading(false);
       } catch (err) {

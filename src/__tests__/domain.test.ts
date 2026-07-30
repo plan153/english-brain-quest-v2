@@ -376,6 +376,36 @@ describe('6b. gap-reason + projectGap', () => {
     expect(text).toMatch(/3인칭|동사/);
   });
 
+  it('treats please / particle position flexibly for stand up', () => {
+    const slots = analyzeGapSlots({
+      en: 'Please stand up.',
+      guess: 'stand up please',
+    });
+    expect(slots.filter((f) => f.status !== 'ok')).toHaveLength(0);
+
+    const reason = inferGapReason({
+      en: 'Please stand up.',
+      ko: '일어나 주세요.',
+      guess: 'stand up please',
+      match: 'wrong',
+      cueMode: 'after_listen',
+    });
+    expect(reason).not.toMatch(/정답 동사「please」/);
+    expect(reason).not.toMatch(/말한 것「up」/);
+
+    const match = FuzzyMatch.matchAnswer('stand up please', 'Please stand up.', {
+      leniency: 1,
+    });
+    expect(match.level).toBe('exact');
+
+    const standOnly = analyzeGapSlots({
+      en: 'Please stand up.',
+      guess: 'please sit down',
+    });
+    expect(standOnly.some((f) => f.role === 'verb' && f.status === 'wrong')).toBe(true);
+    expect(standOnly.find((f) => f.role === 'verb')?.expected).toMatch(/stand/);
+  });
+
   it('treats imperatives and have/take a look as a unit', () => {
     const slots = analyzeGapSlots({
       en: 'Have a look at this.',
