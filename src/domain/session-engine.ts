@@ -29,6 +29,8 @@ export interface SessionSentence {
   difficulty?: 'easy' | 'normal' | 'challenge';
   /** 세션 내 인덱스 (0-base) */
   order?: number;
+  /** 콘텐츠 팩 (Obsidian Library 링크용) */
+  packId?: string;
 }
 
 export interface SessionPlan {
@@ -91,6 +93,7 @@ export function toSessionSentence(item: ContentItem): SessionSentence {
     chunks: data.chunks,
     hints: data.hints,
     level: item.level,
+    packId: item.packId,
   };
 }
 

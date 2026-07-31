@@ -53,7 +53,7 @@ import {
   importVaultGaps,
   type GapNote,
 } from '../adapters/cloud-sync';
-import { inferGapReason, problemSlots, type GapSlotRole } from '../domain/gap-reason';
+import { buildGapReport, type GapSlotRole } from '../domain/gap-reason';
 import {
   countPatternTraining,
   pickPatternTrainingQueue,
@@ -877,17 +877,13 @@ export const useStore = create<AppStore>((set, get) => {
         const matchKind = evaluation.match === 'skipped' ? 'skipped' : 'wrong';
         const cueMode = (response.cueMode ?? 'blind') as CueMode;
         const guess = response.text ?? '(스킵)';
-        const reasonAuto = inferGapReason({
+        const report = buildGapReport({
           en: sentence.en,
           ko: sentence.ko,
           guess,
           match: matchKind,
           cueMode,
         });
-        const slots =
-          matchKind === 'wrong' && guess && guess !== '(스킵)'
-            ? problemSlots({ en: sentence.en, guess })
-            : [];
         const nowIso = new Date().toISOString();
         const gap: GapNote = {
           id: makeGapId(sentence.id, guess),
@@ -900,9 +896,11 @@ export const useStore = create<AppStore>((set, get) => {
           match: matchKind,
           cueMode,
           inputMode: response.inputMode,
-          slots,
-          reasonAuto,
-          reasonFinal: reasonAuto,
+          slots: report.slots,
+          primarySlot: report.primary?.role,
+          packId: sentence.packId,
+          reasonAuto: report.reason,
+          reasonFinal: report.reason,
           reasonStatus: 'pending',
         };
         pendingGaps = [...pendingGaps, gap];

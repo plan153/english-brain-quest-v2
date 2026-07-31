@@ -12,10 +12,11 @@ import {
   type WeakLinkRow,
   type WeakLinkSummary,
 } from './srs-engine';
-import { vaultLibraryBrainSection } from './vault-library';
+import { vaultLibraryBrainSection, wikiLinkForPack } from './vault-library';
 import {
   PATTERN_NOTE_IDS,
   patternNoteTitle,
+  patternPracticeTip,
   type GapSlotRole,
 } from './gap-reason';
 
@@ -43,6 +44,10 @@ export interface GapNote {
   inputMode?: 'speak' | 'type';
   /** 문제가 된 슬롯 (subject/verb/…) */
   slots?: GapSlotRole[];
+  /** Focus-on-Form 핵심 슬롯 (Obsidian·패턴 훈련 우선) */
+  primarySlot?: GapSlotRole;
+  /** 출처 팩 — Library wiki 링크 */
+  packId?: string;
   /** 앱이 추정한 간극 이유 */
   reasonAuto?: string;
   /** 사용자가 확인·수정한 최종 이유 */
@@ -284,18 +289,37 @@ export function projectGap(args: {
     '(아직 적지 않음)';
   const status = gap.reasonStatus ?? 'pending';
   const slots = gap.slots ?? [];
+  const primary = gap.primarySlot ?? slots[0];
   const tags = [
     'ebq',
     'gap',
     ...(gap.match === 'skipped' ? ['gap/skipped'] : ['gap/wrong']),
     ...slots.map((s) => `pattern/${s}`),
+    ...(primary ? [`focus/${primary}`] : []),
+    ...(gap.packId ? [`pack/${gap.packId}`] : []),
   ];
   const slotLinks =
     slots.length === 0
       ? '- (슬롯 분석 없음)'
-      : slots.map((s) => `- [[Patterns/${s}|${patternNoteTitle(s)}]]`).join('\n');
+      : slots
+          .map((s) => {
+            const mark = s === primary ? ' ← 핵심' : '';
+            return `- [[Patterns/${s}|${patternNoteTitle(s)}]]${mark}`;
+          })
+          .join('\n');
   const cue = gap.cueMode ? CUE_MODE_LABEL[gap.cueMode] : '';
   const input = gap.inputMode === 'type' ? '타이핑' : gap.inputMode === 'speak' ? '말하기' : '';
+  const library = gap.packId ? wikiLinkForPack(gap.packId) : undefined;
+  const practice =
+    primary != null
+      ? [
+          `1. 앱 Today → **패턴 약점** → 「${patternNoteTitle(primary)}」`,
+          `2. ${patternPracticeTip(primary)}`,
+          library ? `3. 원문 다시 읽기: [[${library.wikiLink}|${library.title}]]` : '',
+        ]
+          .filter(Boolean)
+          .join('\n')
+      : '- 앱에서 같은 문장을 복습 팩으로 다시 말해 보세요.';
 
   const markdown = `---
 type: gap
@@ -311,6 +335,8 @@ reasonStatus: ${escapeYaml(status)}
 match: ${escapeYaml(gap.match ?? 'wrong')}
 cueMode: ${escapeYaml(gap.cueMode ?? '')}
 inputMode: ${escapeYaml(gap.inputMode ?? '')}
+primarySlot: ${escapeYaml(primary ?? '')}
+packId: ${escapeYaml(gap.packId ?? '')}
 slots: ${yamlList(slots)}
 tags: ${yamlList(tags)}
 source: english-brain-quest-v2
@@ -337,11 +363,17 @@ ${gap.reasonAuto && gap.reasonFinal && gap.reasonAuto !== gap.reasonFinal ? `\n#
 
 ${slotLinks}
 
+## 다음 연습 (피드백 루프)
+
+${practice}
+
+> 볼트에서 이유를 고치면 앱 동기화 시 거울로 남습니다. 출제·SRS는 앱 Today가 담당합니다.
+
 ## 연결
 
 - [[Brain]]
 - [[Gaps/_Index|Gaps 목록]]
-- 표현 ID: \`${gap.expressionId}\`
+${primary ? `- [[Patterns/${primary}|${patternNoteTitle(primary)} 패턴]]\n` : ''}- 표현 ID: \`${gap.expressionId}\`
 `;
 
   return { path: gapPath(userId, gap.id), markdown };
@@ -367,14 +399,23 @@ source: english-brain-quest-v2
 ## 미확인 이유
 
 \`\`\`dataview
-TABLE expressionId, reasonStatus, slots, match
+TABLE expressionId, primarySlot, reasonStatus, slots, match
 FROM "Learners/${userId}/Gaps"
 WHERE type = "gap" AND reasonStatus = "pending"
 SORT updatedAt DESC
 LIMIT 20
 \`\`\`
 
-## 패턴별
+## 핵심 슬롯별
+
+\`\`\`dataview
+TABLE rows.file.link AS gaps
+FROM "Learners/${userId}/Gaps"
+WHERE type = "gap" AND primarySlot
+GROUP BY primarySlot
+\`\`\`
+
+## 패턴별 (슬롯 포함)
 
 \`\`\`dataview
 TABLE rows.file.link AS gaps
@@ -432,17 +473,33 @@ source: english-brain-quest-v2
 # Pattern · ${title}
 
 이 노트는 **${title}** 간극을 모으는 허브입니다.
-Gap 노트 frontmatter \`slots\` / 태그 \`pattern/${role}\` 로 연결됩니다.
+Gap frontmatter \`primarySlot\` / \`slots\` / 태그 \`pattern/${role}\` · \`focus/${role}\` 로 연결됩니다.
 
-## 관련 Gap (Dataview)
+## 핵심으로 잡힌 Gap (우선 복습)
 
 \`\`\`dataview
-TABLE en, guess, reasonStatus
+TABLE en, guess, reasonStatus, packId
+FROM "Learners/${userId}/Gaps"
+WHERE type = "gap" AND primarySlot = "${role}"
+SORT updatedAt DESC
+LIMIT 20
+\`\`\`
+
+## 관련 Gap (슬롯 포함)
+
+\`\`\`dataview
+TABLE en, guess, primarySlot, reasonStatus
 FROM "Learners/${userId}/Gaps"
 WHERE type = "gap" AND contains(slots, "${role}")
 SORT updatedAt DESC
 LIMIT 30
 \`\`\`
+
+## 연습 루프
+
+1. 앱 **Today → 패턴 약점 → ${title}** 으로 같은 슬롯만 반복
+2. ${patternPracticeTip(role)}
+3. 확인한 Gap은 reasonStatus를 confirmed로 두고, 틀린 이유를 한 줄로 고쳐 적기
 
 ## 연습 팁
 
@@ -452,26 +509,14 @@ ${patternTip(role)}
 
 - [[Gaps/_Index|Gaps]]
 - [[Brain]]
+${vaultLibraryBrainSection()}
 `;
 
   return { path: patternPath(userId, role), markdown };
 }
 
 function patternTip(role: GapSlotRole): string {
-  switch (role) {
-    case 'subject':
-      return '- 누가 하는지(I/you/he/she…)를 먼저 고른 뒤 나머지를 조립하세요.';
-    case 'verb':
-      return '- 동작·상태를 한 단어로 떠올린 다음 시제·인칭을 붙이세요.';
-    case 'noun':
-      return '- 무엇을/누구를(목적어) 말하는지 먼저 정하세요. 명령문의 주어 you는 보통 생략됩니다.';
-    case 'modifier':
-      return '- 명사 뒤 -ing 수식(living in …)이나 to부정사 부가가 빠지지 않았는지 보세요.';
-    case 'tense':
-      return '- 과거/현재/미래 중 어느 때인지 한국어 문장에서 표시를 찾으세요.';
-    case 'agreement':
-      return '- he/she/it 뒤에는 동사에 -s / is / does / has 가 붙는지 확인하세요.';
-  }
+  return `- ${patternPracticeTip(role)}`;
 }
 
 /** 동기화 시 항상 쓰는 허브 노트들 */

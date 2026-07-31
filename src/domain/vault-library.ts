@@ -41,3 +41,12 @@ export function vaultPathForPack(packId: string): string | undefined {
   }
   return undefined;
 }
+
+export function wikiLinkForPack(
+  packId: string
+): { wikiLink: string; title: string } | undefined {
+  for (const e of Object.values(VAULT_LIBRARY_PATTERNS)) {
+    if (e.packId === packId) return { wikiLink: e.wikiLink, title: e.title };
+  }
+  return undefined;
+}

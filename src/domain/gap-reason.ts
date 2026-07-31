@@ -1155,34 +1155,124 @@ export const PATTERN_NOTE_IDS: GapSlotRole[] = [
   'agreement',
 ];
 
+/**
+ * Focus-on-Form 우선순위 — 의미·문장뼈대 → 형태 → 부가 수식.
+ * (Long 1991 / Ellis FoF: 한 번에 하나의 형태에 주의)
+ */
+const PRIMARY_SLOT_ORDER: GapSlotRole[] = [
+  'verb',
+  'subject',
+  'noun',
+  'agreement',
+  'tense',
+  'modifier',
+];
+
 export function patternNoteTitle(role: GapSlotRole): string {
   return roleLabel(role);
 }
 
-export function inferGapReason(args: {
+/** 슬롯별 다음 연습 한 줄 (앱 UI · Obsidian Patterns) */
+export function patternPracticeTip(role: GapSlotRole): string {
+  switch (role) {
+    case 'subject':
+      return '누가 하는지(I/you/he/she…)를 먼저 고른 뒤 나머지를 조립하세요.';
+    case 'verb':
+      return '동작·상태 동사(+입자)를 한 덩어리로 떠올린 다음 시제·인칭을 붙이세요.';
+    case 'noun':
+      return '무엇을/누구를(목적어 핵) 말하는지 먼저 정하세요. have+명사는 동사가 아니라 목적어입니다.';
+    case 'modifier':
+      return '명사 뒤 -ing 수식(living in …)이나 to부정사 부가가 빠지지 않았는지 보세요.';
+    case 'tense':
+      return '과거/현재/미래 중 어느 때인지 한국어 문장에서 표시를 찾으세요.';
+    case 'agreement':
+      return 'he/she/it 뒤에는 동사에 -s / is / does / has 가 붙는지 확인하세요.';
+  }
+}
+
+export function pickPrimaryFinding(problems: GapSlotFinding[]): GapSlotFinding | null {
+  if (problems.length === 0) return null;
+  for (const role of PRIMARY_SLOT_ORDER) {
+    const hit = problems.find((p) => p.role === role);
+    if (hit) return hit;
+  }
+  return problems[0] ?? null;
+}
+
+export interface GapReport {
+  findings: GapSlotFinding[];
+  problems: GapSlotFinding[];
+  primary: GapSlotFinding | null;
+  secondary: GapSlotFinding[];
+  slots: GapSlotRole[];
+  reason: string;
+  practiceTip: string;
+}
+
+/** 교육용 간극 리포트 — 핵심 1개 + 부가 최대 1개 */
+export function buildGapReport(args: {
   en: string;
   ko: string;
   guess: string;
   match: GapMatch;
   cueMode?: CueMode;
-}): string {
+}): GapReport {
   const { en, ko, guess, match, cueMode } = args;
+
   if (match === 'skipped') {
-    return '문장을 건너뛰었어요. 확신이 없거나 입이 아직 안 열린 상태일 수 있어요.';
+    return {
+      findings: [],
+      problems: [],
+      primary: null,
+      secondary: [],
+      slots: [],
+      reason: '문장을 건너뛰었어요. 확신이 없거나 입이 아직 안 열린 상태일 수 있어요.',
+      practiceTip: '같은 문장을 힌트(듣기) 뒤에 한 번 더 말해 보세요.',
+    };
   }
 
   const g = (guess || '').trim();
   if (!g || g === '(스킵)' || g === '(없음)') {
-    return '말이 인식되지 않았거나 침묵했어요. 발화 전 망설임·마이크 문제일 수 있어요.';
+    return {
+      findings: [],
+      problems: [],
+      primary: null,
+      secondary: [],
+      slots: [],
+      reason:
+        '말이 인식되지 않았거나 침묵했어요. 발화 전 망설임·마이크 문제일 수 있어요. (실력 간극과 구분)',
+      practiceTip: '짧게라도 주어+동사부터 말해 보세요.',
+    };
   }
 
   const findings = analyzeGapSlots({ en, guess: g });
   const problems = findings.filter((f) => f.status !== 'ok');
+  const primary = pickPrimaryFinding(problems);
+  const secondary: GapSlotFinding[] = [];
+  if (primary) {
+    for (const role of PRIMARY_SLOT_ORDER) {
+      if (role === primary.role) continue;
+      const hit = problems.find((p) => p.role === role);
+      if (hit) {
+        secondary.push(hit);
+        break;
+      }
+    }
+  }
+
   const lines: string[] = [cueLead(cueMode)];
 
-  if (problems.length > 0) {
-    for (const f of problems) {
-      lines.push(formatFinding(f));
+  if (primary) {
+    lines.push('');
+    lines.push('【핵심 간극】');
+    lines.push(formatFinding(primary));
+    lines.push(`→ 연습: ${patternPracticeTip(primary.role)}`);
+    if (secondary.length > 0) {
+      lines.push('');
+      lines.push('【참고】');
+      for (const f of secondary) {
+        lines.push(formatFinding(f));
+      }
     }
   } else {
     const target = tokenize(en);
@@ -1197,8 +1287,27 @@ export function inferGapReason(args: {
   }
 
   if (ko) {
+    lines.push('');
     lines.push(`목표 뜻: 「${ko.replace(/\s+/g, ' ').trim()}」`);
   }
 
-  return lines.join('\n');
+  return {
+    findings,
+    problems,
+    primary,
+    secondary,
+    slots: problems.map((p) => p.role),
+    reason: lines.join('\n'),
+    practiceTip: primary ? patternPracticeTip(primary.role) : '',
+  };
+}
+
+export function inferGapReason(args: {
+  en: string;
+  ko: string;
+  guess: string;
+  match: GapMatch;
+  cueMode?: CueMode;
+}): string {
+  return buildGapReport(args).reason;
 }

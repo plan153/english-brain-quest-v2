@@ -396,6 +396,7 @@ describe('6b. gap-reason + projectGap', () => {
     });
     expect(reason).toContain('목적어');
     expect(reason).toContain('friends');
+    expect(reason).toContain('【핵심 간극】');
     expect(reason).not.toMatch(/정답 동사「have some friends」/);
     expect(reason).not.toMatch(/정답「living」/);
 
@@ -475,6 +476,8 @@ describe('6b. gap-reason + projectGap', () => {
         createdAt: '2026-07-27T00:00:00.000Z',
         match: 'wrong',
         slots: ['noun'],
+        primarySlot: 'noun',
+        packId: 'quiz-verbs',
         inputMode: 'type',
         reasonAuto: '자동 추정 이유',
         reasonFinal: '내가 고친 이유',
@@ -488,6 +491,9 @@ describe('6b. gap-reason + projectGap', () => {
     expect(file.markdown).toContain('pattern/noun');
     expect(file.markdown).toContain('[[Patterns/noun');
     expect(file.markdown).toContain('inputMode: type');
+    expect(file.markdown).toContain('primarySlot: noun');
+    expect(file.markdown).toContain('다음 연습');
+    expect(file.markdown).toContain('기본동사 100');
   });
 
   it('scaffolds Gaps index and Patterns hubs', () => {

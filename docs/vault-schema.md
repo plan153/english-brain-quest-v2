@@ -1,6 +1,16 @@
 # Vault Markdown Schema (EBQ → Obsidian)
 
-앱이 동기화할 때 만드는 제2영어뇌 구조입니다. **앱 = SRS·출제**, **볼트 = 거울·그래프**.
+앱이 동기화할 때 만드는 제2영어뇌 구조입니다. **앱 = SRS·출제**, **볼트 = 거울·그래프·성찰**.
+
+## 피드백 루프
+
+```text
+오답 → GapReport(핵심 슬롯 1개) → GapNote
+  → sync → Gaps/*.md + Patterns/* + Dataview
+  → 사용자 확인/수정(reason)
+  → 앱 패턴 약점(primarySlot 우선) → 재연습
+  → Library 원문 wiki로 의미 재입력
+```
 
 ## 폴더
 
@@ -14,7 +24,7 @@ Learners/<learnerId>/
     _Index.md                 # Gaps MOC + Dataview 쿼리
     gap_<expr>_<date>_<hash>.md
   Patterns/
-    subject.md | verb.md | noun.md | tense.md | agreement.md
+    subject.md | verb.md | noun.md | modifier.md | tense.md | agreement.md
 ```
 
 ZIP 내보내기·Mac import는 `Learners/me/` 경로를 사용합니다.
@@ -29,15 +39,19 @@ ZIP 내보내기·Mac import는 `Learners/me/` 경로를 사용합니다.
 | `match` | `wrong` \| `skipped` |
 | `cueMode` | `blind` \| `after_listen` \| `after_reveal` |
 | `inputMode` | `speak` \| `type` |
-| `slots` | 문제 슬롯 배열 예: `[subject, agreement]` |
+| `slots` | 문제 슬롯 배열 예: `[noun, modifier]` |
+| `primarySlot` | Focus-on-Form 핵심 슬롯 (패턴 훈련 우선) |
+| `packId` | 출처 팩 (`quiz-verbs` …) → Library wiki |
 | `reasonStatus` | `pending` \| `confirmed` \| `edited` |
-| `tags` | `ebq`, `gap`, `pattern/<slot>` …
+| `tags` | `ebq`, `gap`, `pattern/<slot>`, `focus/<slot>`, `pack/<id>` |
 
-본문 섹션 `## 내 추측` / `## 정답` / `## 간극이 생긴 이유` 는 import가 읽습니다. 유지하세요.
+본문 섹션 `## 내 추측` / `## 정답` / `## 간극이 생긴 이유` / `## 다음 연습` 는 유지하세요.
 
 ## Patterns
 
-Gap의 `slots` / 태그 `pattern/subject` 등이 Patterns 허브와 연결됩니다. Dataview로 같은 슬롯 Gap을 모을 수 있습니다.
+- `primarySlot` Gap → Patterns 허브 「핵심으로 잡힌 Gap」 Dataview
+- `slots` / 태그 `pattern/subject` 등 → 「관련 Gap」
+- 앱 Today **패턴 약점**은 `primarySlot`에 가중치를 둠
 
 ### Library 원문 (Project_English 볼트)
 
@@ -48,7 +62,7 @@ Gap의 `slots` / 태그 `pattern/subject` 등이 Patterns 허브와 연결됩니
 | `Library/Patterns/기본동사 100.md` | `quiz-verbs` |
 | `Library/Patterns/영어회화 100.md` | `conversation-100` |
 
-매핑 코드: `src/domain/vault-library.ts`. Brain/Index 동기화 시 wiki 링크로 노출됩니다.
+매핑 코드: `src/domain/vault-library.ts`. Brain/Index/Gap/Pattern 동기화 시 wiki 링크로 노출됩니다.
 
 ## 동기화
 
@@ -56,5 +70,5 @@ Gap의 `slots` / 태그 `pattern/subject` 등이 Patterns 허브와 연결됩니
 
 ## 앱 패턴 약점 팩
 
-`gapNotes.slots` → Today **패턴 약점** 팩 / Brain CTA.
-슬롯 칩(주어·동사·명사·시제·3sg) 또는 자동(가장 많은 슬롯부터).
+`gapNotes.primarySlot` + `slots` → Today **패턴 약점** 팩 / Brain CTA.
+슬롯 칩(주어·동사·목적어·수식·시제·3sg) 또는 자동(가장 많은 슬롯부터).

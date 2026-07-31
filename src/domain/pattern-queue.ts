@@ -62,14 +62,22 @@ export function summarizePatternGaps(gapNotes: GapNote[]): PatternGapRow[] {
 
   // 모든 Gap(히스토리)으로 hit 수, 최신으로 sentence set
   for (const g of gapNotes) {
-    for (const role of g.slots ?? []) {
+    const roles = new Set<GapSlotRole>([
+      ...(g.slots ?? []),
+      ...(g.primarySlot ? [g.primarySlot] : []),
+    ]);
+    for (const role of roles) {
       const bucket = byRole.get(role);
       if (!bucket) continue;
       bucket.hits += 1;
     }
   }
   for (const g of latest) {
-    for (const role of g.slots ?? []) {
+    const roles = new Set<GapSlotRole>([
+      ...(g.slots ?? []),
+      ...(g.primarySlot ? [g.primarySlot] : []),
+    ]);
+    for (const role of roles) {
       const bucket = byRole.get(role);
       if (!bucket) continue;
       bucket.ids.add(g.expressionId);
@@ -128,18 +136,22 @@ export function pickPatternTrainingQueue(
   for (const role of roles) {
     const scored: PatternQueueItem[] = [];
     for (const g of latest) {
-      if (!(g.slots ?? []).includes(role)) continue;
+      if (!(g.slots ?? []).includes(role) && g.primarySlot !== role) continue;
       if (seen.has(g.expressionId)) continue;
       const mem = memories[g.expressionId];
       const pending = (g.reasonStatus ?? 'pending') === 'pending' ? 1 : 0;
       const recent = daysSince(g.updatedAt ?? g.createdAt, now) <= 7 ? 30 : 0;
       const wrong = mem?.wrong ?? 0;
       const blind = mem?.blindCorrect ?? 0;
-      const hits = (gapNotes.filter(
-        (x) => x.expressionId === g.expressionId && (x.slots ?? []).includes(role)
-      ).length);
+      const hits = gapNotes.filter(
+        (x) =>
+          x.expressionId === g.expressionId &&
+          ((x.slots ?? []).includes(role) || x.primarySlot === role)
+      ).length;
+      const primaryBoost = g.primarySlot === role ? 40 : 0;
       const score =
         hits * 50 +
+        primaryBoost +
         pending * 20 +
         wrong * 10 +
         recent -
