@@ -1,16 +1,30 @@
 # Vault Markdown Schema (EBQ → Obsidian)
 
-앱이 동기화할 때 만드는 제2영어뇌 구조입니다. **앱 = SRS·출제**, **볼트 = 거울·그래프·성찰**.
+앱이 동기화할 때 만드는 제2영어뇌 구조입니다.
+**앱 = 출제·SRS**, **볼트 = 간극·성찰·다음 힌트의 원천** (선순환).
 
-## 피드백 루프
+## 피드백 루프 (선순환 목표)
+
+**목표:** 힌트·답변 결과로 **간극을 스스로 만드는 과정**에서 영어식 사고로 전환하고,
+그 메움을 옵시디언에 쌓아 **다음 학습의 힌트·간극 생성**에 다시 쓰인다.
 
 ```text
-오답 → GapReport(핵심 슬롯 1개) → GapNote
-  → sync → Gaps/*.md + Patterns/* + Dataview
-  → 사용자 확인/수정(reason)
-  → 앱 패턴 약점(primarySlot 우선) → 재연습
-  → Library 원문 wiki로 의미 재입력
+연습 (힌트 있을 수 있음)
+  → 답변 결과 (맞음 / 다름)
+  → 다름이면: 즉시 AI 해설 없음 · 「어디가 달랐는지」단서로 간극 생성(clued)
+  → Obsidian Gaps에서 메움 · 영어식 사고 정리
+  → 앱「메움 완료」(reviewed) + 볼트 반영
+  → 다음 연습: 내 단서·메움이 힌트로 재등장
+  → 같은 약점이면 간극이 다시 잡히거나, 메웠으면 약해짐
+       └──────────── 선순환 ─────────────────────┘
 ```
+
+**원칙**
+- 틀린 순간마다 AI/자동 해설을 받지 않는다. 간극 **생성 과정** 자체가 학습이다.
+- 도움이 된 단서·옵시디언 메움 → 나중 힌트 재료.
+- 앱 = 출제·SRS · 볼트 = 간극·성찰·다음 힌트의 원천.
+
+정답은 단서 저장 후(또는 명시적「그래도 정답 보기」)에만 공개합니다.
 
 ## 폴더
 
@@ -42,10 +56,12 @@ ZIP 내보내기·Mac import는 `Learners/me/` 경로를 사용합니다.
 | `slots` | 문제 슬롯 배열 예: `[noun, modifier]` |
 | `primarySlot` | Focus-on-Form 핵심 슬롯 (패턴 훈련 우선) |
 | `packId` | 출처 팩 (`quiz-verbs` …) → Library wiki |
-| `reasonStatus` | `pending` \| `confirmed` \| `edited` |
-| `tags` | `ebq`, `gap`, `pattern/<slot>`, `focus/<slot>`, `pack/<id>` |
+| `reasonStatus` | `draft` \| `clued` \| `reviewed` (+ 구버전 `pending`/`confirmed`/`edited`) |
+| `learnerClue` | 학습자 단서 (다음 힌트) |
+| `tags` | `ebq`, `gap`, `pattern/<slot>`, `focus/<slot>`, `pack/<id>`, `loop/...` |
 
-본문 섹션 `## 내 추측` / `## 정답` / `## 간극이 생긴 이유` / `## 다음 연습` 는 유지하세요.
+본문: `## 내 추측` / `## 정답` / `## 내 단서` / `## 옵시디언 메움` / `## 다음 연습`.
+옵시디언에서 `## 옵시디언 메움`에 내용을 쓰면 앱 import 시 `reviewed` + 힌트 재료가 됩니다.
 
 ## Patterns
 

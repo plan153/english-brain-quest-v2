@@ -53,7 +53,7 @@ import {
   importVaultGaps,
   type GapNote,
 } from '../adapters/cloud-sync';
-import { buildGapReport, type GapSlotRole } from '../domain/gap-reason';
+import { type GapSlotRole, buildGapReport } from '../domain/gap-reason';
 import {
   countPatternTraining,
   pickPatternTrainingQueue,
@@ -76,7 +76,6 @@ import {
   type SentenceMemory,
   type ReviewIntensity,
   type WeakLinkSummary,
-  type CueMode,
 } from '../domain/srs-engine';
 import {
   filterItemsForPracticeBand,
@@ -165,7 +164,19 @@ interface AppStore
     gapId: string,
     resolution: { type: 'confirmed' } | { type: 'edited'; reason: string }
   ) => void;
+  /** 오답 후 학습자 단서 저장 — 이때만 GapNote 생성(노이즈 방지) */
+  saveGapClue: (args: {
+    sentence: SessionSentence;
+    clue: string;
+    guess: string;
+    match: 'wrong' | 'skipped';
+    cueMode?: import('../domain/srs-engine').CueMode;
+    inputMode?: 'speak' | 'type';
+  }) => GapNote;
+  markGapReviewed: (gapId: string) => void;
   getGapForSentence: (sentenceId: string) => GapNote | undefined;
+  /** 문장에 붙일 학습자 단서 힌트 */
+  getLearnerClueHint: (sentenceId: string) => string | null;
   // navigation
   activeTab: TabId;
   setActiveTab: (tab: TabId) => void;
@@ -281,6 +292,46 @@ function loadGapNotes(): GapNote[] {
 
 function persistGapNotes(notes: GapNote[]) {
   writeLocal('gapNotes', notes.slice(-200));
+}
+
+type SyncSnapshot = {
+  xp: number;
+  level: number;
+  streakDays: number;
+  todaySentenceCount: number;
+  correctCount: number;
+  attemptCount: number;
+  totalSentences: number;
+  skill: SkillProfile;
+  badges: Badge[];
+  memories: Record<string, SentenceMemory>;
+};
+
+/** 단서/메움 직후 볼트에 Gap 반영 (미연결이면 조용히 스킵) */
+function syncGapsSoon(get: () => SyncSnapshot, gaps: GapNote[]) {
+  if (gaps.length === 0) return;
+  void (async () => {
+    try {
+      const s = get();
+      await syncToVault({
+        progress: {
+          xp: s.xp,
+          level: s.level,
+          streakDays: s.streakDays,
+          todaySentenceCount: s.todaySentenceCount,
+          correctCount: s.correctCount,
+          attemptCount: s.attemptCount,
+          totalSentences: s.totalSentences,
+        },
+        skill: s.skill,
+        badges: s.badges,
+        gaps,
+        memories: s.memories,
+      });
+    } catch {
+      /* 미연결이면 스킵 */
+    }
+  })();
 }
 
 function loadReward(): Partial<RewardState> {
@@ -441,17 +492,21 @@ export const useStore = create<AppStore>((set, get) => {
       const gapNotes = get().gapNotes.map((g) => {
         if (g.id !== gapId) return g;
         if (resolution.type === 'confirmed') {
+          const clue = (g.learnerClue || g.reasonFinal || g.reasonAuto || '').trim();
           return {
             ...g,
-            reasonStatus: 'confirmed' as const,
-            reasonFinal: g.reasonAuto || g.reasonFinal || '',
+            learnerClue: clue || g.learnerClue,
+            reasonStatus: 'clued' as const,
+            reasonFinal: clue,
             updatedAt: nowIso,
           };
         }
+        const clue = resolution.reason.trim();
         return {
           ...g,
-          reasonStatus: 'edited' as const,
-          reasonFinal: resolution.reason.trim(),
+          learnerClue: clue,
+          reasonStatus: 'clued' as const,
+          reasonFinal: clue,
           updatedAt: nowIso,
         };
       });
@@ -461,6 +516,81 @@ export const useStore = create<AppStore>((set, get) => {
         return updated ?? g;
       });
       set({ gapNotes, pendingGaps });
+    },
+
+    saveGapClue: ({ sentence, clue, guess, match, cueMode, inputMode }) => {
+      const text = clue.trim();
+      if (!text) throw new Error('단서가 비어 있습니다.');
+      const nowIso = new Date().toISOString();
+      const existing = get().getGapForSentence(sentence.id);
+      // 출제·패턴용 슬롯만 계산 (학습자 UI에 자동 해설로 노출하지 않음)
+      const report = buildGapReport({
+        en: sentence.en,
+        ko: sentence.ko,
+        guess: guess || existing?.guess || '',
+        match,
+        cueMode: cueMode ?? existing?.cueMode,
+      });
+      const gap: GapNote = {
+        id: existing?.id ?? makeGapId(sentence.id, guess || text),
+        expressionId: sentence.id,
+        en: sentence.en,
+        ko: sentence.ko,
+        guess: guess || existing?.guess || '',
+        createdAt: existing?.createdAt ?? nowIso,
+        updatedAt: nowIso,
+        match,
+        cueMode: cueMode ?? existing?.cueMode,
+        inputMode: inputMode ?? existing?.inputMode,
+        packId: sentence.packId ?? existing?.packId,
+        learnerClue: text,
+        reasonFinal: text,
+        reasonAuto: existing?.reasonAuto || report.reason,
+        reasonStatus: 'clued',
+        slots: report.slots.length
+          ? report.slots
+          : existing?.slots,
+        primarySlot: report.primary?.role ?? existing?.primarySlot,
+      };
+      const gapNotes = [
+        ...get().gapNotes.filter((g) => g.expressionId !== sentence.id),
+        gap,
+      ].slice(-200);
+      const pendingGaps = [
+        ...get().pendingGaps.filter((g) => g.expressionId !== sentence.id),
+        gap,
+      ];
+      persistGapNotes(gapNotes);
+      set({ gapNotes, pendingGaps });
+      syncGapsSoon(get, [gap]);
+      return gap;
+    },
+
+    markGapReviewed: (gapId) => {
+      const nowIso = new Date().toISOString();
+      const gapNotes = get().gapNotes.map((g) =>
+        g.id === gapId
+          ? { ...g, reasonStatus: 'reviewed' as const, updatedAt: nowIso }
+          : g
+      );
+      persistGapNotes(gapNotes);
+      const pendingGaps = get().pendingGaps.map((g) => {
+        const updated = gapNotes.find((n) => n.id === g.id);
+        return updated ?? g;
+      });
+      set({ gapNotes, pendingGaps });
+      const g = gapNotes.find((n) => n.id === gapId);
+      if (g) syncGapsSoon(get, [g]);
+    },
+
+    getLearnerClueHint: (sentenceId) => {
+      const g = get().getGapForSentence(sentenceId);
+      if (!g) return null;
+      const clue = (g.learnerClue || g.reasonFinal || '').trim();
+      if (!clue) return null;
+      const st = g.reasonStatus;
+      if (st === 'draft' || st === 'pending') return null;
+      return clue;
     },
 
     setSelectedPatternRole: (role) => set({ selectedPatternRole: role }),
@@ -519,32 +649,79 @@ export const useStore = create<AppStore>((set, get) => {
             '볼트 Gaps가 없어요. Mac이면 Vault 폴더 연결 후 다시, 아이폰이면 먼저 동기화·보내기로 Gaps를 쌓아 주세요.',
         };
       }
-      const memories = { ...get().memories };
-      let imported = 0;
       const now = new Date();
+      const nowIso = now.toISOString();
+      const memories = { ...get().memories };
+      let gapNotes = [...get().gapNotes];
+      let imported = 0;
+      let reviewed = 0;
+      let clues = 0;
+
       for (const gap of gaps) {
         let mem =
           memories[gap.expressionId] ??
           createMemory(gap.expressionId, gap.en, gap.ko, now);
-        // 볼트에서 온 약점 → 즉시 복습 대상
+        const isReviewed =
+          gap.reasonStatus === 'reviewed' || Boolean(gap.vaultFill?.trim());
+        // 미메움: 즉시 복습. 메움 완료: 기억만 갱신(기한은 유지·슬롯/힌트 반영)
         mem = {
           ...mem,
           en: mem.en || gap.en,
           ko: mem.ko || gap.ko,
           wrong: Math.max(mem.wrong, 1),
           attempts: Math.max(mem.attempts, 1),
-          nextReviewAt: new Date(now.getTime() - 60_000).toISOString(),
-          updatedAt: now.toISOString(),
+          nextReviewAt: isReviewed
+            ? mem.nextReviewAt
+            : new Date(now.getTime() - 60_000).toISOString(),
+          updatedAt: nowIso,
           lastMatch: mem.lastMatch ?? 'wrong',
         };
         memories[gap.expressionId] = mem;
+
+        const clue =
+          (gap.vaultFill || gap.learnerClue || '').trim() || undefined;
+        if (clue) clues += 1;
+        if (isReviewed) reviewed += 1;
+
+        const existing = gapNotes.find((g) => g.expressionId === gap.expressionId);
+        const status: GapNote['reasonStatus'] = isReviewed
+          ? 'reviewed'
+          : gap.reasonStatus === 'clued' || clue
+            ? 'clued'
+            : existing?.reasonStatus ?? 'clued';
+        const note: GapNote = {
+          id: existing?.id ?? gap.id ?? makeGapId(gap.expressionId, gap.guess),
+          expressionId: gap.expressionId,
+          en: gap.en || existing?.en || '',
+          ko: gap.ko || existing?.ko || '',
+          guess: gap.guess || existing?.guess || '',
+          createdAt: existing?.createdAt ?? nowIso,
+          updatedAt: nowIso,
+          match: gap.match ?? existing?.match ?? 'wrong',
+          packId: gap.packId ?? existing?.packId,
+          learnerClue: clue || existing?.learnerClue,
+          reasonFinal: clue || existing?.reasonFinal,
+          reasonAuto: existing?.reasonAuto,
+          reasonStatus: status,
+          slots: gap.slots?.length ? gap.slots : existing?.slots,
+          primarySlot: gap.primarySlot ?? existing?.primarySlot,
+          cueMode: existing?.cueMode,
+          inputMode: existing?.inputMode,
+        };
+        gapNotes = [
+          ...gapNotes.filter((g) => g.expressionId !== gap.expressionId),
+          note,
+        ];
         imported += 1;
       }
+
+      gapNotes = gapNotes.slice(-200);
+      persistGapNotes(gapNotes);
       persistMemories(memories);
-      set({ memories });
+      set({ memories, gapNotes });
       return {
         imported,
-        message: `볼트 Gap ${imported}개를 약점 훈련 큐에 넣었어요. Today → 약점 강화를 시작하세요.`,
+        message: `볼트 Gap ${imported}개 흡수 · 단서/메움 ${clues} · reviewed ${reviewed}. 힌트·패턴 약점에 반영했어요.`,
       };
     },
 
@@ -867,46 +1044,17 @@ export const useStore = create<AppStore>((set, get) => {
       let pendingGaps = get().pendingGaps;
       let gapNotes = get().gapNotes;
       if (isRetry) {
-        pendingGaps = pendingGaps.filter((g) => g.expressionId !== sentence.id);
-        gapNotes = gapNotes.filter((g) => g.expressionId !== sentence.id);
+        // 재시도 시 미저장 draft만 치움 — 이미 단서 있는 Gap은 유지
+        pendingGaps = pendingGaps.filter(
+          (g) =>
+            g.expressionId !== sentence.id ||
+            g.reasonStatus === 'clued' ||
+            g.reasonStatus === 'reviewed' ||
+            g.reasonStatus === 'edited' ||
+            g.reasonStatus === 'confirmed'
+        );
       }
-      if (
-        (evaluation.match === 'wrong' || evaluation.match === 'skipped') &&
-        sentence.en
-      ) {
-        const matchKind = evaluation.match === 'skipped' ? 'skipped' : 'wrong';
-        const cueMode = (response.cueMode ?? 'blind') as CueMode;
-        const guess = response.text ?? '(스킵)';
-        const report = buildGapReport({
-          en: sentence.en,
-          ko: sentence.ko,
-          guess,
-          match: matchKind,
-          cueMode,
-        });
-        const nowIso = new Date().toISOString();
-        const gap: GapNote = {
-          id: makeGapId(sentence.id, guess),
-          expressionId: sentence.id,
-          en: sentence.en,
-          ko: sentence.ko,
-          guess,
-          createdAt: nowIso,
-          updatedAt: nowIso,
-          match: matchKind,
-          cueMode,
-          inputMode: response.inputMode,
-          slots: report.slots,
-          primarySlot: report.primary?.role,
-          packId: sentence.packId,
-          reasonAuto: report.reason,
-          reasonFinal: report.reason,
-          reasonStatus: 'pending',
-        };
-        pendingGaps = [...pendingGaps, gap];
-        gapNotes = [...gapNotes.filter((g) => g.expressionId !== sentence.id), gap].slice(-200);
-        persistGapNotes(gapNotes);
-      }
+      // 오답마다 Gap 자동 생성하지 않음 — saveGapClue 할 때만 생성 (노이즈 방지)
 
       const encounter: TodayEncounter = {
         id: `${sentence.id}-${Date.now()}`,

@@ -29,7 +29,7 @@ import {
   type GapSlotRole,
 } from '../../domain/gap-reason';
 import { FeedbackBar } from './FeedbackBar';
-import { GapReasonCard } from './GapReasonCard';
+import { GapClueCard } from './GapReasonCard';
 import { SessionComplete } from './SessionComplete';
 import { PlacementFlow } from './PlacementFlow';
 import { LEARNER_LEVEL_META, nudgeBand } from '../../domain/learner-level';
@@ -103,11 +103,13 @@ export function TodayScreen() {
   const [packNotice, setPackNotice] = useState<string | null>(null);
   const [showEnglish, setShowEnglish] = useState(false);
   const [showHint, setShowHint] = useState(false);
+  const [answerRevealed, setAnswerRevealed] = useState(false);
   const [pendingEval, setPendingEval] = useState<{
     match: 'exact' | 'fuzzy' | 'wrong' | 'skipped';
     feedback: string;
     canonicalTTS: string;
     userText: string;
+    inputMode?: 'speak' | 'type';
   } | null>(null);
   const [typeDraft, setTypeDraft] = useState('');
   const [showTypeInput, setShowTypeInput] = useState(false);
@@ -129,8 +131,10 @@ export function TodayScreen() {
   const recordTrial = useStore((s) => s.recordTrial);
   const nextSentence = useStore((s) => s.nextSentence);
   const endSession = useStore((s) => s.endSession);
-  const gapNotes = useStore((s) => s.gapNotes);
-  const resolveGapReason = useStore((s) => s.resolveGapReason);
+  const saveGapClue = useStore((s) => s.saveGapClue);
+  const markGapReviewed = useStore((s) => s.markGapReviewed);
+  const getLearnerClueHint = useStore((s) => s.getLearnerClueHint);
+  const getGapForSentence = useStore((s) => s.getGapForSentence);
   const setActiveTab = useStore((s) => s.setActiveTab);
   const getDueReviewItems = useStore((s) => s.getDueReviewItems);
   const dueReviewCount = useStore((s) => s.dueReviewCount);
@@ -187,14 +191,22 @@ export function TodayScreen() {
       const level = matched.level as MatchLevel;
       const matchKind: 'exact' | 'fuzzy' | 'wrong' | 'skipped' =
         level === 'exact' ? 'exact' : level === 'fuzzy' ? 'fuzzy' : 'wrong';
+      // 오답: AI/정답 즉시 제공 없음 — 스스로 틀린 지점 찾기
+      const feedback =
+        matchKind === 'wrong'
+          ? '아직 달라요. 지금 답을 받지 말고, 어디가 틀렸는지 스스로 짚어 단서로 남기세요.'
+          : matched.feedback;
       const evalInfo = {
         match: matchKind,
-        feedback: matched.feedback,
+        feedback,
         canonicalTTS: matched.canonicalTTS,
         userText: trimmed,
+        inputMode,
       };
       pendingEvalRef.current = evalInfo;
       setPendingEval(evalInfo);
+      setAnswerRevealed(matchKind === 'exact' || matchKind === 'fuzzy');
+      if (matchKind === 'wrong') setShowEnglish(false);
       setTypeDraft('');
 
       recordTrial(
@@ -202,7 +214,7 @@ export function TodayScreen() {
         {
           match: matchKind,
           score: matchKind === 'exact' ? 1 : matchKind === 'fuzzy' ? 0.7 : 0.2,
-          feedback: matched.feedback,
+          feedback,
           ttsContent: matched.canonicalTTS,
         },
         { text: trimmed, skipped: false, cueMode: resolveCueMode(), inputMode }
@@ -364,6 +376,8 @@ export function TodayScreen() {
     };
     pendingEvalRef.current = evalInfo;
     setPendingEval(evalInfo);
+    setAnswerRevealed(false);
+    setShowEnglish(false);
     recordTrial(
       currentSentence,
       { match: 'skipped', score: 0, feedback: '스킵', ttsContent: currentSentence.en },
@@ -394,6 +408,7 @@ export function TodayScreen() {
   const handleNext = useCallback(() => {
     pendingEvalRef.current = null;
     setPendingEval(null);
+    setAnswerRevealed(false);
     setShowEnglish(false);
     setShowHint(false);
     setShowTypeInput(false);
@@ -421,6 +436,11 @@ export function TodayScreen() {
 
   const openTodayLog = useStore((s) => s.openTodayLog);
   const todayLogCount = useStore((s) => s.todayLog.length);
+
+  const answerLocked =
+    !!pendingEval &&
+    (pendingEval.match === 'wrong' || pendingEval.match === 'skipped') &&
+    !answerRevealed;
 
   const handleGoTodayLog = useCallback(() => {
     openTodayLog();
@@ -747,7 +767,9 @@ export function TodayScreen() {
               marginTop: '10px',
             }}
           >
-            영어로 말하거나 타이핑해 보세요. (정답 보려면 아래 &apos;한→영&apos; 버튼)
+            {answerLocked
+              ? '정답은 잠겨 있어요. 단서를 남기거나 「그래도 정답 보기」를 누르세요.'
+              : "영어로 말하거나 타이핑해 보세요. (정답 보려면 아래 '한→영' 버튼)"}
           </div>
         )}
       </Card>
@@ -758,10 +780,14 @@ export function TodayScreen() {
           variant="primary"
           className={speech.speaking ? 'playing' : ''}
           onClick={handleListen}
-          disabled={speech.speaking}
-          title="정답 영어 들리기"
+          disabled={speech.speaking || answerLocked}
+          title={
+            answerLocked
+              ? '단서 저장 또는 정답 보기 후에 들을 수 있어요'
+              : '정답 영어 들리기'
+          }
         >
-          {speech.speaking ? '🔊 재생 중…' : '🔊 정답 듣기'}
+          {speech.speaking ? '🔊 재생 중…' : answerLocked ? '🔊 정답 잠김' : '🔊 정답 듣기'}
         </Button>
         <Button
           variant={speech.listening ? 'recording' : pendingEval ? 'primary' : 'default'}
@@ -878,27 +904,31 @@ export function TodayScreen() {
             </div>
           )}
           {(pendingEval.match === 'wrong' || pendingEval.match === 'skipped') &&
-            currentSentence &&
-            (() => {
-              let gap = undefined as (typeof gapNotes)[number] | undefined;
-              for (let i = gapNotes.length - 1; i >= 0; i--) {
-                if (gapNotes[i].expressionId === currentSentence.id) {
-                  gap = gapNotes[i];
-                  break;
-                }
-              }
-              if (!gap) return null;
-              return (
-                <GapReasonCard
-                  key={`${gap.id}-${gap.updatedAt ?? gap.createdAt}-${gap.reasonStatus}`}
-                  gap={gap}
-                  onConfirm={(id) => resolveGapReason(id, { type: 'confirmed' })}
-                  onSaveEdit={(id, reason) =>
-                    resolveGapReason(id, { type: 'edited', reason })
-                  }
-                />
-              );
-            })()}
+            currentSentence && (
+              <GapClueCard
+                key={`clue-${currentSentence.id}-${getGapForSentence(currentSentence.id)?.updatedAt ?? 'new'}`}
+                gap={getGapForSentence(currentSentence.id)}
+                guess={pendingEval.userText}
+                canonicalEn={pendingEval.canonicalTTS}
+                answerRevealed={answerRevealed}
+                onRevealAnswer={() => {
+                  setAnswerRevealed(true);
+                  sawEnglishRef.current = true;
+                }}
+                onSaveClue={(clue) => {
+                  saveGapClue({
+                    sentence: currentSentence,
+                    clue,
+                    guess: pendingEval.userText || '',
+                    match: pendingEval.match === 'skipped' ? 'skipped' : 'wrong',
+                    cueMode: resolveCueMode(),
+                    inputMode: pendingEval.inputMode ?? 'speak',
+                  });
+                  setAnswerRevealed(true);
+                }}
+                onMarkReviewed={(id) => markGapReviewed(id)}
+              />
+            )}
           <div
             style={{
               marginTop: '12px',
@@ -908,14 +938,18 @@ export function TodayScreen() {
               justifyContent: 'center',
             }}
           >
-            <Button
-              variant="primary"
-              className={speech.speaking ? 'playing' : ''}
-              onClick={handleListenOriginal}
-              disabled={speech.speaking}
-            >
-              {speech.speaking ? '재생 중…' : '원래 표현 듣기'}
-            </Button>
+            {(pendingEval.match === 'exact' ||
+              pendingEval.match === 'fuzzy' ||
+              answerRevealed) && (
+              <Button
+                variant="primary"
+                className={speech.speaking ? 'playing' : ''}
+                onClick={handleListenOriginal}
+                disabled={speech.speaking}
+              >
+                {speech.speaking ? '재생 중…' : '원래 표현 듣기'}
+              </Button>
+            )}
             <Button
               onClick={handleSpeak}
               disabled={!speech.supported || speech.listening || speech.speaking}
@@ -926,6 +960,7 @@ export function TodayScreen() {
               onClick={() => {
                 pendingEvalRef.current = null;
                 setPendingEval(null);
+                setAnswerRevealed(false);
                 setShowTypeInput(true);
                 setTypeDraft('');
               }}
@@ -941,15 +976,22 @@ export function TodayScreen() {
       <div className="toggle-row">
         <Button
           onClick={() => {
+            if (answerLocked) return;
             setShowEnglish((v) => {
               const next = !v;
               if (next) sawEnglishRef.current = true;
               return next;
             });
           }}
+          disabled={answerLocked}
           className={`toggle-btn${showEnglish ? ' active' : ''}`}
+          title={answerLocked ? '단서 저장 후 열 수 있어요' : undefined}
         >
-          {showEnglish ? '🇰🇷 한국어만' : '🇺🇸 한→영 토글'}
+          {answerLocked
+            ? '🔒 한→영 잠김'
+            : showEnglish
+              ? '🇰🇷 한국어만'
+              : '🇺🇸 한→영 토글'}
         </Button>
         <Button
           onClick={() => setShowHint((v) => !v)}
@@ -959,23 +1001,45 @@ export function TodayScreen() {
         </Button>
         <Button
           onClick={handleReplay}
-          disabled={speech.speaking}
+          disabled={speech.speaking || answerLocked}
           className="toggle-btn"
+          title={answerLocked ? '정답 듣기가 잠겨 있어요' : undefined}
         >
-          🔄 다시 듣기
+          {answerLocked ? '🔒 다시 듣기' : '🔄 다시 듣기'}
         </Button>
         <Button onClick={handleSkip} className="toggle-btn">
           ⏭️ 스킵
         </Button>
       </div>
 
-      {showHint && currentSentence.hints && (
+      {showHint && currentSentence && (
         <Card style={{ marginTop: '12px' }}>
-          {currentSentence.hints.map((h, i) => (
-            <div key={i} style={{ padding: '4px 0', fontSize: '14px' }}>
-              • {h}
-            </div>
-          ))}
+          {(() => {
+            const clue = getLearnerClueHint(currentSentence.id);
+            if (!clue && !(currentSentence.hints && currentSentence.hints.length)) {
+              return (
+                <div style={{ fontSize: '13px', color: 'var(--ebq-text-muted)' }}>
+                  힌트는 선순환으로 옵니다. 예전에 남긴 단서·옵시디언 메움이 다음
+                  연습의 힌트와 간극 잡기에 쓰입니다.
+                </div>
+              );
+            }
+            return (
+              <>
+                {clue && (
+                  <div style={{ padding: '4px 0', fontSize: '14px' }}>
+                    <span style={{ color: 'var(--ebq-primary)', fontWeight: 700 }}>내 단서 · </span>
+                    {clue}
+                  </div>
+                )}
+                {(currentSentence.hints ?? []).map((h, i) => (
+                  <div key={i} style={{ padding: '4px 0', fontSize: '14px' }}>
+                    • {h}
+                  </div>
+                ))}
+              </>
+            );
+          })()}
         </Card>
       )}
     </div>

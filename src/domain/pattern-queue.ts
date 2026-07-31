@@ -139,7 +139,12 @@ export function pickPatternTrainingQueue(
       if (!(g.slots ?? []).includes(role) && g.primarySlot !== role) continue;
       if (seen.has(g.expressionId)) continue;
       const mem = memories[g.expressionId];
-      const pending = (g.reasonStatus ?? 'pending') === 'pending' ? 1 : 0;
+      const pending = (g.reasonStatus ?? 'pending') === 'clued' ||
+        (g.reasonStatus ?? '') === 'edited' ||
+        (g.reasonStatus ?? '') === 'confirmed' ||
+        (g.reasonStatus ?? 'pending') === 'pending'
+        ? 1
+        : 0;
       const recent = daysSince(g.updatedAt ?? g.createdAt, now) <= 7 ? 30 : 0;
       const wrong = mem?.wrong ?? 0;
       const blind = mem?.blindCorrect ?? 0;

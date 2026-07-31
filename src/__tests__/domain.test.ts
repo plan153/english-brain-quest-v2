@@ -479,19 +479,21 @@ describe('6b. gap-reason + projectGap', () => {
         primarySlot: 'noun',
         packId: 'quiz-verbs',
         inputMode: 'type',
+        learnerClue: '내가 고친 이유',
         reasonAuto: '자동 추정 이유',
         reasonFinal: '내가 고친 이유',
-        reasonStatus: 'edited',
+        reasonStatus: 'clued',
       },
     });
-    expect(file.markdown).toContain('간극이 생긴 이유');
+    expect(file.markdown).toContain('내 단서');
     expect(file.markdown).toContain('내가 고친 이유');
-    expect(file.markdown).toContain('사용자 수정');
-    expect(file.markdown).toContain('처음 추정');
+    expect(file.markdown).toContain('단서 저장');
+    expect(file.markdown).toContain('① 스스로 찾기');
     expect(file.markdown).toContain('pattern/noun');
     expect(file.markdown).toContain('[[Patterns/noun');
     expect(file.markdown).toContain('inputMode: type');
     expect(file.markdown).toContain('primarySlot: noun');
+    expect(file.markdown).toContain('옵시디언 메움');
     expect(file.markdown).toContain('다음 연습');
     expect(file.markdown).toContain('기본동사 100');
   });
@@ -618,6 +620,53 @@ Do you need help?
     expect(gap?.expressionId).toBe('e015');
     expect(gap?.en).toBe('Do you need help?');
     expect(gap?.ko).toContain('도움');
+  });
+
+  it('parses learner clue, slots, and Obsidian fill as reviewed', () => {
+    const md = `---
+type: gap
+expressionId: e99
+en: She needs help.
+ko: 도움이 필요해요.
+learnerClue: 3인칭 s 빠짐
+reasonStatus: clued
+primarySlot: agreement
+slots: [agreement]
+---
+
+# Gap · She needs help.
+
+## 내 단서
+3인칭 s 빠짐
+
+## 옵시디언 메움
+She + needs. 주어가 3인칭이면 동사에 s.
+`;
+    const gap = parseGapMarkdown(md, 'Learners/me/Gaps/gap_e99_x.md');
+    expect(gap?.learnerClue).toContain('3인칭');
+    expect(gap?.primarySlot).toBe('agreement');
+    expect(gap?.slots).toContain('agreement');
+    expect(gap?.vaultFill).toContain('She + needs');
+    expect(gap?.reasonStatus).toBe('reviewed');
+  });
+
+  it('ignores Obsidian fill placeholder', () => {
+    const md = `---
+type: gap
+expressionId: e88
+en: Hi.
+ko: 안녕.
+reasonStatus: clued
+learnerClue: 짧게
+---
+
+## 옵시디언 메움
+
+(여기에 영어식 사고로 메운 내용을 적으세요. 내용이 있으면 앱이 다음 힌트·reviewed로 가져갑니다.)
+`;
+    const gap = parseGapMarkdown(md, 'Learners/me/Gaps/gap_e88_x.md');
+    expect(gap?.vaultFill).toBeUndefined();
+    expect(gap?.reasonStatus).toBe('clued');
   });
 
   it('builds weak training queue from wrong memories', () => {

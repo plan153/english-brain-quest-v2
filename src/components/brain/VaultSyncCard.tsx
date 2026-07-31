@@ -128,7 +128,7 @@ export function VaultSyncCard() {
                 }, '')
               }
             >
-              📥 볼트 Gaps → 약점 훈련
+              📥 볼트 → 힌트·간극 선순환
             </Button>
             <Button
               disabled={busy}
@@ -175,7 +175,8 @@ export function VaultSyncCard() {
       )}
 
       <div style={{ marginTop: '10px', fontSize: '11px', color: 'var(--ebq-text-muted)' }}>
-        「볼트 Gaps → 약점 훈련」은 연결된 Vault/IndexedDB의 Gaps를 읽어 Today 약점 팩에 넣습니다.
+        「볼트 → 힌트·간극 선순환」은 Gaps의 단서·옵시디언 메움·슬롯을 읽어
+        다음 힌트·패턴 약점·복습에 반영합니다.
         Mac은 폴더 연결 후, 아이폰은 동기화로 Gaps가 쌓인 뒤 사용하세요.
         보내기: ZIP → <code>_Inbox/EBQ</code>.
       </div>

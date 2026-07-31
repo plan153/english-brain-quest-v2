@@ -48,12 +48,25 @@ export interface GapNote {
   primarySlot?: GapSlotRole;
   /** 출처 팩 — Library wiki 링크 */
   packId?: string;
-  /** 앱이 추정한 간극 이유 */
+  /** 학습자가 남긴 단서 (자기 발견) — 다음 힌트의 원천 */
+  learnerClue?: string;
+  /** 앱 추정(참고용, 기본 UI에 노출하지 않음) */
   reasonAuto?: string;
-  /** 사용자가 확인·수정한 최종 이유 */
+  /** 사용자 단서·메움 반영 문장 */
   reasonFinal?: string;
-  /** pending=확인 전, confirmed=추정 승인, edited=사용자가 고침 */
-  reasonStatus?: 'pending' | 'confirmed' | 'edited';
+  /**
+   * draft=단서 전(가급적 생성 안 함)
+   * clued=단서 저장·볼트 메움 대기
+   * reviewed=옵시디언 메움 완료
+   * pending/confirmed/edited=구버전 호환
+   */
+  reasonStatus?:
+    | 'draft'
+    | 'clued'
+    | 'reviewed'
+    | 'pending'
+    | 'confirmed'
+    | 'edited';
   updatedAt?: string;
 }
 
@@ -283,11 +296,15 @@ export function projectGap(args: {
   gap: GapNote;
 }): { path: string; markdown: string } {
   const { userId, gap } = args;
-  const reason =
-    gap.reasonFinal?.trim() ||
-    gap.reasonAuto?.trim() ||
-    '(아직 적지 않음)';
-  const status = gap.reasonStatus ?? 'pending';
+  const status = gap.reasonStatus ?? 'draft';
+  const statusLabel =
+    status === 'reviewed'
+      ? '메움 완료(reviewed)'
+      : status === 'clued' || status === 'edited' || status === 'confirmed'
+        ? '단서 저장 · 옵시디언 메움 대기'
+        : '단서 작성 전';
+  const clue = (gap.learnerClue || gap.reasonFinal || '').trim();
+  const reason = clue || gap.reasonAuto?.trim() || '(아직 단서 없음)';
   const slots = gap.slots ?? [];
   const primary = gap.primarySlot ?? slots[0];
   const tags = [
@@ -297,10 +314,11 @@ export function projectGap(args: {
     ...slots.map((s) => `pattern/${s}`),
     ...(primary ? [`focus/${primary}`] : []),
     ...(gap.packId ? [`pack/${gap.packId}`] : []),
+    `loop/${status === 'reviewed' ? 'reviewed' : status === 'clued' || status === 'edited' || status === 'confirmed' ? 'clued' : 'draft'}`,
   ];
   const slotLinks =
     slots.length === 0
-      ? '- (슬롯 분석 없음)'
+      ? '- (슬롯 분석 없음 — 단서 중심 간극)'
       : slots
           .map((s) => {
             const mark = s === primary ? ' ← 핵심' : '';
@@ -314,12 +332,12 @@ export function projectGap(args: {
     primary != null
       ? [
           `1. 앱 Today → **패턴 약점** → 「${patternNoteTitle(primary)}」`,
-          `2. ${patternPracticeTip(primary)}`,
-          library ? `3. 원문 다시 읽기: [[${library.wikiLink}|${library.title}]]` : '',
+          `2. 힌트에 「내 단서」가 다시 뜹니다`,
+          library ? `3. 원문: [[${library.wikiLink}|${library.title}]]` : '',
         ]
           .filter(Boolean)
           .join('\n')
-      : '- 앱에서 같은 문장을 복습 팩으로 다시 말해 보세요.';
+      : '- 앱 힌트에 남긴 단서가 다시 나옵니다.';
 
   const markdown = `---
 type: gap
@@ -332,6 +350,7 @@ guess: ${escapeYaml(gap.guess)}
 createdAt: ${escapeYaml(gap.createdAt)}
 updatedAt: ${escapeYaml(gap.updatedAt ?? gap.createdAt)}
 reasonStatus: ${escapeYaml(status)}
+learnerClue: ${escapeYaml(clue)}
 match: ${escapeYaml(gap.match ?? 'wrong')}
 cueMode: ${escapeYaml(gap.cueMode ?? '')}
 inputMode: ${escapeYaml(gap.inputMode ?? '')}
@@ -344,6 +363,12 @@ source: english-brain-quest-v2
 
 # Gap · ${gap.en}
 
+## 루프
+
+\`① 스스로 찾기 → ② 옵시디언 메움 → ③ 나중 힌트\` · 지금: **${statusLabel}**
+
+> 간극을 만드는 과정 = 영어식 사고 연습. 메움은 옵시디언 → 다음 힌트·간극 선순환.
+
 ## 내 추측
 
 ${gap.guess || '(없음)'}
@@ -353,12 +378,16 @@ ${gap.guess || '(없음)'}
 ${gap.en}
 - 한국어: ${gap.ko}
 ${cue || input ? `\n- ${[cue, input].filter(Boolean).join(' · ')}\n` : ''}
-## 간극이 생긴 이유
+## 내 단서
 
 ${reason}
 
-- 상태: ${status === 'confirmed' ? '사용자 확인' : status === 'edited' ? '사용자 수정' : '자동 추정(미확인)'}
-${gap.reasonAuto && gap.reasonFinal && gap.reasonAuto !== gap.reasonFinal ? `\n### 처음 추정\n\n${gap.reasonAuto}\n` : ''}
+- 상태: ${statusLabel}
+${gap.reasonAuto && clue && gap.reasonAuto !== clue ? `\n### (참고) 예전 자동 추정\n\n${gap.reasonAuto}\n` : ''}
+## 옵시디언 메움
+
+(여기에 영어식 사고로 메운 내용을 적으세요. 내용이 있으면 앱이 다음 힌트·reviewed로 가져갑니다.)
+
 ## 약한 슬롯
 
 ${slotLinks}
@@ -367,7 +396,7 @@ ${slotLinks}
 
 ${practice}
 
-> 볼트에서 이유를 고치면 앱 동기화 시 거울로 남습니다. 출제·SRS는 앱 Today가 담당합니다.
+> 간극을 만드는 과정 = 영어식 사고 연습. 메움은 옵시디언 → 다음 힌트·간극 선순환.
 
 ## 연결
 
@@ -394,14 +423,24 @@ source: english-brain-quest-v2
 
 # Gaps · 간극 목록
 
-앱에서 틀린·스킵한 문장이 여기 쌓입니다. Dataview가 있으면 아래 쿼리로 필터하세요.
+학습자 단서로 생긴 간극만 쌓입니다. 옵시디언 메움 → 다음 힌트·간극 잡기 선순환.
 
-## 미확인 이유
+## 단서 저장 · 메움 대기
 
 \`\`\`dataview
 TABLE expressionId, primarySlot, reasonStatus, slots, match
 FROM "Learners/${userId}/Gaps"
-WHERE type = "gap" AND reasonStatus = "pending"
+WHERE type = "gap" AND (reasonStatus = "clued" OR reasonStatus = "edited" OR reasonStatus = "confirmed")
+SORT updatedAt DESC
+LIMIT 20
+\`\`\`
+
+## 메움 완료
+
+\`\`\`dataview
+TABLE expressionId, primarySlot, learnerClue
+FROM "Learners/${userId}/Gaps"
+WHERE type = "gap" AND reasonStatus = "reviewed"
 SORT updatedAt DESC
 LIMIT 20
 \`\`\`
@@ -499,7 +538,7 @@ LIMIT 30
 
 1. 앱 **Today → 패턴 약점 → ${title}** 으로 같은 슬롯만 반복
 2. ${patternPracticeTip(role)}
-3. 확인한 Gap은 reasonStatus를 confirmed로 두고, 틀린 이유를 한 줄로 고쳐 적기
+3. 옵시디언에서 메운 뒤 앱에서「메움 완료」→ reasonStatus: reviewed. 남긴 단서는 다음 힌트에 다시 뜸
 
 ## 연습 팁
 

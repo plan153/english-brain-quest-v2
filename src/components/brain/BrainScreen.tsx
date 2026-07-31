@@ -23,7 +23,7 @@ import {
 } from '../../domain/srs-engine';
 import { VaultSyncCard } from './VaultSyncCard';
 import { TodayLogCard } from './TodayLogCard';
-import { GapReasonCard } from '../today/GapReasonCard';
+import { GapClueCard } from '../today/GapReasonCard';
 import { summarizePatternGaps, countPatternTraining } from '../../domain/pattern-queue';
 import { PlacementFlow } from '../today/PlacementFlow';
 
@@ -53,7 +53,8 @@ export function BrainScreen() {
   const setReviewIntensity = useStore((s) => s.setReviewIntensity);
   const requestStartPack = useStore((s) => s.requestStartPack);
   const gapNotes = useStore((s) => s.gapNotes);
-  const resolveGapReason = useStore((s) => s.resolveGapReason);
+  const markGapReviewed = useStore((s) => s.markGapReviewed);
+  const saveGapClue = useStore((s) => s.saveGapClue);
   const practiceBand = useStore((s) => s.practiceBand);
   const setPracticeBand = useStore((s) => s.setPracticeBand);
   const clearPracticeBand = useStore((s) => s.clearPracticeBand);
@@ -66,10 +67,13 @@ export function BrainScreen() {
   const owned = useMemo(() => countOwned(memoryList), [memoryList]);
   const weakCount = useMemo(() => countWeakTraining(memoryList), [memoryList]);
   const weakSummary = useMemo(() => summarizeWeakLinks(memoryList), [memoryList]);
-  const pendingReasonGaps = useMemo(
+  const openClueGaps = useMemo(
     () =>
       [...gapNotes]
-        .filter((g) => (g.reasonStatus ?? 'pending') === 'pending')
+        .filter((g) => {
+          const s = g.reasonStatus ?? 'pending';
+          return s === 'clued' || s === 'edited' || s === 'confirmed';
+        })
         .reverse()
         .slice(0, 5),
     [gapNotes]
@@ -289,27 +293,41 @@ export function BrainScreen() {
         );
       })()}
 
-      {pendingReasonGaps.length > 0 && (
+      {openClueGaps.length > 0 && (
         <Card style={{ marginTop: '12px' }}>
           <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)' }}>
-            간극 이유 확인 ({pendingReasonGaps.length})
+            옵시디언 메움 대기 ({openClueGaps.length})
           </div>
           <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)', marginTop: '6px' }}>
-            틀린 문장에 자동으로 붙인 이유가 맞는지 확인해 주세요.
+            목표는 힌트·답변으로 간극을 스스로 만들고, 옵시디언에서 메운 뒤 그 결과가
+            다음 힌트·간극 잡기에 다시 쓰이는 선순환입니다. 메운 뒤 「메움 완료」.
           </div>
-          {pendingReasonGaps.map((gap) => (
+          {openClueGaps.map((gap) => (
             <div key={gap.id} style={{ marginTop: '10px' }}>
-              <div style={{ fontSize: '13px', fontWeight: 700 }}>{gap.en}</div>
+              <div style={{ fontSize: '13px', fontWeight: 700 }}>{gap.ko}</div>
               <div style={{ fontSize: '11px', color: 'var(--ebq-text-muted)' }}>
-                내 말: {gap.guess || '(없음)'}
+                정답은 카드에서 필요할 때만
               </div>
-              <GapReasonCard
-                key={`${gap.id}-${gap.updatedAt ?? gap.createdAt}-${gap.reasonStatus}`}
+              <GapClueCard
                 gap={gap}
-                onConfirm={(id) => resolveGapReason(id, { type: 'confirmed' })}
-                onSaveEdit={(id, reason) =>
-                  resolveGapReason(id, { type: 'edited', reason })
+                guess={gap.guess}
+                canonicalEn={gap.en}
+                onSaveClue={(clue) =>
+                  saveGapClue({
+                    sentence: {
+                      id: gap.expressionId,
+                      en: gap.en,
+                      ko: gap.ko,
+                      packId: gap.packId,
+                    },
+                    clue,
+                    guess: gap.guess,
+                    match: gap.match === 'skipped' ? 'skipped' : 'wrong',
+                    cueMode: gap.cueMode,
+                    inputMode: gap.inputMode,
+                  })
                 }
+                onMarkReviewed={(id) => markGapReviewed(id)}
               />
             </div>
           ))}
