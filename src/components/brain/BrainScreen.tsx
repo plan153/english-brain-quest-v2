@@ -25,6 +25,7 @@ import { VaultSyncCard } from './VaultSyncCard';
 import { TodayLogCard } from './TodayLogCard';
 import { GapClueCard } from '../today/GapReasonCard';
 import { summarizePatternGaps, countPatternTraining } from '../../domain/pattern-queue';
+import { learnerFacingClue } from '../../domain/gap-reason';
 import { PlacementFlow } from '../today/PlacementFlow';
 
 const SKILL_AXIS_META: { axis: SkillAxis; label: string }[] = [
@@ -72,7 +73,8 @@ export function BrainScreen() {
       [...gapNotes]
         .filter((g) => {
           const s = g.reasonStatus ?? 'pending';
-          return s === 'clued' || s === 'edited' || s === 'confirmed';
+          if (!(s === 'clued' || s === 'edited' || s === 'confirmed')) return false;
+          return Boolean(learnerFacingClue(g));
         })
         .reverse()
         .slice(0, 5),

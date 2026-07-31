@@ -464,6 +464,49 @@ describe('6b. gap-reason + projectGap', () => {
     expect(['exact', 'fuzzy']).toContain(fuzzy.level);
   });
 
+  it('treats have+adj+noun as lexical have, not perfect', () => {
+    const slots = analyzeGapSlots({
+      en: 'I have fond memories of playing hide-and-seek with my friends.',
+      guess: 'I had the fund memory playing hide and seek with my friend',
+    });
+    const verb = slots.find((s) => s.role === 'verb');
+    expect(verb?.expected).toBe('have');
+    expect(verb?.expected).not.toContain('fond');
+    const noun = slots.find((s) => s.role === 'noun');
+    expect(noun?.expected?.toLowerCase()).toMatch(/memor/);
+  });
+
+  it('keeps have+past-participle as perfect auxiliary', () => {
+    const slots = analyzeGapSlots({
+      en: 'I have found my keys.',
+      guess: 'I find my keys.',
+    });
+    const verb = slots.find((s) => s.role === 'verb');
+    expect(verb?.expected).toMatch(/have found|found/);
+  });
+
+  it('rejects auto gap report text as learner clue', async () => {
+    const { isAutoGapReportText, learnerFacingClue } = await import('../domain/gap-reason');
+    const auto = inferGapReason({
+      en: 'I have fond memories.',
+      ko: '추억이 있다.',
+      guess: 'I had fund memory.',
+      match: 'wrong',
+      cueMode: 'after_reveal',
+    });
+    expect(isAutoGapReportText(auto)).toBe(true);
+    expect(
+      learnerFacingClue({
+        learnerClue: auto,
+        reasonFinal: auto,
+        reasonAuto: auto,
+      })
+    ).toBe('');
+    expect(learnerFacingClue({ learnerClue: 'fond인데 fund로 들림' })).toBe(
+      'fond인데 fund로 들림'
+    );
+  });
+
   it('writes reason into gap markdown', () => {
     const file = projectGap({
       userId: 'me',

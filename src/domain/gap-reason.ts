@@ -540,6 +540,97 @@ function takeNounPhrase(tokens: string[], start: number): { text: string; end: n
   return { text: '', end: start };
 }
 
+function isLikelyPastParticiple(word: string): boolean {
+  const w = word.toLowerCase();
+  if (!w) return false;
+  // have been / being
+  if (w === 'been' || w === 'being') return true;
+  if (IRREGULAR_PARTICIPLES.has(w)) return true;
+  // walked, played — 단, fond/fund 같은 형용사는 제외
+  if (w.endsWith('ed') && w.length > 3) return true;
+  // written, broken, taken…
+  if (w.length > 3 && (w.endsWith('en') || w.endsWith('ne'))) {
+    if (PAST_TO_BASE[w] || IRREGULAR_PARTICIPLES.has(w)) return true;
+  }
+  return false;
+}
+
+/** have/has/had + 형용사/명사 = 소유 동사 (완료 조동사 아님) */
+function isLexicalHave(tokens: string[], start: number): boolean {
+  const v = tokens[start]?.toLowerCase();
+  if (v !== 'have' && v !== 'has' && v !== 'had') return false;
+  const next = tokens[start + 1]?.toLowerCase();
+  if (!next || next === 'not') return true;
+  if (next === 'to') return true; // have to …
+  if (DETERMINERS.has(next)) return true; // have a/the/some …
+  if (isLikelyPastParticiple(next)) return false; // have found / have been
+  // have fond memories / have fun — 본동사
+  return true;
+}
+
+const IRREGULAR_PARTICIPLES = new Set([
+  'been',
+  'gone',
+  'done',
+  'seen',
+  'made',
+  'taken',
+  'given',
+  'found',
+  'left',
+  'felt',
+  'kept',
+  'heard',
+  'said',
+  'told',
+  'thought',
+  'brought',
+  'bought',
+  'caught',
+  'taught',
+  'built',
+  'sent',
+  'spent',
+  'met',
+  'put',
+  'read',
+  'cut',
+  'hit',
+  'set',
+  'let',
+  'run',
+  'come',
+  'become',
+  'begun',
+  'written',
+  'spoken',
+  'broken',
+  'chosen',
+  'driven',
+  'eaten',
+  'fallen',
+  'forgotten',
+  'gotten',
+  'got',
+  'hidden',
+  'known',
+  'ridden',
+  'risen',
+  'shown',
+  'sung',
+  'sunk',
+  'swum',
+  'thrown',
+  'worn',
+  'won',
+  'lost',
+  'paid',
+  'sold',
+  'stood',
+  'understood',
+  'woken',
+]);
+
 /** have/take/make + a/an + (adj)? + 관용 핵만 — have some friends 는 제외 */
 function takeLightVerbPhrase(
   tokens: string[],
@@ -734,6 +825,10 @@ function extractSlots(tokens: string[]): PhraseSlots {
         if (light2) {
           verb = light2.text;
           i = light2.end;
+        } else if (i < core.length && AUX.has(core[i]!) && isLexicalHave(core, i)) {
+          // I have fond memories — have는 소유 본동사
+          verb = core[i]!;
+          i += 1;
         } else if (i < core.length && AUX.has(core[i]!)) {
           const aux = core[i]!;
           i += 1;
@@ -741,7 +836,7 @@ function extractSlots(tokens: string[]): PhraseSlots {
           if (i < core.length && !PREPS.has(core[i]!) && !DETERMINERS.has(core[i]!)) {
             if (
               core[i]!.endsWith('ing') ||
-              core[i]!.endsWith('ed') ||
+              isLikelyPastParticiple(core[i]!) ||
               PAST_TO_BASE[core[i]!] ||
               !FUNCTION.has(core[i]!)
             ) {
@@ -1310,4 +1405,29 @@ export function inferGapReason(args: {
   cueMode?: CueMode;
 }): string {
   return buildGapReport(args).reason;
+}
+
+/** 자동 GapReport 문장인지 — 학습자 단서로 쓰면 안 됨 */
+export function isAutoGapReportText(text: string): boolean {
+  const t = String(text || '').trim();
+  if (!t) return false;
+  if (t.includes('【핵심 간극】') || t.includes('【참고】')) return true;
+  if (/^영어를 본 뒤에도 달랐어요/.test(t)) return true;
+  if (/^듣고 따라 말했지만/.test(t)) return true;
+  if (/^힌트 없이 말하다 틀렸어요/.test(t)) return true;
+  if (t.includes('목표 뜻:') && /•\s/.test(t)) return true;
+  if (/정답 동사「/.test(t) && /대신「/.test(t)) return true;
+  return false;
+}
+
+/** UI·힌트에 쓸 학습자 단서만 (자동 리포트 제외) */
+export function learnerFacingClue(gap: {
+  learnerClue?: string;
+  reasonFinal?: string;
+  reasonAuto?: string;
+}): string {
+  const raw = (gap.learnerClue || gap.reasonFinal || '').trim();
+  if (!raw || isAutoGapReportText(raw)) return '';
+  if (gap.reasonAuto && raw === gap.reasonAuto.trim()) return '';
+  return raw;
 }

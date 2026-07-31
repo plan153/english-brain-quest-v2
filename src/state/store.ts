@@ -53,7 +53,7 @@ import {
   importVaultGaps,
   type GapNote,
 } from '../adapters/cloud-sync';
-import { type GapSlotRole, buildGapReport } from '../domain/gap-reason';
+import { type GapSlotRole, buildGapReport, isAutoGapReportText, learnerFacingClue } from '../domain/gap-reason';
 import {
   countPatternTraining,
   pickPatternTrainingQueue,
@@ -287,7 +287,52 @@ const DEFAULT_REWARD_STATE: RewardState = {
 };
 
 function loadGapNotes(): GapNote[] {
-  return readLocal<GapNote[]>('gapNotes') ?? [];
+  const raw = readLocal<GapNote[]>('gapNotes') ?? [];
+  return sanitizeGapNotes(raw);
+}
+
+/** 자동 리포트가 단서 자리를 차지한 레거시 Gap 정리 */
+function sanitizeGapNotes(notes: GapNote[]): GapNote[] {
+  let changed = false;
+  const next = notes.map((g) => {
+    const clue = learnerFacingClue(g);
+    const hadFake =
+      isAutoGapReportText(g.learnerClue || '') ||
+      isAutoGapReportText(g.reasonFinal || '') ||
+      (!!g.reasonAuto &&
+        ((g.learnerClue || '').trim() === g.reasonAuto.trim() ||
+          (g.reasonFinal || '').trim() === g.reasonAuto.trim()));
+    if (!hadFake && clue === (g.learnerClue || g.reasonFinal || '').trim()) {
+      return g;
+    }
+    changed = true;
+    const auto =
+      g.reasonAuto ||
+      (isAutoGapReportText(g.learnerClue || '')
+        ? g.learnerClue
+        : isAutoGapReportText(g.reasonFinal || '')
+          ? g.reasonFinal
+          : undefined);
+    return {
+      ...g,
+      learnerClue: clue || undefined,
+      reasonFinal: clue || undefined,
+      reasonAuto: auto,
+      reasonStatus: (clue
+        ? g.reasonStatus === 'reviewed'
+          ? 'reviewed'
+          : g.reasonStatus === 'clued' ||
+              g.reasonStatus === 'edited' ||
+              g.reasonStatus === 'confirmed'
+            ? 'clued'
+            : g.reasonStatus
+        : g.reasonStatus === 'reviewed'
+          ? 'reviewed'
+          : 'draft') as GapNote['reasonStatus'],
+    };
+  });
+  if (changed) persistGapNotes(next as GapNote[]);
+  return next as GapNote[];
 }
 
 function persistGapNotes(notes: GapNote[]) {
@@ -492,16 +537,29 @@ export const useStore = create<AppStore>((set, get) => {
       const gapNotes = get().gapNotes.map((g) => {
         if (g.id !== gapId) return g;
         if (resolution.type === 'confirmed') {
-          const clue = (g.learnerClue || g.reasonFinal || g.reasonAuto || '').trim();
+          // 자동 리포트를 단서로 승격하지 않음
+          const clue = learnerFacingClue(g);
+          if (!clue) {
+            return {
+              ...g,
+              learnerClue: undefined,
+              reasonFinal: undefined,
+              reasonStatus: 'draft' as const,
+              updatedAt: nowIso,
+            };
+          }
           return {
             ...g,
-            learnerClue: clue || g.learnerClue,
+            learnerClue: clue,
             reasonStatus: 'clued' as const,
             reasonFinal: clue,
             updatedAt: nowIso,
           };
         }
         const clue = resolution.reason.trim();
+        if (!clue || isAutoGapReportText(clue)) {
+          return g;
+        }
         return {
           ...g,
           learnerClue: clue,
@@ -521,9 +579,12 @@ export const useStore = create<AppStore>((set, get) => {
     saveGapClue: ({ sentence, clue, guess, match, cueMode, inputMode }) => {
       const text = clue.trim();
       if (!text) throw new Error('단서가 비어 있습니다.');
+      if (isAutoGapReportText(text)) {
+        throw new Error('자동 분석 문구는 단서로 저장할 수 없습니다. 스스로 한 줄로 적어 주세요.');
+      }
       const nowIso = new Date().toISOString();
       const existing = get().getGapForSentence(sentence.id);
-      // 출제·패턴용 슬롯만 계산 (학습자 UI에 자동 해설로 노출하지 않음)
+      // 출제·패턴용 슬롯만 계산 (자동 해설 문장은 저장·표시하지 않음)
       const report = buildGapReport({
         en: sentence.en,
         ko: sentence.ko,
@@ -545,7 +606,7 @@ export const useStore = create<AppStore>((set, get) => {
         packId: sentence.packId ?? existing?.packId,
         learnerClue: text,
         reasonFinal: text,
-        reasonAuto: existing?.reasonAuto || report.reason,
+        reasonAuto: undefined,
         reasonStatus: 'clued',
         slots: report.slots.length
           ? report.slots
@@ -586,7 +647,7 @@ export const useStore = create<AppStore>((set, get) => {
     getLearnerClueHint: (sentenceId) => {
       const g = get().getGapForSentence(sentenceId);
       if (!g) return null;
-      const clue = (g.learnerClue || g.reasonFinal || '').trim();
+      const clue = learnerFacingClue(g);
       if (!clue) return null;
       const st = g.reasonStatus;
       if (st === 'draft' || st === 'pending') return null;
@@ -679,7 +740,10 @@ export const useStore = create<AppStore>((set, get) => {
         memories[gap.expressionId] = mem;
 
         const clue =
-          (gap.vaultFill || gap.learnerClue || '').trim() || undefined;
+          learnerFacingClue({
+            learnerClue: gap.vaultFill || gap.learnerClue,
+            reasonFinal: gap.learnerClue,
+          }) || undefined;
         if (clue) clues += 1;
         if (isReviewed) reviewed += 1;
 

@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import type { GapNote } from '../../domain/vault-projection';
+import { learnerFacingClue } from '../../domain/gap-reason';
 
 export type GapLoopStatus = 'draft' | 'clued' | 'reviewed';
 
@@ -25,8 +26,11 @@ interface GapClueCardProps {
 function loopStatus(gap?: GapNote | null): GapLoopStatus {
   const s = gap?.reasonStatus;
   if (s === 'reviewed') return 'reviewed';
-  if (s === 'clued' || s === 'edited' || s === 'confirmed') return 'clued';
-  if (gap?.learnerClue || gap?.reasonFinal) return 'clued';
+  const clue = gap ? learnerFacingClue(gap) : '';
+  if (s === 'clued' || s === 'edited' || s === 'confirmed') {
+    return clue ? 'clued' : 'draft';
+  }
+  if (clue) return 'clued';
   return 'draft';
 }
 
@@ -76,16 +80,16 @@ export function GapClueCard({
   canonicalEn,
 }: GapClueCardProps) {
   const status = loopStatus(gap);
-  const existing = (gap?.learnerClue || gap?.reasonFinal || '').trim();
+  const existing = gap ? learnerFacingClue(gap) : '';
   const [draft, setDraft] = useState(existing);
-  const [editing, setEditing] = useState(status === 'draft');
+  const [editing, setEditing] = useState(status === 'draft' || !existing);
   const [localRevealed, setLocalRevealed] = useState(false);
   const revealed = answerRevealed ?? localRevealed;
   const reveal = onRevealAnswer ?? (() => setLocalRevealed(true));
 
   useEffect(() => {
     setDraft(existing);
-    setEditing(status === 'draft');
+    setEditing(status === 'draft' || !existing);
     setLocalRevealed(false);
   }, [gap?.id, gap?.updatedAt, existing, status]);
 

@@ -17,6 +17,7 @@ import {
   PATTERN_NOTE_IDS,
   patternNoteTitle,
   patternPracticeTip,
+  isAutoGapReportText,
   type GapSlotRole,
 } from './gap-reason';
 
@@ -304,7 +305,10 @@ export function projectGap(args: {
         ? '단서 저장 · 옵시디언 메움 대기'
         : '단서 작성 전';
   const clue = (gap.learnerClue || gap.reasonFinal || '').trim();
-  const reason = clue || gap.reasonAuto?.trim() || '(아직 단서 없음)';
+  const reason =
+    !clue || isAutoGapReportText(clue)
+      ? '(아직 단서 없음 — 앱에서 스스로 한 줄 남기세요)'
+      : clue;
   const slots = gap.slots ?? [];
   const primary = gap.primarySlot ?? slots[0];
   const tags = [
@@ -383,7 +387,7 @@ ${cue || input ? `\n- ${[cue, input].filter(Boolean).join(' · ')}\n` : ''}
 ${reason}
 
 - 상태: ${statusLabel}
-${gap.reasonAuto && clue && gap.reasonAuto !== clue ? `\n### (참고) 예전 자동 추정\n\n${gap.reasonAuto}\n` : ''}
+
 ## 옵시디언 메움
 
 (여기에 영어식 사고로 메운 내용을 적으세요. 내용이 있으면 앱이 다음 힌트·reviewed로 가져갑니다.)
