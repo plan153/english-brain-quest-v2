@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import type { GapNote } from '../../domain/vault-projection';
-import { learnerFacingClue } from '../../domain/gap-reason';
+import { isAutoGapReportText, learnerFacingClue } from '../../domain/gap-reason';
 
 export type GapLoopStatus = 'draft' | 'clued' | 'reviewed';
 
@@ -23,14 +23,13 @@ interface GapClueCardProps {
   canonicalEn?: string;
 }
 
-function loopStatus(gap?: GapNote | null): GapLoopStatus {
+function loopStatus(gap?: GapNote | null, hasClue = false): GapLoopStatus {
   const s = gap?.reasonStatus;
   if (s === 'reviewed') return 'reviewed';
-  const clue = gap ? learnerFacingClue(gap) : '';
+  if (hasClue) return 'clued';
   if (s === 'clued' || s === 'edited' || s === 'confirmed') {
-    return clue ? 'clued' : 'draft';
+    return gap && learnerFacingClue(gap) ? 'clued' : 'draft';
   }
-  if (clue) return 'clued';
   return 'draft';
 }
 
@@ -79,19 +78,49 @@ export function GapClueCard({
   onRevealAnswer,
   canonicalEn,
 }: GapClueCardProps) {
-  const status = loopStatus(gap);
-  const existing = gap ? learnerFacingClue(gap) : '';
-  const [draft, setDraft] = useState(existing);
-  const [editing, setEditing] = useState(status === 'draft' || !existing);
+  const storeClue = gap ? learnerFacingClue(gap) : '';
+  const [draft, setDraft] = useState(storeClue);
+  const [optimisticClue, setOptimisticClue] = useState<string | null>(null);
+  const [editing, setEditing] = useState(!storeClue);
   const [localRevealed, setLocalRevealed] = useState(false);
+  const [saveMsg, setSaveMsg] = useState<string | null>(null);
+  const [saveErr, setSaveErr] = useState<string | null>(null);
+
+  const displayClue = (optimisticClue || storeClue).trim();
+  const status = loopStatus(gap, Boolean(displayClue));
   const revealed = answerRevealed ?? localRevealed;
   const reveal = onRevealAnswer ?? (() => setLocalRevealed(true));
+  const showEditor = editing || !displayClue;
 
   useEffect(() => {
-    setDraft(existing);
-    setEditing(status === 'draft' || !existing);
-    setLocalRevealed(false);
-  }, [gap?.id, gap?.updatedAt, existing, status]);
+    if (storeClue) {
+      setOptimisticClue(null);
+      setDraft(storeClue);
+      setEditing(false);
+    }
+  }, [gap?.id, gap?.updatedAt, storeClue]);
+
+  const handleSave = () => {
+    const text = draft.trim();
+    setSaveErr(null);
+    setSaveMsg(null);
+    if (!text) {
+      setSaveErr('단서를 한 줄 이상 적어 주세요.');
+      return;
+    }
+    if (isAutoGapReportText(text)) {
+      setSaveErr('자동 분석 문구는 저장할 수 없습니다. 스스로 한 줄로 적어 주세요.');
+      return;
+    }
+    try {
+      onSaveClue(text);
+      setOptimisticClue(text);
+      setEditing(false);
+      setSaveMsg('✓ 단서 저장됨 — 다음 힌트·옵시디언 메움에 쓰입니다');
+    } catch (err) {
+      setSaveErr(err instanceof Error ? err.message : '저장에 실패했습니다.');
+    }
+  };
 
   return (
     <Card style={{ marginTop: '10px', borderColor: 'var(--ebq-accent)' }}>
@@ -106,7 +135,7 @@ export function GapClueCard({
         </div>
       ) : null}
 
-      {editing || status === 'draft' ? (
+      {showEditor ? (
         <>
           <div style={{ fontSize: '13px', lineHeight: 1.45, marginBottom: '8px' }}>
             간극을 <strong>만드는 과정</strong>이 곧 학습입니다. 지금 AI 해설 없이
@@ -115,7 +144,11 @@ export function GapClueCard({
           </div>
           <textarea
             value={draft}
-            onChange={(e) => setDraft(e.target.value)}
+            onChange={(e) => {
+              setDraft(e.target.value);
+              setSaveErr(null);
+              setSaveMsg(null);
+            }}
             rows={3}
             style={{
               width: '100%',
@@ -132,15 +165,7 @@ export function GapClueCard({
             placeholder="예: friends인데 plant로 들림 / living 수식을 빼먹음"
           />
           <div style={{ display: 'flex', gap: '8px', marginTop: '10px', flexWrap: 'wrap' }}>
-            <Button
-              variant="primary"
-              onClick={() => {
-                const text = draft.trim();
-                if (!text) return;
-                onSaveClue(text);
-                setEditing(false);
-              }}
-            >
+            <Button variant="primary" onClick={handleSave}>
               내 단서 저장
             </Button>
             {!revealed && canonicalEn && (
@@ -162,7 +187,7 @@ export function GapClueCard({
               fontWeight: 600,
             }}
           >
-            {existing}
+            {displayClue}
           </div>
           <div style={{ fontSize: '11px', color: 'var(--ebq-text-muted)', marginTop: '8px' }}>
             {status === 'reviewed'
@@ -172,14 +197,21 @@ export function GapClueCard({
           <div style={{ display: 'flex', gap: '8px', marginTop: '10px', flexWrap: 'wrap' }}>
             <Button
               onClick={() => {
-                setDraft(existing);
+                setDraft(displayClue);
                 setEditing(true);
+                setSaveMsg(null);
               }}
             >
               단서 고치기
             </Button>
             {status === 'clued' && gap && onMarkReviewed && (
-              <Button variant="primary" onClick={() => onMarkReviewed(gap.id)}>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  onMarkReviewed(gap.id);
+                  setSaveMsg('✓ 메움 완료로 표시했습니다');
+                }}
+              >
                 메움 완료
               </Button>
             )}
@@ -188,6 +220,38 @@ export function GapClueCard({
             )}
           </div>
         </>
+      )}
+
+      {saveMsg && (
+        <div
+          role="status"
+          style={{
+            marginTop: '10px',
+            padding: '8px 10px',
+            borderRadius: '8px',
+            background: 'color-mix(in srgb, var(--ebq-primary) 16%, transparent)',
+            color: 'var(--ebq-primary)',
+            fontSize: '13px',
+            fontWeight: 600,
+          }}
+        >
+          {saveMsg}
+        </div>
+      )}
+      {saveErr && (
+        <div
+          role="alert"
+          style={{
+            marginTop: '10px',
+            padding: '8px 10px',
+            borderRadius: '8px',
+            background: 'color-mix(in srgb, var(--ebq-danger) 14%, transparent)',
+            color: 'var(--ebq-danger)',
+            fontSize: '13px',
+          }}
+        >
+          {saveErr}
+        </div>
       )}
 
       {revealed && canonicalEn && (

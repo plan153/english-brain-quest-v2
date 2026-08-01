@@ -6,7 +6,7 @@
  *  - store.nextSentence / endSession: 큐 진행 + 완료 요약
  * FeedbackBar + SessionComplete UI 통합.
  */
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { KoPrompt } from '../ui/KoPrompt';
@@ -26,6 +26,7 @@ import FuzzyMatch from '../../domain/fuzzy-match';
 import {
   PATTERN_NOTE_IDS,
   patternNoteTitle,
+  learnerFacingClue,
   type GapSlotRole,
 } from '../../domain/gap-reason';
 import { FeedbackBar } from './FeedbackBar';
@@ -133,8 +134,7 @@ export function TodayScreen() {
   const endSession = useStore((s) => s.endSession);
   const saveGapClue = useStore((s) => s.saveGapClue);
   const markGapReviewed = useStore((s) => s.markGapReviewed);
-  const getLearnerClueHint = useStore((s) => s.getLearnerClueHint);
-  const getGapForSentence = useStore((s) => s.getGapForSentence);
+  const gapNotes = useStore((s) => s.gapNotes);
   const setActiveTab = useStore((s) => s.setActiveTab);
   const getDueReviewItems = useStore((s) => s.getDueReviewItems);
   const dueReviewCount = useStore((s) => s.dueReviewCount);
@@ -441,6 +441,15 @@ export function TodayScreen() {
     !!pendingEval &&
     (pendingEval.match === 'wrong' || pendingEval.match === 'skipped') &&
     !answerRevealed;
+
+  const gapForCurrent = useMemo(() => {
+    const id = currentSentence?.id;
+    if (!id) return undefined;
+    for (let i = gapNotes.length - 1; i >= 0; i--) {
+      if (gapNotes[i].expressionId === id) return gapNotes[i];
+    }
+    return undefined;
+  }, [gapNotes, currentSentence?.id]);
 
   const handleGoTodayLog = useCallback(() => {
     openTodayLog();
@@ -906,8 +915,8 @@ export function TodayScreen() {
           {(pendingEval.match === 'wrong' || pendingEval.match === 'skipped') &&
             currentSentence && (
               <GapClueCard
-                key={`clue-${currentSentence.id}-${getGapForSentence(currentSentence.id)?.updatedAt ?? 'new'}`}
-                gap={getGapForSentence(currentSentence.id)}
+                key={`clue-${currentSentence.id}`}
+                gap={gapForCurrent}
                 guess={pendingEval.userText}
                 canonicalEn={pendingEval.canonicalTTS}
                 answerRevealed={answerRevealed}
@@ -1015,7 +1024,7 @@ export function TodayScreen() {
       {showHint && currentSentence && (
         <Card style={{ marginTop: '12px' }}>
           {(() => {
-            const clue = getLearnerClueHint(currentSentence.id);
+            const clue = gapForCurrent ? learnerFacingClue(gapForCurrent) : '';
             if (!clue && !(currentSentence.hints && currentSentence.hints.length)) {
               return (
                 <div style={{ fontSize: '13px', color: 'var(--ebq-text-muted)' }}>
