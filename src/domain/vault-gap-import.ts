@@ -109,8 +109,15 @@ export function parseGapMarkdown(markdown: string, path = ''): ImportedGap | nul
     sectionBody(text, '메움') ||
     sectionBody(text, '영어식 사고');
   const fillSection = fillRaw
-    .replace(/^\(여기에[^)]*\)\s*$/m, '')
-    .replace(/여기에 영어식 사고로 메운 내용을 적으세요[^\n]*/g, '')
+    .split('\n')
+    .filter((line) => {
+      if (/^\*\*.+\*\*\??$/.test(line)) return false; // 구조 라벨 (예: **왜 달랐나?**)
+      if (/^\*\(.*\)\*$/.test(line)) return false; // 안내 문구 (예: *(...)*)
+      if (/^\(여기에[^)]*\)$/.test(line)) return false; // 구버전 플레이스홀더 호환
+      if (/^\d+\.\s*$/.test(line)) return false; // 빈 번호 목록 (예: "1.")
+      return true;
+    })
+    .join('\n')
     .trim();
 
   const learnerClue = (learnerClueFm || clueSection.split(/\r?\n/)[0] || '').trim() || undefined;

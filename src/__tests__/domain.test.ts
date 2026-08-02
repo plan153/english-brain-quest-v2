@@ -30,6 +30,7 @@ import {
   projectVaultScaffold,
   makeGapId,
   brainPath,
+  GAP_FILL_PLACEHOLDER,
 } from '../domain/vault-projection';
 import FuzzyMatch from '../domain/fuzzy-match';
 import { analyzeGapSlots, inferGapReason, problemSlots } from '../domain/gap-reason';
@@ -507,6 +508,28 @@ describe('6b. gap-reason + projectGap', () => {
     );
   });
 
+  it('flags a chip-vs-analysis slot mismatch only on a later day', async () => {
+    const { hasSlotMismatch } = await import('../domain/gap-reason');
+    const yesterday = new Date(Date.now() - 86400000).toISOString();
+    const today = new Date().toISOString();
+    // 칩으로 "목적어"를 골랐지만 배경 분석은 "동사"를 핵심으로 봄 — 다른 날이면 노출
+    expect(
+      hasSlotMismatch({ learnerClue: '목적어', primarySlot: 'verb', createdAt: yesterday })
+    ).toBe(true);
+    // 만든 당일엔 즉각 해설 금지 원칙상 노출 안 함
+    expect(
+      hasSlotMismatch({ learnerClue: '목적어', primarySlot: 'verb', createdAt: today })
+    ).toBe(false);
+    // 칩과 분석이 같으면 불일치 아님
+    expect(
+      hasSlotMismatch({ learnerClue: '동사', primarySlot: 'verb', createdAt: yesterday })
+    ).toBe(false);
+    // 자유 서술형 단서(칩 라벨이 아님)는 비교 대상이 아님
+    expect(
+      hasSlotMismatch({ learnerClue: '내가 쓴 자유 단서', primarySlot: 'verb', createdAt: yesterday })
+    ).toBe(false);
+  });
+
   it('writes reason into gap markdown', () => {
     const file = projectGap({
       userId: 'me',
@@ -558,7 +581,7 @@ describe('6b. gap-reason + projectGap', () => {
       },
     });
     expect(file.markdown).toContain('She + needs. 주어가 3인칭이면 동사에 s.');
-    expect(file.markdown).not.toContain('여기에 영어식 사고로 메운 내용을 적으세요');
+    expect(file.markdown).not.toContain(GAP_FILL_PLACEHOLDER);
   });
 
   it('scaffolds Gaps index and Patterns hubs', () => {
@@ -737,6 +760,54 @@ learnerClue: 짧게
     expect(gap?.reasonStatus).toBe('clued');
   });
 
+  it('ignores the structured Obsidian fill guide when left untouched', () => {
+    const md = `---
+type: gap
+expressionId: e89
+en: Hi.
+ko: 안녕.
+reasonStatus: clued
+learnerClue: 짧게
+---
+
+## 옵시디언 메움
+
+${GAP_FILL_PLACEHOLDER}
+`;
+    const gap = parseGapMarkdown(md, 'Learners/me/Gaps/gap_e89_x.md');
+    expect(gap?.vaultFill).toBeUndefined();
+    expect(gap?.reasonStatus).toBe('clued');
+  });
+
+  it('extracts real content written inside the structured Obsidian fill guide', () => {
+    const md = `---
+type: gap
+expressionId: e90
+en: She needs help.
+ko: 도움이 필요해요.
+reasonStatus: clued
+learnerClue: 3인칭 s 빠짐
+---
+
+## 옵시디언 메움
+
+**왜 달랐나?**
+3인칭 단수인데 s를 안 붙였다
+
+**영어식 사고로 다시 조립**
+*(정답 문장을 내 방식대로 다시 써보기)*
+
+**내 문장 3개**
+1. She needs a break.
+2.
+3.
+`;
+    const gap = parseGapMarkdown(md, 'Learners/me/Gaps/gap_e90_x.md');
+    expect(gap?.vaultFill).toContain('3인칭 단수인데 s를 안 붙였다');
+    expect(gap?.vaultFill).toContain('She needs a break.');
+    expect(gap?.reasonStatus).toBe('reviewed');
+  });
+
   it('parseGapFiles keeps the most recently updated file per expression', () => {
     const older = `---
 type: gap
@@ -821,11 +892,11 @@ learnerClue: new clue
       learnerClue: '3인칭 s 빠짐',
     };
     const v1 = projectGap({ userId: 'me', gap });
-    expect(v1.markdown).toContain('여기에 영어식 사고로 메운 내용을 적으세요');
+    expect(v1.markdown).toContain(GAP_FILL_PLACEHOLDER);
 
     // 2) 학습자가 옵시디언에서 직접 "## 옵시디언 메움" 아래에 실제 내용을 씀
     const editedByLearner = v1.markdown.replace(
-      '(여기에 영어식 사고로 메운 내용을 적으세요. 내용이 있으면 앱이 다음 힌트·reviewed로 가져갑니다.)',
+      GAP_FILL_PLACEHOLDER,
       'She는 3인칭 단수라서 동사에 -s. need가 아니라 needs.'
     );
 
@@ -836,7 +907,7 @@ learnerClue: new clue
     const v2 = projectGap({ userId: 'me', gap: merged });
 
     expect(v2.markdown).toContain('She는 3인칭 단수라서 동사에 -s. need가 아니라 needs.');
-    expect(v2.markdown).not.toContain('여기에 영어식 사고로 메운 내용을 적으세요');
+    expect(v2.markdown).not.toContain(GAP_FILL_PLACEHOLDER);
     expect(merged.reasonStatus).toBe('reviewed');
   });
 

@@ -202,3 +202,41 @@ describe('absorbVaultGaps (manual button path)', () => {
     expect(note).toBeDefined();
   });
 });
+
+describe('resetProgress', () => {
+  beforeEach(() => {
+    resetStore();
+  });
+
+  it('clears gapNotes and pendingGaps along with progress (A6 — 예전엔 gapNotes만 안 지워졌음)', () => {
+    useStore.setState({
+      gapNotes: [
+        {
+          id: 'gap_e10_1',
+          expressionId: 'e10',
+          en: 'Hi.',
+          ko: '안녕.',
+          guess: 'Hi',
+          createdAt: '2026-08-01T00:00:00.000Z',
+          reasonStatus: 'clued',
+        },
+      ],
+      pendingGaps: [
+        {
+          id: 'gap_e10_1',
+          expressionId: 'e10',
+          en: 'Hi.',
+          ko: '안녕.',
+          guess: 'Hi',
+          createdAt: '2026-08-01T00:00:00.000Z',
+          reasonStatus: 'clued',
+        },
+      ],
+    });
+
+    useStore.getState().resetProgress();
+
+    expect(useStore.getState().gapNotes).toHaveLength(0);
+    expect(useStore.getState().pendingGaps).toHaveLength(0);
+  });
+});

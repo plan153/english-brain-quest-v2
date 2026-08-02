@@ -84,6 +84,13 @@
 - [x] `getUserId()` 추상화 (향후 로그인 대비) — `adapters/storage.ts`
 - [x] BrainScreen `VaultSyncCard` UI (연결/동기화/다운로드)
 - [x] 세션 종료 시 자동 Vault 투영 + 오답 Gap 노트
+- [x] 단서(`learnerClue`)와 옵시디언 메움(`vaultFill`) 분리 저장 — 쓰기 시점 merge로 메움 보존 (`mergeGapForVaultWrite`)
+- [x] FSA 디렉터리 핸들 영속화 + `queryPermission` 기반 무제스처 재연결 (`restoreSyncSession`)
+- [x] sync 순서 수정(import → write) + 24h 주기 자동 동기화 (`bootstrapSync`)
+- [x] 모바일 ZIP 내보내기에 `Gaps/*.md` 포함 + Mac import 스크립트 자동 배치
+- [x] 옵시디언 딥링크(`obsidian://`) — GapClueCard「볼트에서 열기」 버튼
+- [x] 「옵시디언 메움」 구조화 placeholder(왜 달랐나/다시 조립/내 문장 3개)
+- [x] 학습자 칩 선택 vs 배경 슬롯 분석 불일치 — 다음 날 힌트에 참고 노출(즉각 해설 금지 원칙 유지)
 - [ ] 기존 `obsidian-sync.js` 1,048줄 완전 대체는 v2 신규 구현으로 충분 (Local REST 양방향은 이후)
 
 ### Phase 5 — 사전 + 마무리 (완료)
@@ -238,11 +245,11 @@ Phase 1 (완료) ─── Phase 2/3 ─── Phase 4 ────────�
 
 ## 프로젝트 상태
 
-- 마지막 업데이트: 2026-07-26
-- 현재 Phase: **Phase 5 완료 (MVP 출시 준비)**
+- 마지막 업데이트: 2026-08-03
+- 현재 Phase: **Phase 6 진행 중** (Phase 4/5 완료, 볼트 동기화 선순환 보강 중)
 - 음성 처리: **옵션 A 적용 완료** (B/C 추후 검토)
 - 배포: GitHub Pages Actions (`.github/workflows/deploy-pages.yml`) — repo Settings → Pages → Source: GitHub Actions 필요
-- 테스트: `npm test` (6 passed) · 빌드: `npm run build`
+- 테스트: `npm test` (55 passed) · 빌드: `npm run build`
 
 ## 핵심 교훈 (Lessons Learned)
 

@@ -856,6 +856,7 @@ export const useStore = create<AppStore>((set, get) => {
       writeLocal('todayLog', null);
       writeLocal('memories', null);
       writeLocal('reviewIntensity', null);
+      writeLocal('gapNotes', null);
       set({
         ...DEFAULT_PROGRESS,
         ...DEFAULT_REWARD_STATE,
@@ -863,6 +864,8 @@ export const useStore = create<AppStore>((set, get) => {
         todayLog: [],
         memories: {},
         reviewIntensity: 'normal',
+        gapNotes: [],
+        pendingGaps: [],
       });
     },
 

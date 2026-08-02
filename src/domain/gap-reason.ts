@@ -1431,3 +1431,23 @@ export function learnerFacingClue(gap: {
   if (gap.reasonAuto && raw === gap.reasonAuto.trim()) return '';
   return raw;
 }
+
+/**
+ * 학습자가 슬롯 칩으로 고른 것과 배경 분석(primarySlot)이 다른지.
+ * 만든 당일엔 노출하지 않음 — 오답 직후 AI 해설 없음 원칙. 나중에(다른 날) 같은
+ * 문장을 다시 만났을 때 힌트 옆에 참고로만 살짝 보여줌.
+ */
+export function hasSlotMismatch(gap: {
+  learnerClue?: string;
+  primarySlot?: GapSlotRole;
+  createdAt?: string;
+}): boolean {
+  const clue = (gap.learnerClue || '').trim();
+  if (!clue || !gap.primarySlot) return false;
+  const pickedRole = PATTERN_NOTE_IDS.find((r) => patternNoteTitle(r) === clue);
+  if (!pickedRole || pickedRole === gap.primarySlot) return false;
+  const createdDay = (gap.createdAt || '').slice(0, 10);
+  if (!createdDay) return false;
+  const today = new Date().toISOString().slice(0, 10);
+  return createdDay !== today;
+}

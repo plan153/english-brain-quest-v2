@@ -27,6 +27,7 @@ import {
   PATTERN_NOTE_IDS,
   patternNoteTitle,
   learnerFacingClue,
+  hasSlotMismatch,
   type GapSlotRole,
 } from '../../domain/gap-reason';
 import { FeedbackBar } from './FeedbackBar';
@@ -1039,6 +1040,11 @@ export function TodayScreen() {
                   <div style={{ padding: '4px 0', fontSize: '14px' }}>
                     <span style={{ color: 'var(--ebq-primary)', fontWeight: 700 }}>내 단서 · </span>
                     {clue}
+                  </div>
+                )}
+                {clue && gapForCurrent && hasSlotMismatch(gapForCurrent) && (
+                  <div style={{ padding: '4px 0', fontSize: '12px', color: 'var(--ebq-text-muted)' }}>
+                    참고 · 패턴 분석은 「{patternNoteTitle(gapForCurrent.primarySlot!)}」 쪽도 짚어요
                   </div>
                 )}
                 {(currentSentence.hints ?? []).map((h, i) => (

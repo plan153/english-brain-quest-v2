@@ -13,6 +13,9 @@ import {
   PATTERN_NOTE_IDS,
   patternNoteTitle,
 } from '../../domain/gap-reason';
+import { getUserId } from '../../adapters/storage';
+import { getSyncStatus } from '../../adapters/cloud-sync';
+import { obsidianGapUri } from '../../adapters/obsidian-link';
 
 export type GapLoopStatus = 'draft' | 'clued' | 'reviewed';
 
@@ -266,6 +269,23 @@ export function GapClueCard({
               >
                 메움 완료
               </Button>
+            )}
+            {gap && getSyncStatus().mode === 'filesystem' && (
+              <a
+                href={obsidianGapUri(getUserId(), gap.id)}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  padding: '8px 14px',
+                  borderRadius: '8px',
+                  border: '1px solid var(--ebq-border)',
+                  color: 'var(--ebq-text)',
+                  fontSize: '14px',
+                  textDecoration: 'none',
+                }}
+              >
+                🔗 볼트에서 열기
+              </a>
             )}
             {!revealed && canonicalEn && (
               <Button onClick={reveal}>그래도 정답 보기</Button>

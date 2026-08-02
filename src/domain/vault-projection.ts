@@ -73,6 +73,18 @@ export interface GapNote {
   updatedAt?: string;
 }
 
+/** 「옵시디언 메움」 빈 칸 안내 — 내용이 채워지면 앱이 다음 힌트·reviewed로 가져간다 */
+export const GAP_FILL_PLACEHOLDER = `**왜 달랐나?**
+*(내 추측과 정답이 왜 다른지 한 줄로)*
+
+**영어식 사고로 다시 조립**
+*(정답 문장을 내 방식대로 다시 써보기)*
+
+**내 문장 3개**
+1.
+2.
+3. `;
+
 function escapeYaml(value: string): string {
   const text = String(value ?? '');
   if (/[:#{}[\],&*?|>!%@`]/.test(text) || /^\s|\s$/.test(text) || text === '') {
@@ -335,6 +347,7 @@ export function projectGap(args: {
   const input = gap.inputMode === 'type' ? '타이핑' : gap.inputMode === 'speak' ? '말하기' : '';
   const library = gap.packId ? wikiLinkForPack(gap.packId) : undefined;
   const fillText = (gap.vaultFill || '').trim();
+  const fillBlock = fillText || GAP_FILL_PLACEHOLDER;
   const practice =
     primary != null
       ? [
@@ -393,7 +406,7 @@ ${reason}
 
 ## 옵시디언 메움
 
-${fillText || '(여기에 영어식 사고로 메운 내용을 적으세요. 내용이 있으면 앱이 다음 힌트·reviewed로 가져갑니다.)'}
+${fillBlock}
 
 ## 약한 슬롯
 

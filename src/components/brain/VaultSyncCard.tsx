@@ -19,12 +19,14 @@ import {
   type SyncStatus,
 } from '../../adapters/cloud-sync';
 import { getUserId } from '../../adapters/storage';
+import { getObsidianVaultName, setObsidianVaultName } from '../../adapters/obsidian-link';
 
 export function VaultSyncCard() {
   const [status, setStatus] = useState<SyncStatus>(() => getSyncStatus());
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
   const [fileCount, setFileCount] = useState(0);
+  const [vaultName, setVaultName] = useState(() => getObsidianVaultName());
   const syncNow = useStore((s) => s.syncNow);
   const absorbVaultGaps = useStore((s) => s.absorbVaultGaps);
   const requestStartPack = useStore((s) => s.requestStartPack);
@@ -179,6 +181,30 @@ export function VaultSyncCard() {
         다음 힌트·패턴 약점·복습에 반영합니다.
         Mac은 폴더 연결 후, 아이폰은 동기화로 Gaps가 쌓인 뒤 사용하세요.
         보내기: ZIP → <code>_Inbox/EBQ</code>.
+      </div>
+
+      <div style={{ marginTop: '8px', fontSize: '11px', color: 'var(--ebq-text-muted)' }}>
+        옵시디언 볼트 이름: <strong>{vaultName}</strong>{' '}
+        <button
+          type="button"
+          onClick={() => {
+            const next = window.prompt('옵시디언 볼트 이름 (obsidian:// 딥링크에 사용)', vaultName);
+            if (next !== null) {
+              setObsidianVaultName(next);
+              setVaultName(getObsidianVaultName());
+            }
+          }}
+          style={{
+            border: 'none',
+            background: 'none',
+            color: 'var(--ebq-primary)',
+            cursor: 'pointer',
+            font: 'inherit',
+            padding: 0,
+          }}
+        >
+          변경
+        </button>
       </div>
     </Card>
   );
