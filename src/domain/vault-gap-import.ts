@@ -19,6 +19,8 @@ export interface ImportedGap {
   match?: 'wrong' | 'skipped';
   packId?: string;
   id?: string;
+  /** frontmatter updatedAt(없으면 createdAt) — 같은 문장 중복 파일에서 최신 승리 판정용 */
+  updatedAt?: string;
 }
 
 const SLOT_ROLES: GapSlotRole[] = [
@@ -155,6 +157,8 @@ export function parseGapMarkdown(markdown: string, path = ''): ImportedGap | nul
 
   if (!en) return null;
 
+  const updatedAt = fmValue(fmBlock, 'updatedAt') || fmValue(fmBlock, 'createdAt') || undefined;
+
   return {
     expressionId,
     en,
@@ -169,6 +173,7 @@ export function parseGapMarkdown(markdown: string, path = ''): ImportedGap | nul
     match,
     packId,
     id,
+    updatedAt,
   };
 }
 
@@ -182,7 +187,30 @@ export function parseGapFiles(
     if (/\/_Index\.md$/i.test(f.path)) continue;
     const parsed = parseGapMarkdown(f.content, f.path);
     if (!parsed) continue;
-    if (!byId.has(parsed.expressionId)) byId.set(parsed.expressionId, parsed);
+    const prev = byId.get(parsed.expressionId);
+    if (!prev) {
+      byId.set(parsed.expressionId, parsed);
+      continue;
+    }
+    // 같은 문장에 파일이 여러 개면(재도전 등) updatedAt이 최신인 쪽이 승리 — 오래된 파일이
+    // 나중에 읽혀 최신 메움을 가리는 것을 방지
+    const prevAt = prev.updatedAt ? Date.parse(prev.updatedAt) : 0;
+    const curAt = parsed.updatedAt ? Date.parse(parsed.updatedAt) : 0;
+    if (curAt >= prevAt) byId.set(parsed.expressionId, parsed);
   }
   return [...byId.values()];
+}
+
+/**
+ * sync 직전, 방금 쓰려는 GapNote를 볼트에 이미 있는 파일 내용과 합친다.
+ * 옵시디언에서 직접 쓴 「## 옵시디언 메움」이 있으면 앱이 아직 import 못 했더라도
+ * 플레이스홀더로 덮어쓰지 않고 보존하며, reviewed로 승격한다.
+ */
+export function mergeGapForVaultWrite(gap: GapNote, existing: ImportedGap | null): GapNote {
+  if (!existing) return gap;
+  const existingFill = (existing.vaultFill || '').trim();
+  const vaultFill = existingFill || gap.vaultFill;
+  const reviewedByVault = Boolean(existingFill) || existing.reasonStatus === 'reviewed';
+  const reasonStatus: GapNote['reasonStatus'] = reviewedByVault ? 'reviewed' : gap.reasonStatus;
+  return { ...gap, vaultFill, reasonStatus };
 }

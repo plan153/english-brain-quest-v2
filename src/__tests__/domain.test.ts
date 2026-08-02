@@ -541,6 +541,26 @@ describe('6b. gap-reason + projectGap', () => {
     expect(file.markdown).toContain('기본동사 100');
   });
 
+  it('renders an existing vault fill instead of the placeholder', () => {
+    const file = projectGap({
+      userId: 'me',
+      gap: {
+        id: 'gap_e2_x',
+        expressionId: 'e2',
+        en: 'She needs help.',
+        ko: '도움이 필요해요.',
+        guess: 'She need help.',
+        createdAt: '2026-07-27T00:00:00.000Z',
+        match: 'wrong',
+        learnerClue: '3인칭 s 빠짐',
+        reasonStatus: 'reviewed',
+        vaultFill: 'She + needs. 주어가 3인칭이면 동사에 s.',
+      },
+    });
+    expect(file.markdown).toContain('She + needs. 주어가 3인칭이면 동사에 s.');
+    expect(file.markdown).not.toContain('여기에 영어식 사고로 메운 내용을 적으세요');
+  });
+
   it('scaffolds Gaps index and Patterns hubs', () => {
     const files = projectVaultScaffold('me');
     expect(files.some((f) => f.path.endsWith('Gaps/_Index.md'))).toBe(true);
@@ -551,7 +571,12 @@ describe('6b. gap-reason + projectGap', () => {
 });
 
 import { createZipBlob } from '../adapters/zip-store';
-import { parseGapMarkdown } from '../domain/vault-gap-import';
+import {
+  parseGapMarkdown,
+  parseGapFiles,
+  mergeGapForVaultWrite,
+  type ImportedGap,
+} from '../domain/vault-gap-import';
 import {
   countPatternTraining,
   pickPatternTrainingQueue,
@@ -710,6 +735,109 @@ learnerClue: 짧게
     const gap = parseGapMarkdown(md, 'Learners/me/Gaps/gap_e88_x.md');
     expect(gap?.vaultFill).toBeUndefined();
     expect(gap?.reasonStatus).toBe('clued');
+  });
+
+  it('parseGapFiles keeps the most recently updated file per expression', () => {
+    const older = `---
+type: gap
+expressionId: e77
+en: Old text.
+ko: 오래된 문장.
+updatedAt: 2026-07-20T00:00:00.000Z
+learnerClue: old clue
+---
+
+# Gap · Old text.
+`;
+    const newer = `---
+type: gap
+expressionId: e77
+en: New text.
+ko: 새 문장.
+updatedAt: 2026-07-28T00:00:00.000Z
+learnerClue: new clue
+---
+
+# Gap · New text.
+`;
+    const gaps = parseGapFiles([
+      { path: 'Learners/me/Gaps/gap_e77_20260720_aaa.md', content: older },
+      { path: 'Learners/me/Gaps/gap_e77_20260728_bbb.md', content: newer },
+    ]);
+    expect(gaps).toHaveLength(1);
+    expect(gaps[0].en).toBe('New text.');
+    expect(gaps[0].learnerClue).toBe('new clue');
+  });
+
+  it('mergeGapForVaultWrite preserves an existing Obsidian fill and promotes status to reviewed', () => {
+    const gap: GapNote = {
+      id: 'g1',
+      expressionId: 'e1',
+      en: 'She needs help.',
+      ko: '도움이 필요해요.',
+      guess: 'She need help.',
+      createdAt: '2026-07-27T00:00:00.000Z',
+      reasonStatus: 'clued',
+      learnerClue: '3인칭 s 빠짐',
+    };
+    const existing: ImportedGap = {
+      expressionId: 'e1',
+      en: 'She needs help.',
+      ko: '도움이 필요해요.',
+      guess: 'She need help.',
+      path: 'Learners/me/Gaps/g1.md',
+      vaultFill: 'She + needs. 주어가 3인칭이면 동사에 s.',
+      reasonStatus: 'reviewed',
+    };
+    const merged = mergeGapForVaultWrite(gap, existing);
+    expect(merged.vaultFill).toContain('주어가 3인칭');
+    expect(merged.reasonStatus).toBe('reviewed');
+  });
+
+  it('mergeGapForVaultWrite leaves the gap untouched when no vault file exists yet', () => {
+    const gap: GapNote = {
+      id: 'g2',
+      expressionId: 'e2',
+      en: 'Hi.',
+      ko: '안녕.',
+      guess: 'Hi',
+      createdAt: '2026-07-27T00:00:00.000Z',
+      reasonStatus: 'clued',
+    };
+    expect(mergeGapForVaultWrite(gap, null)).toEqual(gap);
+  });
+
+  it('full loop: a sync-then-write does not blank out a fill the learner wrote directly in Obsidian', () => {
+    // 1) 첫 sync — 아직 메움 없음 → 플레이스홀더로 쓰임
+    const gap: GapNote = {
+      id: 'gap_e5_x',
+      expressionId: 'e5',
+      en: 'She needs help.',
+      ko: '도움이 필요해요.',
+      guess: 'She need help.',
+      createdAt: '2026-07-27T00:00:00.000Z',
+      updatedAt: '2026-07-27T00:00:00.000Z',
+      reasonStatus: 'clued',
+      learnerClue: '3인칭 s 빠짐',
+    };
+    const v1 = projectGap({ userId: 'me', gap });
+    expect(v1.markdown).toContain('여기에 영어식 사고로 메운 내용을 적으세요');
+
+    // 2) 학습자가 옵시디언에서 직접 "## 옵시디언 메움" 아래에 실제 내용을 씀
+    const editedByLearner = v1.markdown.replace(
+      '(여기에 영어식 사고로 메운 내용을 적으세요. 내용이 있으면 앱이 다음 힌트·reviewed로 가져갑니다.)',
+      'She는 3인칭 단수라서 동사에 -s. need가 아니라 needs.'
+    );
+
+    // 3) 앱이 아직 이 편집을 import하지 않은 채로 같은 gap을 다시 sync 하려는 상황
+    //    (syncToVault가 쓰기 전 볼트를 읽어 병합하는 지점을 재현)
+    const existing = parseGapMarkdown(editedByLearner, 'Learners/me/Gaps/gap_e5_x.md');
+    const merged = mergeGapForVaultWrite(gap, existing);
+    const v2 = projectGap({ userId: 'me', gap: merged });
+
+    expect(v2.markdown).toContain('She는 3인칭 단수라서 동사에 -s. need가 아니라 needs.');
+    expect(v2.markdown).not.toContain('여기에 영어식 사고로 메운 내용을 적으세요');
+    expect(merged.reasonStatus).toBe('reviewed');
   });
 
   it('builds weak training queue from wrong memories', () => {

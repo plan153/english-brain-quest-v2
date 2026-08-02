@@ -51,6 +51,8 @@ export interface GapNote {
   packId?: string;
   /** 학습자가 남긴 단서 (자기 발견) — 다음 힌트의 원천 */
   learnerClue?: string;
+  /** 옵시디언 「## 옵시디언 메움」에 학습자가 쓴 긴 성찰 — 단서(learnerClue)와 분리 저장 */
+  vaultFill?: string;
   /** 앱 추정(참고용, 기본 UI에 노출하지 않음) */
   reasonAuto?: string;
   /** 사용자 단서·메움 반영 문장 */
@@ -332,6 +334,7 @@ export function projectGap(args: {
   const cue = gap.cueMode ? CUE_MODE_LABEL[gap.cueMode] : '';
   const input = gap.inputMode === 'type' ? '타이핑' : gap.inputMode === 'speak' ? '말하기' : '';
   const library = gap.packId ? wikiLinkForPack(gap.packId) : undefined;
+  const fillText = (gap.vaultFill || '').trim();
   const practice =
     primary != null
       ? [
@@ -390,7 +393,7 @@ ${reason}
 
 ## 옵시디언 메움
 
-(여기에 영어식 사고로 메운 내용을 적으세요. 내용이 있으면 앱이 다음 힌트·reviewed로 가져갑니다.)
+${fillText || '(여기에 영어식 사고로 메운 내용을 적으세요. 내용이 있으면 앱이 다음 힌트·reviewed로 가져갑니다.)'}
 
 ## 약한 슬롯
 

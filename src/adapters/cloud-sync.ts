@@ -14,6 +14,10 @@ import {
   createFileSystemStorage,
   isFileSystemAccessAvailable,
   pickVaultDirectory,
+  saveVaultHandle,
+  loadVaultHandle,
+  clearVaultHandle,
+  verifyHandlePermission,
 } from './filesystem-storage';
 import {
   projectBrain,
@@ -24,6 +28,7 @@ import {
   makeGapId,
   brainPath,
   progressPath,
+  gapPath,
   type ProgressSnapshot,
   type GapNote,
 } from '../domain/vault-projection';
@@ -31,7 +36,12 @@ import type { SkillProfile } from '../domain/difficulty-mixer';
 import type { Badge } from '../domain/reward-engine';
 import { createZipBlob } from './zip-store';
 import { summarizeWeakLinks, type SentenceMemory } from '../domain/srs-engine';
-import { parseGapFiles, type ImportedGap } from '../domain/vault-gap-import';
+import {
+  parseGapFiles,
+  parseGapMarkdown,
+  mergeGapForVaultWrite,
+  type ImportedGap,
+} from '../domain/vault-gap-import';
 
 export type SyncMode = 'filesystem' | 'indexeddb' | 'none';
 
@@ -65,9 +75,9 @@ function saveMeta(meta: SyncMeta): void {
 
 export function getSyncStatus(): SyncStatus {
   const meta = loadMeta();
-  const mode = activeMode !== 'none' ? activeMode : meta.mode === 'indexeddb' ? 'indexeddb' : 'none';
+  const mode = activeMode !== 'none' ? activeMode : meta.mode;
   const labels: Record<SyncMode, string> = {
-    filesystem: 'Obsidian Vault (폴더 연결)',
+    filesystem: activeStorage ? 'Obsidian Vault (폴더 연결)' : 'Obsidian Vault (재연결 필요)',
     indexeddb: 'IndexedDB (기기 내 가상 볼트)',
     none: '미연결',
   };
@@ -119,6 +129,7 @@ export async function connectVaultFolder(): Promise<SyncStatus> {
   activeMode = 'filesystem';
   lastError = null;
   saveMeta({ mode: 'filesystem', lastSyncAt: loadMeta().lastSyncAt });
+  void saveVaultHandle(root);
   return getSyncStatus();
 }
 
@@ -127,16 +138,33 @@ export function disconnectVault(): SyncStatus {
   activeMode = 'none';
   lastError = null;
   saveMeta({ mode: 'none', lastSyncAt: loadMeta().lastSyncAt });
+  void clearVaultHandle();
   return getSyncStatus();
 }
 
 /**
- * 앱 시작 시 IndexedDB 모드였으면 자동 재연결.
- * File System은 보안상 핸들 재획득 불가 → 사용자가 다시 연결.
+ * 앱 시작 시 자동 재연결.
+ * - filesystem: 저장된 핸들 + 이전 권한이 남아 있으면(queryPermission) 조용히 재연결.
+ *   권한이 없으면 사용자가 폴더를 다시 선택해야 함 — 이때 IndexedDB로 조용히
+ *   바꿔치기하지 않는다(모드 오염 방지 · 미연결로 남겨 사용자가 알아채게 함).
+ * - indexeddb: 그대로 자동 재연결.
  */
 export async function restoreSyncSession(): Promise<SyncStatus> {
   const meta = loadMeta();
-  if (meta.mode === 'indexeddb' && isIndexedDbAvailable()) {
+  if (meta.mode === 'filesystem' && !activeStorage && isFileSystemAccessAvailable()) {
+    try {
+      const handle = await loadVaultHandle();
+      if (handle && (await verifyHandlePermission(handle, 'readwrite'))) {
+        activeStorage = createFileSystemStorage(handle);
+        activeMode = 'filesystem';
+        lastError = null;
+      }
+    } catch {
+      /* 조용히 실패 — 사용자가 폴더를 다시 선택 */
+    }
+    return getSyncStatus();
+  }
+  if (meta.mode === 'indexeddb' && !activeStorage && isIndexedDbAvailable()) {
     return connectIndexedDb();
   }
   return getSyncStatus();
@@ -144,7 +172,12 @@ export async function restoreSyncSession(): Promise<SyncStatus> {
 
 async function ensureStorage(): Promise<StorageAdapter> {
   if (activeStorage) return activeStorage;
-  // 기본: IndexedDB 자동 연결
+  const meta = loadMeta();
+  // filesystem 선호가 저장돼 있으면 IndexedDB로 조용히 바꿔치기하지 않는다 —
+  // 그러면 사용자 모르게 Gap이 실제 Vault가 아닌 그림자 볼트에 쌓인다.
+  if (meta.mode === 'filesystem') {
+    throw new Error('Vault 폴더 재연결이 필요합니다 — 「Obsidian 폴더 연결」을 눌러 주세요.');
+  }
   if (isIndexedDbAvailable()) {
     await connectIndexedDb();
     if (activeStorage) return activeStorage;
@@ -161,12 +194,33 @@ export interface SyncPayload {
   memories?: Record<string, SentenceMemory>;
 }
 
+export interface SyncResult {
+  status: SyncStatus;
+  /** 볼트에 이미 있던 메움 내용과 합쳐진 최종 Gap — 앱 상태 반영용 */
+  mergedGaps: GapNote[];
+}
+
 /** 학습 상태를 Vault에 Markdown으로 투영. */
-export async function syncToVault(payload: SyncPayload): Promise<SyncStatus> {
+export async function syncToVault(payload: SyncPayload): Promise<SyncResult> {
   try {
     const storage = await ensureStorage();
     const userId = getUserId();
     const weakLinks = summarizeWeakLinks(Object.values(payload.memories ?? {}));
+
+    // 쓰기 전 볼트에 이미 있는 파일을 읽어 「## 옵시디언 메움」이 플레이스홀더로
+    // 덮이지 않도록 병합 (앱이 아직 import 안 한 메움도 보존)
+    const mergedGaps: GapNote[] = [];
+    for (const gap of payload.gaps ?? []) {
+      const path = gapPath(userId, gap.id);
+      let existing: ImportedGap | null = null;
+      try {
+        existing = parseGapMarkdown(await storage.read(path), path);
+      } catch {
+        existing = null;
+      }
+      mergedGaps.push(mergeGapForVaultWrite(gap, existing));
+    }
+
     const files = [
       projectBrain({
         userId,
@@ -178,7 +232,7 @@ export async function syncToVault(payload: SyncPayload): Promise<SyncStatus> {
       projectProgress({ userId, progress: payload.progress, weakLinks }),
       projectIndex({ userId, progress: payload.progress, weakLinks }),
       ...projectVaultScaffold(userId),
-      ...(payload.gaps ?? []).map((gap) => projectGap({ userId, gap })),
+      ...mergedGaps.map((gap) => projectGap({ userId, gap })),
     ];
     for (const f of files) {
       await storage.write(f.path, f.markdown);
@@ -186,7 +240,7 @@ export async function syncToVault(payload: SyncPayload): Promise<SyncStatus> {
     const now = new Date().toISOString();
     saveMeta({ mode: activeMode, lastSyncAt: now });
     lastError = null;
-    return getSyncStatus();
+    return { status: getSyncStatus(), mergedGaps };
   } catch (err) {
     lastError = (err as Error).message;
     throw err;
@@ -235,7 +289,7 @@ async function readOptional(path: string): Promise<string | null> {
  * iOS는 공유 시트 우선 (연속 다운로드·파일명 번호 문제 회피).
  */
 export async function exportVaultBundle(): Promise<{ filename: string; shared: boolean; parts: string[] }> {
-  await ensureStorage();
+  const storage = await ensureStorage();
   const userId = getUserId();
   const brain = brainPath(userId);
   const progress = progressPath(userId);
@@ -255,6 +309,30 @@ export async function exportVaultBundle(): Promise<{ filename: string; shared: b
     // Mac APFS: Progress.md 와 progress.md 는 같은 파일 — Vault 관례명 사용
     zipEntries.push({ path: 'Learners/me/Learning/Progress.md', content: progressMd });
   }
+
+  // Gaps도 포함 — 모바일에서 쌓은 간극이 ZIP에 없으면 Mac 볼트로 영영 합류하지 못함
+  const gapPrefixes = [`Learners/${userId}/Gaps/`, 'Learners/me/Gaps/'];
+  const gapPaths = new Set<string>();
+  for (const prefix of gapPrefixes) {
+    try {
+      for (const p of await storage.list(prefix)) {
+        if (p.endsWith('.md')) gapPaths.add(p);
+      }
+    } catch {
+      /* skip */
+    }
+  }
+  for (const path of gapPaths) {
+    try {
+      const content = await storage.read(path);
+      const base = path.split('/').pop()!;
+      parts.push(path);
+      zipEntries.push({ path: `Learners/me/Gaps/${base}`, content });
+    } catch {
+      /* skip */
+    }
+  }
+
   if (zipEntries.length === 0) {
     throw new Error('내보낼 노트가 없습니다. 먼저「지금 동기화」를 눌러 주세요.');
   }
@@ -267,7 +345,7 @@ export async function exportVaultBundle(): Promise<{ filename: string; shared: b
       '가장 쉬운 방법 (Mac 자동화):',
       '  AirDrop / 저장 위치를',
       '  Project_English/_Inbox/EBQ/ 로 하세요.',
-      '  그러면 Brain.md · Progress.md 가 자동 배치되고 ZIP은 삭제됩니다.',
+      '  그러면 Brain.md · Progress.md · Gaps/ 가 자동 배치되고 ZIP은 삭제됩니다.',
       '',
       '또는 Downloads 에 두어도 같은 자동화가 처리합니다.',
       '',

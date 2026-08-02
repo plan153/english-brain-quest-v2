@@ -8,9 +8,10 @@ set -euo pipefail
 VAULT="${EBQ_VAULT:-/Users/mini/Obsidian Vault/Project_English}"
 INBOX="$VAULT/_Inbox/EBQ"
 LEARNING="$VAULT/Learners/me/Learning"
+GAPS_DIR="$VAULT/Learners/me/Gaps"
 LOG="${EBQ_IMPORT_LOG:-$HOME/Library/Logs/ebq-vault-import.log}"
 
-mkdir -p "$INBOX" "$LEARNING" "$(dirname "$LOG")"
+mkdir -p "$INBOX" "$LEARNING" "$GAPS_DIR" "$(dirname "$LOG")"
 
 log() {
   local msg="[$(date '+%Y-%m-%d %H:%M:%S')] $*"
@@ -30,6 +31,23 @@ place_note() {
   cat "$src" >"$dest"
   log "배치: $dest"
   return 0
+}
+
+place_gaps() {
+  local root="$1"
+  local src_dir="$root/Learners/me/Gaps"
+  local found=0
+  [[ -d "$src_dir" ]] || return 1
+  local f
+  for f in "$src_dir"/*.md; do
+    [[ -f "$f" ]] || continue
+    cp -f "$f" "$GAPS_DIR/$(basename "$f")"
+    found=1
+  done
+  if [[ "$found" -eq 1 ]]; then
+    log "배치: Gaps → $GAPS_DIR"
+  fi
+  return $((1 - found))
 }
 
 import_from_dir() {
@@ -53,6 +71,7 @@ import_from_dir() {
   elif [[ -f "$root/Learners/me/Progress.md" ]]; then
     place_note "$root/Learners/me/Progress.md" "Progress.md" && found=1
   fi
+  place_gaps "$root" && found=1
   return $((1 - found))
 }
 
@@ -149,7 +168,8 @@ main() {
   if [[ ! -f "$INBOX/README.txt" ]]; then
     cat >"$INBOX/README.txt" <<'EOF'
 아이폰에서 ebq-vault-….zip 을 이 폴더로 AirDrop / 저장하세요.
-자동으로 Learners/me/Learning/ 에 Brain.md · Progress.md 가 배치되고 ZIP은 삭제됩니다.
+자동으로 Learners/me/Learning/ 에 Brain.md · Progress.md,
+Learners/me/Gaps/ 에 간극 노트가 배치되고 ZIP은 삭제됩니다.
 EOF
   fi
 

@@ -51,8 +51,11 @@ import {
   syncToVault,
   makeGapId,
   importVaultGaps,
+  restoreSyncSession,
+  getSyncStatus,
   type GapNote,
 } from '../adapters/cloud-sync';
+import type { ImportedGap } from '../domain/vault-gap-import';
 import { type GapSlotRole, buildGapReport, isAutoGapReportText, learnerFacingClue } from '../domain/gap-reason';
 import {
   countPatternTraining,
@@ -242,8 +245,10 @@ interface AppStore
   nextSentence: () => void;
   endSession: () => SessionSummary | null;
   resetSession: () => void;
-  /** Phase 4: 현재 상태를 Obsidian Vault / IndexedDB에 동기화 */
+  /** Phase 4: 현재 상태를 Obsidian Vault / IndexedDB에 동기화 (자동 import 먼저) */
   syncNow: () => Promise<void>;
+  /** 앱 시작 시 1회 — 연결 복원 + 조용한 import/sync (연결 안 돼 있으면 아무 것도 안 함) */
+  bootstrapSync: () => Promise<void>;
 
   // settings
   toggleTheme: () => void;
@@ -377,6 +382,90 @@ function syncGapsSoon(get: () => SyncSnapshot, gaps: GapNote[]) {
       /* 미연결이면 스킵 */
     }
   })();
+}
+
+/**
+ * 볼트에서 읽은 ImportedGap[]을 memories/gapNotes에 흡수 — 순수 함수.
+ * absorbVaultGaps(수동 버튼)와 syncNow(자동 import)가 공유해서 쓴다.
+ * 단서(learnerClue, 한 줄)와 옵시디언 메움(vaultFill, 긴 성찰)을 분리 저장한다 —
+ * 메움 전체를 힌트로 쓰면 힌트가 너무 길어지므로.
+ */
+export function mergeImportedGaps(
+  gaps: ImportedGap[],
+  memories: Record<string, SentenceMemory>,
+  gapNotes: GapNote[],
+  now: Date
+): {
+  memories: Record<string, SentenceMemory>;
+  gapNotes: GapNote[];
+  imported: number;
+  reviewed: number;
+  clues: number;
+} {
+  const nowIso = now.toISOString();
+  const nextMemories = { ...memories };
+  let nextGapNotes = [...gapNotes];
+  let imported = 0;
+  let reviewed = 0;
+  let clues = 0;
+
+  for (const gap of gaps) {
+    let mem =
+      nextMemories[gap.expressionId] ?? createMemory(gap.expressionId, gap.en, gap.ko, now);
+    const isReviewed = gap.reasonStatus === 'reviewed' || Boolean(gap.vaultFill?.trim());
+    mem = {
+      ...mem,
+      en: mem.en || gap.en,
+      ko: mem.ko || gap.ko,
+      wrong: Math.max(mem.wrong, 1),
+      attempts: Math.max(mem.attempts, 1),
+      nextReviewAt: isReviewed
+        ? mem.nextReviewAt
+        : new Date(now.getTime() - 60_000).toISOString(),
+      updatedAt: nowIso,
+      lastMatch: mem.lastMatch ?? 'wrong',
+    };
+    nextMemories[gap.expressionId] = mem;
+
+    const shortClue =
+      learnerFacingClue({ learnerClue: gap.learnerClue, reasonFinal: gap.learnerClue }) ||
+      undefined;
+    const fill = (gap.vaultFill || '').trim() || undefined;
+    if (shortClue || fill) clues += 1;
+    if (isReviewed) reviewed += 1;
+
+    const existing = nextGapNotes.find((g) => g.expressionId === gap.expressionId);
+    const status: GapNote['reasonStatus'] = isReviewed
+      ? 'reviewed'
+      : shortClue
+        ? 'clued'
+        : (existing?.reasonStatus ?? 'clued');
+    const note: GapNote = {
+      id: existing?.id ?? gap.id ?? makeGapId(gap.expressionId, gap.guess),
+      expressionId: gap.expressionId,
+      en: gap.en || existing?.en || '',
+      ko: gap.ko || existing?.ko || '',
+      guess: gap.guess || existing?.guess || '',
+      createdAt: existing?.createdAt ?? nowIso,
+      updatedAt: nowIso,
+      match: gap.match ?? existing?.match ?? 'wrong',
+      packId: gap.packId ?? existing?.packId,
+      learnerClue: shortClue || existing?.learnerClue,
+      reasonFinal: shortClue || existing?.reasonFinal,
+      reasonAuto: existing?.reasonAuto,
+      vaultFill: fill || existing?.vaultFill,
+      reasonStatus: status,
+      slots: gap.slots?.length ? gap.slots : existing?.slots,
+      primarySlot: gap.primarySlot ?? existing?.primarySlot,
+      cueMode: existing?.cueMode,
+      inputMode: existing?.inputMode,
+    };
+    nextGapNotes = [...nextGapNotes.filter((g) => g.expressionId !== gap.expressionId), note];
+    imported += 1;
+  }
+
+  nextGapNotes = nextGapNotes.slice(-200);
+  return { memories: nextMemories, gapNotes: nextGapNotes, imported, reviewed, clues };
 }
 
 function loadReward(): Partial<RewardState> {
@@ -710,76 +799,12 @@ export const useStore = create<AppStore>((set, get) => {
             '볼트 Gaps가 없어요. Mac이면 Vault 폴더 연결 후 다시, 아이폰이면 먼저 동기화·보내기로 Gaps를 쌓아 주세요.',
         };
       }
-      const now = new Date();
-      const nowIso = now.toISOString();
-      const memories = { ...get().memories };
-      let gapNotes = [...get().gapNotes];
-      let imported = 0;
-      let reviewed = 0;
-      let clues = 0;
-
-      for (const gap of gaps) {
-        let mem =
-          memories[gap.expressionId] ??
-          createMemory(gap.expressionId, gap.en, gap.ko, now);
-        const isReviewed =
-          gap.reasonStatus === 'reviewed' || Boolean(gap.vaultFill?.trim());
-        // 미메움: 즉시 복습. 메움 완료: 기억만 갱신(기한은 유지·슬롯/힌트 반영)
-        mem = {
-          ...mem,
-          en: mem.en || gap.en,
-          ko: mem.ko || gap.ko,
-          wrong: Math.max(mem.wrong, 1),
-          attempts: Math.max(mem.attempts, 1),
-          nextReviewAt: isReviewed
-            ? mem.nextReviewAt
-            : new Date(now.getTime() - 60_000).toISOString(),
-          updatedAt: nowIso,
-          lastMatch: mem.lastMatch ?? 'wrong',
-        };
-        memories[gap.expressionId] = mem;
-
-        const clue =
-          learnerFacingClue({
-            learnerClue: gap.vaultFill || gap.learnerClue,
-            reasonFinal: gap.learnerClue,
-          }) || undefined;
-        if (clue) clues += 1;
-        if (isReviewed) reviewed += 1;
-
-        const existing = gapNotes.find((g) => g.expressionId === gap.expressionId);
-        const status: GapNote['reasonStatus'] = isReviewed
-          ? 'reviewed'
-          : gap.reasonStatus === 'clued' || clue
-            ? 'clued'
-            : existing?.reasonStatus ?? 'clued';
-        const note: GapNote = {
-          id: existing?.id ?? gap.id ?? makeGapId(gap.expressionId, gap.guess),
-          expressionId: gap.expressionId,
-          en: gap.en || existing?.en || '',
-          ko: gap.ko || existing?.ko || '',
-          guess: gap.guess || existing?.guess || '',
-          createdAt: existing?.createdAt ?? nowIso,
-          updatedAt: nowIso,
-          match: gap.match ?? existing?.match ?? 'wrong',
-          packId: gap.packId ?? existing?.packId,
-          learnerClue: clue || existing?.learnerClue,
-          reasonFinal: clue || existing?.reasonFinal,
-          reasonAuto: existing?.reasonAuto,
-          reasonStatus: status,
-          slots: gap.slots?.length ? gap.slots : existing?.slots,
-          primarySlot: gap.primarySlot ?? existing?.primarySlot,
-          cueMode: existing?.cueMode,
-          inputMode: existing?.inputMode,
-        };
-        gapNotes = [
-          ...gapNotes.filter((g) => g.expressionId !== gap.expressionId),
-          note,
-        ];
-        imported += 1;
-      }
-
-      gapNotes = gapNotes.slice(-200);
+      const { memories, gapNotes, imported, reviewed, clues } = mergeImportedGaps(
+        gaps,
+        get().memories,
+        get().gapNotes,
+        new Date()
+      );
       persistGapNotes(gapNotes);
       persistMemories(memories);
       set({ memories, gapNotes });
@@ -1371,11 +1396,27 @@ export const useStore = create<AppStore>((set, get) => {
     },
 
     syncNow: async () => {
+      // 1) 쓰기 전에 볼트를 먼저 읽어 옵시디언 메움을 조용히 흡수 —
+      // 이렇게 순서를 고정해야 reviewed 감지가 매번 자동으로 일어나고,
+      // 아래 write 단계에서 방금 읽은 메움을 다시 병합해도 안전하다.
+      try {
+        const imported = await importVaultGaps();
+        if (imported.length > 0) {
+          const merged = mergeImportedGaps(imported, get().memories, get().gapNotes, new Date());
+          persistGapNotes(merged.gapNotes);
+          persistMemories(merged.memories);
+          set({ memories: merged.memories, gapNotes: merged.gapNotes });
+        }
+      } catch {
+        /* 미연결이면 스킵 */
+      }
+
+      // 2) 최신 상태를 볼트에 반영
       const s = get();
       const gaps = (s.pendingGaps.length > 0 ? s.pendingGaps : s.gapNotes.slice(-20)).map(
         (g) => s.gapNotes.find((n) => n.id === g.id) ?? g
       );
-      await syncToVault({
+      const { mergedGaps } = await syncToVault({
         progress: {
           xp: s.xp,
           level: s.level,
@@ -1390,8 +1431,28 @@ export const useStore = create<AppStore>((set, get) => {
         gaps,
         memories: s.memories,
       });
-      if (s.pendingGaps.length > 0) {
+
+      // 3) write 시 병합된 결과(볼트에 이미 있던 메움 보존)를 앱 상태에도 반영
+      if (mergedGaps.length > 0) {
+        const byId = new Map(get().gapNotes.map((g) => [g.id, g] as const));
+        for (const g of mergedGaps) byId.set(g.id, g);
+        const nextGapNotes = [...byId.values()].slice(-200);
+        persistGapNotes(nextGapNotes);
+        set({ gapNotes: nextGapNotes });
+      }
+
+      if (get().pendingGaps.length > 0) {
         set({ pendingGaps: [] });
+      }
+    },
+
+    bootstrapSync: async () => {
+      try {
+        const status = await restoreSyncSession();
+        if (!status.connected) return;
+        await get().syncNow();
+      } catch {
+        /* 미연결/권한 없음 — 조용히 스킵, 사용자가 Brain 탭에서 다시 연결 */
       }
     },
 
@@ -1421,3 +1482,18 @@ export const useStore = create<AppStore>((set, get) => {
 });
 
 applyTheme(loadTheme());
+
+// 앱 시작 시 1회: 연결 복원 + 조용한 import/sync.
+// 이후엔 24시간 경과 시에만 자동 동기화 (열어 둔 채로 오래 있는 경우 대비).
+if (typeof window !== 'undefined') {
+  const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+  void useStore.getState().bootstrapSync();
+  setInterval(() => {
+    const status = getSyncStatus();
+    if (!status.connected) return;
+    const last = status.lastSyncAt ? Date.parse(status.lastSyncAt) : 0;
+    if (!last || Date.now() - last > ONE_DAY_MS) {
+      void useStore.getState().syncNow();
+    }
+  }, 60 * 60 * 1000);
+}

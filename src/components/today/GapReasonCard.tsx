@@ -194,6 +194,29 @@ export function GapClueCard({
               ? '메움 완료 · 같은 문장이 다시 나오면 이 단서를 힌트로 보여 줍니다'
               : '옵시디언 Gaps에서 메운 뒤 「메움 완료」→ 다음에 힌트로 씁니다'}
           </div>
+          {status === 'reviewed' && gap?.vaultFill && (
+            <div
+              style={{
+                marginTop: '10px',
+                paddingTop: '10px',
+                borderTop: '1px solid var(--ebq-border)',
+              }}
+            >
+              <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)' }}>
+                옵시디언에서 메운 내용
+              </div>
+              <div
+                style={{
+                  marginTop: '4px',
+                  fontSize: '13px',
+                  lineHeight: 1.5,
+                  whiteSpace: 'pre-wrap',
+                }}
+              >
+                {gap.vaultFill}
+              </div>
+            </div>
+          )}
           <div style={{ display: 'flex', gap: '8px', marginTop: '10px', flexWrap: 'wrap' }}>
             <Button
               onClick={() => {
