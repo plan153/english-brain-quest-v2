@@ -7,7 +7,12 @@ import { useEffect, useState } from 'react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import type { GapNote } from '../../domain/vault-projection';
-import { isAutoGapReportText, learnerFacingClue } from '../../domain/gap-reason';
+import {
+  isAutoGapReportText,
+  learnerFacingClue,
+  PATTERN_NOTE_IDS,
+  patternNoteTitle,
+} from '../../domain/gap-reason';
 
 export type GapLoopStatus = 'draft' | 'clued' | 'reviewed';
 
@@ -100,8 +105,8 @@ export function GapClueCard({
     }
   }, [gap?.id, gap?.updatedAt, storeClue]);
 
-  const handleSave = () => {
-    const text = draft.trim();
+  const handleSave = (overrideText?: string) => {
+    const text = (overrideText ?? draft).trim();
     setSaveErr(null);
     setSaveMsg(null);
     if (!text) {
@@ -115,6 +120,7 @@ export function GapClueCard({
     try {
       onSaveClue(text);
       setOptimisticClue(text);
+      setDraft(text);
       setEditing(false);
       setSaveMsg('✓ 단서 저장됨 — 다음 힌트·옵시디언 메움에 쓰입니다');
     } catch (err) {
@@ -139,8 +145,31 @@ export function GapClueCard({
         <>
           <div style={{ fontSize: '13px', lineHeight: 1.45, marginBottom: '8px' }}>
             간극을 <strong>만드는 과정</strong>이 곧 학습입니다. 지금 AI 해설 없이
-            어디가 달랐는지 한 줄로 남기면 → 옵시디언에서 메우고 → 그게 다음 힌트와
+            어디가 달랐는지 스스로 짚어보면 → 옵시디언에서 메우고 → 그게 다음 힌트와
             간극 잡기에 다시 쓰입니다.
+          </div>
+          <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)', marginBottom: '6px' }}>
+            어디가 문제였는지 골라도 되고, 아래에 직접 적어도 됩니다
+          </div>
+          <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '10px' }}>
+            {PATTERN_NOTE_IDS.map((role) => (
+              <button
+                key={role}
+                type="button"
+                onClick={() => handleSave(patternNoteTitle(role))}
+                style={{
+                  padding: '6px 12px',
+                  borderRadius: '999px',
+                  border: '1px solid var(--ebq-border)',
+                  background: 'var(--ebq-surface-alt)',
+                  color: 'var(--ebq-text)',
+                  fontSize: '13px',
+                  cursor: 'pointer',
+                }}
+              >
+                {patternNoteTitle(role)}
+              </button>
+            ))}
           </div>
           <textarea
             value={draft}
@@ -165,7 +194,7 @@ export function GapClueCard({
             placeholder="예: friends인데 plant로 들림 / living 수식을 빼먹음"
           />
           <div style={{ display: 'flex', gap: '8px', marginTop: '10px', flexWrap: 'wrap' }}>
-            <Button variant="primary" onClick={handleSave}>
+            <Button variant="primary" onClick={() => handleSave()}>
               내 단서 저장
             </Button>
             {!revealed && canonicalEn && (
