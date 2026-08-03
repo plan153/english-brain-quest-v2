@@ -14,7 +14,8 @@ export type GapSlotRole =
   | 'noun'
   | 'modifier'
   | 'tense'
-  | 'agreement';
+  | 'agreement'
+  | 'adjective';
 
 export type GapSlotStatus = 'ok' | 'missing' | 'wrong';
 
@@ -272,6 +273,41 @@ const PAST_TO_BASE: Record<string, string> = {
   written: 'write',
 };
 
+/** 불규칙 복수 → 단수 (명사 단/복수 비교용 — baseForm의 's' 제거 규칙으로는 못 잡음) */
+const IRREGULAR_PLURALS: Record<string, string> = {
+  children: 'child',
+  people: 'person',
+  men: 'man',
+  women: 'woman',
+  feet: 'foot',
+  teeth: 'tooth',
+  mice: 'mouse',
+  geese: 'goose',
+};
+
+/** 명사 비교 전용 base — 불규칙 복수까지 단수로 정규화 */
+function nounBase(word: string): string {
+  const w = word.toLowerCase();
+  return IRREGULAR_PLURALS[w] ?? baseForm(w);
+}
+
+/** 단어가 복수형으로 보이는지 (규칙+불규칙) */
+function isPluralForm(word: string): boolean {
+  const w = word.toLowerCase();
+  if (IRREGULAR_PLURALS[w]) return true;
+  if (w.endsWith('ies') && w.length > 4) return true;
+  if (
+    w.endsWith('ses') ||
+    w.endsWith('ches') ||
+    w.endsWith('shes') ||
+    w.endsWith('xes') ||
+    w.endsWith('zes')
+  ) {
+    return true;
+  }
+  return w.endsWith('s') && !w.endsWith('ss') && w.length > 3;
+}
+
 const PAST_MARKERS = new Set([
   'was',
   'were',
@@ -352,6 +388,8 @@ interface PhraseSlots {
   noun: string;
   /** 목적어 핵 (friends) */
   nounHead: string;
+  /** 목적어 핵 바로 앞 형용사 (a quiet cat → quiet) */
+  adjective: string;
   /** 후치 수식·to부정사 등 (living in Chicago / to run …) */
   modifier: string;
   tokens: string[];
@@ -671,11 +709,11 @@ function isIngForm(word: string): boolean {
 function takeObjectNp(
   tokens: string[],
   start: number
-): { text: string; head: string; end: number } {
-  if (start >= tokens.length) return { text: '', head: '', end: start };
+): { text: string; head: string; adjective: string; end: number } {
+  if (start >= tokens.length) return { text: '', head: '', adjective: '', end: start };
   const t0 = tokens[start]!;
   if (OBJECT_PRONOUNS.has(t0) || t0 === 'it') {
-    return { text: t0, head: t0, end: start + 1 };
+    return { text: t0, head: t0, adjective: '', end: start + 1 };
   }
 
   const parts: string[] = [];
@@ -720,7 +758,15 @@ function takeObjectNp(
     }
   }
 
-  return { text: parts.join(' '), head, end: i };
+  // head 바로 앞 단어가 관사가 아니면 형용사로 본다 (a quiet cat → quiet)
+  let adjective = '';
+  const headIdx = head ? parts.lastIndexOf(head) : -1;
+  if (headIdx > 0) {
+    const before = parts[headIdx - 1]!;
+    if (!DETERMINERS.has(before)) adjective = before;
+  }
+
+  return { text: parts.join(' '), head, adjective, end: i };
 }
 
 function takePostModifier(
@@ -742,6 +788,7 @@ function extractSlots(tokens: string[]): PhraseSlots {
     verb: '',
     noun: '',
     nounHead: '',
+    adjective: '',
     modifier: '',
     tokens: [],
     isQuestion: false,
@@ -759,6 +806,7 @@ function extractSlots(tokens: string[]): PhraseSlots {
   let verb = '';
   let noun = '';
   let nounHead = '';
+  let adjective = '';
   let modifier = '';
 
   // Do/Does/Did/Can... you need help?
@@ -865,6 +913,7 @@ function extractSlots(tokens: string[]): PhraseSlots {
       const obj = takeObjectNp(core, afterPrep);
       noun = obj.text;
       nounHead = obj.head;
+      adjective = obj.adjective;
       i = obj.end;
       const mod = takePostModifier(core, i);
       modifier = mod.text;
@@ -876,6 +925,7 @@ function extractSlots(tokens: string[]): PhraseSlots {
     const obj = takeObjectNp(core, i);
     noun = obj.text;
     nounHead = obj.head;
+    adjective = obj.adjective;
     i = obj.end;
     const mod = takePostModifier(core, i);
     if (mod.text) {
@@ -893,6 +943,7 @@ function extractSlots(tokens: string[]): PhraseSlots {
     verb,
     noun,
     nounHead,
+    adjective,
     modifier,
     tokens: core,
     isQuestion,
@@ -969,6 +1020,17 @@ function nounWhy(expected: string, actual: string): string {
   return `정답 목적어「${expected}」대신「${actual}」을(를) 골랐어요.`;
 }
 
+/** 명사 핵은 같은데 단수/복수만 다를 때의 이유 (불규칙 복수 포함) */
+function nounNumberWhy(expectedLabel: string, actualLabel: string, expectHead: string): string {
+  const label = isPluralForm(expectHead) ? '복수' : '단수';
+  return `핵심 명사는 같은데 단수/복수가 달라요 — 정답은 ${label}(「${expectedLabel}」), 말한 것은 「${actualLabel}」.`;
+}
+
+function adjectiveWhy(expected: string, actual: string): string {
+  if (!actual) return `형용사「${expected}」이(가) 빠졌어요.`;
+  return `형용사가 달라요. 정답「${expected}」, 말한 것「${actual}」.`;
+}
+
 function modifierWhy(expected: string, actual: string): string {
   if (!actual) {
     return `수식·부가 표현「${expected}」이(가) 빠졌어요.`;
@@ -1001,6 +1063,8 @@ function roleLabel(role: GapSlotRole): string {
       return '시제';
     case 'agreement':
       return '3인칭 단수';
+    case 'adjective':
+      return '형용사';
   }
 }
 
@@ -1120,9 +1184,10 @@ export function analyzeGapSlots(args: {
     const actualHead = said.nounHead || '';
     const actualLabel = said.nounHead || said.noun || '';
     const hasHead = expectHead ? findTokenMatch(saidTokens, expectHead) : false;
-    const headsMatch =
-      !!actualHead &&
-      (actualHead === expectHead || baseForm(actualHead) === baseForm(expectHead));
+    // 같은 명사(어근)인지 — 불규칙 복수(child/children)까지 인식
+    const sameLexeme = !!actualHead && nounBase(actualHead) === nounBase(expectHead);
+    const sameNumber = sameLexeme && isPluralForm(actualHead) === isPluralForm(expectHead);
+    const headsMatch = sameLexeme && sameNumber;
 
     if (!hasHead && !actualHead) {
       nounOk = false;
@@ -1135,12 +1200,16 @@ export function analyzeGapSlots(args: {
       });
     } else if (!hasHead || !headsMatch) {
       nounOk = false;
+      // 같은 명사인데 단수/복수만 다르면 "다른 단어" 대신 정확한 이유를 알려줌
+      const numberOnly = sameLexeme && !sameNumber;
       findings.push({
         role: 'noun',
         status: 'wrong',
         expected: expectLabel,
         actual: actualLabel || '(다름)',
-        why: nounWhy(expectLabel, actualLabel || ''),
+        why: numberOnly
+          ? nounNumberWhy(expectLabel, actualLabel, expectHead)
+          : nounWhy(expectLabel, actualLabel || ''),
       });
     } else {
       findings.push({
@@ -1150,6 +1219,34 @@ export function analyzeGapSlots(args: {
         actual: actualLabel || expectLabel,
         why: '',
       });
+    }
+  }
+
+  // 형용사 — 목적어 핵 앞 (a quiet cat) · 목적어가 맞을 때만 비교
+  if (nounOk && target.adjective) {
+    const actual = said.adjective;
+    const same = !!actual && (actual === target.adjective || baseForm(actual) === baseForm(target.adjective));
+    if (same) {
+      findings.push({ role: 'adjective', status: 'ok', expected: target.adjective, actual, why: '' });
+    } else if (actual) {
+      findings.push({
+        role: 'adjective',
+        status: 'wrong',
+        expected: target.adjective,
+        actual,
+        why: adjectiveWhy(target.adjective, actual),
+      });
+    } else if (!findTokenMatch(saidTokens, target.adjective)) {
+      findings.push({
+        role: 'adjective',
+        status: 'missing',
+        expected: target.adjective,
+        actual: '',
+        why: adjectiveWhy(target.adjective, ''),
+      });
+    } else {
+      // 슬롯 추출은 놓쳤지만 단어 자체는 문장 어딘가에 있음 — 관대하게 ok 처리
+      findings.push({ role: 'adjective', status: 'ok', expected: target.adjective, actual: target.adjective, why: '' });
     }
   }
 
@@ -1248,6 +1345,7 @@ export const PATTERN_NOTE_IDS: GapSlotRole[] = [
   'modifier',
   'tense',
   'agreement',
+  'adjective',
 ];
 
 /**
@@ -1261,6 +1359,7 @@ const PRIMARY_SLOT_ORDER: GapSlotRole[] = [
   'agreement',
   'tense',
   'modifier',
+  'adjective',
 ];
 
 export function patternNoteTitle(role: GapSlotRole): string {
@@ -1282,6 +1381,8 @@ export function patternPracticeTip(role: GapSlotRole): string {
       return '과거/현재/미래 중 어느 때인지 한국어 문장에서 표시를 찾으세요.';
     case 'agreement':
       return 'he/she/it 뒤에는 동사에 -s / is / does / has 가 붙는지 확인하세요.';
+    case 'adjective':
+      return '명사 앞 형용사(quiet, interesting …)가 빠지거나 다른 단어로 바뀌지 않았는지 보세요.';
   }
 }
 

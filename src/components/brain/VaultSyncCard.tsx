@@ -112,12 +112,36 @@ export function VaultSyncCard() {
         )}
         {status.connected && (
           <>
-            <Button
-              disabled={busy}
-              onClick={() => run(() => syncNow(), '동기화 완료')}
-            >
-              🔄 지금 동기화
-            </Button>
+            {status.mode === 'indexeddb' ? (
+              // 모바일 가상 볼트 — ZIP 내보내기가 동기화를 이미 포함하므로 버튼을 합쳐 둘을 하나로
+              <Button
+                disabled={busy}
+                onClick={() =>
+                  run(async () => {
+                    await syncNow();
+                    const result = await exportVaultBundle();
+                    if (result.shared) {
+                      setMsg(
+                        `ZIP 공유됨: ${result.filename} → Mac의 Project_English/_Inbox/EBQ 로 보내면 자동 배치`
+                      );
+                      return;
+                    }
+                    setMsg(
+                      `ZIP 저장: ${result.filename} → Mac _Inbox/EBQ 또는 Downloads 에 두면 자동 배치`
+                    );
+                  }, '')
+                }
+              >
+                🔄 동기화 후 보내기
+              </Button>
+            ) : (
+              <Button
+                disabled={busy}
+                onClick={() => run(() => syncNow(), '동기화 완료')}
+              >
+                🔄 지금 동기화
+              </Button>
+            )}
             <Button
               disabled={busy}
               onClick={() =>
@@ -131,26 +155,6 @@ export function VaultSyncCard() {
               }
             >
               📥 볼트 → 힌트·간극 선순환
-            </Button>
-            <Button
-              disabled={busy}
-              onClick={() =>
-                run(async () => {
-                  await syncNow();
-                  const result = await exportVaultBundle();
-                  if (result.shared) {
-                    setMsg(
-                      `ZIP 공유됨: ${result.filename} → Mac의 Project_English/_Inbox/EBQ 로 보내면 자동 배치`
-                    );
-                    return;
-                  }
-                  setMsg(
-                    `ZIP 저장: ${result.filename} → Mac _Inbox/EBQ 또는 Downloads 에 두면 자동 배치`
-                  );
-                }, '')
-              }
-            >
-              ⬇️ 옵시디언용보내기
             </Button>
             <Button
               disabled={busy}

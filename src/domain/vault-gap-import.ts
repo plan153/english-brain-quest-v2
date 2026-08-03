@@ -30,6 +30,7 @@ const SLOT_ROLES: GapSlotRole[] = [
   'modifier',
   'tense',
   'agreement',
+  'adjective',
 ];
 
 function stripQuotes(v: string): string {

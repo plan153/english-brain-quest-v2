@@ -477,6 +477,57 @@ describe('6b. gap-reason + projectGap', () => {
     expect(noun?.expected?.toLowerCase()).toMatch(/memor/);
   });
 
+  it('detects a missing pre-head adjective as its own slot', () => {
+    const slots = analyzeGapSlots({
+      en: 'I have a quiet cat.',
+      guess: 'I have a cat.',
+    });
+    const adj = slots.find((f) => f.role === 'adjective');
+    expect(adj?.status).toBe('missing');
+    expect(adj?.expected).toBe('quiet');
+    expect(slots.some((f) => f.role === 'noun' && f.status === 'ok')).toBe(true);
+  });
+
+  it('detects a wrong (different) pre-head adjective', () => {
+    const slots = analyzeGapSlots({
+      en: 'I have a quiet cat.',
+      guess: 'I have a loud cat.',
+    });
+    const adj = slots.find((f) => f.role === 'adjective');
+    expect(adj?.status).toBe('wrong');
+    expect(adj?.expected).toBe('quiet');
+    expect(adj?.actual).toBe('loud');
+  });
+
+  it('does not flag the adjective slot when it matches (only the unrelated tense differs)', () => {
+    const slots = analyzeGapSlots({
+      en: 'I have a quiet cat.',
+      guess: 'I had a quiet cat.',
+    });
+    expect(slots.find((f) => f.role === 'adjective')?.status).toBe('ok');
+  });
+
+  it('recognizes an irregular plural as a number mismatch, not a different word', () => {
+    const slots = analyzeGapSlots({
+      en: 'I have a child.',
+      guess: 'I have children.',
+    });
+    const noun = slots.find((f) => f.role === 'noun');
+    expect(noun?.status).toBe('wrong');
+    expect(noun?.why).toMatch(/단수\/복수/);
+    expect(noun?.why).not.toMatch(/다른 단어/);
+  });
+
+  it('recognizes a regular plural mismatch as a number issue with an accurate reason', () => {
+    const slots = analyzeGapSlots({
+      en: 'I have a cat.',
+      guess: 'I have cats.',
+    });
+    const noun = slots.find((f) => f.role === 'noun');
+    expect(noun?.status).toBe('wrong');
+    expect(noun?.why).toMatch(/단수\/복수/);
+  });
+
   it('keeps have+past-participle as perfect auxiliary', () => {
     const slots = analyzeGapSlots({
       en: 'I have found my keys.',
@@ -588,6 +639,7 @@ describe('6b. gap-reason + projectGap', () => {
     const files = projectVaultScaffold('me');
     expect(files.some((f) => f.path.endsWith('Gaps/_Index.md'))).toBe(true);
     expect(files.some((f) => f.path.endsWith('Patterns/subject.md'))).toBe(true);
+    expect(files.some((f) => f.path.endsWith('Patterns/adjective.md'))).toBe(true);
     expect(files.find((f) => f.path.includes('_Index'))?.markdown).toContain('dataview');
     expect(problemSlots({ en: 'She needs help.', guess: 'He need help.' }).length).toBeGreaterThan(0);
   });
@@ -739,6 +791,25 @@ She + needs. 주어가 3인칭이면 동사에 s.
     expect(gap?.slots).toContain('agreement');
     expect(gap?.vaultFill).toContain('She + needs');
     expect(gap?.reasonStatus).toBe('reviewed');
+  });
+
+  it('round-trips the adjective slot through frontmatter', () => {
+    const md = `---
+type: gap
+expressionId: e100
+en: I have a quiet cat.
+ko: 나는 조용한 고양이가 있다.
+learnerClue: 형용사 빠뜨림
+reasonStatus: clued
+primarySlot: adjective
+slots: [adjective]
+---
+
+# Gap · I have a quiet cat.
+`;
+    const gap = parseGapMarkdown(md, 'Learners/me/Gaps/gap_e100_x.md');
+    expect(gap?.primarySlot).toBe('adjective');
+    expect(gap?.slots).toContain('adjective');
   });
 
   it('ignores Obsidian fill placeholder', () => {
