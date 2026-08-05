@@ -1110,3 +1110,60 @@ describe('12. conversation-100 pack', () => {
     expect(items).toHaveLength(500);
   });
 });
+
+describe('13. collocations pack', () => {
+  it('catalog has 300 collocations with unique ids and verb+noun pairs', async () => {
+    const catalog = await import('../../data/canon/collocations/catalog.json');
+    type Col = { id: string; verb: string; noun: string; pattern: string; en: string; ko: string };
+    const cols =
+      (catalog as { default?: { collocations: Col[] }; collocations?: Col[] }).default
+        ?.collocations ?? (catalog as { collocations: Col[] }).collocations;
+    expect(cols).toHaveLength(300);
+    expect(new Set(cols.map((c) => c.id)).size).toBe(300);
+    // have+look 변형 5종(레거시)만 verb+noun 중복 허용 — 문장(en)은 전부 달라야 함
+    expect(new Set(cols.map((c) => c.en.toLowerCase())).size).toBe(300);
+    for (const c of cols) {
+      expect(c.en.trim().length).toBeGreaterThan(0);
+      expect(c.ko.trim().length).toBeGreaterThan(0);
+      expect(c.pattern).toContain(c.verb);
+    }
+  });
+});
+
+describe('14. build-time TTS (Azure)', () => {
+  it('ttsHash is identical in the generator script and the runtime adapter', async () => {
+    const { ttsHash: runtimeHash } = await import('../adapters/tts-audio');
+    const { ttsHash: scriptHash } = await import('../../scripts/generate-tts.mjs');
+    // 둘이 어긋나면 앱이 존재하는 mp3를 못 찾고 조용히 Web Speech로 폴백해 버린다
+    for (const text of [
+      'I have a question.',
+      'Take a look.',
+      "Don't lose your temper.",
+      'She broke the record.',
+      '  spaced   out   text  ',
+    ]) {
+      expect(runtimeHash(text)).toBe(scriptHash(text));
+    }
+  });
+
+  it('normalizes whitespace so the same sentence maps to one mp3', async () => {
+    const { ttsHash } = await import('../adapters/tts-audio');
+    expect(ttsHash('Take a look.')).toBe(ttsHash('  Take   a  look.  '));
+    expect(ttsHash('Take a look.')).not.toBe(ttsHash('Take a look'));
+  });
+
+  it('collects every pack sentence with no hash collisions', async () => {
+    const { collectTexts, ttsHash } = await import('../../scripts/generate-tts.mjs');
+    const texts: string[] = collectTexts();
+    // 4개 팩(기본동사 500 + 회화 500 + 코로케이션 300 + 구동사·표현) 합계
+    expect(texts.length).toBeGreaterThan(1300);
+    const byHash = new Map<string, string>();
+    for (const t of texts) {
+      const h = ttsHash(t);
+      const prev = byHash.get(h);
+      // 충돌하면 서로 다른 문장이 같은 mp3를 덮어써 잘못된 음성이 재생된다
+      expect(prev === undefined || prev === t).toBe(true);
+      byHash.set(h, t);
+    }
+  });
+});

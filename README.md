@@ -25,6 +25,23 @@ npm run build     # tsc -b && vite build
 npm run lint      # oxlint
 ```
 
+## 음성 (TTS)
+
+영어 문장은 **빌드타임에 미리 생성한 Azure Neural mp3**를 재생하고, 없으면 브라우저 내장
+Web Speech API로 자동 폴백한다. 런타임 API 호출·키 노출이 없어 GitHub Pages 그대로
+동작하고 오프라인에서도 재생된다.
+
+새 문장을 추가한 뒤에는 Mac에서 한 번만 실행하면 된다 (이미 있는 문장은 건너뜀):
+
+```bash
+AZURE_SPEECH_KEY=<키> AZURE_SPEECH_REGION=koreacentral node scripts/generate-tts.mjs
+git add public/audio && git commit -m "Regenerate TTS audio"
+```
+
+`public/audio/<해시>.mp3` + `manifest.json`이 생성된다. 파일명은 문장 내용 해시라 불변이며,
+서비스워커가 별도 캐시(`ebq-audio-v1`)에 영구 보관해 앱 버전이 올라가도 재다운로드하지 않는다.
+API 키는 절대 커밋하지 말 것.
+
 ## 배포
 
 `master`/`main`에 push하면 GitHub Actions(`.github/workflows/deploy-pages.yml`)가 테스트 →

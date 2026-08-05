@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "만능동사 + 명사 코로케이션 카탈로그 (Phase 3: 100개)",
+  "description": "만능동사 + 명사 코로케이션 카탈로그 (Phase 6: 300개)",
   "collocations": [
     {
       "id": "col-001",
@@ -841,6 +841,1566 @@
       "pattern": "have + a careful look",
       "en": "Have a careful look.",
       "ko": "주의 깊게 봐요."
+    },
+    {
+      "id": "col-101",
+      "verb": "have",
+      "noun": "headache",
+      "pattern": "have + a headache",
+      "en": "I have a headache.",
+      "ko": "머리가 아파요."
+    },
+    {
+      "id": "col-102",
+      "verb": "have",
+      "noun": "cold",
+      "pattern": "have + a cold",
+      "en": "I have a cold.",
+      "ko": "감기에 걸렸어요."
+    },
+    {
+      "id": "col-103",
+      "verb": "have",
+      "noun": "party",
+      "pattern": "have + a party",
+      "en": "We're having a party tonight.",
+      "ko": "오늘 밤 파티를 해요."
+    },
+    {
+      "id": "col-104",
+      "verb": "have",
+      "noun": "day off",
+      "pattern": "have + a day off",
+      "en": "I have a day off tomorrow.",
+      "ko": "내일 쉬는 날이에요."
+    },
+    {
+      "id": "col-105",
+      "verb": "have",
+      "noun": "seat",
+      "pattern": "have + a seat",
+      "en": "Please have a seat.",
+      "ko": "앉으세요."
+    },
+    {
+      "id": "col-106",
+      "verb": "have",
+      "noun": "dream",
+      "pattern": "have + a dream",
+      "en": "I had a strange dream.",
+      "ko": "이상한 꿈을 꿨어요."
+    },
+    {
+      "id": "col-107",
+      "verb": "have",
+      "noun": "drink",
+      "pattern": "have + a drink",
+      "en": "Let's have a drink.",
+      "ko": "한잔해요."
+    },
+    {
+      "id": "col-108",
+      "verb": "have",
+      "noun": "snack",
+      "pattern": "have + a snack",
+      "en": "Let's have a snack.",
+      "ko": "간식 먹어요."
+    },
+    {
+      "id": "col-109",
+      "verb": "have",
+      "noun": "appointment",
+      "pattern": "have + an appointment",
+      "en": "I have an appointment at 3.",
+      "ko": "3시에 약속이 있어요."
+    },
+    {
+      "id": "col-110",
+      "verb": "have",
+      "noun": "choice",
+      "pattern": "have + a choice",
+      "en": "You have a choice.",
+      "ko": "선택권이 있어요."
+    },
+    {
+      "id": "col-111",
+      "verb": "have",
+      "noun": "coffee",
+      "pattern": "have + a coffee",
+      "en": "Let's have a coffee.",
+      "ko": "커피 한잔해요."
+    },
+    {
+      "id": "col-112",
+      "verb": "have",
+      "noun": "problem",
+      "pattern": "have + a problem",
+      "en": "I have a problem.",
+      "ko": "문제가 있어요."
+    },
+    {
+      "id": "col-113",
+      "verb": "get",
+      "noun": "haircut",
+      "pattern": "get + a haircut",
+      "en": "I got a haircut.",
+      "ko": "머리를 잘랐어요."
+    },
+    {
+      "id": "col-114",
+      "verb": "get",
+      "noun": "ticket",
+      "pattern": "get + a ticket",
+      "en": "I got a ticket online.",
+      "ko": "온라인으로 표를 샀어요."
+    },
+    {
+      "id": "col-115",
+      "verb": "get",
+      "noun": "refund",
+      "pattern": "get + a refund",
+      "en": "Can I get a refund?",
+      "ko": "환불받을 수 있어요?"
+    },
+    {
+      "id": "col-116",
+      "verb": "get",
+      "noun": "discount",
+      "pattern": "get + a discount",
+      "en": "Can I get a discount?",
+      "ko": "할인받을 수 있어요?"
+    },
+    {
+      "id": "col-117",
+      "verb": "get",
+      "noun": "ride",
+      "pattern": "get + a ride",
+      "en": "I got a ride from a friend.",
+      "ko": "친구가 태워줬어요."
+    },
+    {
+      "id": "col-118",
+      "verb": "get",
+      "noun": "call",
+      "pattern": "get + a call",
+      "en": "I got a call from him.",
+      "ko": "그에게 전화를 받았어요."
+    },
+    {
+      "id": "col-119",
+      "verb": "get",
+      "noun": "sleep",
+      "pattern": "get + some sleep",
+      "en": "Get some sleep.",
+      "ko": "잠 좀 자요."
+    },
+    {
+      "id": "col-120",
+      "verb": "get",
+      "noun": "seat",
+      "pattern": "get + a seat",
+      "en": "I got a window seat.",
+      "ko": "창가 자리를 잡았어요."
+    },
+    {
+      "id": "col-121",
+      "verb": "get",
+      "noun": "table",
+      "pattern": "get + a table",
+      "en": "Can we get a table for two?",
+      "ko": "두 명 자리 있어요?"
+    },
+    {
+      "id": "col-122",
+      "verb": "get",
+      "noun": "text",
+      "pattern": "get + a text",
+      "en": "I got your text.",
+      "ko": "문자 받았어요."
+    },
+    {
+      "id": "col-123",
+      "verb": "get",
+      "noun": "directions",
+      "pattern": "get + directions",
+      "en": "I got directions to the hotel.",
+      "ko": "호텔 가는 길을 알아냈어요."
+    },
+    {
+      "id": "col-124",
+      "verb": "get",
+      "noun": "receipt",
+      "pattern": "get + a receipt",
+      "en": "Can I get a receipt?",
+      "ko": "영수증 주시겠어요?"
+    },
+    {
+      "id": "col-125",
+      "verb": "get",
+      "noun": "gift",
+      "pattern": "get + a gift",
+      "en": "I got a gift for you.",
+      "ko": "당신 줄 선물을 샀어요."
+    },
+    {
+      "id": "col-126",
+      "verb": "get",
+      "noun": "help",
+      "pattern": "get + help",
+      "en": "Get help right away.",
+      "ko": "바로 도움을 받으세요."
+    },
+    {
+      "id": "col-127",
+      "verb": "take",
+      "noun": "taxi",
+      "pattern": "take + a taxi",
+      "en": "Let's take a taxi.",
+      "ko": "택시 타요."
+    },
+    {
+      "id": "col-128",
+      "verb": "take",
+      "noun": "walk",
+      "pattern": "take + a walk",
+      "en": "Let's take a walk.",
+      "ko": "산책해요."
+    },
+    {
+      "id": "col-129",
+      "verb": "take",
+      "noun": "nap",
+      "pattern": "take + a nap",
+      "en": "I took a nap.",
+      "ko": "낮잠 잤어요."
+    },
+    {
+      "id": "col-130",
+      "verb": "take",
+      "noun": "medicine",
+      "pattern": "take + medicine",
+      "en": "Take this medicine.",
+      "ko": "이 약을 드세요."
+    },
+    {
+      "id": "col-131",
+      "verb": "take",
+      "noun": "class",
+      "pattern": "take + a class",
+      "en": "I take an English class.",
+      "ko": "영어 수업을 들어요."
+    },
+    {
+      "id": "col-132",
+      "verb": "take",
+      "noun": "trip",
+      "pattern": "take + a trip",
+      "en": "We took a trip to Busan.",
+      "ko": "부산으로 여행 갔어요."
+    },
+    {
+      "id": "col-133",
+      "verb": "take",
+      "noun": "breath",
+      "pattern": "take + a deep breath",
+      "en": "Take a deep breath.",
+      "ko": "심호흡하세요."
+    },
+    {
+      "id": "col-134",
+      "verb": "take",
+      "noun": "day off",
+      "pattern": "take + a day off",
+      "en": "I'm taking a day off.",
+      "ko": "하루 쉴 거예요."
+    },
+    {
+      "id": "col-135",
+      "verb": "take",
+      "noun": "turns",
+      "pattern": "take + turns",
+      "en": "Let's take turns.",
+      "ko": "번갈아 가면서 해요."
+    },
+    {
+      "id": "col-136",
+      "verb": "take",
+      "noun": "guess",
+      "pattern": "take + a guess",
+      "en": "Take a guess.",
+      "ko": "맞혀 봐요."
+    },
+    {
+      "id": "col-137",
+      "verb": "take",
+      "noun": "exam",
+      "pattern": "take + an exam",
+      "en": "I took an exam today.",
+      "ko": "오늘 시험을 봤어요."
+    },
+    {
+      "id": "col-138",
+      "verb": "take",
+      "noun": "shortcut",
+      "pattern": "take + a shortcut",
+      "en": "Let's take a shortcut.",
+      "ko": "지름길로 가요."
+    },
+    {
+      "id": "col-139",
+      "verb": "take",
+      "noun": "seat",
+      "pattern": "take + a seat",
+      "en": "Take a seat, please.",
+      "ko": "자리에 앉으세요."
+    },
+    {
+      "id": "col-140",
+      "verb": "take",
+      "noun": "bath",
+      "pattern": "take + a bath",
+      "en": "I take a bath at night.",
+      "ko": "밤에 목욕해요."
+    },
+    {
+      "id": "col-141",
+      "verb": "make",
+      "noun": "reservation",
+      "pattern": "make + a reservation",
+      "en": "I made a reservation.",
+      "ko": "예약했어요."
+    },
+    {
+      "id": "col-142",
+      "verb": "make",
+      "noun": "call",
+      "pattern": "make + a call",
+      "en": "I need to make a call.",
+      "ko": "전화 한 통 해야 해요."
+    },
+    {
+      "id": "col-143",
+      "verb": "make",
+      "noun": "choice",
+      "pattern": "make + a choice",
+      "en": "Make your choice.",
+      "ko": "선택하세요."
+    },
+    {
+      "id": "col-144",
+      "verb": "make",
+      "noun": "promise",
+      "pattern": "make + a promise",
+      "en": "I made a promise.",
+      "ko": "약속했어요."
+    },
+    {
+      "id": "col-145",
+      "verb": "make",
+      "noun": "list",
+      "pattern": "make + a list",
+      "en": "Make a shopping list.",
+      "ko": "장보기 목록을 만들어요."
+    },
+    {
+      "id": "col-146",
+      "verb": "make",
+      "noun": "joke",
+      "pattern": "make + a joke",
+      "en": "He made a joke.",
+      "ko": "그가 농담했어요."
+    },
+    {
+      "id": "col-147",
+      "verb": "make",
+      "noun": "excuse",
+      "pattern": "make + an excuse",
+      "en": "Don't make excuses.",
+      "ko": "변명하지 마세요."
+    },
+    {
+      "id": "col-148",
+      "verb": "make",
+      "noun": "mess",
+      "pattern": "make + a mess",
+      "en": "Don't make a mess.",
+      "ko": "어지르지 마세요."
+    },
+    {
+      "id": "col-149",
+      "verb": "make",
+      "noun": "bed",
+      "pattern": "make + the bed",
+      "en": "I make my bed every morning.",
+      "ko": "매일 아침 이불을 정리해요."
+    },
+    {
+      "id": "col-150",
+      "verb": "make",
+      "noun": "wish",
+      "pattern": "make + a wish",
+      "en": "Make a wish!",
+      "ko": "소원을 빌어요!"
+    },
+    {
+      "id": "col-151",
+      "verb": "make",
+      "noun": "change",
+      "pattern": "make + a change",
+      "en": "Let's make a change.",
+      "ko": "바꿔 봐요."
+    },
+    {
+      "id": "col-152",
+      "verb": "make",
+      "noun": "offer",
+      "pattern": "make + an offer",
+      "en": "They made an offer.",
+      "ko": "그들이 제안했어요."
+    },
+    {
+      "id": "col-153",
+      "verb": "make",
+      "noun": "deal",
+      "pattern": "make + a deal",
+      "en": "Let's make a deal.",
+      "ko": "합의해요."
+    },
+    {
+      "id": "col-154",
+      "verb": "make",
+      "noun": "room",
+      "pattern": "make + room",
+      "en": "Make room for him.",
+      "ko": "그가 앉게 자리를 만들어 줘요."
+    },
+    {
+      "id": "col-155",
+      "verb": "give",
+      "noun": "hug",
+      "pattern": "give + a hug",
+      "en": "Give me a hug.",
+      "ko": "안아 줘요."
+    },
+    {
+      "id": "col-156",
+      "verb": "give",
+      "noun": "ride",
+      "pattern": "give + a ride",
+      "en": "I'll give you a ride.",
+      "ko": "태워 줄게요."
+    },
+    {
+      "id": "col-157",
+      "verb": "give",
+      "noun": "answer",
+      "pattern": "give + an answer",
+      "en": "Give me an answer.",
+      "ko": "대답해 줘요."
+    },
+    {
+      "id": "col-158",
+      "verb": "give",
+      "noun": "reason",
+      "pattern": "give + a reason",
+      "en": "Give me one reason.",
+      "ko": "이유를 하나만 대 봐요."
+    },
+    {
+      "id": "col-159",
+      "verb": "give",
+      "noun": "hint",
+      "pattern": "give + a hint",
+      "en": "Give me a hint.",
+      "ko": "힌트 줘요."
+    },
+    {
+      "id": "col-160",
+      "verb": "give",
+      "noun": "directions",
+      "pattern": "give + directions",
+      "en": "She gave me directions.",
+      "ko": "그녀가 길을 알려 줬어요."
+    },
+    {
+      "id": "col-161",
+      "verb": "give",
+      "noun": "warning",
+      "pattern": "give + a warning",
+      "en": "He gave me a warning.",
+      "ko": "그가 경고했어요."
+    },
+    {
+      "id": "col-162",
+      "verb": "give",
+      "noun": "discount",
+      "pattern": "give + a discount",
+      "en": "Can you give me a discount?",
+      "ko": "할인해 줄 수 있어요?"
+    },
+    {
+      "id": "col-163",
+      "verb": "give",
+      "noun": "break",
+      "pattern": "give + a break",
+      "en": "Give me a break.",
+      "ko": "좀 봐줘요."
+    },
+    {
+      "id": "col-164",
+      "verb": "give",
+      "noun": "thought",
+      "pattern": "give + a thought",
+      "en": "Give it a thought.",
+      "ko": "한번 생각해 봐요."
+    },
+    {
+      "id": "col-165",
+      "verb": "give",
+      "noun": "gift",
+      "pattern": "give + a gift",
+      "en": "I gave her a gift.",
+      "ko": "그녀에게 선물을 줬어요."
+    },
+    {
+      "id": "col-166",
+      "verb": "do",
+      "noun": "dishes",
+      "pattern": "do + the dishes",
+      "en": "I'll do the dishes.",
+      "ko": "설거지는 제가 할게요."
+    },
+    {
+      "id": "col-167",
+      "verb": "do",
+      "noun": "laundry",
+      "pattern": "do + the laundry",
+      "en": "I do the laundry on Sundays.",
+      "ko": "일요일에 빨래해요."
+    },
+    {
+      "id": "col-168",
+      "verb": "do",
+      "noun": "shopping",
+      "pattern": "do + the shopping",
+      "en": "I did the shopping.",
+      "ko": "장을 봤어요."
+    },
+    {
+      "id": "col-169",
+      "verb": "do",
+      "noun": "hair",
+      "pattern": "do + my hair",
+      "en": "I need to do my hair.",
+      "ko": "머리를 손질해야 해요."
+    },
+    {
+      "id": "col-170",
+      "verb": "do",
+      "noun": "job",
+      "pattern": "do + a good job",
+      "en": "You did a good job.",
+      "ko": "잘했어요."
+    },
+    {
+      "id": "col-171",
+      "verb": "do",
+      "noun": "cooking",
+      "pattern": "do + the cooking",
+      "en": "I do the cooking at home.",
+      "ko": "집에서 요리는 제가 해요."
+    },
+    {
+      "id": "col-172",
+      "verb": "do",
+      "noun": "research",
+      "pattern": "do + research",
+      "en": "I did some research.",
+      "ko": "조사를 좀 했어요."
+    },
+    {
+      "id": "col-173",
+      "verb": "do",
+      "noun": "chores",
+      "pattern": "do + the chores",
+      "en": "Let's do the chores.",
+      "ko": "집안일해요."
+    },
+    {
+      "id": "col-174",
+      "verb": "do",
+      "noun": "math",
+      "pattern": "do + the math",
+      "en": "Do the math.",
+      "ko": "계산해 봐요."
+    },
+    {
+      "id": "col-175",
+      "verb": "do",
+      "noun": "damage",
+      "pattern": "do + damage",
+      "en": "The storm did damage.",
+      "ko": "폭풍이 피해를 줬어요."
+    },
+    {
+      "id": "col-176",
+      "verb": "do",
+      "noun": "work",
+      "pattern": "do + your work",
+      "en": "Just do your work.",
+      "ko": "맡은 일을 해요."
+    },
+    {
+      "id": "col-177",
+      "verb": "do",
+      "noun": "talking",
+      "pattern": "do + the talking",
+      "en": "I'll do the talking.",
+      "ko": "말은 제가 할게요."
+    },
+    {
+      "id": "col-178",
+      "verb": "go",
+      "noun": "walk",
+      "pattern": "go + for a walk",
+      "en": "Let's go for a walk.",
+      "ko": "산책하러 가요."
+    },
+    {
+      "id": "col-179",
+      "verb": "go",
+      "noun": "trip",
+      "pattern": "go + on a trip",
+      "en": "We went on a trip.",
+      "ko": "여행을 갔어요."
+    },
+    {
+      "id": "col-180",
+      "verb": "go",
+      "noun": "diet",
+      "pattern": "go + on a diet",
+      "en": "I'm going on a diet.",
+      "ko": "다이어트를 시작해요."
+    },
+    {
+      "id": "col-181",
+      "verb": "go",
+      "noun": "drive",
+      "pattern": "go + for a drive",
+      "en": "Let's go for a drive.",
+      "ko": "드라이브하러 가요."
+    },
+    {
+      "id": "col-182",
+      "verb": "go",
+      "noun": "vacation",
+      "pattern": "go + on vacation",
+      "en": "I'm going on vacation.",
+      "ko": "휴가를 가요."
+    },
+    {
+      "id": "col-183",
+      "verb": "go",
+      "noun": "bed",
+      "pattern": "go + to bed",
+      "en": "I go to bed at 11.",
+      "ko": "11시에 자요."
+    },
+    {
+      "id": "col-184",
+      "verb": "go",
+      "noun": "work",
+      "pattern": "go + to work",
+      "en": "I go to work by subway.",
+      "ko": "지하철로 출근해요."
+    },
+    {
+      "id": "col-185",
+      "verb": "go",
+      "noun": "run",
+      "pattern": "go + for a run",
+      "en": "I go for a run every morning.",
+      "ko": "매일 아침 달리기하러 가요."
+    },
+    {
+      "id": "col-186",
+      "verb": "go",
+      "noun": "date",
+      "pattern": "go + on a date",
+      "en": "They went on a date.",
+      "ko": "그들은 데이트했어요."
+    },
+    {
+      "id": "col-187",
+      "verb": "keep",
+      "noun": "diary",
+      "pattern": "keep + a diary",
+      "en": "I keep a diary.",
+      "ko": "일기를 써요."
+    },
+    {
+      "id": "col-188",
+      "verb": "keep",
+      "noun": "change",
+      "pattern": "keep + the change",
+      "en": "Keep the change.",
+      "ko": "잔돈은 가지세요."
+    },
+    {
+      "id": "col-189",
+      "verb": "keep",
+      "noun": "track",
+      "pattern": "keep + track",
+      "en": "Keep track of your spending.",
+      "ko": "지출을 기록해요."
+    },
+    {
+      "id": "col-190",
+      "verb": "keep",
+      "noun": "distance",
+      "pattern": "keep + your distance",
+      "en": "Keep your distance.",
+      "ko": "거리를 두세요."
+    },
+    {
+      "id": "col-191",
+      "verb": "keep",
+      "noun": "calm",
+      "pattern": "keep + calm",
+      "en": "Keep calm.",
+      "ko": "침착해요."
+    },
+    {
+      "id": "col-192",
+      "verb": "keep",
+      "noun": "record",
+      "pattern": "keep + a record",
+      "en": "Keep a record of it.",
+      "ko": "기록해 두세요."
+    },
+    {
+      "id": "col-193",
+      "verb": "keep",
+      "noun": "touch",
+      "pattern": "keep + in touch",
+      "en": "Let's keep in touch.",
+      "ko": "연락하고 지내요."
+    },
+    {
+      "id": "col-194",
+      "verb": "keep",
+      "noun": "balance",
+      "pattern": "keep + your balance",
+      "en": "Keep your balance.",
+      "ko": "균형을 잡아요."
+    },
+    {
+      "id": "col-195",
+      "verb": "put",
+      "noun": "pressure",
+      "pattern": "put + pressure (+ on)",
+      "en": "Don't put pressure on me.",
+      "ko": "부담 주지 마세요."
+    },
+    {
+      "id": "col-196",
+      "verb": "put",
+      "noun": "stop",
+      "pattern": "put + a stop (+ to)",
+      "en": "Put a stop to it.",
+      "ko": "그만두게 해요."
+    },
+    {
+      "id": "col-197",
+      "verb": "put",
+      "noun": "blame",
+      "pattern": "put + the blame (+ on)",
+      "en": "Don't put the blame on me.",
+      "ko": "저를 탓하지 마세요."
+    },
+    {
+      "id": "col-198",
+      "verb": "put",
+      "noun": "weight",
+      "pattern": "put + on weight",
+      "en": "I put on weight.",
+      "ko": "살이 쪘어요."
+    },
+    {
+      "id": "col-199",
+      "verb": "put",
+      "noun": "mind",
+      "pattern": "put + your mind (+ to)",
+      "en": "Put your mind to it.",
+      "ko": "거기에 전념해 봐요."
+    },
+    {
+      "id": "col-200",
+      "verb": "come",
+      "noun": "mind",
+      "pattern": "come + to mind",
+      "en": "Nothing comes to mind.",
+      "ko": "딱히 떠오르는 게 없어요."
+    },
+    {
+      "id": "col-201",
+      "verb": "come",
+      "noun": "end",
+      "pattern": "come + to an end",
+      "en": "Summer came to an end.",
+      "ko": "여름이 끝났어요."
+    },
+    {
+      "id": "col-202",
+      "verb": "come",
+      "noun": "first",
+      "pattern": "come + first",
+      "en": "Family comes first.",
+      "ko": "가족이 우선이에요."
+    },
+    {
+      "id": "col-203",
+      "verb": "come",
+      "noun": "decision",
+      "pattern": "come + to a decision",
+      "en": "We came to a decision.",
+      "ko": "결정을 내렸어요."
+    },
+    {
+      "id": "col-204",
+      "verb": "come",
+      "noun": "point",
+      "pattern": "come + to the point",
+      "en": "Come to the point.",
+      "ko": "요점을 말해요."
+    },
+    {
+      "id": "col-205",
+      "verb": "pay",
+      "noun": "cash",
+      "pattern": "pay + in cash",
+      "en": "I'll pay in cash.",
+      "ko": "현금으로 낼게요."
+    },
+    {
+      "id": "col-206",
+      "verb": "pay",
+      "noun": "card",
+      "pattern": "pay + by card",
+      "en": "Can I pay by card?",
+      "ko": "카드로 계산돼요?"
+    },
+    {
+      "id": "col-207",
+      "verb": "pay",
+      "noun": "price",
+      "pattern": "pay + the price",
+      "en": "You'll pay the price.",
+      "ko": "대가를 치를 거예요."
+    },
+    {
+      "id": "col-208",
+      "verb": "pay",
+      "noun": "compliment",
+      "pattern": "pay + a compliment",
+      "en": "He paid me a compliment.",
+      "ko": "그가 칭찬해 줬어요."
+    },
+    {
+      "id": "col-209",
+      "verb": "pay",
+      "noun": "rent",
+      "pattern": "pay + the rent",
+      "en": "I pay the rent monthly.",
+      "ko": "매달 집세를 내요."
+    },
+    {
+      "id": "col-210",
+      "verb": "catch",
+      "noun": "flight",
+      "pattern": "catch + a flight",
+      "en": "I have to catch a flight.",
+      "ko": "비행기를 타야 해요."
+    },
+    {
+      "id": "col-211",
+      "verb": "catch",
+      "noun": "movie",
+      "pattern": "catch + a movie",
+      "en": "Let's catch a movie.",
+      "ko": "영화 보러 가요."
+    },
+    {
+      "id": "col-212",
+      "verb": "catch",
+      "noun": "break",
+      "pattern": "catch + a break",
+      "en": "I can't catch a break.",
+      "ko": "되는 일이 없네요."
+    },
+    {
+      "id": "col-213",
+      "verb": "catch",
+      "noun": "fire",
+      "pattern": "catch + fire",
+      "en": "The house caught fire.",
+      "ko": "집에 불이 났어요."
+    },
+    {
+      "id": "col-214",
+      "verb": "catch",
+      "noun": "breath",
+      "pattern": "catch + my breath",
+      "en": "Let me catch my breath.",
+      "ko": "숨 좀 돌릴게요."
+    },
+    {
+      "id": "col-215",
+      "verb": "break",
+      "noun": "ice",
+      "pattern": "break + the ice",
+      "en": "He broke the ice.",
+      "ko": "그가 어색함을 풀었어요."
+    },
+    {
+      "id": "col-216",
+      "verb": "break",
+      "noun": "rules",
+      "pattern": "break + the rules",
+      "en": "Don't break the rules.",
+      "ko": "규칙을 어기지 마세요."
+    },
+    {
+      "id": "col-217",
+      "verb": "break",
+      "noun": "promise",
+      "pattern": "break + a promise",
+      "en": "I never break a promise.",
+      "ko": "약속은 절대 안 어겨요."
+    },
+    {
+      "id": "col-218",
+      "verb": "break",
+      "noun": "silence",
+      "pattern": "break + the silence",
+      "en": "She broke the silence.",
+      "ko": "그녀가 침묵을 깼어요."
+    },
+    {
+      "id": "col-219",
+      "verb": "break",
+      "noun": "leg",
+      "pattern": "break + a leg",
+      "en": "Break a leg!",
+      "ko": "행운을 빌어요!"
+    },
+    {
+      "id": "col-220",
+      "verb": "save",
+      "noun": "seat",
+      "pattern": "save + a seat",
+      "en": "Save me a seat.",
+      "ko": "자리 좀 맡아 줘요."
+    },
+    {
+      "id": "col-221",
+      "verb": "save",
+      "noun": "energy",
+      "pattern": "save + energy",
+      "en": "Let's save energy.",
+      "ko": "에너지를 아껴요."
+    },
+    {
+      "id": "col-222",
+      "verb": "save",
+      "noun": "date",
+      "pattern": "save + the date",
+      "en": "Save the date!",
+      "ko": "그 날짜 비워 두세요!"
+    },
+    {
+      "id": "col-223",
+      "verb": "save",
+      "noun": "room",
+      "pattern": "save + room",
+      "en": "Save room for dessert.",
+      "ko": "디저트 먹을 배는 남겨 두세요."
+    },
+    {
+      "id": "col-224",
+      "verb": "lose",
+      "noun": "touch",
+      "pattern": "lose + touch",
+      "en": "We lost touch.",
+      "ko": "연락이 끊겼어요."
+    },
+    {
+      "id": "col-225",
+      "verb": "lose",
+      "noun": "interest",
+      "pattern": "lose + interest",
+      "en": "I lost interest.",
+      "ko": "흥미를 잃었어요."
+    },
+    {
+      "id": "col-226",
+      "verb": "lose",
+      "noun": "track",
+      "pattern": "lose + track (+ of)",
+      "en": "I lost track of time.",
+      "ko": "시간 가는 줄 몰랐어요."
+    },
+    {
+      "id": "col-227",
+      "verb": "lose",
+      "noun": "sleep",
+      "pattern": "lose + sleep (+ over)",
+      "en": "Don't lose sleep over it.",
+      "ko": "그 일로 잠 설치지 마세요."
+    },
+    {
+      "id": "col-228",
+      "verb": "lose",
+      "noun": "appetite",
+      "pattern": "lose + my appetite",
+      "en": "I lost my appetite.",
+      "ko": "입맛이 없어요."
+    },
+    {
+      "id": "col-229",
+      "verb": "set",
+      "noun": "table",
+      "pattern": "set + the table",
+      "en": "Please set the table.",
+      "ko": "상 차려 주세요."
+    },
+    {
+      "id": "col-230",
+      "verb": "set",
+      "noun": "date",
+      "pattern": "set + a date",
+      "en": "Let's set a date.",
+      "ko": "날짜를 정해요."
+    },
+    {
+      "id": "col-231",
+      "verb": "set",
+      "noun": "record",
+      "pattern": "set + a record",
+      "en": "He set a new record.",
+      "ko": "그가 신기록을 세웠어요."
+    },
+    {
+      "id": "col-232",
+      "verb": "set",
+      "noun": "mood",
+      "pattern": "set + the mood",
+      "en": "Music sets the mood.",
+      "ko": "음악이 분위기를 만들어요."
+    },
+    {
+      "id": "col-233",
+      "verb": "set",
+      "noun": "reminder",
+      "pattern": "set + a reminder",
+      "en": "I set a reminder.",
+      "ko": "알림을 설정했어요."
+    },
+    {
+      "id": "col-234",
+      "verb": "run",
+      "noun": "errands",
+      "pattern": "run + errands",
+      "en": "I have to run errands.",
+      "ko": "볼일을 봐야 해요."
+    },
+    {
+      "id": "col-235",
+      "verb": "run",
+      "noun": "late",
+      "pattern": "run + late",
+      "en": "I'm running late.",
+      "ko": "늦고 있어요."
+    },
+    {
+      "id": "col-236",
+      "verb": "run",
+      "noun": "fever",
+      "pattern": "run + a fever",
+      "en": "She's running a fever.",
+      "ko": "그녀가 열이 나요."
+    },
+    {
+      "id": "col-237",
+      "verb": "run",
+      "noun": "marathon",
+      "pattern": "run + a marathon",
+      "en": "He ran a marathon.",
+      "ko": "그가 마라톤을 뛰었어요."
+    },
+    {
+      "id": "col-238",
+      "verb": "run",
+      "noun": "red light",
+      "pattern": "run + a red light",
+      "en": "Don't run a red light.",
+      "ko": "신호 위반하지 마세요."
+    },
+    {
+      "id": "col-239",
+      "verb": "meet",
+      "noun": "expectations",
+      "pattern": "meet + expectations",
+      "en": "It met my expectations.",
+      "ko": "기대에 부응했어요."
+    },
+    {
+      "id": "col-240",
+      "verb": "meet",
+      "noun": "halfway",
+      "pattern": "meet + halfway",
+      "en": "Let's meet halfway.",
+      "ko": "서로 조금씩 양보해요."
+    },
+    {
+      "id": "col-241",
+      "verb": "meet",
+      "noun": "requirements",
+      "pattern": "meet + the requirements",
+      "en": "You meet the requirements.",
+      "ko": "자격 요건을 충족해요."
+    },
+    {
+      "id": "col-242",
+      "verb": "meet",
+      "noun": "person",
+      "pattern": "meet + in person",
+      "en": "Let's meet in person.",
+      "ko": "직접 만나요."
+    },
+    {
+      "id": "col-243",
+      "verb": "feel",
+      "noun": "same",
+      "pattern": "feel + the same",
+      "en": "I feel the same.",
+      "ko": "저도 같은 마음이에요."
+    },
+    {
+      "id": "col-244",
+      "verb": "feel",
+      "noun": "home",
+      "pattern": "feel + at home",
+      "en": "Make yourself feel at home.",
+      "ko": "편하게 있어요."
+    },
+    {
+      "id": "col-245",
+      "verb": "feel",
+      "noun": "difference",
+      "pattern": "feel + the difference",
+      "en": "You'll feel the difference.",
+      "ko": "차이를 느낄 거예요."
+    },
+    {
+      "id": "col-246",
+      "verb": "feel",
+      "noun": "pain",
+      "pattern": "feel + pain",
+      "en": "I feel pain in my back.",
+      "ko": "허리가 아파요."
+    },
+    {
+      "id": "col-247",
+      "verb": "find",
+      "noun": "job",
+      "pattern": "find + a job",
+      "en": "She found a job.",
+      "ko": "그녀가 일자리를 구했어요."
+    },
+    {
+      "id": "col-248",
+      "verb": "find",
+      "noun": "solution",
+      "pattern": "find + a solution",
+      "en": "We found a solution.",
+      "ko": "해결책을 찾았어요."
+    },
+    {
+      "id": "col-249",
+      "verb": "find",
+      "noun": "courage",
+      "pattern": "find + the courage",
+      "en": "I found the courage.",
+      "ko": "용기를 냈어요."
+    },
+    {
+      "id": "col-250",
+      "verb": "find",
+      "noun": "seat",
+      "pattern": "find + a seat",
+      "en": "Let's find a seat.",
+      "ko": "자리를 찾아봐요."
+    },
+    {
+      "id": "col-251",
+      "verb": "find",
+      "noun": "keys",
+      "pattern": "find + my keys",
+      "en": "I found my keys.",
+      "ko": "열쇠를 찾았어요."
+    },
+    {
+      "id": "col-252",
+      "verb": "ask",
+      "noun": "question",
+      "pattern": "ask + a question",
+      "en": "Can I ask a question?",
+      "ko": "질문해도 돼요?"
+    },
+    {
+      "id": "col-253",
+      "verb": "ask",
+      "noun": "favor",
+      "pattern": "ask + a favor",
+      "en": "Can I ask you a favor?",
+      "ko": "부탁 하나 해도 돼요?"
+    },
+    {
+      "id": "col-254",
+      "verb": "ask",
+      "noun": "directions",
+      "pattern": "ask + for directions",
+      "en": "I asked for directions.",
+      "ko": "길을 물어봤어요."
+    },
+    {
+      "id": "col-255",
+      "verb": "ask",
+      "noun": "bill",
+      "pattern": "ask + for the bill",
+      "en": "Let's ask for the bill.",
+      "ko": "계산서 달라고 해요."
+    },
+    {
+      "id": "col-256",
+      "verb": "tell",
+      "noun": "truth",
+      "pattern": "tell + the truth",
+      "en": "Tell me the truth.",
+      "ko": "사실대로 말해요."
+    },
+    {
+      "id": "col-257",
+      "verb": "tell",
+      "noun": "lie",
+      "pattern": "tell + a lie",
+      "en": "Don't tell a lie.",
+      "ko": "거짓말하지 마세요."
+    },
+    {
+      "id": "col-258",
+      "verb": "tell",
+      "noun": "story",
+      "pattern": "tell + a story",
+      "en": "Tell me a story.",
+      "ko": "이야기해 주세요."
+    },
+    {
+      "id": "col-259",
+      "verb": "tell",
+      "noun": "difference",
+      "pattern": "tell + the difference",
+      "en": "I can't tell the difference.",
+      "ko": "차이를 모르겠어요."
+    },
+    {
+      "id": "col-260",
+      "verb": "say",
+      "noun": "hello",
+      "pattern": "say + hello",
+      "en": "Say hello to your family.",
+      "ko": "가족에게 안부 전해요."
+    },
+    {
+      "id": "col-261",
+      "verb": "say",
+      "noun": "sorry",
+      "pattern": "say + sorry",
+      "en": "Say sorry to her.",
+      "ko": "그녀에게 사과해요."
+    },
+    {
+      "id": "col-262",
+      "verb": "say",
+      "noun": "goodbye",
+      "pattern": "say + goodbye",
+      "en": "We said goodbye.",
+      "ko": "작별 인사를 했어요."
+    },
+    {
+      "id": "col-263",
+      "verb": "hold",
+      "noun": "door",
+      "pattern": "hold + the door",
+      "en": "Hold the door, please.",
+      "ko": "문 좀 잡아 주세요."
+    },
+    {
+      "id": "col-264",
+      "verb": "hold",
+      "noun": "line",
+      "pattern": "hold + the line",
+      "en": "Please hold the line.",
+      "ko": "끊지 말고 기다려 주세요."
+    },
+    {
+      "id": "col-265",
+      "verb": "hold",
+      "noun": "meeting",
+      "pattern": "hold + a meeting",
+      "en": "We held a meeting.",
+      "ko": "회의를 열었어요."
+    },
+    {
+      "id": "col-266",
+      "verb": "miss",
+      "noun": "bus",
+      "pattern": "miss + the bus",
+      "en": "I missed the bus.",
+      "ko": "버스를 놓쳤어요."
+    },
+    {
+      "id": "col-267",
+      "verb": "miss",
+      "noun": "chance",
+      "pattern": "miss + a chance",
+      "en": "Don't miss the chance.",
+      "ko": "기회를 놓치지 마세요."
+    },
+    {
+      "id": "col-268",
+      "verb": "miss",
+      "noun": "point",
+      "pattern": "miss + the point",
+      "en": "You're missing the point.",
+      "ko": "요점을 놓치고 있어요."
+    },
+    {
+      "id": "col-269",
+      "verb": "waste",
+      "noun": "time",
+      "pattern": "waste + time",
+      "en": "Don't waste time.",
+      "ko": "시간 낭비하지 마세요."
+    },
+    {
+      "id": "col-270",
+      "verb": "waste",
+      "noun": "money",
+      "pattern": "waste + money",
+      "en": "I wasted money on it.",
+      "ko": "거기에 돈을 낭비했어요."
+    },
+    {
+      "id": "col-271",
+      "verb": "spend",
+      "noun": "time",
+      "pattern": "spend + time",
+      "en": "I spend time with family.",
+      "ko": "가족과 시간을 보내요."
+    },
+    {
+      "id": "col-272",
+      "verb": "spend",
+      "noun": "money",
+      "pattern": "spend + money",
+      "en": "I spent too much money.",
+      "ko": "돈을 너무 많이 썼어요."
+    },
+    {
+      "id": "col-273",
+      "verb": "spend",
+      "noun": "weekend",
+      "pattern": "spend + the weekend",
+      "en": "I spent the weekend at home.",
+      "ko": "주말을 집에서 보냈어요."
+    },
+    {
+      "id": "col-274",
+      "verb": "start",
+      "noun": "conversation",
+      "pattern": "start + a conversation",
+      "en": "He started a conversation.",
+      "ko": "그가 대화를 시작했어요."
+    },
+    {
+      "id": "col-275",
+      "verb": "start",
+      "noun": "day",
+      "pattern": "start + the day",
+      "en": "Start the day early.",
+      "ko": "하루를 일찍 시작해요."
+    },
+    {
+      "id": "col-276",
+      "verb": "change",
+      "noun": "mind",
+      "pattern": "change + my mind",
+      "en": "I changed my mind.",
+      "ko": "마음을 바꿨어요."
+    },
+    {
+      "id": "col-277",
+      "verb": "change",
+      "noun": "subject",
+      "pattern": "change + the subject",
+      "en": "Don't change the subject.",
+      "ko": "말 돌리지 마세요."
+    },
+    {
+      "id": "col-278",
+      "verb": "change",
+      "noun": "clothes",
+      "pattern": "change + clothes",
+      "en": "I need to change clothes.",
+      "ko": "옷을 갈아입어야 해요."
+    },
+    {
+      "id": "col-279",
+      "verb": "check",
+      "noun": "time",
+      "pattern": "check + the time",
+      "en": "Check the time.",
+      "ko": "시간을 확인해요."
+    },
+    {
+      "id": "col-280",
+      "verb": "check",
+      "noun": "weather",
+      "pattern": "check + the weather",
+      "en": "I checked the weather.",
+      "ko": "날씨를 확인했어요."
+    },
+    {
+      "id": "col-281",
+      "verb": "check",
+      "noun": "menu",
+      "pattern": "check + the menu",
+      "en": "Let's check the menu.",
+      "ko": "메뉴를 봐요."
+    },
+    {
+      "id": "col-282",
+      "verb": "book",
+      "noun": "room",
+      "pattern": "book + a room",
+      "en": "I booked a room.",
+      "ko": "방을 예약했어요."
+    },
+    {
+      "id": "col-283",
+      "verb": "book",
+      "noun": "flight",
+      "pattern": "book + a flight",
+      "en": "I booked a flight.",
+      "ko": "항공편을 예약했어요."
+    },
+    {
+      "id": "col-284",
+      "verb": "order",
+      "noun": "food",
+      "pattern": "order + food",
+      "en": "Let's order food.",
+      "ko": "음식을 시켜요."
+    },
+    {
+      "id": "col-285",
+      "verb": "order",
+      "noun": "coffee",
+      "pattern": "order + coffee",
+      "en": "I ordered coffee.",
+      "ko": "커피를 주문했어요."
+    },
+    {
+      "id": "col-286",
+      "verb": "leave",
+      "noun": "message",
+      "pattern": "leave + a message",
+      "en": "Can I leave a message?",
+      "ko": "메시지를 남겨도 될까요?"
+    },
+    {
+      "id": "col-287",
+      "verb": "leave",
+      "noun": "tip",
+      "pattern": "leave + a tip",
+      "en": "Should we leave a tip?",
+      "ko": "팁을 남겨야 할까요?"
+    },
+    {
+      "id": "col-288",
+      "verb": "leave",
+      "noun": "home",
+      "pattern": "leave + home",
+      "en": "I leave home at 8.",
+      "ko": "8시에 집을 나서요."
+    },
+    {
+      "id": "col-289",
+      "verb": "answer",
+      "noun": "phone",
+      "pattern": "answer + the phone",
+      "en": "Answer the phone.",
+      "ko": "전화 받아요."
+    },
+    {
+      "id": "col-290",
+      "verb": "answer",
+      "noun": "door",
+      "pattern": "answer + the door",
+      "en": "Can you answer the door?",
+      "ko": "문 좀 열어 줄래요?"
+    },
+    {
+      "id": "col-291",
+      "verb": "watch",
+      "noun": "step",
+      "pattern": "watch + your step",
+      "en": "Watch your step.",
+      "ko": "발밑 조심하세요."
+    },
+    {
+      "id": "col-292",
+      "verb": "shake",
+      "noun": "hands",
+      "pattern": "shake + hands",
+      "en": "We shook hands.",
+      "ko": "악수했어요."
+    },
+    {
+      "id": "col-293",
+      "verb": "cross",
+      "noun": "street",
+      "pattern": "cross + the street",
+      "en": "Cross the street carefully.",
+      "ko": "길을 조심히 건너요."
+    },
+    {
+      "id": "col-294",
+      "verb": "charge",
+      "noun": "phone",
+      "pattern": "charge + my phone",
+      "en": "I need to charge my phone.",
+      "ko": "폰을 충전해야 해요."
+    },
+    {
+      "id": "col-295",
+      "verb": "wait",
+      "noun": "line",
+      "pattern": "wait + in line",
+      "en": "We waited in line.",
+      "ko": "줄 서서 기다렸어요."
     }
   ]
 }

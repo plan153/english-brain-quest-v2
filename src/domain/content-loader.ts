@@ -57,7 +57,7 @@ export async function loadStarterPack(): Promise<ContentItem[]> {
   return items;
 }
 
-/** 코로케이션 카탈로그 (50개) 로드 */
+/** 코로케이션 카탈로그 (300개) 로드 */
 export async function loadCollocations(): Promise<Collocation[]> {
   if (cache.has('collocations')) {
     return cache.get('collocations') as Collocation[];

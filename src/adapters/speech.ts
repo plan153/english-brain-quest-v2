@@ -8,6 +8,7 @@
  *    클릭 제스처 안에서 동기 start() 호출 (Promise 래핑 시 Safari/iOS 제스처 끊김)
  */
 import type { SpeechAdapter, SpeechRecognitionLike } from '../interfaces/SpeechResult';
+import { playPreparedAudio, stopPreparedAudio } from './tts-audio';
 
 type RecognitionCtor = new () => SpeechRecognitionLike;
 
@@ -84,7 +85,8 @@ function createSpeechAdapter(): SpeechAdapter {
   }
 
   function isSynthesisSupported() {
-    return !!synth;
+    // 사전 생성 mp3만 있어도 듣기는 가능 (Web Speech 미지원 브라우저 대비)
+    return !!synth || typeof Audio !== 'undefined';
   }
 
   /**
@@ -133,7 +135,20 @@ function createSpeechAdapter(): SpeechAdapter {
     });
   }
 
-  function synthesize(text: string, lang: 'en' | 'ko' = 'en') {
+  /** 영어는 사전 생성 mp3 우선 (Azure Neural) → 없으면 Web Speech 폴백 */
+  async function synthesize(text: string, lang: 'en' | 'ko' = 'en') {
+    if (lang === 'en') {
+      try {
+        stopSynthesis();
+        if (await playPreparedAudio(text)) return;
+      } catch {
+        /* 폴백으로 진행 */
+      }
+    }
+    return synthesizeWithWebSpeech(text, lang);
+  }
+
+  function synthesizeWithWebSpeech(text: string, lang: 'en' | 'ko' = 'en') {
     return new Promise<void>((resolve) => {
       if (!synth) {
         resolve();
@@ -179,6 +194,7 @@ function createSpeechAdapter(): SpeechAdapter {
   }
 
   function stopSynthesis() {
+    stopPreparedAudio();
     if (synth) {
       try {
         synth.cancel();

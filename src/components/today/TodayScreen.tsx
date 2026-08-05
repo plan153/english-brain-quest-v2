@@ -80,7 +80,7 @@ const PACK_SOURCES: PackSource[] = [
   {
     id: 'collocations',
     name: '코로케이션',
-    description: '만능동사+명사 100개',
+    description: '만능동사+명사 300개',
     load: loadCollocationsAsItems,
   },
   {

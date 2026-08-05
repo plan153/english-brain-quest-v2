@@ -1,7 +1,7 @@
 {
   "name": "english-brain-quest-v2",
   "private": true,
-  "version": "0.2.32",
+  "version": "0.2.34",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "build:pages": "VITE_BASE=/${npm_package_name}/ npm run build"
+    "build:pages": "VITE_BASE=/${npm_package_name}/ npm run build",
+    "tts": "node scripts/generate-tts.mjs"
   },
   "dependencies": {
     "react": "^19.2.7",
