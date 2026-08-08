@@ -42,6 +42,12 @@ git add public/audio && git commit -m "Regenerate TTS audio"
 서비스워커가 별도 캐시(`ebq-audio-v1`)에 영구 보관해 앱 버전이 올라가도 재다운로드하지 않는다.
 API 키는 절대 커밋하지 말 것.
 
+음성 인식(STT)은 기본적으로 브라우저 내장 Web Speech API를 사용한다. 브라우저 내장 Whisper
+(`Xenova/whisper-tiny.en`, `@huggingface/transformers`)도 구현돼 있지만 실사용 테스트에서
+무음 자동종료가 안 되고(최대 청취시간까지 매번 대기) 인식 정확도도 떨어져 기본 비활성화
+상태다 (`src/adapters/speech.ts`의 `WHISPER_STT_ENABLED`). 코드는 남겨뒀으니 VAD나 더 큰
+모델로 재도전하려면 그 값만 `true`로 바꾸면 된다.
+
 ## 배포
 
 `master`/`main`에 push하면 GitHub Actions(`.github/workflows/deploy-pages.yml`)가 테스트 →

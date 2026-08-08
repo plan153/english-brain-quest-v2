@@ -210,6 +210,57 @@ describe('2. difficulty-mixer', () => {
     expect(ratio.easy).toBeGreaterThanOrEqual(1);
     expect(ratio.challenge + ratio.easy + ratio.normal).toBe(20);
   });
+
+  it('priorityVerbs never excludes non-priority items, only reorders', () => {
+    const priority = Array.from({ length: 6 }, (_, i) => ({
+      ...fakeItem(`have${i}`),
+      tags: ['verb:have'],
+    }));
+    const rest = Array.from({ length: 24 }, (_, i) => ({
+      ...fakeItem(`ask${i}`),
+      tags: ['verb:ask'],
+    }));
+    const items = [...priority, ...rest];
+    const mixed = mixDifficulty(items, {
+      skill: DEFAULT_SKILL_PROFILE,
+      shuffle: true,
+      priorityVerbs: new Set(['have', 'get', 'take']),
+    });
+    // 배제된 항목 없이 전체 30개가 그대로 다 있어야 함
+    expect(mixed.length).toBe(30);
+    expect(new Set(mixed.map((m) => m.item.id)).size).toBe(30);
+  });
+
+  it('priorityVerbs items land earlier on average across many shuffles', () => {
+    const priority = Array.from({ length: 5 }, (_, i) => ({
+      ...fakeItem(`have${i}`),
+      tags: ['verb:have'],
+    }));
+    const rest = Array.from({ length: 45 }, (_, i) => ({
+      ...fakeItem(`ask${i}`),
+      tags: ['verb:ask'],
+    }));
+    const items = [...priority, ...rest];
+
+    let priorityPosSum = 0;
+    let restPosSum = 0;
+    const trials = 60;
+    for (let t = 0; t < trials; t++) {
+      const mixed = mixDifficulty(items, {
+        skill: DEFAULT_SKILL_PROFILE,
+        shuffle: true,
+        priorityVerbs: new Set(['have', 'get', 'take']),
+      });
+      mixed.forEach((m, idx) => {
+        if (m.item.id.startsWith('have')) priorityPosSum += idx;
+        else restPosSum += idx;
+      });
+    }
+    const priorityAvg = priorityPosSum / (priority.length * trials);
+    const restAvg = restPosSum / (rest.length * trials);
+    // 다른 동사가 밀려나되(배제 아님), 우선 동사가 통계적으로 더 앞쪽 평균 위치를 가져야 함
+    expect(priorityAvg).toBeLessThan(restAvg);
+  });
 });
 
 describe('3. reward-engine', () => {
@@ -1165,5 +1216,47 @@ describe('14. build-time TTS (Azure)', () => {
       expect(prev === undefined || prev === t).toBe(true);
       byHash.set(h, t);
     }
+  });
+});
+
+describe('15. Whisper STT audio preprocessing', () => {
+  it('averages multi-channel audio to mono', async () => {
+    const { toMono } = await import('../adapters/audio-resample');
+    const left = new Float32Array([1, 0.5, -1]);
+    const right = new Float32Array([-1, 0.5, 1]);
+    expect(Array.from(toMono([left, right]))).toEqual([0, 0.5, 0]);
+  });
+
+  it('passes single-channel audio through unchanged', async () => {
+    const { toMono } = await import('../adapters/audio-resample');
+    const only = new Float32Array([0.1, 0.2, 0.3]);
+    expect(toMono([only])).toBe(only);
+  });
+
+  it('resampleLinear is a no-op when rates match', async () => {
+    const { resampleLinear } = await import('../adapters/audio-resample');
+    const input = new Float32Array([0.1, 0.2, 0.3]);
+    expect(resampleLinear(input, 16000, 16000)).toBe(input);
+  });
+
+  it('resampleLinear downsamples to the target length ratio', async () => {
+    const { resampleLinear } = await import('../adapters/audio-resample');
+    // 48kHz -> 16kHz면 길이가 대략 1/3
+    const input = new Float32Array(48000);
+    const out = resampleLinear(input, 48000, 16000);
+    expect(out.length).toBeGreaterThan(15500);
+    expect(out.length).toBeLessThan(16500);
+  });
+
+  it('toWhisperInput combines mono-mixing and 16kHz resampling', async () => {
+    const { toWhisperInput, WHISPER_SAMPLE_RATE } = await import('../adapters/audio-resample');
+    expect(WHISPER_SAMPLE_RATE).toBe(16000);
+    const left = new Float32Array(44100).fill(1);
+    const right = new Float32Array(44100).fill(-1);
+    const out = toWhisperInput([left, right], 44100);
+    // 모노 믹스 결과가 0에 가까움 (좌우가 상쇄) + 16kHz 근처 길이
+    expect(out.every((v) => Math.abs(v) < 1e-6)).toBe(true);
+    expect(out.length).toBeGreaterThan(15000);
+    expect(out.length).toBeLessThan(17000);
   });
 });

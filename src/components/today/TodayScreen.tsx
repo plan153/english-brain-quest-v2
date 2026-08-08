@@ -68,7 +68,7 @@ const PACK_SOURCES: PackSource[] = [
   {
     id: 'quiz-verbs',
     name: '기본동사 100',
-    description: 'Day 1→100 순서 · 500문장',
+    description: '500문장 · have/get/take 우선 노출',
     load: loadQuizVerbsAsItems,
   },
   {

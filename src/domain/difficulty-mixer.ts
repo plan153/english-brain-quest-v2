@@ -34,6 +34,13 @@ export interface DifficultyMixOptions {
   /** 셔플 여부 (기본 true) */
   shuffle?: boolean;
   /** 난이도 태그를 품은 ContentItem 필드 (item.level 사용) */
+  /**
+   * 우선 노출할 동사 집합 (item.tags의 `verb:xxx`와 매칭, 소문자).
+   * 다른 동사를 배제하지 않고 셔플 시 더 앞쪽에 오도록 가중치만 준다.
+   */
+  priorityVerbs?: Set<string>;
+  /** priorityVerbs 항목의 가중치 배수 (기본 3) */
+  priorityWeight?: number;
 }
 
 export type DifficultyTier = 'easy' | 'normal' | 'challenge';
@@ -75,6 +82,21 @@ function shuffle<T>(arr: T[]): T[] {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
+}
+
+/**
+ * 가중 셔플 (Efraimidis-Spirakis) — weight가 높을수록 앞쪽에 뽑힐 확률이 높아질 뿐,
+ * weight가 낮은 항목도 항상 포함된다 (배제 없이 노출 빈도만 조절).
+ */
+function weightedShuffle<T>(arr: T[], weightOf: (item: T) => number): T[] {
+  return arr
+    .map((item) => ({ item, key: Math.random() ** (1 / Math.max(weightOf(item), 0.0001)) }))
+    .sort((a, b) => b.key - a.key)
+    .map((x) => x.item);
+}
+
+function itemVerb(item: ContentItem): string | undefined {
+  return item.tags?.find((t) => t.startsWith('verb:'))?.slice('verb:'.length);
 }
 
 /**
@@ -154,7 +176,16 @@ export function mixDifficulty(
   ];
 
   const mixed = [...pickedChallenges, ...pickedEasies, ...pickedNormals];
-  return doShuffle ? shuffle(mixed) : mixed;
+  if (!doShuffle) return mixed;
+  if (options.priorityVerbs && options.priorityVerbs.size > 0) {
+    const weight = options.priorityWeight ?? 3;
+    const priorityVerbs = options.priorityVerbs;
+    return weightedShuffle(mixed, (m) => {
+      const verb = itemVerb(m.item);
+      return verb && priorityVerbs.has(verb) ? weight : 1;
+    });
+  }
+  return shuffle(mixed);
 }
 
 /**

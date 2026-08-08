@@ -957,8 +957,14 @@ export const useStore = create<AppStore>((set, get) => {
       const size = options.size ?? 10; // Phase 2 데모는 10문장 (50은 너무 김)
       const practiceBand = get().practiceBand;
       const packId = items.find((it) => it.packId)?.packId;
-      const sequentialDayPack =
-        packId === 'quiz-verbs' || packId === 'conversation-100';
+      // 영어회화 100은 Day 순서 그대로 진행하는 순차 커리큘럼.
+      // 기본동사 100은 have/get/take 노출 빈도 조절을 위해 셔플+가중치 방식으로 전환(quiz-verbs).
+      const sequentialDayPack = packId === 'conversation-100';
+      // 다른 동사를 배제하지 않고 노출 빈도만 높일 동사 (코로케이션 + 기본동사 100 공통)
+      const priorityVerbs =
+        packId === 'collocations' || packId === 'quiz-verbs'
+          ? new Set(['have', 'get', 'take'])
+          : undefined;
 
       // Day 커리큘럼 팩은 난이도 믹스·셔플 없이 day 순으로
       if (sequentialDayPack) {
@@ -1016,6 +1022,7 @@ export const useStore = create<AppStore>((set, get) => {
         easyRatio,
         skill: get().skill,
         shuffle: true,
+        priorityVerbs,
       });
       const orderedItems = mixed.slice(0, size).map((m) => m.item);
       const plan = createSession(orderedItems, {

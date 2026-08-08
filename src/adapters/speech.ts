@@ -1,14 +1,22 @@
 /**
- * speech.ts — Web Speech API 래퍼.
+ * speech.ts — 음성 인식(STT) + 합성(TTS) 어댑터.
  * 기존 english-thinking-dictionary-quest의 핵심 안정 기법 충실 이관:
  *  - naturalVoiceScore로 자연스러운 영어 음성 선택 (Google/Samantha/Alex/Ava 우선)
  *  - rate 0.78, pitch 1.02, volume 1 (한국어 rate 0.92)
  *  - Safari/iOS 대응: cancel() 후 speak(), 60ms 후 미시작 시 재시도
  *  - STT: createRecognition()으로 recognizer를 반환 → useSpeech에서
  *    클릭 제스처 안에서 동기 start() 호출 (Promise 래핑 시 Safari/iOS 제스처 끊김)
+ *  - 브라우저 내장 Whisper(tiny.en, whisper-recognition.ts) 실험은 롤백함:
+ *    무음 자동종료가 없어 매번 최대 청취시간(7~8초)까지 기다려야 하고, 인식 정확도도
+ *    떨어져 실사용 테스트에서 체감 품질이 기존 Web Speech보다 나빴음. 코드는 남겨두되
+ *    WHISPER_STT_ENABLED로 기본 비활성화 — VAD/더 큰 모델로 재도전할 여지만 남김.
  */
 import type { SpeechAdapter, SpeechRecognitionLike } from '../interfaces/SpeechResult';
 import { playPreparedAudio, stopPreparedAudio } from './tts-audio';
+import { createWhisperRecognition, isWhisperSupported } from './whisper-recognition';
+
+/** 롤백 스위치 — 이유는 상단 docblock 참고. 재도전 시 이 값만 true로. */
+const WHISPER_STT_ENABLED = false;
 
 type RecognitionCtor = new () => SpeechRecognitionLike;
 
@@ -80,8 +88,10 @@ function createSpeechAdapter(): SpeechAdapter {
   const Recognition = getRecognitionCtor();
   const synth = typeof window !== 'undefined' ? window.speechSynthesis : undefined;
 
+  const whisperSupported = WHISPER_STT_ENABLED && isWhisperSupported();
+
   function isRecognitionSupported() {
-    return !!Recognition;
+    return whisperSupported || !!Recognition;
   }
 
   function isSynthesisSupported() {
@@ -92,8 +102,12 @@ function createSpeechAdapter(): SpeechAdapter {
   /**
    * recognizer 직접 반환 — useSpeech에서 클릭 제스처 안에서 start() 동기 호출.
    * Promise로 감싸면 Safari/iOS에서 제스처가 끊겨 인식이 시작되지 않음.
+   * 영어(en)는 Whisper(tiny.en, 영어 전용) 우선 — 한국어(ko)는 모델이 지원하지 않아 Web Speech만 사용.
    */
   function createRecognition(lang: 'en' | 'ko'): SpeechRecognitionLike {
+    if (lang === 'en' && whisperSupported) {
+      return createWhisperRecognition();
+    }
     if (!Recognition) {
       throw new Error('SpeechRecognition not supported in this browser');
     }
@@ -109,7 +123,7 @@ function createSpeechAdapter(): SpeechAdapter {
   /** Promise 편의 API — 데스크톱 Chrome 등 제스처 무관 환경에서만 사용 권장. */
   function recognize(lang: 'en' | 'ko') {
     return new Promise<{ text: string; confidence?: number }>((resolve, reject) => {
-      if (!Recognition) {
+      if (!(lang === 'en' && whisperSupported) && !Recognition) {
         reject(new Error('SpeechRecognition not supported in this browser'));
         return;
       }
@@ -212,7 +226,7 @@ function createSpeechAdapter(): SpeechAdapter {
     isRecognitionSupported,
     isSynthesisSupported,
   };
-  if (Recognition) {
+  if (Recognition || whisperSupported) {
     adapter.createRecognition = createRecognition;
   }
   return adapter;

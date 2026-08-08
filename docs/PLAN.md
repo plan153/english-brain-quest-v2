@@ -108,6 +108,21 @@
 - [x] **빌드타임 TTS 사전 생성 (Azure Neural)** — `scripts/generate-tts.mjs` →
       `public/audio/<해시>.mp3`, 런타임 API 0·오프라인 재생·Web Speech 자동 폴백.
       1,534문장 ≈ 1회 $0.9 / 약 22MB. 옵션 B의 TTS 조각만 백엔드 없이 선취한 형태.
+- [x] **브라우저 내장 Whisper STT (`whisper-tiny.en`) 구현 → 실사용 테스트 후 롤백** —
+      `src/adapters/whisper-recognition.ts` + `stt-worker.ts`(Web Worker) + `audio-resample.ts`.
+      `SpeechRecognitionLike` 계약을 그대로 구현해 `useSpeech.ts`는 무변경으로 통합 성공.
+      다만 실제 브라우저 테스트에서 두 가지 문제 확인: (1) 녹음-후-일괄인식 구조라 무음
+      자동종료가 없어 최대 청취시간(7~8초)까지 매번 대기, (2) 인식 정확도가 Web Speech보다
+      떨어짐(오인식 확인). 추론 자체는 WebGPU로 빠름(1초 내외)이라 병목은 속도가 아니라
+      녹음 UX+정확도. `speech.ts`의 `WHISPER_STT_ENABLED = false`로 기본 비활성화,
+      코드는 보존 — VAD(무음 트리밍)나 base.en 이상 모델로 재도전 여지는 남김.
+      기본 STT는 다시 Web Speech API.
+- [x] **동사 노출 빈도 조절 (have/get/take 우선)** — `difficulty-mixer.ts`의
+      `mixDifficulty`에 `priorityVerbs`/`priorityWeight` 옵션 추가. 가중 셔플
+      (Efraimidis-Spirakis 방식)로 다른 동사를 배제하지 않고 노출 확률만 높임.
+      코로케이션 + 기본동사 100 둘 다 적용. 기본동사 100은 이 작업을 계기로 Day
+      순차 진행 → 셔플+가중치 방식으로 전환(`store.ts`). 영어회화 100은 Day 순서 유지.
+      "be"는 두 팩 모두 verb+명사/particle 패턴이라 해당 항목이 없어 대상 제외.
 - [ ] Stage 4-12 커리큘럼 팩 추가
 - [ ] 구동사 102개 → 300개 이상
 - [ ] 그래머인유즈 145단원까지 점진적 추가
@@ -251,7 +266,10 @@ Phase 1 (완료) ─── Phase 2/3 ─── Phase 4 ────────�
 
 - 마지막 업데이트: 2026-08-03
 - 현재 Phase: **Phase 6 진행 중** (Phase 4/5 완료, 볼트 동기화 선순환 보강 중)
-- 음성 처리: **옵션 A 적용 완료** (B/C 추후 검토)
+- 음성 처리: TTS는 **옵션 B 일부**(빌드타임 Azure Neural mp3) 적용 완료, 백엔드 없이 GitHub Pages
+  정적 호스팅 유지. STT는 **옵션 C(브라우저 내장 Whisper tiny.en) 구현 후 실사용 테스트에서
+  롤백** — 녹음 UX(무음 자동종료 없음)와 정확도 문제로 기본 Web Speech API 유지, Whisper 코드는
+  비활성화 상태로 보존(`WHISPER_STT_ENABLED`). 발음 평가(음소 수준)는 미도입.
 - 배포: GitHub Pages Actions (`.github/workflows/deploy-pages.yml`) — repo Settings → Pages → Source: GitHub Actions 필요
 - 테스트: `npm test` (55 passed) · 빌드: `npm run build`
 
