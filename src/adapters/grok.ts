@@ -16,7 +16,12 @@ export interface GrokAnalysisRequest {
 }
 
 export async function askGrok(request: GrokAnalysisRequest): Promise<string> {
-  const apiKey = (import.meta.env.VITE_OPENROUTER_API_KEY as string) || '';
+  // 1. 환경 변수에서 먼저 찾고, 없으면 브라우저 로컬 저장소에서 찾습니다.
+  let apiKey = (import.meta.env.VITE_OPENROUTER_API_KEY as string) || '';
+
+  if (!apiKey && typeof window !== 'undefined') {
+    apiKey = localStorage.getItem('ebq_openrouter_key') || '';
+  }
 
   if (!apiKey) {
     throw new Error('API_KEY_MISSING');

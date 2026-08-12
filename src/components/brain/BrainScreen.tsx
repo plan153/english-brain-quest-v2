@@ -24,6 +24,7 @@ import {
 import { VaultSyncCard } from './VaultSyncCard';
 import { TodayLogCard } from './TodayLogCard';
 import { AddExpressionCard } from './AddExpressionCard';
+import { OpenRouterConfigCard } from './OpenRouterConfigCard';
 import { GapClueCard } from '../today/GapReasonCard';
 import { summarizePatternGaps, countPatternTraining } from '../../domain/pattern-queue';
 import { learnerFacingClue } from '../../domain/gap-reason';
@@ -454,6 +455,8 @@ export function BrainScreen() {
           </div>
         )}
       </Card>
+
+      <OpenRouterConfigCard />
 
       <VaultSyncCard />
     </div>
