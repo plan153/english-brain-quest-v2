@@ -69,6 +69,7 @@ import {
   createMemory,
   markOwned,
   unmarkOwned,
+  addManualExpression,
   pickReviewQueue,
   pickWeakTrainingQueue,
   countDue,
@@ -198,6 +199,8 @@ interface AppStore
   reviewIntensity: ReviewIntensity;
   setReviewIntensity: (intensity: ReviewIntensity) => void;
   markSentenceOwned: (sentenceId: string, owned?: boolean) => void;
+  /** 오늘 공부한 표현을 영어/한국어로 직접 추가 → 「내 문장」+ 복습 대상으로 편입 */
+  addMyExpression: (en: string, ko: string) => { ok: boolean; wasExisting?: boolean; error?: string };
   getDueReviewItems: (limit?: number) => ContentItem[];
   dueReviewCount: () => number;
   ownedCount: () => number;
@@ -602,6 +605,18 @@ export const useStore = create<AppStore>((set, get) => {
       memories[sentenceId] = owned ? markOwned(existing) : unmarkOwned(existing);
       persistMemories(memories);
       set({ memories });
+    },
+
+    addMyExpression: (en, ko) => {
+      const trimmedEn = en.trim();
+      const trimmedKo = ko.trim();
+      if (!trimmedEn || !trimmedKo) {
+        return { ok: false, error: '영어와 한국어를 모두 입력해 주세요.' };
+      }
+      const result = addManualExpression(get().memories, trimmedEn, trimmedKo);
+      persistMemories(result.memories);
+      set({ memories: result.memories });
+      return { ok: true, wasExisting: result.wasExisting };
     },
 
     getDueReviewItems: (limit = 10) => {

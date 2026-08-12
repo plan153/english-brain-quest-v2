@@ -23,6 +23,7 @@ import {
 } from '../../domain/srs-engine';
 import { VaultSyncCard } from './VaultSyncCard';
 import { TodayLogCard } from './TodayLogCard';
+import { AddExpressionCard } from './AddExpressionCard';
 import { GapClueCard } from '../today/GapReasonCard';
 import { summarizePatternGaps, countPatternTraining } from '../../domain/pattern-queue';
 import { learnerFacingClue } from '../../domain/gap-reason';
@@ -230,6 +231,8 @@ export function BrainScreen() {
           약점 강화 훈련 시작 →
         </button>
       </Card>
+
+      <AddExpressionCard />
 
       {(() => {
         const patternRows = summarizePatternGaps(gapNotes);

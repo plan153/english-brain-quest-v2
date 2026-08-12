@@ -123,6 +123,12 @@
       코로케이션 + 기본동사 100 둘 다 적용. 기본동사 100은 이 작업을 계기로 Day
       순차 진행 → 셔플+가중치 방식으로 전환(`store.ts`). 영어회화 100은 Day 순서 유지.
       "be"는 두 팩 모두 verb+명사/particle 패턴이라 해당 항목이 없어 대상 제외.
+- [x] **오늘 공부한 표현 직접 추가** — `srs-engine.addManualExpression(memories, en, ko)`:
+      같은 영어 문장(대소문자·공백 무시)이 이미 있으면 owned만 표시, 없으면
+      `createMemory`+`markOwned`로 신규 생성(즉시 due). `store.addMyExpression(en, ko)`가
+      호출·영속화. UI는 Brain 탭 `AddExpressionCard`(EN/KO 입력 + 추가 + 발음 확인 버튼).
+      음성 변환은 기존 `speech.ts`의 Web Speech 폴백을 그대로 재사용 — 새 TTS 파이프라인
+      불필요(사전생성 mp3 목록에 없는 텍스트는 애초에 자동으로 Web Speech로 넘어감).
 - [ ] Stage 4-12 커리큘럼 팩 추가
 - [ ] 구동사 102개 → 300개 이상
 - [ ] 그래머인유즈 145단원까지 점진적 추가

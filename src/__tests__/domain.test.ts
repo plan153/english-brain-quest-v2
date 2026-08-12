@@ -38,6 +38,7 @@ import {
   applyReview,
   createMemory,
   markOwned,
+  addManualExpression,
   pickReviewQueue,
   pickWeakTrainingQueue,
   summarizeWeakLinks,
@@ -192,6 +193,26 @@ describe('1d. srs-engine', () => {
     expect(blind.intervalDays).toBeGreaterThan(reveal.intervalDays);
     expect(blind.blindCorrect).toBe(1);
     expect(reveal.revealCorrect).toBe(1);
+  });
+
+  it('addManualExpression creates a new owned memory due immediately', () => {
+    const result = addManualExpression({}, 'I appreciate it.', '감사해요.');
+    expect(result.wasExisting).toBe(false);
+    const mem = result.memories[result.sentenceId];
+    expect(mem.owned).toBe(true);
+    expect(mem.ownedReason).toBe('manual');
+    expect(mem.en).toBe('I appreciate it.');
+    expect(mem.ko).toBe('감사해요.');
+    expect(new Date(mem.nextReviewAt).getTime()).toBeLessThanOrEqual(Date.now());
+  });
+
+  it('addManualExpression reuses an existing memory instead of duplicating (case/whitespace-insensitive)', () => {
+    const first = addManualExpression({}, 'Take a break.', '좀 쉬어.');
+    const second = addManualExpression(first.memories, '  take   a break.  ', '휴식을 취해.');
+    expect(second.wasExisting).toBe(true);
+    expect(second.sentenceId).toBe(first.sentenceId);
+    expect(Object.keys(second.memories).length).toBe(1);
+    expect(second.memories[first.sentenceId].owned).toBe(true);
   });
 });
 

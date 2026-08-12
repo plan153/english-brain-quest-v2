@@ -219,6 +219,42 @@ export function unmarkOwned(memory: SentenceMemory, now = new Date()): SentenceM
   };
 }
 
+export interface AddManualExpressionResult {
+  memories: Record<string, SentenceMemory>;
+  sentenceId: string;
+  wasExisting: boolean;
+}
+
+/**
+ * 사용자가 직접 붙여넣은 영어/한국어 표현을 「내 문장」으로 추가.
+ * 같은 영어 문장(대소문자·공백 무시)이 이미 있으면 새로 만들지 않고 owned만 표시.
+ */
+export function addManualExpression(
+  memories: Record<string, SentenceMemory>,
+  en: string,
+  ko: string,
+  now = new Date()
+): AddManualExpressionResult {
+  const key = en.trim().toLowerCase().replace(/\s+/g, ' ');
+  const existing = Object.values(memories).find(
+    (m) => m.en.trim().toLowerCase().replace(/\s+/g, ' ') === key
+  );
+  if (existing) {
+    return {
+      memories: { ...memories, [existing.sentenceId]: markOwned(existing, now) },
+      sentenceId: existing.sentenceId,
+      wasExisting: true,
+    };
+  }
+  const sentenceId = `my-${now.getTime().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
+  const created = markOwned(createMemory(sentenceId, en.trim(), ko.trim(), now), now);
+  return {
+    memories: { ...memories, [sentenceId]: created },
+    sentenceId,
+    wasExisting: false,
+  };
+}
+
 export function isDue(memory: SentenceMemory, now = new Date()): boolean {
   return new Date(memory.nextReviewAt).getTime() <= now.getTime();
 }
