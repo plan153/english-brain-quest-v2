@@ -12,10 +12,12 @@ import {
   learnerFacingClue,
   PATTERN_NOTE_IDS,
   patternNoteTitle,
+  buildGapReport,
 } from '../../domain/gap-reason';
 import { getUserId } from '../../adapters/storage';
 import { getSyncStatus } from '../../adapters/cloud-sync';
 import { obsidianGapUri } from '../../adapters/obsidian-link';
+import { askGrok } from '../../adapters/grok';
 
 export type GapLoopStatus = 'draft' | 'clued' | 'reviewed';
 
@@ -94,6 +96,39 @@ export function GapClueCard({
   const [saveMsg, setSaveMsg] = useState<string | null>(null);
   const [saveErr, setSaveErr] = useState<string | null>(null);
 
+  const [grokAdvice, setGrokAdvice] = useState<string | null>(null);
+  const [loadingGrok, setLoadingGrok] = useState(false);
+
+  const handleAskGrok = async () => {
+    if (!canonicalEn || !guess) return;
+    setLoadingGrok(true);
+    setSaveErr(null);
+    try {
+      const findings = buildGapReport({
+        en: canonicalEn,
+        ko: gap?.ko || '',
+        guess,
+        match: 'wrong',
+      }).findings;
+
+      const advice = await askGrok({
+        en: canonicalEn,
+        ko: gap?.ko || '',
+        guess,
+        findings,
+      });
+      setGrokAdvice(advice);
+    } catch (err: any) {
+      if (err.message === 'API_KEY_MISSING') {
+        setSaveErr('xAI(Grok) API 키가 없습니다. .env.local에 VITE_GROK_API_KEY를 추가하세요.');
+      } else {
+        setSaveErr('Grok 호출 실패: ' + (err.message || '알 수 없는 오류'));
+      }
+    } finally {
+      setLoadingGrok(false);
+    }
+  };
+
   const displayClue = (optimisticClue || storeClue).trim();
   const status = loopStatus(gap, Boolean(displayClue));
   const revealed = answerRevealed ?? localRevealed;
@@ -154,6 +189,45 @@ export function GapClueCard({
           <div style={{ fontSize: '12px', color: 'var(--ebq-text-muted)', marginBottom: '6px' }}>
             어디가 문제였는지 골라도 되고, 아래에 직접 적어도 됩니다
           </div>
+
+          {grokAdvice && (
+            <div
+              style={{
+                marginTop: '4px',
+                padding: '12px',
+                borderRadius: '10px',
+                background: 'var(--ebq-surface-alt)',
+                borderLeft: '4px solid var(--ebq-accent)',
+                fontSize: '13px',
+                lineHeight: 1.5,
+                color: 'var(--ebq-text)',
+                marginBottom: '10px',
+              }}
+            >
+              <div style={{ fontWeight: 700, marginBottom: '4px' }}>🤖 Grok 선생님의 조언</div>
+              <div style={{ whiteSpace: 'pre-wrap' }}>{grokAdvice}</div>
+              <div style={{ marginTop: '8px' }}>
+                <button
+                  onClick={() => {
+                    // 분석 내용 중 첫 문장이나 핵심을 단서 창에 채워줌
+                    setDraft(grokAdvice.split('\n')[0].replace(/^봇:\s*/, ''));
+                  }}
+                  style={{
+                    fontSize: '11px',
+                    color: 'var(--ebq-primary)',
+                    background: 'none',
+                    border: 'none',
+                    padding: 0,
+                    cursor: 'pointer',
+                    textDecoration: 'underline',
+                  }}
+                >
+                  이 내용을 단서로 가져오기
+                </button>
+              </div>
+            </div>
+          )}
+
           <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '10px' }}>
             {PATTERN_NOTE_IDS.map((role) => (
               <button
@@ -199,6 +273,17 @@ export function GapClueCard({
           <div style={{ display: 'flex', gap: '8px', marginTop: '10px', flexWrap: 'wrap' }}>
             <Button variant="primary" onClick={() => handleSave()}>
               내 단서 저장
+            </Button>
+            <Button
+              onClick={handleAskGrok}
+              disabled={loadingGrok}
+              style={{
+                borderColor: 'var(--ebq-accent)',
+                color: 'var(--ebq-accent)',
+                opacity: loadingGrok ? 0.6 : 1,
+              }}
+            >
+              {loadingGrok ? 'Grok 분석 중...' : 'Grok에게 물어보기'}
             </Button>
             {!revealed && canonicalEn && (
               <Button onClick={reveal}>그래도 정답 보기</Button>
