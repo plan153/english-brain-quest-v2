@@ -120,7 +120,7 @@ export function GapClueCard({
       setGrokAdvice(advice);
     } catch (err: any) {
       if (err.message === 'API_KEY_MISSING') {
-        setSaveErr('xAI(Grok) API 키가 없습니다. .env.local에 VITE_GROK_API_KEY를 추가하세요.');
+        setSaveErr('OpenRouter API 키가 없습니다. .env.local에 VITE_OPENROUTER_API_KEY를 추가하세요.');
       } else {
         setSaveErr('Grok 호출 실패: ' + (err.message || '알 수 없는 오류'));
       }

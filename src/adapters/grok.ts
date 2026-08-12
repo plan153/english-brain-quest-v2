@@ -1,10 +1,10 @@
 /**
- * grok.ts — xAI (Grok) API 어댑터.
- * OpenAI 호환 API를 사용하여 Grok 모델을 호출합니다.
+ * grok.ts — OpenRouter를 통한 xAI (Grok) API 어댑터.
+ * 한국 IP 차단을 우회하여 Grok 모델을 호출합니다.
  */
 
-const GROK_API_URL = 'https://api.xai.com/v1/chat/completions';
-const GROK_MODEL = 'grok-beta'; // 또는 xAI에서 제공하는 최신 모델명
+const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
+const GROK_MODEL = 'x-ai/grok-beta'; // OpenRouter에서의 Grok 모델 ID
 
 export interface GrokAnalysisRequest {
   en: string;   // 정답 문장
@@ -14,7 +14,8 @@ export interface GrokAnalysisRequest {
 }
 
 export async function askGrok(request: GrokAnalysisRequest): Promise<string> {
-  const apiKey = (import.meta.env.VITE_GROK_API_KEY as string) || '';
+  // OpenRouter API 키를 사용합니다.
+  const apiKey = (import.meta.env.VITE_OPENROUTER_API_KEY as string) || '';
 
   if (!apiKey) {
     // 키가 없으면 에러를 던져 UI에서 안내하게 함
@@ -30,7 +31,6 @@ export async function askGrok(request: GrokAnalysisRequest): Promise<string> {
 1. 모든 설명은 한국어로 하세요.
 2. 분석은 2~3문장 이내로 아주 짧게 하세요. (학습 흐름을 방해하지 않도록)
 3. 어려운 문법 용어보다는 '느낌'과 '실제 쓰임새' 중심으로 설명하세요.
-4. "아 다르고 어 다르다"는 식의 미묘한 뉘앙스 차이를 짚어주면 좋습니다.
 `.trim();
 
   const userPrompt = `
@@ -43,11 +43,13 @@ export async function askGrok(request: GrokAnalysisRequest): Promise<string> {
 `.trim();
 
   try {
-    const response = await fetch(GROK_API_URL, {
+    const response = await fetch(OPENROUTER_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${apiKey}`,
+        'HTTP-Referer': 'https://github.com/plan153/english-brain-quest-v2', // OpenRouter 권장 헤더
+        'X-Title': 'English Brain Quest v2',
       },
       body: JSON.stringify({
         model: GROK_MODEL,
@@ -55,7 +57,7 @@ export async function askGrok(request: GrokAnalysisRequest): Promise<string> {
           { role: 'system', content: systemPrompt },
           { role: 'user', content: userPrompt },
         ],
-        temperature: 0.3, // 일관성 있는 답변을 위해 낮춤
+        temperature: 0.3,
         max_tokens: 300,
       }),
     });
@@ -68,7 +70,7 @@ export async function askGrok(request: GrokAnalysisRequest): Promise<string> {
     const data = await response.json();
     return data.choices[0]?.message?.content || '분석 결과를 가져오지 못했습니다.';
   } catch (err) {
-    console.error('Grok call failed:', err);
+    console.error('OpenRouter/Grok call failed:', err);
     throw err;
   }
 }
